@@ -1041,6 +1041,18 @@ Use case ends.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  User has access to alphanumeric inputs to use command line interface.
+.  User has access to Internet to use Google search engine services.
+.  User is able to access instructions on how to use the app.
+.  User has access to a monitor in order to view the app.
+.  User has access to a working power source in order to power up the device running the application.
+.  Response time for any command should be within 5 seconds.
+.  The source code should be open source.
+.  Mean time to recovery must be 10 seconds maximum.
+.  Must be user friendly even for non IT-savvy, conforms to user standards.
+.  Conforms to coding standards.
+.  All data must be protectively marked and stored
+.  User must have basic English literacy.
 
 {More to be added}
 
