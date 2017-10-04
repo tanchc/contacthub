@@ -809,7 +809,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 
 [discrete]
-== Use case: Help
+=== Use case: Help
 
 *MSS*
 
@@ -843,7 +843,7 @@ Use case resumes at step 2.
 
 
 [discrete]
-== Use case: List
+=== Use case: List
 
 *MSS*
 
@@ -860,7 +860,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-== Use case: Edit person
+=== Use case: Edit person
 
 *MSS*
 
@@ -959,7 +959,7 @@ Use case resumes at step 2.
 
 
 [discrete]
-== Use case: History
+=== Use case: History
 
 *MSS*
 
@@ -977,7 +977,7 @@ Use case ends.
 
 
 [discrete]
-== Use case: Undo
+=== Use case: Undo
 
 *MSS*
 
@@ -995,7 +995,7 @@ Use case ends.
 
 
 [discrete]
-== Use case: Redo
+=== Use case: Redo
 
 *MSS*
 
@@ -1024,7 +1024,7 @@ Use case ends.
 
 
 [discrete]
-== Use case: Exit
+=== Use case: Exit
 
 *MSS*
 
