@@ -729,7 +729,73 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |search for another user's contact number by the person's name |
+
+|`* * *` |user |be able to create contacts without filling out every detail |
+
+|`* * *` |user |add a home or office number |prevent the need of creating another person of same name
+
+|`* * *` |user |add multiple phone numbers or addresses to a person|
+
+|`* * *` |user |add multiple tags to a person |my contacts are more recognizable
+
+|`* * *` |user |have different coloured tags |differentiate my contacts easier
+
+|`* * *` |careless user |edit the contact once added |change my errors
+
+|`* *` |user |be able to interact with specific details for each person |
+
+|`* *` |user |send email to a person |communicate with that contact
+
+|`* *` |user |sort by first or last name |
+
+|`* *` |new user |have introduction page |see the basic functions
+
+|`* *` |user |have a better web function than Google search when i select a person|
+
+|`* *` |user |click on specific details for each person |see more feature of each detail
+
+|`* *` |user |right-click on the person |perform more functions for each person
+
+|`* *` |user |know which persons are mutual friends |
+
+|`* *` |calculated user |have statistics of selecting each person |know how often i select a person overtime
+
+|`* *` |user |favourite a person |have ease of access to that person
+
+|`* *` |user |import contacts from iCloud |
+
+|`* *` |demanding user |have suggestions for persons |have ease of access base on the frequency of accessing the person
+
+|`* *` |demanding user |have the list to be updated immediately when i type the letters one by one |
+
+|`* *` |user |have keyboard shortcuts |
+
+|`* *` |user |see the top 3 more searched persons at the top |have ease of access
+
+|`* *` |user |add birthdays to each person |
+
+|`* *` |user |search by tags |filter by tags only
+
+|`* *` |user |add notes to each person |remind myself of things related to the person
+
+|`* *` |new user |choose font size |
+
+|`* *` |user |add friends |able to contact or communicate with them better
+
+|`* *` |user |have the command message box to be better suited for history |
+
+|`* *` |user |have a display picture for each person |recognise each persone easier
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`*` |user |search the address of a person on Google Maps |
+
+|`*` |user |click on the person |see the details of the person more specifically
+
+|`*` |user |see the command format as soon as i type the command |
+
+|`*` |new user |not have example contacts |
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
