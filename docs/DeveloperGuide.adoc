@@ -807,6 +807,20 @@ Private contact detail
 A contact detail that is not meant to be shared with others
 ....
 
+[[main-success-scenario]]
+Main Success Scenario (MSS)
+
+....
+The most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+....
+
+[[extensions]]
+Extensions
+
+....
+Extensions are "add-on"s to the MSS that describe exceptional/alternative flow of events.
+....
+
 [appendix]
 == Product Survey
 
