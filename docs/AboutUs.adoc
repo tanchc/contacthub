@@ -13,7 +13,7 @@ Our https://github.com/CS2103AUG2017-T11-B2[CS2103T Project Team] formed as part
 '''
 
 === Julian Shoung
-image::jshoung.jpg[width="150", align="left"]
+image::jshoung.png[width="150", align="left"]
 {empty}[https://github.com/jshoung[github]]
 
 Role: Team Lead +
@@ -22,7 +22,7 @@ Responsibilities: Overall project coordination
 '''
 
 === Ahmad Alkaff
-image::ahmadalkaff.jpeg[width="150", align="left"]
+image::ahmadalkaff.png[width="150", align="left"]
 {empty}[http://github.com/AhmadAlkaff[github]]
 
 Role: Developer +
@@ -31,7 +31,7 @@ Responsibilities: Code Quality
 '''
 
 === Vivian Tan
-image::viviantan95.jpeg[width="150", align="left"]
+image::viviantan95.png[width="150", align="left"]
 {empty}[https://github.com/viviantan95[github]]
 
 Role: Developer +
@@ -40,7 +40,7 @@ Responsibilities: Documentation
 '''
 
 === Clement Tan
-image::tanchc.jpeg[width="150", align="left"]
+image::tanchc.png[width="150", align="left"]
 {empty}[https://github.com/tanchc[github]]
 
 Role: Developer +
