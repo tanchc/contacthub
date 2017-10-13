@@ -1030,7 +1030,7 @@ Use case ends.
 
 
 [discrete]
-== Use case: Clear
+=== Use case: Clear
 
 *MSS*
 
