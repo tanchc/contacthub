@@ -860,6 +860,23 @@ Use case ends.
 Use case ends.
 
 [discrete]
+=== Use case: Sort
+
+*MSS*
+
+1. User requests to sort persons
+2. AddressBook shows a list of persons sorted alphabetically.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
 === Use case: Edit person
 
 *MSS*

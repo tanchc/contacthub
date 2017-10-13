@@ -76,6 +76,12 @@ Shows a list of all persons in the address book. +
 Format: `list` +
 Format: `l`
 
+=== Sorting all persons : `sort` or `z`
+
+Shows a list of all persons in the address book sorted in an alphabetical order. +
+Format: `sort` +
+Format: `z`
+
 === Editing a person : `edit` or `e`
 
 Edits an existing person in the address book. +
@@ -265,6 +271,7 @@ e.g. `f James Jake`
 * *Select* : `select` or `s INDEX` +
 e.g. `select 2` +
 e.g. `s 2`
+* *Sort* : `sort` or `z`
 * *History* : `history` or `h`
 * *Undo* : `undo` or `u`
 * *Redo* : `redo` or `r`

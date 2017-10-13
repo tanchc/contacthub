@@ -46,6 +46,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
+    /**
+     * Sorts the list
+     */
+    void sortPersonListByName();
+
     void deleteTag(Tag tag)throws DuplicatePersonException, PersonNotFoundException;
 
 }

@@ -102,6 +102,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void sortPersonListByName() {
+        addressBook.sort();
+    }
+
+    @Override
     public void deleteTag(Tag tag) throws DuplicatePersonException, PersonNotFoundException {
         for (int i = 0; i < addressBook.getPersonList().size(); i++) {
             ReadOnlyPerson oldPerson = addressBook.getPersonList().get(i);
