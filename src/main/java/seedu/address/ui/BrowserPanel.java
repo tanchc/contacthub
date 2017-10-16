@@ -46,6 +46,11 @@ public class BrowserPanel extends UiPart<Region> {
                 + GOOGLE_SEARCH_URL_SUFFIX);
     }
 
+    private void loadAddressPage(ReadOnlyPerson person) {
+        loadPage(GOOGLE_SEARCH_URL_PREFIX + person.getAddress()
+                + GOOGLE_SEARCH_URL_SUFFIX);
+    }
+
     public void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
     }
@@ -68,6 +73,6 @@ public class BrowserPanel extends UiPart<Region> {
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        loadPersonPage(event.getNewSelection().person);
+        loadAddressPage(event.getNewSelection().person);
     }
 }
