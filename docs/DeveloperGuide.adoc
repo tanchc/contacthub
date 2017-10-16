@@ -729,7 +729,73 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |search for another user's contact number by the person's name |
+
+|`* * *` |user |be able to create contacts without filling out every detail |
+
+|`* * *` |user |add a home or office number |prevent the need of creating another person of same name
+
+|`* * *` |user |add multiple phone numbers or addresses to a person|
+
+|`* * *` |user |add multiple tags to a person |my contacts are more recognizable
+
+|`* * *` |user |have different coloured tags |differentiate my contacts easier
+
+|`* * *` |careless user |edit the contact once added |change my errors
+
+|`* *` |user |be able to interact with specific details for each person |
+
+|`* *` |user |send email to a person |communicate with that contact
+
+|`* *` |user |sort by first or last name |
+
+|`* *` |new user |have introduction page |see the basic functions
+
+|`* *` |user |have a better web function than Google search when i select a person|
+
+|`* *` |user |click on specific details for each person |see more feature of each detail
+
+|`* *` |user |right-click on the person |perform more functions for each person
+
+|`* *` |user |know which persons are mutual friends |
+
+|`* *` |calculated user |have statistics of selecting each person |know how often i select a person overtime
+
+|`* *` |user |favourite a person |have ease of access to that person
+
+|`* *` |user |import contacts from iCloud |
+
+|`* *` |demanding user |have suggestions for persons |have ease of access base on the frequency of accessing the person
+
+|`* *` |demanding user |have the list to be updated immediately when i type the letters one by one |
+
+|`* *` |user |have keyboard shortcuts |
+
+|`* *` |user |see the top 3 more searched persons at the top |have ease of access
+
+|`* *` |user |add birthdays to each person |
+
+|`* *` |user |search by tags |filter by tags only
+
+|`* *` |user |add notes to each person |remind myself of things related to the person
+
+|`* *` |new user |choose font size |
+
+|`* *` |user |add friends |able to contact or communicate with them better
+
+|`* *` |user |have the command message box to be better suited for history |
+
+|`* *` |user |have a display picture for each person |recognise each persone easier
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`*` |user |search the address of a person on Google Maps |
+
+|`*` |user |click on the person |see the details of the person more specifically
+
+|`*` |user |see the command format as soon as i type the command |
+
+|`*` |new user |not have example contacts |
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
@@ -740,6 +806,120 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 == Use Cases
 
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+
+
+[discrete]
+=== Use case: Help
+
+*MSS*
+
+1.  User requests for help.
+2.  AddressBook shows the UserGuide to the user.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add person
+
+*MSS*
+
+1.  User adds a person to AddressBook
+2.  AddressBook adds the person to the list
+3.  AddressBook displays a successful added message with the person's details
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The format for add person is incorrect.
+[none]
+** 1a1. AddressBook shows an error message.
+** 1a2. User adds a person to the AddressBook.
++
+Steps 1a1-1a2 are repeated until the details are in the correct format.
++
+Use case resumes at step 2.
+
+
+[discrete]
+=== Use case: List
+
+*MSS*
+
+1. User requests to list persons
+2. AddressBook shows a list of persons
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Sort
+
+*MSS*
+
+1. User requests to sort persons
+2. AddressBook shows a list of persons sorted alphabetically.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit person
+
+*MSS*
+
+1. User requests to list persons
+2. AddressBook shows a list of persons
+3. User requests to edit a specific person in the list
+4. User keys in the new details of the person
+5. AddressBook stores the new details of the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+[discrete]
+=== Use case: Find person
+
+*MSS*
+
+1.  User requests to find a person
+2.  AddressBook displays a list of person(s) with the same name
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook does not contain the person.
++
+Use case ends.
 
 [discrete]
 === Use case: Delete person
@@ -767,7 +947,110 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-{More to be added}
+
+[discrete]
+=== Use case: Select person
+
+*MSS*
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to select a person in the list
+4.  AddressBook opens a Google Search of that person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+[discrete]
+=== Use case: History
+
+*MSS*
+
+1. User requests for command history
+2. AddressBook displays a list of command history
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook does not have any command history.
++
+Use case ends.
+
+
+[discrete]
+=== Use case: Undo
+
+*MSS*
+
+1. User requests for undo
+2. AddressBook undo the last undoable command
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook has no more undoable command
++
+Use case ends.
+
+
+[discrete]
+=== Use case: Redo
+
+*MSS*
+
+1. User requests for redo
+2. AddressBook redo the last undoable command
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook has no more undoable command
++
+Use case ends.
+
+
+[discrete]
+=== Use case: Clear
+
+*MSS*
+
+1. User requests to clear AddressBook
+2. AddressBook clears all the data
++
+Use case ends.
+
+
+[discrete]
+=== Use case: Exit
+
+*MSS*
+
+1. User requests to exit AddressBook
+2. AddressBook closes the program.
++
+Use case ends.
+
+{more to be added}
 
 [appendix]
 == Non Functional Requirements
@@ -775,6 +1058,18 @@ Use case resumes at step 2.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  User has access to alphanumeric inputs to use command line interface.
+.  User has access to Internet to use Google search engine services.
+.  User is able to access instructions on how to use the app.
+.  User has access to a monitor in order to view the app.
+.  User has access to a working power source in order to power up the device running the application.
+.  Response time for any command should be within 5 seconds.
+.  The source code should be open source.
+.  Mean time to recovery must be 10 seconds maximum.
+.  Must be user friendly even for non IT-savvy, conforms to user standards.
+.  Conforms to coding standards.
+.  All data must be protectively marked and stored
+.  User must have basic English literacy.
 
 {More to be added}
 
@@ -793,6 +1088,20 @@ Private contact detail
 
 ....
 A contact detail that is not meant to be shared with others
+....
+
+[[main-success-scenario]]
+Main Success Scenario (MSS)
+
+....
+The most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+....
+
+[[extensions]]
+Extensions
+
+....
+Extensions are "add-on"s to the MSS that describe exceptional/alternative flow of events.
 ....
 
 [appendix]
