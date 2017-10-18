@@ -458,6 +458,17 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
 
+=== Deselect Function (To be added)
+
+The implementation of this function is largely
+to facilitate the usage of the default panel (default.html called by BrowserPanel.java) as a quick reference
+for ContactHub commands. This was inspired by the IntelliJ default text when no files are selected in a project.
+
+The deselect function will be implemented through the clearSelection() method in the SelectionModel class. The initial planned implementation of this will be through the CLI but
+GUI support is also planned. We want the deselection to be intuitive and work exactly like the pre-existing selection function.
+
+Initially, a splash screen was considered to show the commands. However, this would not be ideal as users would not be able to return back to it. In addition, it would slow down the startup time for experienced users. For the purpose of deselection itself, there is not really any alternative and in the absence of a command reference default panel, there is little purpose for it.
+
 == Documentation
 
 We use asciidoc for writing documentation.
@@ -818,7 +829,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |have different coloured tags |differentiate my contacts easier
 
-|`* * *` |careless user |edit the contact once added |change my errors
+|`* * *` |user |edit the contact once added |change my errors
 
 |`* *` |user |be able to interact with specific details for each person |
 
@@ -842,9 +853,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |import contacts from iCloud |
 
-|`* *` |demanding user |have suggestions for persons |have ease of access base on the frequency of accessing the person
+|`* *` |user |have suggestions for persons |have ease of access base on the frequency of accessing the person
 
-|`* *` |demanding user |have the list to be updated immediately when i type the letters one by one |
+|`* *` |user |have the list to be updated immediately when i type the letters one by one |
 
 |`* *` |user |have keyboard shortcuts |
 

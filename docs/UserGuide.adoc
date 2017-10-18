@@ -37,9 +37,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * **`delete`** `3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
-.  Refer to the link:#features[Features] section below for details of each command.
+.  Refer to the link:#Commands[Commands] section below for details of each command.
 
-== Features
+== Commands
 
 ====
 *Command Format*
@@ -280,6 +280,14 @@ Several keyboard keys have special operations when typing in command box. +
 
 ContactHub data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+== Coming in v2.0
+
+=== Support for multiple numbers and addresses
+=== Replacement of browser with extended details page
+=== Right-click functionality
+=== Note functionality
+=== Ability to add pictures for contacts
 
 == FAQ
 
