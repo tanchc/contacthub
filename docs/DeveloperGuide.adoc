@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= ContactHub - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,7 +10,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103AUG2017-T11-B2/main/tree/master
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -68,7 +68,7 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, links in the documentation will still point to the `se-edu/addressbook-level4` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `se-edu/addressbook-level4`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
+After forking the repo, links in the documentation will still point to the `CS2103AUG2017-T11-B2/main` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `CS2103AUG2017-T11-B2/main`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
 
 ==== Setting up CI
 
@@ -345,6 +345,67 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+// tag::sort[]
+=== Sort mechanism
+
+The sort mechanism is implemented using the `SortCommand`, which resides inside `Logic`. It supports sorting all the contacts in the address book in an alphabetical order.
+
+When the user requests for ContactHub to be sorted, the list is sorted by implementing the `sortPersonListByName()` method from `Model`.
+In the `sortPersonListByName()` method, the names of all persons in the internalList, which is an Observable List containing of Person, is compared using a comparator.
+
+`SortCommand` inherits from Command and is implemented this way.
+[source,java]
+----
+public class SortCommand extends Command {
+    @Override
+    public CommandResult execute() {
+        // ... sort logic ...
+    }
+}
+----
+
+The `sortPersonListByName()` method is implemented this way.
+[source,java]
+----
+public void sortPersonListByName() {
+        Collections.sort(internalList, Comparator.comparing(firstPerson -> firstPerson.getName().fullName));
+}
+----
+
+Suppose that the user has just launched ContactHub. The contact list will be arranged based on the add order at the beginning.
+
+image::ListCommand.png[width="800"]
+
+The user executes `SortCommand`, the list is now sorted alphabetically.
+
+image::SortCommand.png[width="800"]
+
+As the user continues to use the program, the contact list remains sorted in an alphabetical order.
+
+[NOTE]
+Upon exiting ContactHub, the contact list will not be sorted in the next launch.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SortCommand` +
+**Alternative 1 (current choice):** `SortCommand` inherits from `Command`. +
+**Pros:** After sorting, the contact list remains in an alphabetical order. +
+**Cons:** The contact list cannot be saved in the sorted order. +
+**Alternative 2:** Implement undo/redo for `SortCommand`. +
+**Pros:** The user can switch between the sorted contact list and the original contact list.  +
+**Cons:** `SortCommand` must be extended from `UndoableCommand` and must remember to call `super.execute()`, or lose the ability to undo/redo.
+
+---
+
+**Aspect:** How sort executes +
+**Alternative 1 (current choice):** Uses the Java Collections.sort() method to sort the contact list in an alphabetical order. +
+**Pros:** Easy to implement. +
+**Cons:** It is difficult to debug. +
+**Alternative 2:** Creates a new sort algorithm. +
+**Pros:** It is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::undoredo[]
+=======
 
 === Keyboard shortcuts
 
@@ -514,23 +575,6 @@ Suggested path for new programmers:
 === Improving each component
 
 Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).
-
-[discrete]
-==== `Logic` component
-
-[TIP]
-Do take a look at the link:#logic-component[Design: Logic Component] section before attempting to modify the `Logic` component.
-
-. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all persons in the list.
-+
-****
-* Hints
-** Just like we store each individual command word constant `COMMAND_WORD` inside `*Command.java` (e.g.  link:{repoURL}/src/main/java/seedu/address/logic/commands/FindCommand.java[`FindCommand#COMMAND_WORD`], link:{repoURL}/src/main/java/seedu/address/logic/commands/DeleteCommand.java[`DeleteCommand#COMMAND_WORD`]), you need a new constant for aliases as well (e.g. `FindCommand#COMMAND_ALIAS`).
-** link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser`] is responsible for analyzing command words.
-* Solution
-** Modify the switch statement in link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser#parseCommand(String)`] such that both the proper command word and alias can be used to execute the same intended command.
-** See this https://github.com/se-edu/addressbook-level4/pull/590/files[PR] for the full solution.
-****
 
 [discrete]
 ==== `Model` component
@@ -839,7 +883,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is `ContactHub` and the *Actor* is the `user`, unless specified otherwise)
 
 
 [discrete]
@@ -848,7 +892,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 *MSS*
 
 1.  User requests for help.
-2.  AddressBook shows the UserGuide to the user.
+2.  ContactHub shows the UserGuide to the user.
 +
 Use case ends.
 
@@ -858,8 +902,8 @@ Use case ends.
 *MSS*
 
 1.  User adds a person to AddressBook
-2.  AddressBook adds the person to the list
-3.  AddressBook displays a successful added message with the person's details
+2.  ContactHub adds the person to the list
+3.  ContactHub displays a successful added message with the person's details
 +
 Use case ends.
 
@@ -868,7 +912,7 @@ Use case ends.
 [none]
 * 1a. The format for add person is incorrect.
 [none]
-** 1a1. AddressBook shows an error message.
+** 1a1. ContactHub shows an error message.
 ** 1a2. User adds a person to the AddressBook.
 +
 Steps 1a1-1a2 are repeated until the details are in the correct format.
@@ -882,7 +926,7 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. ContactHub shows a list of persons
 +
 Use case ends.
 
@@ -899,7 +943,7 @@ Use case ends.
 *MSS*
 
 1. User requests to sort persons
-2. AddressBook shows a list of persons sorted alphabetically.
+2. ContactHub shows a list of persons sorted alphabetically.
 +
 Use case ends.
 
@@ -933,10 +977,10 @@ Use case ends.
 *MSS*
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. ContactHub shows a list of persons
 3. User requests to edit a specific person in the list
 4. User keys in the new details of the person
-5. AddressBook stores the new details of the person
+5. ContactHub stores the new details of the person
 +
 Use case ends.
 
@@ -950,7 +994,7 @@ Use case ends.
 * 3a. The given index is invalid
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -961,14 +1005,14 @@ Use case resumes at step 2.
 *MSS*
 
 1.  User requests to find a person
-2.  AddressBook displays a list of person(s) with the same name
+2.  ContactHub displays a list of person(s) with the same name
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook does not contain the person.
+* 2a. ContactHub does not contain the person.
 +
 Use case ends.
 
@@ -978,9 +1022,9 @@ Use case ends.
 *MSS*
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ContactHub shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ContactHub deletes the person
 +
 Use case ends.
 
@@ -994,7 +1038,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1005,9 +1049,9 @@ Use case resumes at step 2.
 *MSS*
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ContactHub shows a list of persons
 3.  User requests to select a person in the list
-4.  AddressBook opens a Google Search of that person
+4.  ContactHub opens a Google Search of that person
 +
 Use case ends.
 
@@ -1021,7 +1065,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1032,14 +1076,14 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests for command history
-2. AddressBook displays a list of command history
+2. ContactHub displays a list of command history
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook does not have any command history.
+* 2a. ContactHub does not have any command history.
 +
 Use case ends.
 
@@ -1050,14 +1094,14 @@ Use case ends.
 *MSS*
 
 1. User requests for undo
-2. AddressBook undo the last undoable command
+2. ContactHub undo the last undoable command
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook has no more undoable command
+* 2a. ContactHub has no more undoable command
 +
 Use case ends.
 
@@ -1068,14 +1112,14 @@ Use case ends.
 *MSS*
 
 1. User requests for redo
-2. AddressBook redo the last undoable command
+2. ContactHub redo the last undoable command
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook has no more undoable command
+* 2a. ContactHub has no more undoable command
 +
 Use case ends.
 
@@ -1085,8 +1129,8 @@ Use case ends.
 
 *MSS*
 
-1. User requests to clear AddressBook
-2. AddressBook clears all the data
+1. User requests to clear ContactHub
+2. ContactHub clears all the data
 +
 Use case ends.
 
@@ -1096,8 +1140,8 @@ Use case ends.
 
 *MSS*
 
-1. User requests to exit AddressBook
-2. AddressBook closes the program.
+1. User requests to exit ContactHub
+2. ContactHub closes the program
 +
 Use case ends.
 

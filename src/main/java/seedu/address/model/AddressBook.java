@@ -159,8 +159,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Sorts the list alphabetically
      */
-    public void sort() {
-        persons.sort();
+    public void sortPersonListByName() {
+        persons.sortPersonListByName();
     }
 
     //// tag-level operations
