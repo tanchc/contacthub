@@ -76,6 +76,12 @@ Shows a list of all persons in the address book. +
 Format: `list` +
 Format: `l`
 
+=== Listing all tags : `listTag` or `lt`
+
+Shows a list of all tags in the address book. +
+Format: `listTag` +
+Format: `lt`
+
 === Sorting all persons : `sort` or `z`
 
 Shows a list of all persons in the address book sorted in an alphabetical order. +
@@ -298,13 +304,15 @@ e.g. `f James Jake`
 * *Find Tag* : `findTag` or `t` KEYWORD [MORE_KEYWORDS]` +
 e.g. `findTag Family Friends` +
 e.g. `t Family Friends`
-* *List* : `list` or `l`
 * *Help* : `help`
+* *History* : `history` or `h`
+* *List* : `list` or `l`
+* *ListTag* : `listTag` or `lt`
+* *Redo* : `redo` or `r`
 * *Select* : `select` or `s INDEX` +
 e.g. `select 2` +
 e.g. `s 2`
 * *Sort* : `sort` or `z`
-* *History* : `history` or `h`
 * *Undo* : `undo` or `u`
 * *Redo* : `redo` or `r`
 
