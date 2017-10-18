@@ -13,8 +13,11 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import org.apache.commons.io.FileUtils;
+<<<<<<< HEAD
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+=======
+>>>>>>> 10726ae7be4a8683dd90be1314741011e5bece78
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
@@ -56,6 +59,7 @@ public class BrowserPanel extends UiPart<Region> {
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
 //        loadPage(GOOGLE_MAPS_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+")
 //                + GOOGLE_SEARCH_URL_SUFFIX);
+<<<<<<< HEAD
 
         ClassLoader classLoader = getClass().getClassLoader();
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
@@ -87,6 +91,7 @@ public class BrowserPanel extends UiPart<Region> {
                 "</html>";
         FileUtils.writeStringToFile(file, reset);
 
+=======
         ClassLoader classLoader = getClass().getClassLoader();
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         String htmlString = FileUtils.readFileToString(htmlTemplateFile);
@@ -98,6 +103,7 @@ public class BrowserPanel extends UiPart<Region> {
         FileUtils.writeStringToFile(newHtmlFile, htmlString);
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + "new.html");
         loadPage(addressPage.toExternalForm());
+>>>>>>> 10726ae7be4a8683dd90be1314741011e5bece78
     }
 
     public void loadPage(String url) {

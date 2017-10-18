@@ -44,14 +44,17 @@ allprojects {
         monocleVersion = '1.8.0_20'
         checkstyleVersion = '8.1'
         commonsIOVersion = '2.5'
+<<<<<<< HEAD
         jsoupVersion = '1.10.3'
+=======
+>>>>>>> 10726ae7be4a8683dd90be1314741011e5bece78
 
         libDir = 'lib'
     }
 
     checkstyle {
         toolVersion = "$checkstyleVersion"
-    
+    }
 
     jacocoTestReport {
         reports {
@@ -68,8 +71,10 @@ allprojects {
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeVersion"
         compile "com.google.guava:guava:$guavaVersion"
         compile "commons-io:commons-io:$commonsIOVersion"
+<<<<<<< HEAD
         compile "org.jsoup:jsoup:1.10.3"
-
+=======
+>>>>>>> 10726ae7be4a8683dd90be1314741011e5bece78
 
         testCompile "junit:junit:$junitVersion"
         testCompile "org.testfx:testfx-core:$testFxVersion"
