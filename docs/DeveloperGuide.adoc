@@ -374,11 +374,11 @@ public void sortPersonListByName() {
 
 Suppose that the user has just launched ContactHub. The contact list will be arranged based on the add order at the beginning.
 
-image::ListCommand.png[width="800"]
+image::ListCommand.png[width="300"]
 
 The user executes `SortCommand`, the list is now sorted alphabetically.
 
-image::SortCommand.png[width="800"]
+image::SortCommand.png[width="300"]
 
 As the user continues to use the program, the contact list remains sorted in an alphabetical order.
 
@@ -404,8 +404,7 @@ Upon exiting ContactHub, the contact list will not be sorted in the next launch.
 **Alternative 2:** Creates a new sort algorithm. +
 **Pros:** It is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
-// end::undoredo[]
-=======
+// end::sort[]
 
 === Keyboard shortcuts
 
@@ -901,7 +900,7 @@ Use case ends.
 
 *MSS*
 
-1.  User adds a person to AddressBook
+1.  User adds a person to ContactHub
 2.  ContactHub adds the person to the list
 3.  ContactHub displays a successful added message with the person's details
 +
@@ -912,8 +911,8 @@ Use case ends.
 [none]
 * 1a. The format for add person is incorrect.
 [none]
-** 1a1. ContactHub shows an error message.
-** 1a2. User adds a person to the AddressBook.
+** 1a1. ContactHub shows an error message
+** 1a2. User adds a person to the ContactHub
 +
 Steps 1a1-1a2 are repeated until the details are in the correct format.
 +
@@ -960,7 +959,7 @@ Use case ends.
 *MSS*
 
 1. User requests to list all tags in the address book.
-2. AddressBook shows a list of tags in the address book.
+2. ContactHub shows a list of tags in the address book.
 +
 Use case ends.
 
