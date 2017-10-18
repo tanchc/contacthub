@@ -263,6 +263,13 @@ Exits the program. +
 Format: `exit` +
 Format: `x`
 
+=== Keyboard shortcuts [Since v1.2]
+
+Several keyboard keys have special operations when typing in command box. +
+
+* Escape: Clears the whole command box
+* Control: Relocates text cursor to the right completely
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
@@ -300,3 +307,7 @@ e.g. `s 2`
 * *History* : `history` or `h`
 * *Undo* : `undo` or `u`
 * *Redo* : `redo` or `r`
+
+=== Keyboard shortcuts
+* *Escape* : Clears the whole command box
+* *Control* : Relocates text cursor to the right completely

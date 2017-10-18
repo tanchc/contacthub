@@ -345,6 +345,40 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+
+=== Keyboard shortcuts
+
+The keyboard shortcut function is facilitated mainly by the `commandBox` class which resides in the `UI` component.
+ It provides the user several functions when typing in the command box using different key bindings of the keyboard.
+
+The `commandBox` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
+The `commandBox` class also instantiates an object of `TextField` class which is a JavaFX FXML, an XML-based language for building a user interface.
+The `TextField` class inherits the `TextInputControl` class which is the base class for text inputs.
+
+Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard. The `commandBox` class
+ would then call the method setText() in the `TextInputControl` class, which is a superclass of `TextField` class, which
+then sets the text in the command box to be empty. Calling it multiple times would involve the same result.
+
+In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box
+ or keyboard shortcuts that would make a help guide appear.
+
+==== Design Considerations
+
+**Aspects:** Types of key bindings that relocates text cursor to the right. +
+**Alternative 1 (current choice):** Use Control key as key binding. +
+**Pros:** Easy key to execute when typing. +
+**Cons:** May be executed unintentionally when executing windows commands. +
+**Alternative 2:** Double click Right key as key binding. +
+**Pros:** Easier to understand and execute for users. +
+**Cons:** More difficult to implement.
+
+---
+
+**Aspects:** Data structure to support keyboard shortcuts. +
+**Alternative 1 (current choice):** Implements in `commandBox` class using methods from `TextField` class. +
+**Pros:** Easy to implement. +
+**Cons:** May be hard for new developers to understand since there is no keyboard shortcuts class.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
