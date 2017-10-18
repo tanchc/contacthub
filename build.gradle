@@ -51,7 +51,7 @@ allprojects {
 
     checkstyle {
         toolVersion = "$checkstyleVersion"
-    }
+    
 
     jacocoTestReport {
         reports {
@@ -69,6 +69,7 @@ allprojects {
         compile "com.google.guava:guava:$guavaVersion"
         compile "commons-io:commons-io:$commonsIOVersion"
         compile "org.jsoup:jsoup:1.10.3"
+
 
         testCompile "junit:junit:$junitVersion"
         testCompile "org.testfx:testfx-core:$testFxVersion"
