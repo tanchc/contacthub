@@ -53,6 +53,9 @@ public class BrowserPanel extends UiPart<Region> {
                 + GOOGLE_SEARCH_URL_SUFFIX);
     }
 
+    /**
+     * Loads the located address page of the user's address.
+     */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
         loadPage(GOOGLE_MAPS_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+")
                 + GOOGLE_SEARCH_URL_SUFFIX);
@@ -79,18 +82,21 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(addressPage.toExternalForm());*/
     }
 
+    /**
+     * resets the address page.
+     */
     private void resetAddressPage(File file) throws IOException {
-        String reset = "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "<link rel=\"stylesheet\" href=\"DarkTheme.css\">" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Title</title>\n" +
-                "</head>\n" +
-                "<body class=\"background\">\n" +
-                "$body\n" +
-                "</body>\n" +
-                "</html>";
+        String reset = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "<link rel=\"stylesheet\" href=\"DarkTheme.css\">"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <title>Title</title>\n"
+                + "</head>\n"
+                + "<body class=\"background\">\n"
+                + "$body\n"
+                + "</body>\n"
+                + "</html>";
         FileUtils.writeStringToFile(file, reset);
 
         /*ClassLoader classLoader = getClass().getClassLoader();
