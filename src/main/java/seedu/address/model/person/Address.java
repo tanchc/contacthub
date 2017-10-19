@@ -20,7 +20,7 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
-    public String gMapsAddress;
+    private String gMapsAddress;
 
     /**
      * Validates given address.
@@ -60,7 +60,7 @@ public class Address {
         return value.hashCode();
     }
 
-    public String getGMapsAddress(){
+    public String getGMapsAddress() {
         return gMapsAddress;
     }
 

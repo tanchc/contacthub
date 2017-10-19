@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
+
 import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Platform;
@@ -12,9 +14,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
-import org.apache.commons.io.FileUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
@@ -64,7 +64,13 @@ public class BrowserPanel extends UiPart<Region> {
         int stopIndex = person.getAddress().getGMapsAddress().indexOf(',');
         String address = person.getAddress().getGMapsAddress().substring(0, stopIndex);
         System.out.println(address);
-        String body = "<div class=" +"\"" + "mapouter" + "\"" + "><div class=" + "\"" + "gmap_canvas" + "\"" + "><iframe width=" + "\"" + "600" + "\"" + " height=" + "\"" + "500" + "\"" + " id=" + "\"" + "gmap_canvas" + "\"" + " src= " +  "\"" + "https://maps.google.com/maps?q=" + address + "&t=&z=13&ie=UTF8&iwloc=&output=embed" + "\"" + " frameborder=" + "\"" + "0" + "\"" + " scrolling=" + "\"" + "no" + "\"" + " marginheight=" + "\"" + "0" + "\"" + " marginwidth=" + "\"" + "0" + "\"" + "></iframe>google maps einbinden <a href=" + "\"" + "http://www.pureblack.de/google-maps/" + "\"" + ">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>";
+        String body = "<div class=" +"\"" + "mapouter" + "\"" + "><div class=" + "\"" + "gmap_canvas" + "\""
+        + "><iframe width=" + "\"" + "600" + "\"" + " height=" + "\"" + "500" + "\"" + " id=" + "\"" + "gmap_canvas"
+        + "\"" + " src= " +  "\"" + "https://maps.google.com/maps?q=" + address + "&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        + "\"" + " frameborder=" + "\"" + "0" + "\"" + " scrolling=" + "\"" + "no" + "\"" + " marginheight=" + "\""
+        + "0" + "\"" + " marginwidth=" + "\"" + "0" + "\"" + "></iframe>google maps einbinden <a href=" + "\""
+        + "http://www.pureblack.de/google-maps/" + "\"" + ">pureblack.de</a></div><style>.mapouter{overflow:hidden;
+        height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>";
         System.out.println(body);
         System.out.println(htmlString);
         htmlString = htmlString.replace("$body", body);
@@ -91,7 +97,12 @@ public class BrowserPanel extends UiPart<Region> {
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         String htmlString = FileUtils.readFileToString(htmlTemplateFile);
         String title = "UserAddress";
-        String body = "<div class=\"mapouter\"><div class=\"gmap_canvas\"><iframe width=\"600\" height=\"500\" id=\"gmap_canvas\" src=\"https://maps.google.com/maps?q=" + person.getAddress().value + "&t=&z=13&ie=UTF8&iwloc=&output=embed\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>google maps einbinden <a href=\"http://www.pureblack.de/google-maps/\">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>";
+        String body = "<div class=\"mapouter\"><div class=\"gmap_canvas\"><iframe width=\"600\" height=\"500\"
+        id=\"gmap_canvas\" src=\"https://maps.google.com/maps?q=" + person.getAddress().value + "&t=&z=13&ie=
+        UTF8&iwloc=&output=embed\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\">
+        </iframe>google maps einbinden <a href=\"http://www.pureblack.de/google-maps/\">pureblack.de</a>
+        </div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height
+        :500px;width:600px;}</style></div>";
         htmlString = htmlString.replace("$title", title);
         htmlString = htmlString.replace("$body", body);
         File newHtmlFile = new File("view/new.html");
