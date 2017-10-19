@@ -54,10 +54,10 @@ public class BrowserPanel extends UiPart<Region> {
     }
 
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
-//        loadPage(GOOGLE_MAPS_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+")
-//                + GOOGLE_SEARCH_URL_SUFFIX);
+        loadPage(GOOGLE_MAPS_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+")
+                + GOOGLE_SEARCH_URL_SUFFIX);
 
-        ClassLoader classLoader = getClass().getClassLoader();
+        /*ClassLoader classLoader = getClass().getClassLoader();
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         resetAddressPage(htmlTemplateFile);
         String htmlString = FileUtils.readFileToString(htmlTemplateFile);
@@ -70,7 +70,7 @@ public class BrowserPanel extends UiPart<Region> {
         htmlString = htmlString.replace("$body", body);
         FileUtils.writeStringToFile(htmlTemplateFile, htmlString);
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
-        loadPage(addressPage.toExternalForm());
+        loadPage(addressPage.toExternalForm());*/
     }
 
     private void resetAddressPage(File file) throws IOException {
@@ -87,7 +87,7 @@ public class BrowserPanel extends UiPart<Region> {
                 "</html>";
         FileUtils.writeStringToFile(file, reset);
 
-        ClassLoader classLoader = getClass().getClassLoader();
+        /*ClassLoader classLoader = getClass().getClassLoader();
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         String htmlString = FileUtils.readFileToString(htmlTemplateFile);
         String title = "UserAddress";
@@ -97,7 +97,7 @@ public class BrowserPanel extends UiPart<Region> {
         File newHtmlFile = new File("view/new.html");
         FileUtils.writeStringToFile(newHtmlFile, htmlString);
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + "new.html");
-        loadPage(addressPage.toExternalForm());
+        loadPage(addressPage.toExternalForm());*/
     }
 
     public void loadPage(String url) {
