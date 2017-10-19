@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= ContactHub - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,7 +10,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103AUG2017-T11-B2/main/tree/master
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -68,7 +68,7 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, links in the documentation will still point to the `se-edu/addressbook-level4` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `se-edu/addressbook-level4`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
+After forking the repo, links in the documentation will still point to the `CS2103AUG2017-T11-B2/main` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `CS2103AUG2017-T11-B2/main`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
 
 ==== Setting up CI
 
@@ -345,6 +345,7 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+
 // tag::findTag[]
 === Find Tag mechanism
 
@@ -359,10 +360,33 @@ public class FindTagCommand extends Command {
     @Override
     public CommandResult execute() {
         // ... findTag logic ...
+
+// tag::sort[]
+=== Sort mechanism
+
+The sort mechanism is implemented using the `SortCommand`, which resides inside `Logic`. It supports sorting all the contacts in the address book in an alphabetical order.
+
+When the user requests for ContactHub to be sorted, the list is sorted by implementing the `sortPersonListByName()` method from `Model`.
+In the `sortPersonListByName()` method, the names of all persons in the internalList, which is an Observable List containing of Person, is compared using a comparator.
+
+`SortCommand` inherits from Command and is implemented this way.
+[source,java]
+----
+public class SortCommand extends Command {
+    @Override
+    public CommandResult execute() {
+        // ... sort logic ...
     }
 }
 ----
 
+The `sortPersonListByName()` method is implemented this way.
+[source,java]
+----
+public void sortPersonListByName() {
+        Collections.sort(internalList, Comparator.comparing(firstPerson -> firstPerson.getName().fullName));
+}
+----
 
 Suppose that the user has just launched ContactHub. The contact list will be arranged based on the add order at the beginning.
 
@@ -397,6 +421,69 @@ Upon exiting ContactHub, the contact list will not be filtered for according to 
 **Pros:** It is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::findTag[]
+=======
+The user executes `SortCommand`, the list is now sorted alphabetically.
+
+image::SortCommand.png[width="300"]
+
+As the user continues to use the program, the contact list remains sorted in an alphabetical order.
+
+[NOTE]
+Upon exiting ContactHub, the contact list will not be sorted in the next launch.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SortCommand` +
+**Alternative 1 (current choice):** `SortCommand` inherits from `Command`. +
+**Pros:** After sorting, the contact list remains in an alphabetical order. +
+**Cons:** The contact list cannot be saved in the sorted order. +
+**Alternative 2:** Implement undo/redo for `SortCommand`. +
+**Pros:** The user can switch between the sorted contact list and the original contact list.  +
+**Cons:** `SortCommand` must be extended from `UndoableCommand` and must remember to call `super.execute()`, or lose the ability to undo/redo.
+
+---
+
+**Aspect:** How sort executes +
+**Alternative 1 (current choice):** Uses the Java Collections.sort() method to sort the contact list in an alphabetical order. +
+**Pros:** Easy to implement. +
+**Cons:** It is difficult to debug. +
+**Alternative 2:** Creates a new sort algorithm. +
+**Pros:** It is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::sort[]
+
+=== Keyboard shortcuts
+
+The keyboard shortcut function is facilitated mainly by the `commandBox` class which resides in the `UI` component.
+ It provides the user several functions when typing in the command box using different key bindings of the keyboard.
+
+The `commandBox` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
+The `commandBox` class also instantiates an object of `TextField` class which is a JavaFX FXML, an XML-based language for building a user interface.
+The `TextField` class inherits the `TextInputControl` class which is the base class for text inputs.
+
+Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard. The `commandBox` class
+ would then call the method setText() in the `TextInputControl` class, which is a superclass of `TextField` class, which
+then sets the text in the command box to be empty. Calling it multiple times would involve the same result.
+
+In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box
+ or keyboard shortcuts that would make a help guide appear.
+
+==== Design Considerations
+
+**Aspects:** Types of key bindings that relocates text cursor to the right. +
+**Alternative 1 (current choice):** Use Control key as key binding. +
+**Pros:** Easy key to execute when typing. +
+**Cons:** May be executed unintentionally when executing windows commands. +
+**Alternative 2:** Double click Right key as key binding. +
+**Pros:** Easier to understand and execute for users. +
+**Cons:** More difficult to implement.
+
+---
+
+**Aspects:** Data structure to support keyboard shortcuts. +
+**Alternative 1 (current choice):** Implements in `commandBox` class using methods from `TextField` class. +
+**Pros:** Easy to implement. +
+**Cons:** May be hard for new developers to understand since there is no keyboard shortcuts class.
 
 === Logging
 
@@ -416,6 +503,17 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 === Configuration
 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
+
+=== Deselect Function (To be added)
+
+The implementation of this function is largely
+to facilitate the usage of the default panel (default.html called by BrowserPanel.java) as a quick reference
+for ContactHub commands. This was inspired by the IntelliJ default text when no files are selected in a project.
+
+The deselect function will be implemented through the clearSelection() method in the SelectionModel class. The initial planned implementation of this will be through the CLI but
+GUI support is also planned. We want the deselection to be intuitive and work exactly like the pre-existing selection function.
+
+Initially, a splash screen was considered to show the commands. However, this would not be ideal as users would not be able to return back to it. In addition, it would slow down the startup time for experienced users. For the purpose of deselection itself, there is not really any alternative and in the absence of a command reference default panel, there is little purpose for it.
 
 == Documentation
 
@@ -533,23 +631,6 @@ Suggested path for new programmers:
 === Improving each component
 
 Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).
-
-[discrete]
-==== `Logic` component
-
-[TIP]
-Do take a look at the link:#logic-component[Design: Logic Component] section before attempting to modify the `Logic` component.
-
-. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all persons in the list.
-+
-****
-* Hints
-** Just like we store each individual command word constant `COMMAND_WORD` inside `*Command.java` (e.g.  link:{repoURL}/src/main/java/seedu/address/logic/commands/FindCommand.java[`FindCommand#COMMAND_WORD`], link:{repoURL}/src/main/java/seedu/address/logic/commands/DeleteCommand.java[`DeleteCommand#COMMAND_WORD`]), you need a new constant for aliases as well (e.g. `FindCommand#COMMAND_ALIAS`).
-** link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser`] is responsible for analyzing command words.
-* Solution
-** Modify the switch statement in link:{repoURL}/src/main/java/seedu/address/logic/parser/AddressBookParser.java[`AddressBookParser#parseCommand(String)`] such that both the proper command word and alias can be used to execute the same intended command.
-** See this https://github.com/se-edu/addressbook-level4/pull/590/files[PR] for the full solution.
-****
 
 [discrete]
 ==== `Model` component
@@ -794,7 +875,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |have different coloured tags |differentiate my contacts easier
 
-|`* * *` |careless user |edit the contact once added |change my errors
+|`* * *` |user |edit the contact once added |change my errors
 
 |`* *` |user |be able to interact with specific details for each person |
 
@@ -818,9 +899,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |import contacts from iCloud |
 
-|`* *` |demanding user |have suggestions for persons |have ease of access base on the frequency of accessing the person
+|`* *` |user |have suggestions for persons |have ease of access base on the frequency of accessing the person
 
-|`* *` |demanding user |have the list to be updated immediately when i type the letters one by one |
+|`* *` |user |have the list to be updated immediately when i type the letters one by one |
 
 |`* *` |user |have keyboard shortcuts |
 
@@ -858,7 +939,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is `ContactHub` and the *Actor* is the `user`, unless specified otherwise)
 
 
 [discrete]
@@ -867,7 +948,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 *MSS*
 
 1.  User requests for help.
-2.  AddressBook shows the UserGuide to the user.
+2.  ContactHub shows the UserGuide to the user.
 +
 Use case ends.
 
@@ -876,9 +957,9 @@ Use case ends.
 
 *MSS*
 
-1.  User adds a person to AddressBook
-2.  AddressBook adds the person to the list
-3.  AddressBook displays a successful added message with the person's details
+1.  User adds a person to ContactHub
+2.  ContactHub adds the person to the list
+3.  ContactHub displays a successful added message with the person's details
 +
 Use case ends.
 
@@ -887,23 +968,22 @@ Use case ends.
 [none]
 * 1a. The format for add person is incorrect.
 [none]
-** 1a1. AddressBook shows an error message.
-** 1a2. User adds a person to the AddressBook.
+** 1a1. ContactHub shows an error message
+** 1a2. User adds a person to the ContactHub
 +
 Steps 1a1-1a2 are repeated until the details are in the correct format.
 +
 Use case resumes at step 2.
 
 
-[discrete]
-=== Use case: List
 
-*MSS*
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. ContactHub shows a list of persons
 +
 Use case ends.
+=======
+
 
 *Extensions*
 
@@ -918,7 +998,24 @@ Use case ends.
 *MSS*
 
 1. User requests to sort persons
-2. AddressBook shows a list of persons sorted alphabetically.
+2. ContactHub shows a list of persons sorted alphabetically.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: ListTag
+
+*MSS*
+
+1. User requests to list all tags in the address book.
+2. ContactHub shows a list of tags in the address book.
 +
 Use case ends.
 
@@ -935,10 +1032,10 @@ Use case ends.
 *MSS*
 
 1. User requests to list persons
-2. AddressBook shows a list of persons
+2. ContactHub shows a list of persons
 3. User requests to edit a specific person in the list
 4. User keys in the new details of the person
-5. AddressBook stores the new details of the person
+5. ContactHub stores the new details of the person
 +
 Use case ends.
 
@@ -952,7 +1049,7 @@ Use case ends.
 * 3a. The given index is invalid
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -963,14 +1060,31 @@ Use case resumes at step 2.
 *MSS*
 
 1.  User requests to find a person
-2.  AddressBook displays a list of person(s) with the same name
+2.  ContactHub displays a list of person(s) with the same name
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook does not contain the person.
+* 2a. ContactHub does not contain the person.
++
+Use case ends.
+
+[discrete]
+=== Use case: Find tag(s)
+
+*MSS*
+
+1.  User requests to find a person(s) with the searched tag name
+2.  AddressBook displays a list of person(s) with the tag name keyed in
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook does not contain anyone with the tag.
 +
 Use case ends.
 
@@ -997,9 +1111,9 @@ Use case ends.
 *MSS*
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ContactHub shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ContactHub deletes the person
 +
 Use case ends.
 
@@ -1013,7 +1127,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1024,9 +1138,9 @@ Use case resumes at step 2.
 *MSS*
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ContactHub shows a list of persons
 3.  User requests to select a person in the list
-4.  AddressBook opens a Google Search of that person
+4.  ContactHub opens a Google Search of that person
 +
 Use case ends.
 
@@ -1040,7 +1154,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. ContactHub shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1051,14 +1165,14 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests for command history
-2. AddressBook displays a list of command history
+2. ContactHub displays a list of command history
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook does not have any command history.
+* 2a. ContactHub does not have any command history.
 +
 Use case ends.
 
@@ -1069,14 +1183,14 @@ Use case ends.
 *MSS*
 
 1. User requests for undo
-2. AddressBook undo the last undoable command
+2. ContactHub undo the last undoable command
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook has no more undoable command
+* 2a. ContactHub has no more undoable command
 +
 Use case ends.
 
@@ -1087,14 +1201,14 @@ Use case ends.
 *MSS*
 
 1. User requests for redo
-2. AddressBook redo the last undoable command
+2. ContactHub redo the last undoable command
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. AddressBook has no more undoable command
+* 2a. ContactHub has no more undoable command
 +
 Use case ends.
 
@@ -1104,8 +1218,8 @@ Use case ends.
 
 *MSS*
 
-1. User requests to clear AddressBook
-2. AddressBook clears all the data
+1. User requests to clear ContactHub
+2. ContactHub clears all the data
 +
 Use case ends.
 
@@ -1115,8 +1229,8 @@ Use case ends.
 
 *MSS*
 
-1. User requests to exit AddressBook
-2. AddressBook closes the program.
+1. User requests to exit ContactHub
+2. ContactHub closes the program
 +
 Use case ends.
 

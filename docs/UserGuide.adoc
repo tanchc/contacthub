@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= ContactHub - User Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,7 +10,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103AUG2017-T11-B2/main
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -23,7 +23,7 @@ Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
 .  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Copy the file to the folder you want to use as the home folder for your ContactHub.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -33,13 +33,13 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to ContactHub.
 * **`delete`** `3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
-.  Refer to the link:#features[Features] section below for details of each command.
+.  Refer to the link:#Commands[Commands] section below for details of each command.
 
-== Features
+== Commands
 
 ====
 *Command Format*
@@ -75,6 +75,12 @@ Examples:
 Shows a list of all persons in the address book. +
 Format: `list` +
 Format: `l`
+
+=== Listing all tags : `listTag` or `lt`
+
+Shows a list of all tags in the address book. +
+Format: `listTag` +
+Format: `lt`
 
 === Sorting all persons : `sort` or `z`
 
@@ -263,10 +269,25 @@ Exits the program. +
 Format: `exit` +
 Format: `x`
 
+=== Keyboard shortcuts [Since v1.2]
+
+Several keyboard keys have special operations when typing in command box. +
+
+* Escape: Clears the whole command box
+* Control: Relocates text cursor to the right completely
+
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+ContactHub data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+== Coming in v2.0
+
+=== Support for multiple numbers and addresses
+=== Replacement of browser with extended details page
+=== Right-click functionality
+=== Note functionality
+=== Ability to add pictures for contacts
 
 == FAQ
 
@@ -291,12 +312,18 @@ e.g. `f James Jake`
 * *Find Tag* : `findTag` or `t` KEYWORD [MORE_KEYWORDS]` +
 e.g. `findTag Family Friends` +
 e.g. `t Family Friends`
-* *List* : `list` or `l`
 * *Help* : `help`
+* *History* : `history` or `h`
+* *List* : `list` or `l`
+* *ListTag* : `listTag` or `lt`
+* *Redo* : `redo` or `r`
 * *Select* : `select` or `s INDEX` +
 e.g. `select 2` +
 e.g. `s 2`
 * *Sort* : `sort` or `z`
-* *History* : `history` or `h`
 * *Undo* : `undo` or `u`
 * *Redo* : `redo` or `r`
+
+=== Keyboard shortcuts
+* *Escape* : Clears the whole command box
+* *Control* : Relocates text cursor to the right completely

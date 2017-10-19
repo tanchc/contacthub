@@ -103,7 +103,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void sortPersonListByName() {
-        addressBook.sort();
+        addressBook.sortPersonListByName();
     }
 
     @Override
