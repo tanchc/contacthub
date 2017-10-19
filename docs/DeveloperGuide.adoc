@@ -345,6 +345,22 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+
+// tag::findTag[]
+=== Find Tag mechanism
+
+The Find Tag mechanism is implemented using the `FindTagCommand`, which resides inside `Logic`. It supports listing all the contacts in the address book associated with.
+
+When the user requests for contacts associated to a tag name(s), the list of contacts will be created and shown.
+
+`FindTagCommand` inherits from Command and is implemented this way.
+[source,java]
+----
+public class FindTagCommand extends Command {
+    @Override
+    public CommandResult execute() {
+        // ... findTag logic ...
+
 // tag::sort[]
 === Sort mechanism
 
@@ -376,6 +392,36 @@ Suppose that the user has just launched ContactHub. The contact list will be arr
 
 image::ListCommand.png[width="300"]
 
+The user executes `FindTagCommand`, the list will now show the contacts associated to the tag name(s) keyed in.
+
+image::FindTagCommand.png[width="300"]
+
+The user can continue to add more tag names for the FindTagCommand, and if any contacts contains any of the tag name(s) keyed in, they will show up
+
+[NOTE]
+Upon exiting ContactHub, the contact list will not be filtered for according to the last tag name(s) keyed in in the next launch.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `FindTagCommand` +
+**Alternative 1 (current choice):** `SortCommand` inherits from `Command`. +
+**Pros:** After filtering, the contact list remains will only show contacts associated to the tag name(s) keyed in. +
+**Cons:** The contact list cannot be saved after filtering. +
+**Alternative 2:** Implement undo/redo for `FilterCommand`. +
+**Pros:** The user can switch between the filtered contact list and the original contact list.  +
+**Cons:** `FindTagCommand` must be extended from `UndoableCommand` and must remember to call `super.execute()`, or lose the ability to undo/redo.
+
+---
+
+**Aspect:** How findTag executes +
+**Alternative 1 (current choice):** Uses the Java Collections.stream() method to filter the contact list. +
+**Pros:** Easy to implement. +
+**Cons:** It is difficult to debug. +
+**Alternative 2:** Creates a new findTag algorithm. +
+**Pros:** It is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::findTag[]
+=======
 The user executes `SortCommand`, the list is now sorted alphabetically.
 
 image::SortCommand.png[width="300"]
@@ -1022,6 +1068,23 @@ Use case ends.
 
 [none]
 * 2a. ContactHub does not contain the person.
++
+Use case ends.
+
+[discrete]
+=== Use case: Find tag(s)
+
+*MSS*
+
+1.  User requests to find a person(s) with the searched tag name
+2.  AddressBook displays a list of person(s) with the tag name keyed in
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. AddressBook does not contain anyone with the tag.
 +
 Use case ends.
 
