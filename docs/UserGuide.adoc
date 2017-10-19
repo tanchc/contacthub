@@ -82,7 +82,7 @@ Shows a list of all tags in the address book. +
 Format: `listTag` +
 Format: `lt`
 
-=== Sorting all persons : `sort` or `z`
+=== Sorting all persons : `sort` or `s`
 
 Shows a list of all persons in the address book sorted in an alphabetical order. +
 Format: `sort` +
@@ -130,7 +130,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` or `f Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
-=== Locating persons by tags: `findTag` or `t`
+=== Locating persons by tags: `findTag` or `ft`
 
 Finds persons whose tags contain any of the given keywords. +
 Format: `findTag KEYWORD [MORE_KEYWORDS]` +
@@ -173,7 +173,7 @@ Deletes the 2nd person in the address book.
 `delete 1` or `d 1` +
 Deletes the 1st person in the results of the `find` or `f` command.
 
-=== Selecting a person : `select` or `s`
+=== Selecting a person : `select` or `sl`
 
 Selects the person identified by the index number used in the last person listing. +
 Format: `select INDEX` +
@@ -309,7 +309,7 @@ e.g. `e 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find` or `f KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake` +
 e.g. `f James Jake`
-* *Find Tag* : `findTag` or `t KEYWORD [MORE_KEYWORDS]` +
+* *Find Tag* : `findTag` or `ft KEYWORD [MORE_KEYWORDS]` +
 e.g. `findTag Family Friends` +
 e.g. `t Family Friends`
 * *Help* : `help`
@@ -320,7 +320,7 @@ e.g. `t Family Friends`
 * *Select* : `select` or `s INDEX` +
 e.g. `select 2` +
 e.g. `s 2`
-* *Sort* : `sort` or `z`
+* *Sort* : `sort` or `sr`
 * *Undo* : `undo` or `u`
 
 === Keyboard shortcuts

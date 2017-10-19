@@ -991,8 +991,6 @@ Use case resumes at step 2.
 2. ContactHub shows a list of persons
 +
 Use case ends.
-=======
-
 
 *Extensions*
 
