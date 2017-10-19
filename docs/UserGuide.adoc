@@ -309,7 +309,7 @@ e.g. `e 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find` or `f KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake` +
 e.g. `f James Jake`
-* *Find Tag* : `findTag` or `t` KEYWORD [MORE_KEYWORDS]` +
+* *Find Tag* : `findTag` or `t KEYWORD [MORE_KEYWORDS]` +
 e.g. `findTag Family Friends` +
 e.g. `t Family Friends`
 * *Help* : `help`
@@ -322,7 +322,6 @@ e.g. `select 2` +
 e.g. `s 2`
 * *Sort* : `sort` or `z`
 * *Undo* : `undo` or `u`
-* *Redo* : `redo` or `r`
 
 === Keyboard shortcuts
 * *Escape* : Clears the whole command box
