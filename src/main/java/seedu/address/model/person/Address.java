@@ -33,7 +33,7 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address;
-        this.gMapsAddress = address.replace("Blk", "");
+        this.gMapsAddress = address.replace("Blk ", "");
     }
 
     /**
