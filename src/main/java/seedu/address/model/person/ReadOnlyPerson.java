@@ -14,8 +14,8 @@ public interface ReadOnlyPerson {
 
     ObjectProperty<Name> nameProperty();
     Name getName();
-    ObjectProperty<Phone> phoneProperty();
-    Phone getPhone();
+    ObjectProperty<PhoneList> phoneProperty();
+    Set<Phone> getPhones();
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
     ObjectProperty<Email> emailProperty();
@@ -32,7 +32,7 @@ public interface ReadOnlyPerson {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
-                && other.getPhone().equals(this.getPhone())
+                && other.getPhones().equals(this.getPhones())
                 && other.getBirthday().equals(this.getBirthday())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress()));
@@ -44,8 +44,8 @@ public interface ReadOnlyPerson {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Phones: ")
+                .append(getPhones().toString())
                 .append(" Birthday: ")
                 .append(getBirthday())
                 .append(" Email: ")

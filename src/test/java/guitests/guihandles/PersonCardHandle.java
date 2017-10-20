@@ -14,14 +14,14 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String NAME_FIELD_ID = "#name";
     private static final String ADDRESS_FIELD_ID = "#address";
-    private static final String PHONE_FIELD_ID = "#phone";
+    private static final String PHONES_FIELD_ID = "#phones";
     private static final String EMAIL_FIELD_ID = "#email";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
     private final Label nameLabel;
     private final Label addressLabel;
-    private final Label phoneLabel;
+    private final List<Label> phoneLabels;
     private final Label emailLabel;
     private final List<Label> tagLabels;
 
@@ -31,7 +31,14 @@ public class PersonCardHandle extends NodeHandle<Node> {
         this.idLabel = getChildNode(ID_FIELD_ID);
         this.nameLabel = getChildNode(NAME_FIELD_ID);
         this.addressLabel = getChildNode(ADDRESS_FIELD_ID);
-        this.phoneLabel = getChildNode(PHONE_FIELD_ID);
+
+        Region phonesContainer = getChildNode(PHONES_FIELD_ID);
+        this.phoneLabels = phonesContainer
+                .getChildrenUnmodifiable()
+                .stream()
+                .map(Label.class::cast)
+                .collect(Collectors.toList());
+
         this.emailLabel = getChildNode(EMAIL_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
@@ -54,8 +61,11 @@ public class PersonCardHandle extends NodeHandle<Node> {
         return addressLabel.getText();
     }
 
-    public String getPhone() {
-        return phoneLabel.getText();
+    public List<String> getPhones() {
+        return phoneLabels
+                .stream()
+                .map(Label::getText)
+                .collect(Collectors.toList());
     }
 
     public String getEmail() {

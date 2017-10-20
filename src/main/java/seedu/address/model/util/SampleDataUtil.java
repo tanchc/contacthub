@@ -22,26 +22,26 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         try {
             return new Person[] {
-                new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Birthday("17/05/1995"),
+                new Person(new Name("Alex Yeoh"), getPhoneSet("87438807"), new Birthday("17/05/1995"),
                     new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("friends")),
-                new Person(new Name("Bernice Yu"), new Phone("99272758"), new Birthday("08/01/1991"),
+                new Person(new Name("Bernice Yu"), getPhoneSet("99272758"), new Birthday("08/01/1991"),
                     new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("colleagues", "friends")),
-                new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
+                new Person(new Name("Charlotte Oliveiro"), getPhoneSet("93210283"),
                     new Birthday("20/11/1987"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getTagSet("neighbours")),
-                new Person(new Name("David Li"), new Phone("91031282"), new Birthday("29/02/1997"),
+                new Person(new Name("David Li"), getPhoneSet("91031282"), new Birthday("29/02/1997"),
                     new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getTagSet("family")),
-                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
+                new Person(new Name("Irfan Ibrahim"), getPhoneSet("92492021"),
                     new Birthday("01/01/1976"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
                     getTagSet("classmates")),
-                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
+                new Person(new Name("Roy Balakrishnan"), getPhoneSet("92624417"),
                     new Birthday("13/09/1966"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("colleagues"))
@@ -61,6 +61,18 @@ public class SampleDataUtil {
         } catch (DuplicatePersonException e) {
             throw new AssertionError("sample data cannot contain duplicate persons", e);
         }
+    }
+
+    /**
+     * Returns a phone set containing the list of strings given.
+     */
+    public static Set<Phone> getPhoneSet(String... strings) throws IllegalValueException {
+        HashSet<Phone> phones = new HashSet<>();
+        for (String s : strings) {
+            phones.add(new Phone(s));
+        }
+
+        return phones;
     }
 
     /**

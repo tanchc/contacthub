@@ -19,6 +19,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,7 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editPersonDescriptor::setName);
-            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhone);
+            parsePhonesForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhones);
             ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY))
                     .ifPresent(editPersonDescriptor::setBirthday);
             ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmail);
@@ -63,6 +64,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> phones} into a {@code Set<Phone>} if {@code phones} is non-empty.
+     * If {@code phones} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Phone>} containing zero phones.
+     */
+    private Optional<Set<Phone>> parsePhonesForEdit(Collection<String> phones) throws IllegalValueException {
+        assert phones != null;
+
+        if (phones.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> phoneSet = phones.size() == 1 && phones.contains("") ? Collections.emptySet() : phones;
+        return Optional.of(ParserUtil.parsePhones(phoneSet));
     }
 
     /**

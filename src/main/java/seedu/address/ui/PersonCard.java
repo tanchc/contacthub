@@ -13,7 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.ReadOnlyPerson;
 
 
-
 /**
  * An UI component that displays information of a {@code Person}.
  */
@@ -23,6 +22,7 @@ public class PersonCard extends UiPart<Region> {
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
+    private static HashMap<String, String> phoneColors = new HashMap<String, String>();
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
@@ -42,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private FlowPane phones;
     @FXML
     private Label birthday;
     @FXML
@@ -56,6 +56,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        initPhones(person);
         initTags(person);
         bindListeners(person);
     }
@@ -80,13 +81,26 @@ public class PersonCard extends UiPart<Region> {
      */
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
-        phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        person.phoneProperty().addListener((observable, oldValue, newValue) -> {
+            phones.getChildren().clear();
+            initPhones(person);
+        });
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
+        });
+    }
+
+    /**
+     * Initialise the phones for each person
+     */
+    private void initPhones(ReadOnlyPerson person) {
+        person.getPhones().forEach(phone -> {
+            Label phoneLabel = new Label(phone.value);
+            phones.getChildren().add(phoneLabel);
         });
     }
 

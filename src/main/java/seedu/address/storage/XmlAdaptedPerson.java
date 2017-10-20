@@ -24,8 +24,8 @@ public class XmlAdaptedPerson {
 
     @XmlElement(required = true)
     private String name;
-    @XmlElement(required = true)
-    private String phone;
+    @XmlElement
+    private List<XmlAdaptedPhone> phones = new ArrayList<>();
     @XmlElement(required = true)
     private String birthday;
     @XmlElement(required = true)
@@ -50,7 +50,10 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phones = new ArrayList<>();
+        for (Phone phone : source.getPhones()) {
+            phones.add(new XmlAdaptedPhone(phone));
+        }
         birthday = source.getBirthday().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -66,16 +69,20 @@ public class XmlAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Person toModelType() throws IllegalValueException {
+        final List<Phone> personPhones = new ArrayList<>();
+        for (XmlAdaptedPhone phone : phones) {
+            personPhones.add(phone.toModelType());
+        }
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final Phone phone = new Phone(this.phone);
+        final Set<Phone> phones = new HashSet<>(personPhones);
         final Birthday birthday = new Birthday(this.birthday);
         final Email email = new Email(this.email);
         final Address address = new Address(this.address);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, birthday, email, address, tags);
+        return new Person(name, phones, birthday, email, address, tags);
     }
 }

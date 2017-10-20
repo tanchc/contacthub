@@ -57,12 +57,15 @@ public class ParserUtil {
      * Parses a {@code Optional<String> phone} into an {@code Optional<Phone>} if {@code phone} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Phone> parsePhone(Optional<String> phone) throws IllegalValueException {
-        requireNonNull(phone);
-        return phone.isPresent() ? Optional.of(new Phone(phone.get())) : Optional.empty();
+    public static Set<Phone> parsePhones(Collection<String> phones) throws IllegalValueException {
+        requireNonNull(phones);
+        final Set<Phone> phoneSet = new HashSet<>();
+        for (String phoneNum : phones) {
+            phoneSet.add(new Phone(phoneNum));
+        }
+        return phoneSet;
     }
 
-    //@@author viviantan95
     /**
      * Parses a {@code Optional<String> Address} into an {@code Optional<Address>} if {@code Address} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.

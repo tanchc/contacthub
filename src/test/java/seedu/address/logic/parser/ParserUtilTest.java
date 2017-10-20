@@ -32,7 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE_1 = "123456";
+    private static final String VALID_PHONE_2 = "987654";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -91,26 +92,26 @@ public class ParserUtilTest {
     @Test
     public void parsePhone_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parsePhone(null);
+        ParserUtil.parsePhones(null);
     }
 
     @Test
     public void parsePhone_invalidValue_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parsePhone(Optional.of(INVALID_PHONE));
+        ParserUtil.parsePhones(Arrays.asList(INVALID_PHONE, VALID_PHONE_1));
     }
 
     @Test
-    public void parsePhone_optionalEmpty_returnsOptionalEmpty() throws Exception {
-        assertFalse(ParserUtil.parsePhone(Optional.empty()).isPresent());
+    public void parsePhone_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parsePhones(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parsePhone_validValue_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        Optional<Phone> actualPhone = ParserUtil.parsePhone(Optional.of(VALID_PHONE));
+    public void parsePhone_collectionWithValidPhones_returnsPhoneSet() throws Exception {
+        Set<Phone> actualPhoneSet = ParserUtil.parsePhones(Arrays.asList(VALID_PHONE_1, VALID_PHONE_2));
+        Set<Phone> expectedPhoneSet = new HashSet<>(Arrays.asList(new Phone(VALID_PHONE_1), new Phone(VALID_PHONE_2)));
 
-        assertEquals(expectedPhone, actualPhone.get());
+        assertEquals(expectedPhoneSet, actualPhoneSet);
     }
 
     @Test
