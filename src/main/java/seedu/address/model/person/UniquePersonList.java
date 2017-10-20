@@ -108,7 +108,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Sorts the list alphabetically
      */
-    public void sort() {
+    public void sortPersonListByName() {
         Collections.sort(internalList, Comparator.comparing(firstPerson -> firstPerson.getName().fullName));
     }
 

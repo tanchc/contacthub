@@ -9,7 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 import seedu.address.model.person.ReadOnlyPerson;
+
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -17,7 +20,9 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static String[] colors = { "red", "yellow", "blue", "orange", "brown", "green", "pink", "black", "grey" };
+
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
+
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
@@ -55,15 +60,19 @@ public class PersonCard extends UiPart<Region> {
         bindListeners(person);
     }
 
-    //assign different colors to different tags
-    private static String getColorForTag(String tagValue) {
+    private static int getRandom() {
+        int randNum = random.nextInt(colors.length);
+        return randNum;
+    }
+
+    private static String getColorForTag(String tagValue, int randNum) {
         if (!tagColors.containsKey(tagValue)) {
-            tagColors.put(tagValue, colors[random.nextInt(colors.length)]);
+            tagColors.put(tagValue, colors[randNum]);
+
         }
 
         return tagColors.get(tagValue);
     }
-
 
     /**
      * Binds the individual UI elements to observe their respective {@code Person} properties
@@ -81,13 +90,18 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
-    /**Initialize the tags for a {@code Person}
-      */
+    /**
+     * Initialise the tags for each person
+     */
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
-            tagLabel.setStyle("-fx-background-color: "
-                    + getColorForTag(tag.tagName));
+            int randNum = getRandom();
+            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName, randNum));
+            if (randNum > 6) {
+                tagLabel.setStyle("-fx-text-fill: black");
+            }
+
             tags.getChildren().add(tagLabel);
         });
     }

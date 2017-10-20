@@ -9,7 +9,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String COMMAND_ALIAS = "z";
+    public static final String COMMAND_ALIAS = "s";
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons in the address book alphabetically.";
 
