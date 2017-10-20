@@ -57,8 +57,6 @@ public class BrowserPanel extends UiPart<Region> {
      * Loads the located address page of the user's address.
      */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
-        //        loadPage(GOOGLE_MAPS_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+")
-//                + GOOGLE_SEARCH_URL_SUFFIX);
         ClassLoader classLoader = getClass().getClassLoader();
         File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         resetPage(htmlTemplateFile);
@@ -68,15 +66,17 @@ public class BrowserPanel extends UiPart<Region> {
         int stopIndex = person.getAddress().getGMapsAddress().indexOf(',');
         String address = person.getAddress().getGMapsAddress().substring(0, stopIndex);
         System.out.println(address);
-        String body = "<div class=" +"\"" + "mapouter" + "\"" + "><div class=" + "\"" + "gmap_canvas" + "\"" + "><iframe width=" + "\"" + "600" + "\"" + " height=" + "\"" + "500" + "\"" + " id=" + "\"" + "gmap_canvas" + "\"" + " src= " +  "\"" + "https://maps.google.com/maps?q=" + address +"&t=&z=13&ie=UTF8&iwloc=&output=embed" + "\"" + " frameborder=" + "\"" + "0" + "\"" + " scrolling=" + "\"" + "no" + "\"" + " marginheight=" + "\"" + "0" + "\"" + " marginwidth=" + "\"" + "0" + "\"" + "></iframe>google maps einbinden <a href=" + "\"" + "http://www.pureblack.de/google-maps/" + "\"" + ">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>";
+        String body = "<div class=" +"\"" + "mapouter" + "\"" + "><div class=" + "\"" + "gmap_canvas" + "\""
+                + "><iframe width=" + "\"" + "600" + "\"" + " height=" + "\"" + "500" + "\"" + " id=" + "\""
+                + "gmap_canvas" + "\"" + " src= " +  "\"" + "https://maps.google.com/maps?q=" + address
+                +"&t=&z=13&ie=UTF8&iwloc=&output=embed" + "\"" + " frameborder=" + "\"" + "0" + "\"" + " scrolling="
+                + "\"" + "no" + "\"" + " marginheight=" + "\"" + "0" + "\"" + " marginwidth=" + "\"" + "0" + "\""
+                + "></iframe>google maps einbinden <a href=" + "\"" + "http://www.pureblack.de/google-maps/" + "\""
+                + ">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas " +
+                "{background:none!important;height:500px;width:600px;}</style></div>";
         htmlString = htmlString.replace("$body", body);
         System.out.println(htmlString);
         FileUtils.writeStringToFile(htmlTemplateFile, htmlString);
-//        ClassLoader classLoader = getClass().getClassLoader();
-//        File htmlTemplateFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
-//        Document doc = Jsoup.parse(htmlTemplateFile, "UTF-8");
-//        String body = "<div class=" +"\"" + "mapouter" + "\"" + "><div class=" + "\"" + "gmap_canvas" + "\"" + "><iframe width=" + "\"" + "600" + "\"" + " height=" + "\"" + "500" + "\"" + " id=" + "\"" + "gmap_canvas" + "\"" + " src= " +  "\"" + "https://maps.google.com/maps?q=Tanjong Pagar Road&t=&z=13&ie=UTF8&iwloc=&output=embed" + "\"" + " frameborder=" + "\"" + "0" + "\"" + " scrolling=" + "\"" + "no" + "\"" + " marginheight=" + "\"" + "0" + "\"" + " marginwidth=" + "\"" + "0" + "\"" + "></iframe>google maps einbinden <a href=" + "\"" + "http://www.pureblack.de/google-maps/" + "\"" + ">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>";
-//        doc.select("iframe[src]").attr("src", body);
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
         loadPage(addressPage.toExternalForm());
     }
@@ -85,17 +85,17 @@ public class BrowserPanel extends UiPart<Region> {
      * resets the address page.
      */
     private void resetPage(File file) throws IOException {
-        String reset = "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <link rel=\"stylesheet\" href=\"DarkTheme.css\">" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Title</title>\n" +
-                "</head>\n" +
-                "<body class = background>\n" +
-                "$body\n" +
-                "</body>\n" +
-                "</html>";
+        String reset = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "    <link rel=\"stylesheet\" href=\"DarkTheme.css\">"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <title>Title</title>\n"
+                + "</head>\n"
+                + "<body class = background>\n"
+                + "$body\n"
+                + "</body>\n"
+                + "</html>";
         FileUtils.writeStringToFile(file, reset);
     }
 
