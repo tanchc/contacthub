@@ -88,9 +88,13 @@ public class ParserUtil {
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        requireNonNull(email);
-        return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
+    public static Set<Email> parseEmails(Collection<String> emails) throws IllegalValueException {
+        requireNonNull(emails);
+        final Set<Email> emailSet = new HashSet<>();
+        for (String e : emails) {
+            emailSet.add(new Email(e));
+        }
+        return emailSet;
     }
 
     /**

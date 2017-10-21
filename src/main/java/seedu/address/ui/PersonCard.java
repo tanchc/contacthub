@@ -48,7 +48,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private FlowPane emails;
     @FXML
     private FlowPane tags;
 
@@ -57,6 +57,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         initPhones(person);
+        initEmails(person);
         initTags(person);
         bindListeners(person);
     }
@@ -87,7 +88,10 @@ public class PersonCard extends UiPart<Region> {
         });
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
-        email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        person.emailProperty().addListener((observable, oldValue, newValue) -> {
+            emails.getChildren().clear();
+            initEmails(person);
+        });
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
@@ -101,6 +105,16 @@ public class PersonCard extends UiPart<Region> {
         person.getPhones().forEach(phone -> {
             Label phoneLabel = new Label(phone.value);
             phones.getChildren().add(phoneLabel);
+        });
+    }
+
+    /**
+     * Initialise the emails for each person
+     */
+    private void initEmails(ReadOnlyPerson person) {
+        person.getEmails().forEach(email -> {
+            Label emailLabel = new Label(email.value);
+            emails.getChildren().add(emailLabel);
         });
     }
 

@@ -24,12 +24,12 @@ public class XmlAdaptedPerson {
 
     @XmlElement(required = true)
     private String name;
-    @XmlElement
+    @XmlElement(required = true)
     private List<XmlAdaptedPhone> phones = new ArrayList<>();
     @XmlElement(required = true)
     private String birthday;
     @XmlElement(required = true)
-    private String email;
+    private List<XmlAdaptedEmail> emails = new ArrayList<>();
     @XmlElement(required = true)
     private String address;
 
@@ -55,7 +55,10 @@ public class XmlAdaptedPerson {
             phones.add(new XmlAdaptedPhone(phone));
         }
         birthday = source.getBirthday().value;
-        email = source.getEmail().value;
+        emails = new ArrayList<>();
+        for (Email email : source.getEmails()) {
+            emails.add(new XmlAdaptedEmail(email));
+        }
         address = source.getAddress().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -73,16 +76,23 @@ public class XmlAdaptedPerson {
         for (XmlAdaptedPhone phone : phones) {
             personPhones.add(phone.toModelType());
         }
+
+        final List<Email> personEmails = new ArrayList<>();
+        for (XmlAdaptedEmail email : emails) {
+            personEmails.add(email.toModelType());
+        }
+
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
+
         final Name name = new Name(this.name);
         final Set<Phone> phones = new HashSet<>(personPhones);
         final Birthday birthday = new Birthday(this.birthday);
-        final Email email = new Email(this.email);
+        final Set<Email> emails = new HashSet<>(personEmails);
         final Address address = new Address(this.address);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phones, birthday, email, address, tags);
+        return new Person(name, phones, birthday, emails, address, tags);
     }
 }

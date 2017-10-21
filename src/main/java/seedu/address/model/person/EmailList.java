@@ -13,52 +13,52 @@ import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.commons.util.CollectionUtil;
 
 /**
- * A list of phones that enforces no nulls and uniqueness between its elements.
+ * A list of emails that enforces no nulls and uniqueness between its elements.
  *
  * Supports minimal set of list operations for the app's features.
  *
  * @see Phone#equals(Object)
  */
-public class PhoneList implements Iterable<Phone> {
+public class EmailList implements Iterable<Email> {
 
-    private final ObservableList<Phone> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Email> internalList = FXCollections.observableArrayList();
 
     /**
-     * Constructs an empty PhoneList
+     * Constructs an empty EmailList
      */
-    public PhoneList() {
+    public EmailList() {
 
     }
 
     /**
-     * Creates a PhoneList using given phones.
+     * Creates a EmailList using given emails.
      * Enforces no nulls.
      */
-    public PhoneList(Set<Phone> phones) {
-        requireAllNonNull(phones);
-        internalList.addAll(phones);
+    public EmailList(Set<Email> emails) {
+        requireAllNonNull(emails);
+        internalList.addAll(emails);
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
     /**
-     * Returns all phones in this list as a Set.
+     * Returns all emails in this list as a Set.
      * This set is mutable and change-insulated against the internal list.
      */
-    public Set<Phone> toSet() {
+    public Set<Email> toSet() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return new HashSet<>(internalList);
     }
 
     /**
-     * Adds a phone to the list.
+     * Adds an email to the list.
      *
-     * @throws PhoneList.DuplicatePhoneException if the phone to add is a duplicate of an existing phone in the list.
+     * @throws PhoneList.DuplicatePhoneException if the email to add is a duplicate of an existing Phone in the list.
      */
-    public void add(Phone toAdd) throws PhoneList.DuplicatePhoneException {
+    public void add(Email toAdd) throws EmailList.DuplicateEmailException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new PhoneList.DuplicatePhoneException();
+            throw new EmailList.DuplicateEmailException();
         }
         internalList.add(toAdd);
 
@@ -66,15 +66,15 @@ public class PhoneList implements Iterable<Phone> {
     }
 
     @Override
-    public Iterator<Phone> iterator() {
+    public Iterator<Email> iterator() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return internalList.iterator();
     }
 
     /**
-     * Returns true if the list contains an equivalent phone as the given argument.
+     * Returns true if the list contains an equivalent email as the given argument.
      */
-    public boolean contains(Phone toCheck) {
+    public boolean contains(Email toCheck) {
         requireNonNull(toCheck);
         return internalList.contains(toCheck);
     }
@@ -83,15 +83,15 @@ public class PhoneList implements Iterable<Phone> {
     public boolean equals(Object other) {
         assert CollectionUtil.elementsAreUnique(internalList);
         return other == this // short circuit if same object
-                || (other instanceof PhoneList // instanceof handles nulls
-                && this.internalList.equals(((PhoneList) other).internalList));
+                || (other instanceof EmailList // instanceof handles nulls
+                && this.internalList.equals(((EmailList) other).internalList));
     }
 
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
-    public static class DuplicatePhoneException extends DuplicateDataException {
-        protected DuplicatePhoneException() {
+    public static class DuplicateEmailException extends DuplicateDataException {
+        protected DuplicateEmailException() {
             super("Operation would result in duplicate tags");
         }
     }

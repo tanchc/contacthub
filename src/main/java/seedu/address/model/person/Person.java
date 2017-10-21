@@ -21,7 +21,7 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Name> name;
     private ObjectProperty<PhoneList> phones;
     private ObjectProperty<Birthday> birthday;
-    private ObjectProperty<Email> email;
+    private ObjectProperty<EmailList> emails;
     private ObjectProperty<Address> address;
 
     private ObjectProperty<UniqueTagList> tags;
@@ -29,12 +29,12 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Set<Phone> phones, Birthday birthday, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phones, birthday, email, address, tags);
+    public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phones, birthday, emails, address, tags);
         this.name = new SimpleObjectProperty<>(name);
         this.phones = new SimpleObjectProperty<>(new PhoneList(phones));
         this.birthday = new SimpleObjectProperty<>(birthday);
-        this.email = new SimpleObjectProperty<>(email);
+        this.emails = new SimpleObjectProperty<>(new EmailList(emails));
         this.address = new SimpleObjectProperty<>(address);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
@@ -44,7 +44,7 @@ public class Person implements ReadOnlyPerson {
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhones(), source.getBirthday(), source.getEmail(), source.getAddress(),
+        this(source.getName(), source.getPhones(), source.getBirthday(), source.getEmails(), source.getAddress(),
                 source.getTags());
     }
 
@@ -63,7 +63,7 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable phone set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     @Override
@@ -96,18 +96,24 @@ public class Person implements ReadOnlyPerson {
         return birthday.get();
     }
 
-    public void setEmail(Email email) {
-        this.email.set(requireNonNull(email));
+    /**
+     * Returns an immutable email set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    @Override
+    public Set<Email> getEmails() {
+        return Collections.unmodifiableSet(emails.get().toSet());
     }
 
-    @Override
-    public ObjectProperty<Email> emailProperty() {
-        return email;
+    public ObjectProperty<EmailList> emailProperty() {
+        return emails;
     }
 
-    @Override
-    public Email getEmail() {
-        return email.get();
+    /**
+     * Replaces this person's phones with the phones in the argument email set.
+     */
+    public void setEmails(Set<Email> replacement) {
+        emails.set(new EmailList(replacement));
     }
 
     public void setAddress(Address address) {
@@ -154,7 +160,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phones, birthday, email, address, tags);
+        return Objects.hash(name, phones, birthday, emails, address, tags);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONES = "85355255";
     public static final String DEFAULT_BIRTHDAY = "25/09/1990";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_EMAILS = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TAGS = "friends";
 
@@ -33,10 +33,10 @@ public class PersonBuilder {
             Name defaultName = new Name(DEFAULT_NAME);
             Set<Phone> defaultPhones = SampleDataUtil.getPhoneSet(DEFAULT_PHONES);
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
-            Email defaultEmail = new Email(DEFAULT_EMAIL);
+            Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-            this.person = new Person(defaultName, defaultPhones, defaultBirthday, defaultEmail,
+            this.person = new Person(defaultName, defaultPhones, defaultBirthday, defaultEmails,
                     defaultAddress, defaultTags);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
@@ -113,9 +113,9 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public PersonBuilder withEmails(String ... emails) {
         try {
-            this.person.setEmail(new Email(email));
+            this.person.setEmails(SampleDataUtil.getEmailSet(emails));
         } catch (IllegalValueException ive) {
             throw new IllegalArgumentException("email is expected to be unique.");
         }

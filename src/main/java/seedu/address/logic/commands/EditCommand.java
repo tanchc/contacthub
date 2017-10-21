@@ -105,11 +105,11 @@ public class EditCommand extends UndoableCommand {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Set<Phone> updatedPhones = editPersonDescriptor.getPhones().orElse(personToEdit.getPhones());
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Set<Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhones, updatedBirthday, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhones, updatedBirthday, updatedEmails, updatedAddress, updatedTags);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EditCommand extends UndoableCommand {
         private Name name;
         private Set<Phone> phones;
         private Birthday birthday;
-        private Email email;
+        private Set<Email> emails;
         private Address address;
         private Set<Tag> tags;
 
@@ -148,7 +148,7 @@ public class EditCommand extends UndoableCommand {
             this.name = toCopy.name;
             this.phones = toCopy.phones;
             this.birthday = toCopy.birthday;
-            this.email = toCopy.email;
+            this.emails = toCopy.emails;
             this.address = toCopy.address;
             this.tags = toCopy.tags;
         }
@@ -157,7 +157,7 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.phones, this.birthday, this.email,
+            return CollectionUtil.isAnyNonNull(this.name, this.phones, this.birthday, this.emails,
                     this.address, this.tags);
         }
 
@@ -185,12 +185,12 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(birthday);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmails(Set<Email> emails) {
+            this.emails = emails;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Set<Email>> getEmails() {
+            return Optional.ofNullable(emails);
         }
 
         public void setAddress(Address address) {
@@ -227,7 +227,7 @@ public class EditCommand extends UndoableCommand {
             return getName().equals(e.getName())
                     && getPhones().equals(e.getPhones())
                     && getBirthday().equals(e.getBirthday())
-                    && getEmail().equals(e.getEmail())
+                    && getEmails().equals(e.getEmails())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

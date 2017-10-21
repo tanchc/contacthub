@@ -32,7 +32,7 @@
       <FlowPane fx:id="phones" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
       <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <FlowPane fx:id="emails" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

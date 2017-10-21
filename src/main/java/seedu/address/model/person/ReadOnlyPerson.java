@@ -18,8 +18,8 @@ public interface ReadOnlyPerson {
     Set<Phone> getPhones();
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
-    ObjectProperty<Email> emailProperty();
-    Email getEmail();
+    ObjectProperty<EmailList> emailProperty();
+    Set<Email> getEmails();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
     ObjectProperty<UniqueTagList> tagProperty();
@@ -34,7 +34,7 @@ public interface ReadOnlyPerson {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getPhones().equals(this.getPhones())
                 && other.getBirthday().equals(this.getBirthday())
-                && other.getEmail().equals(this.getEmail())
+                && other.getEmails().equals(this.getEmails())
                 && other.getAddress().equals(this.getAddress()));
     }
 
@@ -44,15 +44,15 @@ public interface ReadOnlyPerson {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phones: ")
+                .append(" Phone(s): ")
                 .append(getPhones().toString())
                 .append(" Birthday: ")
                 .append(getBirthday())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" Email(s): ")
+                .append(getEmails().toString())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
+                .append(" Tag(s): ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

@@ -20,6 +20,7 @@ import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
 public class FindTagCommandSystemTest extends AddressBookSystemTest {
@@ -129,7 +130,8 @@ public class FindTagCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find email of person in address book -> 0 persons found */
-        command = FindTagCommand.COMMAND_WORD + " " + DANIEL.getEmail().value;
+        List<Email> emails = new ArrayList<>(DANIEL.getEmails());
+        command = FindTagCommand.COMMAND_WORD + " " + emails.get(0);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
