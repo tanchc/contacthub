@@ -19,10 +19,10 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final double GAP = 8;
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
-    private static HashMap<String, String> phoneColors = new HashMap<String, String>();
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
@@ -105,6 +105,7 @@ public class PersonCard extends UiPart<Region> {
         person.getPhones().forEach(phone -> {
             Label phoneLabel = new Label(phone.value);
             phones.getChildren().add(phoneLabel);
+            phones.setHgap(GAP);
         });
     }
 
@@ -115,6 +116,7 @@ public class PersonCard extends UiPart<Region> {
         person.getEmails().forEach(email -> {
             Label emailLabel = new Label(email.value);
             emails.getChildren().add(emailLabel);
+            emails.setHgap(GAP);
         });
     }
 
