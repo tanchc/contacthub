@@ -22,10 +22,10 @@ public interface ReadOnlyPerson {
     Email getEmail();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
-    ObjectProperty<Photo> photoProperty();
-    Photo getPhoto();
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
+    ObjectProperty<Photo> photoProperty();
+    Photo getPhoto();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)

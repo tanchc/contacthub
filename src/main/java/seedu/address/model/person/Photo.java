@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Photo {
     public static final String MESSAGE_PHOTO_CONSTRAINTS =
-            "Person's photo must have a valid filepath URL or a valid image URL.";
+            "Person's photo must have a valid image URL.";
 
     public static final String PHOTO_VALIDATION_REGEX = "[^\\s].*";
     private static final String DEFAULT_PHOTO = "file:///C:/Users/User/Desktop/repos intelliJ/addressbook-level4" +
@@ -35,7 +35,7 @@ public class Photo {
 
     public Photo(String photo) throws IllegalValueException {
         requireNonNull(photo);
-        if(!isValidPhoto(photo)) {
+        if (!isValidPhoto(photo)) {
             throw new IllegalValueException(MESSAGE_PHOTO_CONSTRAINTS);
         }
         this.value = photo;
@@ -45,7 +45,9 @@ public class Photo {
      * Returns true if a given string is a valid url.
      */
     private boolean isValidPhoto(String test) {
-        if(test.matches(PHOTO_VALIDATION_REGEX)) {
+        if(test.equals("images/defaultPhoto.png")){
+            return true;
+        } else if (test.matches(PHOTO_VALIDATION_REGEX)) {
             try {
                 image = ImageIO.read(new URL(test));
                 if(image == null) {
@@ -55,6 +57,7 @@ public class Photo {
                 return false;
             }
             return true;
+
         }
         return false;
     }
