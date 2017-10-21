@@ -6,6 +6,8 @@ import java.util.Random;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -50,6 +52,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private ImageView imageView;
+    @FXML
     private FlowPane tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
@@ -58,6 +62,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         initPhones(person);
         initTags(person);
+        initPhoto(person);
         bindListeners(person);
     }
 
@@ -88,6 +93,10 @@ public class PersonCard extends UiPart<Region> {
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        person.photoProperty().addListener((observable, oldValue, newValue) -> {
+            imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
+                    true, false));
+                });
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
@@ -120,6 +129,15 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    /**
+     *
+     * Initialise the photo for each person
+     */
+    private void initPhoto(ReadOnlyPerson person) {
+        imageView.setImage(new Image(person.getPhoto().toString(), 126, 126, true,
+                false));
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -137,4 +155,6 @@ public class PersonCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
     }
+
+
 }
