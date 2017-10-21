@@ -19,10 +19,10 @@ public class Photo {
 
     public static final String PHOTO_VALIDATION_REGEX = "[^\\s].*";
     private static final String DEFAULT_PHOTO = "file:///C:/Users/User/Desktop/repos intelliJ/addressbook-level4" +
-            "(mine)/src/main/resources/images";
+            "(mine)/src/main/resources/images/defaultPhoto.png";
 
     private Image image;
-    private String value;
+    public String value;
 
     /**
      * Validates given photo
@@ -37,15 +37,6 @@ public class Photo {
         requireNonNull(photo);
         if(!isValidPhoto(photo)) {
             throw new IllegalValueException(MESSAGE_PHOTO_CONSTRAINTS);
-        } else {
-            try {
-                image = ImageIO.read(new URL(photo));
-                if(image == null) {
-                    throw new IllegalValueException(MESSAGE_PHOTO_CONSTRAINTS);
-                }
-            } catch (IOException e) {
-                throw new IllegalValueException(MESSAGE_PHOTO_CONSTRAINTS);
-            }
         }
         this.value = photo;
     }
@@ -54,7 +45,18 @@ public class Photo {
      * Returns true if a given string is a valid url.
      */
     private boolean isValidPhoto(String test) {
-        return test.matches(PHOTO_VALIDATION_REGEX);
+        if(test.matches(PHOTO_VALIDATION_REGEX)) {
+            try {
+                image = ImageIO.read(new URL(test));
+                if(image == null) {
+                    return false;
+                }
+            } catch (IOException e) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
