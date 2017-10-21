@@ -1,15 +1,14 @@
 package seedu.address.ui;
 
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 
 import com.google.common.eventbus.Subscribe;
 
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Worker;
 import javafx.event.Event;
@@ -27,15 +26,12 @@ import seedu.address.model.person.ReadOnlyPerson;
  */
 public class BrowserPanel extends UiPart<Region> {
 
-    public static final String DEFAULT_PAGE = "default.html";
-    public static final String ADDRESS_PAGE = "LocatedAddress.html";
-    public static final String GOOGLE_SEARCH_URL_PREFIX = "https://www.google.com.sg/search?safe=off&q=";
-    public static final String GOOGLE_SEARCH_URL_SUFFIX = "&cad=h";
-    public static final String GOOGLE_MAPS_URL_PREFIX = "https://www.google.com.sg/maps/place/";
+    private static final String DEFAULT_PAGE = "default.html";
+    private static final String ADDRESS_PAGE = "LocatedAddress.html";
+    //public static final String GOOGLE_SEARCH_URL_PREFIX = "https://www.google.com.sg/search?safe=off&q=";
+    //public static final String GOOGLE_SEARCH_URL_SUFFIX = "&cad=h";
 
     private static final String FXML = "BrowserPanel.fxml";
-
-    private Timeline locationUpdateTimeline;
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
@@ -52,10 +48,10 @@ public class BrowserPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
-    private void loadPersonPage(ReadOnlyPerson person) {
+    /*private void loadPersonPage(ReadOnlyPerson person) {
         loadPage(GOOGLE_SEARCH_URL_PREFIX + person.getName().fullName.replaceAll(" ", "+")
                 + GOOGLE_SEARCH_URL_SUFFIX);
-    }
+    }*/
 
     /**
      * Loads the located address page of the user's address.
@@ -83,12 +79,12 @@ public class BrowserPanel extends UiPart<Region> {
     /**
      * resets the address page.
      */
-    private void resetPage(File resetFile, File addressFile) throws IOException {
+    /*private void resetPage(File resetFile, File addressFile) throws IOException {
         String reset = FileUtils.readFileToString(resetFile);
         FileUtils.writeStringToFile(addressFile, reset);
-    }
+    }*/
 
-    public void loadPage(String url) {
+    private void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
     }
 
