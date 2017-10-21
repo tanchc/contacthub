@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import javafx.animation.Timeline;
+import javafx.concurrent.Worker;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
 import com.google.common.eventbus.Subscribe;
@@ -18,6 +24,7 @@ import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -32,6 +39,8 @@ public class BrowserPanel extends UiPart<Region> {
     public static final String GOOGLE_MAPS_URL_PREFIX = "https://www.google.com.sg/maps/place/";
 
     private static final String FXML = "BrowserPanel.fxml";
+
+    private Timeline locationUpdateTimeline;
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
@@ -57,7 +66,7 @@ public class BrowserPanel extends UiPart<Region> {
      * Loads the located address page of the user's address.
      */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
+        /*ClassLoader classLoader = getClass().getClassLoader();
         File locatedAddressFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
         File htmlTemplateFile = new File(classLoader.getResource("view/Template.html").getFile());
         resetPage(htmlTemplateFile, locatedAddressFile);
@@ -70,7 +79,8 @@ public class BrowserPanel extends UiPart<Region> {
         System.out.println(htmlString);
         htmlString = htmlString.replace("$body", address.replace(" ", "+"));
         System.out.println(htmlString);
-        FileUtils.writeStringToFile(locatedAddressFile, htmlString);
+        FileUtils.writeStringToFile(locatedAddressFile, htmlString);*/
+
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
         loadPage(addressPage.toExternalForm());
     }
@@ -105,6 +115,16 @@ public class BrowserPanel extends UiPart<Region> {
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        ReadOnlyPerson p = event.getNewSelection().person;
+        int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
+        String address = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+
+        browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if(newState == Worker.State.SUCCEEDED){
+                browser.getEngine().executeScript("document.goToLocation(\""+address+"\")");
+            }
+        });
+
         loadAddressPage(event.getNewSelection().person);
     }
 }
