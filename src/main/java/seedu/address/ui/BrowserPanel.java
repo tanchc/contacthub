@@ -5,17 +5,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import javafx.animation.Timeline;
-import javafx.concurrent.Worker;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.web.WebEngine;
-import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
 import com.google.common.eventbus.Subscribe;
 
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.concurrent.Worker;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
@@ -24,7 +20,6 @@ import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -120,8 +115,8 @@ public class BrowserPanel extends UiPart<Region> {
         String address = p.getAddress().getGMapsAddress().substring(0, stopIndex);
 
         browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if(newState == Worker.State.SUCCEEDED){
-                browser.getEngine().executeScript("document.goToLocation(\""+address+"\")");
+            if (newState == Worker.State.SUCCEEDED) {
+                browser.getEngine().executeScript("document.goToLocation(\"" + address + "\")");
             }
         });
 
