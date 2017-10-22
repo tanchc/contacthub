@@ -24,6 +24,8 @@ public interface ReadOnlyPerson {
     Address getAddress();
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
+    ObjectProperty<Photo> photoProperty();
+    Photo getPhoto();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -35,7 +37,8 @@ public interface ReadOnlyPerson {
                 && other.getPhones().equals(this.getPhones())
                 && other.getBirthday().equals(this.getBirthday())
                 && other.getEmails().equals(this.getEmails())
-                && other.getAddress().equals(this.getAddress()));
+                && other.getAddress().equals(this.getAddress()))
+                && other.getPhoto().equals(this.getPhoto());
     }
 
     /**
@@ -52,7 +55,9 @@ public interface ReadOnlyPerson {
                 .append(getEmails().toString())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tag(s): ");
+                .append(" Photo url: ")
+                .append(getPhoto())
+                .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
