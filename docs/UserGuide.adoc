@@ -195,6 +195,23 @@ Selects the 2nd person in the address book.
 `select 1` or `s 1` +
 Selects the 1st person in the results of the `find` or `f` command.
 
+=== Adding a photo to a Person: `addPhoto`
+
+Adds an image to the profile a Person in Contacthub. +
+Format: `addPhoto INDEX ap/photoUrl`
+
+****
+* Adds a photo to the Person of the specific `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index must be valid and a positive integer 1, 2, 3, ...
+* The URL of the photo stored in the internet must be valid.
+****
+
+Examples:
+
+* `addPhoto 1 p/https://www.facebook.com/AlexYeoh/photo1.jpg +
+Adds a photo of the given photo Url to the Person of index 1.
+
 === Listing entered commands : `history` or `h`
 
 Lists all the commands that you have entered in reverse chronological order. +

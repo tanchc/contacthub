@@ -19,13 +19,13 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * Adds a photo to a person in the address book.
  */
 public class AddPhotoCommand extends UndoableCommand {
-    public static final String COMMAND_WORD = "addPhoto";
+    public static final String COMMAND_WORD = "addphoto";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a photo to a person in the address book using "
             + "the index of the person in the latest listing.\n"
             + "Parameters: INDEX(must be a positive integer) [URL of photo]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PHOTO
-            + "https://www.facebook.com/AlexYeoh/photo1.php\n";
+            + "https://www.facebook.com/AlexYeoh/photo1.jpg\n";
 
     public static final String MESSAGE_ADDPHOTO_SUCCESS = "Added photo of Person: %1$s";
     public static final String MESSAGE_ADDPHOTO_UNSUCCESS = "Please enter a valid photo URL.";
