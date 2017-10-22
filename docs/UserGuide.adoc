@@ -46,7 +46,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times e.g. `p/PHONE_NUMBER...` can be used as `p/12345678`, `p/12345678 p/87654321` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
@@ -57,10 +57,11 @@ Format: `help`
 === Adding a person: `add` or `a`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER b/BIRTHDAY e/EMAIL a/ADDRESS [t/TAG]...` +
-Format: `a n/NAME p/PHONE_NUMBER b/BIRTHDAY e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER... b/BIRTHDAY e/EMAIL... a/ADDRESS [t/TAG]...` +
+Format: `a n/NAME p/PHONE_NUMBER... b/BIRTHDAY e/EMAIL... a/ADDRESS [t/TAG]...`
 
 [TIP]
+A person can have multiple number of phone numbers and emails +
 A person can have any number of tags (including 0)
 
 Examples:
@@ -76,7 +77,7 @@ Shows a list of all persons in the address book. +
 Format: `list` +
 Format: `l`
 
-=== Listing all tags : `listTag` or `lt`
+=== Listing all tags : `listTag` or `lt` [Since v1.2]
 
 Shows a list of all tags in the address book. +
 Format: `listTag` +
@@ -91,8 +92,8 @@ Format: `z`
 === Editing a person : `edit` or `e`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [b/BIRTHDAY] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-Format: `e INDEX [n/NAME] [p/PHONE] [b/BIRTHDAY] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE]... [b/BIRTHDAY] [e/EMAIL]... [a/ADDRESS] [t/TAG]...` +
+Format: `e INDEX [n/NAME] [p/PHONE]... [b/BIRTHDAY] [e/EMAIL]... [a/ADDRESS] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -130,7 +131,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` or `f Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
-=== Locating persons by tags: `findTag` or `ft`
+=== Locating persons by tags: `findTag` or `ft` [Since v1.2]
 
 Finds persons whose tags contain any of the given keywords. +
 Format: `findTag KEYWORD [MORE_KEYWORDS]` +
@@ -283,7 +284,7 @@ There is no need to save manually.
 
 == Coming in v2.0
 
-=== Support for multiple numbers and addresses
+=== Support for multiple phone numbers and emails
 === Replacement of browser with extended details page
 === Right-click functionality
 === Note functionality
@@ -296,14 +297,14 @@ There is no need to save manually.
 
 == Command Summary
 
-* *Add* `add` or `a n/NAME p/PHONE_NUMBER b/BIRTHDAY e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 b/02/02/1992 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` +
-e.g. `a n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` +
+* *Add* `add` or `a n/NAME p/PHONE_NUMBER... b/BIRTHDAY e/EMAIL... a/ADDRESS [t/TAG]...` +
+e.g. `add n/James Ho p/22224444 p/66669999 b/02/02/1992 e/jamesho@example.com e/jho@live.com a/123, Clementi Rd, 1234665 t/friend t/colleague` +
+e.g. `a n/James Ho p/22224444 p/ 66669999 e/jamesho@example.com e/jho@live.com a/123, Clementi Rd, 1234665 t/friend t/colleague` +
 * *Clear* : `clear` or `c`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3` +
 e.g. `d 3`
-* *Edit* : `edit` or `e INDEX [n/NAME] [p/PHONE_NUMBER] [b/BIRTHDAY] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *Edit* : `edit` or `e INDEX [n/NAME] [p/PHONE_NUMBER]... [b/BIRTHDAY] [e/EMAIL]... [a/ADDRESS] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com` +
 e.g. `e 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find` or `f KEYWORD [MORE_KEYWORDS]` +

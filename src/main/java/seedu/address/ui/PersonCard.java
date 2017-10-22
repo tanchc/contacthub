@@ -21,10 +21,10 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final double GAP = 8;
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
-    private static HashMap<String, String> phoneColors = new HashMap<String, String>();
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private FlowPane emails;
     @FXML
     private ImageView imageView;
     @FXML
@@ -61,6 +61,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         initPhones(person);
+        initEmails(person);
         initTags(person);
         initPhoto(person);
         bindListeners(person);
@@ -92,11 +93,14 @@ public class PersonCard extends UiPart<Region> {
         });
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
-        email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        person.emailProperty().addListener((observable, oldValue, newValue) -> {
+            emails.getChildren().clear();
+            initEmails(person);
         person.photoProperty().addListener((observable, oldValue, newValue) -> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
-                });
+                });  
+        });
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
@@ -110,6 +114,18 @@ public class PersonCard extends UiPart<Region> {
         person.getPhones().forEach(phone -> {
             Label phoneLabel = new Label(phone.value);
             phones.getChildren().add(phoneLabel);
+            phones.setHgap(GAP);
+        });
+    }
+
+    /**
+     * Initialise the emails for each person
+     */
+    private void initEmails(ReadOnlyPerson person) {
+        person.getEmails().forEach(email -> {
+            Label emailLabel = new Label(email.value);
+            emails.getChildren().add(emailLabel);
+            emails.setHgap(GAP);
         });
     }
 

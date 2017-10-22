@@ -522,6 +522,30 @@ GUI support is also planned. We want the deselection to be intuitive and work ex
 
 Initially, a splash screen was considered to show the commands. However, this would not be ideal as users would not be able to return back to it. In addition, it would slow down the startup time for experienced users. For the purpose of deselection itself, there is not really any alternative and in the absence of a command reference default panel, there is little purpose for it.
 
+=== Google Maps Functionality
+
+The Google Maps Functionality is facilitated mainly by the `BrowserPanel` class which resides in the `UI` component.
+ It provides the user the Google Maps location of a contact's address just by selecting them.
+
+The `BrowserPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
+The `BrowserPanel` class also instantiates an object of `WebView` class which is a JavaFX FXML, an XML-based language for building a user interface.
+The `WebView` class provides access to the `WebEngine` which is the base class for loading Web pages, creating their document models, applying styles as necessary,
+and runs JavaScript on pages. It provides access to the document of the current page, amd enables the Java application and JavaScript code of the page to communicate.
+
+The HTML file "LocatedAddress.html" has been created to load whenever a contact has been selected. It also hold the Javascript function
+to allow pinpointing of the contact's address.
+
+document.goToLocation = function goToLocation(searchString) {
+                document.geocoder.geocode( {'address': searchString}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        //....load located address on Google Maps
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+Should the above function fail to load a location for the contact's address, an alert will be sent to indicate that there is an issue
+
 == Documentation
 
 We use asciidoc for writing documentation.
