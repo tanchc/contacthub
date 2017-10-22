@@ -32,7 +32,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Email email, Address address, Photo photo,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phones, birthday, email, address, tags);
+        requireAllNonNull(name, phones, birthday, email, address, photo, tags);
         this.name = new SimpleObjectProperty<>(name);
         this.phones = new SimpleObjectProperty<>(new PhoneList(phones));
         this.birthday = new SimpleObjectProperty<>(birthday);

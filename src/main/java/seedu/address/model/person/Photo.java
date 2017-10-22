@@ -47,7 +47,9 @@ public class Photo {
     private boolean isValidPhoto(String test) {
         if(test.equals("images/defaultPhoto.png")){
             return true;
-        } else if (test.matches(PHOTO_VALIDATION_REGEX)) {
+        }
+
+        if (test.matches(PHOTO_VALIDATION_REGEX)) {
             try {
                 image = ImageIO.read(new URL(test));
                 if(image == null) {
