@@ -45,7 +45,7 @@ public class AddPhotoCommand extends UndoableCommand {
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
         List<ReadOnlyPerson> latestList = model.getFilteredPersonList();
-        if(index.getZeroBased() >= latestList.size()) {
+        if (index.getZeroBased() >= latestList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -62,5 +62,13 @@ public class AddPhotoCommand extends UndoableCommand {
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADDPHOTO_SUCCESS, personToAddPhoto));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddPhotoCommand // instanceof handles nulls
+                && this.index.equals(((AddPhotoCommand) other).index)
+                && this.photo.equals(((AddPhotoCommand) other).photo));
     }
 }

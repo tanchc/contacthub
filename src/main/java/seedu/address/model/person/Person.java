@@ -28,6 +28,14 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<UniqueTagList> tags;
 
     /**
+     * Person with default photo of images/defaultPhoto/png
+     */
+    public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address,
+                  Set<Tag> tags) {
+        this(name, phones, birthday, emails, address, new Photo(), tags);
+    }
+
+    /**
      * Every field must be present and not null.
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address, Photo photo,

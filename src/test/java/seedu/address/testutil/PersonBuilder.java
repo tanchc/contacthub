@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
 
 import seedu.address.model.tag.Tag;
@@ -35,9 +36,10 @@ public class PersonBuilder {
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
+            Photo defaultPhoto = new Photo();
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
             this.person = new Person(defaultName, defaultPhones, defaultBirthday, defaultEmails,
-                    defaultAddress, defaultTags);
+                    defaultAddress, defaultPhoto, defaultTags);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }

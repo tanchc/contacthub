@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +46,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CHEF = "chef";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_HUSBAND = "husband";
-
+    public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
+            + "/secondary/CHRIS-EVANS-865133.jpg";
+    public static final String VALID_LOCAL_PHOTO_URL = "file://"
+            + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_CARRIE = " " + PREFIX_NAME + VALID_NAME_CARRIE;
@@ -63,6 +68,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CHEF = " " + PREFIX_TAG + VALID_TAG_CHEF;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String URL_DESC_WEB = " " + PREFIX_PHOTO + VALID_WEB_PHOTO_URL;
+    public static final String URL_DESC_LOCAL = " " + PREFIX_PHOTO + VALID_LOCAL_PHOTO_URL;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -71,6 +78,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;

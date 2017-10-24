@@ -42,6 +42,11 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
             throw new ParseException(e.getMessage(), e);
         }
 
+        if (toAddPhotoPerson.getPhoto().toString().equals("file://"
+                + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath())) {
+            throw new ParseException(AddPhotoCommand.MESSAGE_ADDPHOTO_UNSUCCESS);
+        }
+
         return new AddPhotoCommand(index, toAddPhotoPerson.getPhoto());
     }
 }

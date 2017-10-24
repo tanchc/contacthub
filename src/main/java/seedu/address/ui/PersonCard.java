@@ -90,17 +90,17 @@ public class PersonCard extends UiPart<Region> {
         person.phoneProperty().addListener((observable, oldValue, newValue) -> {
             phones.getChildren().clear();
             initPhones(person);
-                });
+        });
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         person.emailProperty().addListener((observable, oldValue, newValue) -> {
-                    emails.getChildren().clear();
-                    initEmails(person);
-                });
+            emails.getChildren().clear();
+            initEmails(person);
+        });
         person.photoProperty().addListener((observable, oldValue, newValue) -> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
-                });  
+        });
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
