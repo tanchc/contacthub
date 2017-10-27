@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.address.model.person.ReadOnlyPerson;
 
 
@@ -25,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
-    private static HashMap<String, String> tagColors = new HashMap<String, String>();
+    private static HashMap<String, String> modColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -54,7 +53,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private ImageView imageView;
     @FXML
-    private FlowPane tags;
+    private FlowPane mods;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
@@ -72,12 +71,12 @@ public class PersonCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForTag(String tagValue, int randNum) {
-        if (!tagColors.containsKey(tagValue)) {
-            tagColors.put(tagValue, colors[randNum]);
+    private static String getColorForMod(String modValue, int randNum) {
+        if (!modColors.containsKey(modValue)) {
+            modColors.put(modValue, colors[randNum]);
         }
 
-        return tagColors.get(tagValue);
+        return modColors.get(modValue);
     }
 
     /**
@@ -100,8 +99,8 @@ public class PersonCard extends UiPart<Region> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
         });
-        person.tagProperty().addListener((observable, oldValue, newValue) -> {
-            tags.getChildren().clear();
+        person.modProperty().addListener((observable, oldValue, newValue) -> {
+            mods.getChildren().clear();
             initTags(person);
         });
     }
@@ -129,18 +128,18 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Initialise the tags for each person
+     * Initialise the mods for each person
      */
     private void initTags(ReadOnlyPerson person) {
-        person.getTags().forEach(tag -> {
-            Label tagLabel = new Label(tag.tagName);
+        person.getMods().forEach(mod -> {
+            Label modLabel = new Label(mod.modName);
             int randNum = getRandom();
-            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName, randNum));
+            modLabel.setStyle("-fx-background-color: " + getColorForMod(mod.modName, randNum));
             if (randNum > 6) {
-                tagLabel.setStyle("-fx-text-fill: black");
+                modLabel.setStyle("-fx-text-fill: black");
             }
 
-            tags.getChildren().add(tagLabel);
+            mods.getChildren().add(modLabel);
         });
     }
 

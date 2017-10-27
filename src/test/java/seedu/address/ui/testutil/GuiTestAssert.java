@@ -36,7 +36,7 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getEmails().stream().map(email -> email.value)
                 .collect(Collectors.toList()), actualCard.getEmails());
         assertEquals(expectedPerson.getAddress().value, actualCard.getAddress());
-        assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList()),
+        assertEquals(expectedPerson.getMods().stream().map(mod -> mod.modName).collect(Collectors.toList()),
                 actualCard.getTags());
     }
 

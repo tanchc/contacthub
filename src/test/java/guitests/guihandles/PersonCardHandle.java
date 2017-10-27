@@ -16,14 +16,14 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ADDRESS_FIELD_ID = "#address";
     private static final String PHONES_FIELD_ID = "#phones";
     private static final String EMAILS_FIELD_ID = "#emails";
-    private static final String TAGS_FIELD_ID = "#tags";
+    private static final String MODS_FIELD_ID = "#mods";
 
     private final Label idLabel;
     private final Label nameLabel;
     private final Label addressLabel;
     private final List<Label> phoneLabels;
     private final List<Label> emailLabels;
-    private final List<Label> tagLabels;
+    private final List<Label> modLabels;
 
     public PersonCardHandle(Node cardNode) {
         super(cardNode);
@@ -46,8 +46,8 @@ public class PersonCardHandle extends NodeHandle<Node> {
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
 
-        Region tagsContainer = getChildNode(TAGS_FIELD_ID);
-        this.tagLabels = tagsContainer
+        Region modsContainer = getChildNode(MODS_FIELD_ID);
+        this.modLabels = modsContainer
                 .getChildrenUnmodifiable()
                 .stream()
                 .map(Label.class::cast)
@@ -81,7 +81,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     }
 
     public List<String> getTags() {
-        return tagLabels
+        return modLabels
                 .stream()
                 .map(Label::getText)
                 .collect(Collectors.toList());

@@ -25,7 +25,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListTagCommand;
+import seedu.address.logic.commands.ListModCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -129,11 +129,11 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_listTag() throws Exception {
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD) instanceof ListTagCommand);
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_ALIAS) instanceof ListTagCommand);
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD + " 3") instanceof ListTagCommand);
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_ALIAS + " 3") instanceof ListTagCommand);
+    public void parseCommand_listMod() throws Exception {
+        assertTrue(parser.parseCommand(ListModCommand.COMMAND_WORD) instanceof ListModCommand);
+        assertTrue(parser.parseCommand(ListModCommand.COMMAND_ALIAS) instanceof ListModCommand);
+        assertTrue(parser.parseCommand(ListModCommand.COMMAND_WORD + " 3") instanceof ListModCommand);
+        assertTrue(parser.parseCommand(ListModCommand.COMMAND_ALIAS + " 3") instanceof ListModCommand);
     }
 
     @Test

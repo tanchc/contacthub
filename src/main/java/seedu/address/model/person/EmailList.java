@@ -92,7 +92,7 @@ public class EmailList implements Iterable<Email> {
      */
     public static class DuplicateEmailException extends DuplicateDataException {
         protected DuplicateEmailException() {
-            super("Operation would result in duplicate tags");
+            super("Operation would result in duplicate mods");
         }
     }
 }

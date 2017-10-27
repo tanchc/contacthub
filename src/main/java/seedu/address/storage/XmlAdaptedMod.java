@@ -3,36 +3,38 @@ package seedu.address.storage;
 import javax.xml.bind.annotation.XmlValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
+import seedu.address.model.mod.Mod;
 
 /**
- * JAXB-friendly adapted version of the Email.
+ * JAXB-friendly adapted version of the Mod.
  */
-public class XmlAdaptedEmail {
+public class XmlAdaptedMod {
 
     @XmlValue
-    private String email;
+    private String modName;
 
     /**
-     * Constructs an XmlAdaptedEmail.
+     * Constructs an XmlAdaptedMod.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedEmail() {}
+    public XmlAdaptedMod() {}
+
     /**
      * Converts a given Mod into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created
      */
-    public XmlAdaptedEmail(Email source) {
-        email = source.value;
+    public XmlAdaptedMod(Mod source) {
+        modName = source.modName;
     }
 
     /**
-     * Converts this jaxb-friendly adapted phone object into the model's Email object.
+     * Converts this jaxb-friendly adapted mod object into the model's Mod object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Email toModelType() throws IllegalValueException {
-        return new Email(email);
+    public Mod toModelType() throws IllegalValueException {
+        return new Mod(modName);
     }
+
 }

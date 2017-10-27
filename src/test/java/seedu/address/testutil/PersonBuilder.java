@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -11,8 +12,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
-
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_BIRTHDAY = "25/09/1990";
     public static final String DEFAULT_EMAILS = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TAGS = "friends";
+    public static final String DEFAULT_MODS = "friends";
 
     private Person person;
 
@@ -37,7 +36,7 @@ public class PersonBuilder {
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             Photo defaultPhoto = new Photo();
-            Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
+            Set<Mod> defaultTags = SampleDataUtil.getModSet(DEFAULT_MODS);
             this.person = new Person(defaultName, defaultPhones, defaultBirthday, defaultEmails,
                     defaultAddress, defaultPhoto, defaultTags);
         } catch (IllegalValueException ive) {
@@ -65,13 +64,13 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String ... mods) {
         try {
-            this.person.setTags(SampleDataUtil.getTagSet(tags));
+            this.person.setTags(SampleDataUtil.getModSet(mods));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("tags are expected to be unique.");
+            throw new IllegalArgumentException("mods are expected to be unique.");
         }
         return this;
     }

@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -27,7 +28,7 @@ import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -46,7 +47,7 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MOD + "MOD]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com" + "\n"
@@ -62,7 +63,7 @@ public class EditCommand extends UndoableCommand {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -109,7 +110,7 @@ public class EditCommand extends UndoableCommand {
         Set<Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Photo updatedPhoto = personToEdit.getPhoto();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Mod> updatedTags = editPersonDescriptor.getMods().orElse(personToEdit.getMods());
 
         return new Person(updatedName, updatedPhones, updatedBirthday, updatedEmails, updatedAddress,
                 updatedPhoto, updatedTags);
@@ -143,9 +144,10 @@ public class EditCommand extends UndoableCommand {
         private Birthday birthday;
         private Set<Email> emails;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Mod> mods;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.name = toCopy.name;
@@ -153,7 +155,7 @@ public class EditCommand extends UndoableCommand {
             this.birthday = toCopy.birthday;
             this.emails = toCopy.emails;
             this.address = toCopy.address;
-            this.tags = toCopy.tags;
+            this.mods = toCopy.mods;
         }
 
         /**
@@ -161,7 +163,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phones, this.birthday, this.emails,
-                    this.address, this.tags);
+                    this.address, this.mods);
         }
 
         public void setName(Name name) {
@@ -204,12 +206,12 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(address);
         }
 
-        public void setTags(Set<Tag> tags) {
-            this.tags = tags;
+        public void setMods(Set<Mod> mods) {
+            this.mods = mods;
         }
 
-        public Optional<Set<Tag>> getTags() {
-            return Optional.ofNullable(tags);
+        public Optional<Set<Mod>> getMods() {
+            return Optional.ofNullable(mods);
         }
 
         @Override
@@ -232,7 +234,7 @@ public class EditCommand extends UndoableCommand {
                     && getBirthday().equals(e.getBirthday())
                     && getEmails().equals(e.getEmails())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getMods().equals(e.getMods());
         }
     }
 }

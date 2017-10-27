@@ -13,11 +13,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -107,13 +107,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void deleteTag(Tag tag) throws DuplicatePersonException, PersonNotFoundException {
+    public void deleteMod(Mod mod) throws DuplicatePersonException, PersonNotFoundException {
         for (int i = 0; i < addressBook.getPersonList().size(); i++) {
             ReadOnlyPerson oldPerson = addressBook.getPersonList().get(i);
 
             Person newPerson = new Person(oldPerson);
-            Set<Tag> newTags = newPerson.getTags();
-            newTags.remove(tag);
+            Set<Mod> newTags = newPerson.getMods();
+            newTags.remove(mod);
             newPerson.setTags(newTags);
 
             addressBook.updatePerson(oldPerson, newPerson);

@@ -3,8 +3,8 @@ package seedu.address.model.person;
 import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.UniqueModList;
 
 /**
  * A read-only immutable interface for a Person in the addressbook.
@@ -22,8 +22,8 @@ public interface ReadOnlyPerson {
     Set<Email> getEmails();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
-    ObjectProperty<UniqueTagList> tagProperty();
-    Set<Tag> getTags();
+    ObjectProperty<UniqueModList> modProperty();
+    Set<Mod> getMods();
     ObjectProperty<Photo> photoProperty();
     Photo getPhoto();
 
@@ -57,8 +57,8 @@ public interface ReadOnlyPerson {
                 .append(getAddress())
                 .append(" Photo url: ")
                 .append(getPhoto())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Mods: ");
+        getMods().forEach(builder::append);
         return builder.toString();
     }
 

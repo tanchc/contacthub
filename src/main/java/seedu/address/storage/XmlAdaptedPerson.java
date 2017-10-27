@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -16,7 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.tag.Tag;
 
 /**
  * JAXB-friendly version of the Person.
@@ -37,7 +37,7 @@ public class XmlAdaptedPerson {
     private String photo;
 
     @XmlElement
-    private List<XmlAdaptedTag> tagged = new ArrayList<>();
+    private List<XmlAdaptedMod> modded = new ArrayList<>();
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -64,9 +64,9 @@ public class XmlAdaptedPerson {
         }
         address = source.getAddress().value;
         photo = source.getPhoto().value;
-        tagged = new ArrayList<>();
-        for (Tag tag : source.getTags()) {
-            tagged.add(new XmlAdaptedTag(tag));
+        modded = new ArrayList<>();
+        for (Mod mod : source.getMods()) {
+            modded.add(new XmlAdaptedMod(mod));
         }
     }
 
@@ -86,9 +86,9 @@ public class XmlAdaptedPerson {
             personEmails.add(email.toModelType());
         }
 
-        final List<Tag> personTags = new ArrayList<>();
-        for (XmlAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Mod> personTags = new ArrayList<>();
+        for (XmlAdaptedMod mod : modded) {
+            personTags.add(mod.toModelType());
         }
 
         final Name name = new Name(this.name);
@@ -97,7 +97,7 @@ public class XmlAdaptedPerson {
         final Set<Email> emails = new HashSet<>(personEmails);
         final Address address = new Address(this.address);
         final Photo photo = new Photo(this.photo);
-        final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phones, birthday, emails, address, photo, tags);
+        final Set<Mod> mods = new HashSet<>(personTags);
+        return new Person(name, phones, birthday, emails, address, photo, mods);
     }
 }

@@ -92,7 +92,7 @@ public class PhoneList implements Iterable<Phone> {
      */
     public static class DuplicatePhoneException extends DuplicateDataException {
         protected DuplicatePhoneException() {
-            super("Operation would result in duplicate tags");
+            super("Operation would result in duplicate mods");
         }
     }
 }

@@ -9,8 +9,8 @@ import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.mod.Mod;
+import seedu.address.model.mod.UniqueModList;
 
 /**
  * Represents a Person in the address book.
@@ -25,30 +25,30 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Address> address;
     private ObjectProperty<Photo> photo;
 
-    private ObjectProperty<UniqueTagList> tags;
+    private ObjectProperty<UniqueModList> mods;
 
     /**
      * Person with default photo of images/defaultPhoto/png
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address,
-                  Set<Tag> tags) {
-        this(name, phones, birthday, emails, address, new Photo(), tags);
+                  Set<Mod> mods) {
+        this(name, phones, birthday, emails, address, new Photo(), mods);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address, Photo photo,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phones, birthday, emails, address, photo, tags);
+                  Set<Mod> mods) {
+        requireAllNonNull(name, phones, birthday, emails, address, photo, mods);
         this.name = new SimpleObjectProperty<>(name);
         this.phones = new SimpleObjectProperty<>(new PhoneList(phones));
         this.birthday = new SimpleObjectProperty<>(birthday);
         this.emails = new SimpleObjectProperty<>(new EmailList(emails));
         this.address = new SimpleObjectProperty<>(address);
         this.photo = new SimpleObjectProperty<>(photo);
-        // protect internal tags from changes in the arg list
-        this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
+        // protect internal mods from changes in the arg list
+        this.mods = new SimpleObjectProperty<>(new UniqueModList(mods));
     }
 
     /**
@@ -56,7 +56,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhones(), source.getBirthday(), source.getEmails(), source.getAddress(),
-                source.getPhoto(), source.getTags());
+                source.getPhoto(), source.getMods());
     }
 
     public void setName(Name name) {
@@ -156,23 +156,23 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable mod set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     @Override
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags.get().toSet());
+    public Set<Mod> getMods() {
+        return Collections.unmodifiableSet(mods.get().toSet());
     }
 
-    public ObjectProperty<UniqueTagList> tagProperty() {
-        return tags;
+    public ObjectProperty<UniqueModList> modProperty() {
+        return mods;
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag set.
+     * Replaces this person's mods with the mods in the argument mod set.
      */
-    public void setTags(Set<Tag> replacement) {
-        tags.set(new UniqueTagList(replacement));
+    public void setTags(Set<Mod> replacement) {
+        mods.set(new UniqueModList(replacement));
     }
 
     @Override
@@ -185,7 +185,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phones, birthday, emails, address, tags);
+        return Objects.hash(name, phones, birthday, emails, address, mods);
     }
 
     @Override

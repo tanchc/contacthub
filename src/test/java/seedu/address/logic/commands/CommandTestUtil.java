@@ -5,10 +5,10 @@ import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -43,9 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ADDRESS_CARRIE = "Block 231, Carrie Street 3";
-    public static final String VALID_TAG_CHEF = "chef";
-    public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_MOD_CS2103 = "CS2103";
+    public static final String VALID_MOD_CS2101 = "CS2101";
+    public static final String VALID_MOD_GER1000 = "GER1000";
     public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
             + "/secondary/CHRIS-EVANS-865133.jpg";
     public static final String VALID_LOCAL_PHOTO_URL = "file://"
@@ -65,9 +65,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_CARRIE = " " + PREFIX_ADDRESS + VALID_ADDRESS_CARRIE;
-    public static final String TAG_DESC_CHEF = " " + PREFIX_TAG + VALID_TAG_CHEF;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String MOD_DESC_CS2103 = " " + PREFIX_MOD + VALID_MOD_CS2103;
+    public static final String MOD_DESC_CS2101 = " " + PREFIX_MOD + VALID_MOD_CS2101;
+    public static final String MOD_DESC_GER1000 = " " + PREFIX_MOD + VALID_MOD_GER1000;
     public static final String URL_DESC_WEB = " " + PREFIX_PHOTO + VALID_WEB_PHOTO_URL;
     public static final String URL_DESC_LOCAL = " " + PREFIX_PHOTO + VALID_LOCAL_PHOTO_URL;
 
@@ -77,7 +77,7 @@ public class CommandTestUtil {
     // more than 8 numbers
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD + "hubby*"; // '*' not allowed in mods
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
@@ -87,13 +87,13 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhones(VALID_PHONE_AMY).withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_AMY).withMods(VALID_MOD_CS2101).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB).withEmails(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_BOB).withMods(VALID_MOD_GER1000, VALID_MOD_CS2101).build();
         DESC_CARRIE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CARRIE)
                 .withPhones(VALID_PHONE_CARRIE).withBirthday(VALID_BIRTHDAY_CARRIE).withEmails(VALID_EMAIL_CARRIE)
-                .withAddress(VALID_ADDRESS_CARRIE).withTags(VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_CARRIE).withMods(VALID_MOD_CS2101).build();
     }
 
     /**

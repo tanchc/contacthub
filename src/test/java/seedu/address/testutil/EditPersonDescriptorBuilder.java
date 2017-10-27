@@ -33,7 +33,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setBirthday(person.getBirthday());
         descriptor.setEmails(person.getEmails());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setMods(person.getMods());
     }
 
     /**
@@ -97,14 +97,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditPersonDescriptorBuilder withMods(String... mods) {
         try {
-            descriptor.setTags(ParserUtil.parseTags(Arrays.asList(tags)));
+            descriptor.setMods(ParserUtil.parseMods(Arrays.asList(mods)));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("tags are expected to be unique.");
+            throw new IllegalArgumentException("mods are expected to be unique.");
         }
         return this;
     }

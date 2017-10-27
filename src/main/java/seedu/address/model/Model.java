@@ -3,10 +3,10 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.mod.Mod;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -51,6 +51,6 @@ public interface Model {
      */
     void sortPersonListByName();
 
-    void deleteTag(Tag tag)throws DuplicatePersonException, PersonNotFoundException;
+    void deleteMod(Mod mod)throws DuplicatePersonException, PersonNotFoundException;
 
 }

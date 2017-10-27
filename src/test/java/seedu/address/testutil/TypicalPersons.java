@@ -9,15 +9,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_CARRIE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CARRIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CARRIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CARRIE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHEF;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,15 +71,15 @@ public class TypicalPersons {
     public static final ReadOnlyPerson AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withPhones(VALID_PHONE_AMY).withBirthday(VALID_BIRTHDAY_AMY)
             .withEmails(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_MOD_CS2101).build();
     public static final ReadOnlyPerson BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
             .withEmails(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_MOD_GER1000, VALID_MOD_CS2101).build();
     public static final ReadOnlyPerson BOB_EDITED = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
             .withEmails(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_CHEF, VALID_TAG_FRIEND).build();
+            .withTags(VALID_MOD_CS2103, VALID_MOD_CS2101).build();
     public static final ReadOnlyPerson CARRIE = new PersonBuilder().withName(VALID_NAME_CARRIE)
             .withPhones(VALID_PHONE_CARRIE).withBirthday(VALID_BIRTHDAY_CARRIE)
             .withEmails(VALID_EMAIL_CARRIE).withAddress(VALID_ADDRESS_CARRIE).build();
