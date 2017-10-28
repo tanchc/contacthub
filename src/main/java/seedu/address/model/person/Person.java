@@ -13,7 +13,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in ContactHub.
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {

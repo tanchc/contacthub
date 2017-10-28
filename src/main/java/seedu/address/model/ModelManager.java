@@ -19,6 +19,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -72,6 +73,12 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        addressBook.removeTask(target);
+        indicateAddressBookChanged();
+    }
+
+    @Override
     public synchronized void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -92,6 +99,15 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.updatePerson(target, editedPerson);
+        indicateAddressBookChanged();
+    }
+
+    @Override
+    public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
+            throws TaskNotFoundException {
+        requireAllNonNull(target, editedTask);
+
+        addressBook.updateTask(target, editedTask);
         indicateAddressBookChanged();
     }
 

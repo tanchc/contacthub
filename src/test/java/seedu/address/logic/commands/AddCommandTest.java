@@ -26,6 +26,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -125,13 +126,29 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
                 throws DuplicatePersonException {
             fail("This method should not be called.");
         }
 
         @Override
+        public void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask) {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<ReadOnlyPerson> getFilteredPersonList() {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
+        public ObservableList<ReadOnlyTask> getFilteredTaskList() {
             fail("This method should not be called.");
             return null;
         }
@@ -156,11 +173,6 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
-        @Override
-        public ObservableList<ReadOnlyTask> getFilteredTaskList() {
-            fail("This method should not be called.");
-            return null;
-        }
     }
 
     /**

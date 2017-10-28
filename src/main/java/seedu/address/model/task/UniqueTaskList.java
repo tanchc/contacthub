@@ -41,7 +41,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedTask}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      *
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */

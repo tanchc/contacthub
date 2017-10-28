@@ -44,6 +44,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     public XmlSerializableAddressBook(ReadOnlyAddressBook src) {
         this();
         persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
+        tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         modules.addAll(src.getModuleList().stream().map(XmlAdaptedModule::new).collect(Collectors.toList()));
     }
 

@@ -93,7 +93,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookPersons() {
         AddressBook ab = new AddressBook();
         for (ReadOnlyPerson person : getTypicalPersons()) {
             try {

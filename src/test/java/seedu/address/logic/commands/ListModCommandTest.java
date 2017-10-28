@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.BOB_EDITED;
 import static seedu.address.testutil.TypicalPersons.CARRIE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookPersons;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +38,7 @@ public class ListModCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBookPersons(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         moduleList = new ArrayList<>();
         tempList = new ArrayList<>();
