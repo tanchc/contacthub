@@ -17,6 +17,10 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -25,6 +29,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTaskList tasks;
     private final UniqueModList mods;
 
     /*
@@ -36,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        tasks = new UniqueTaskList();
         mods = new UniqueModList();
     }
 
@@ -55,6 +61,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setTasks(List<? extends ReadOnlyTask> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
     public void setTags(Set<Mod> mods) {
         this.mods.setMods(mods);
     }
@@ -66,6 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         try {
             setPersons(newData.getPersonList());
+            //setTasks(newData.getTaskList());
         } catch (DuplicatePersonException e) {
             assert false : "AddressBooks should not have duplicate persons";
         }
@@ -93,6 +104,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a person to the address book.
+     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     *
+     */
+    public void addTask(ReadOnlyTask t) {
+        Task newTask = new Task(t);
+        tasks.add(newTask);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
      * {@code AddressBook}'s mod list will be updated with the mods of {@code editedReadOnlyPerson}.
      *
@@ -112,6 +134,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         // This can cause the mods master list to have additional mods that are not modded to any person
         // in the person list.
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
+     *
+     * @throws TaskNotFoundException if {@code target} could not be found in the list.
+     */
+    public void updateTask(ReadOnlyTask target, ReadOnlyTask editedReadOnlyTask)
+            throws TaskNotFoundException {
+        requireNonNull(editedReadOnlyTask);
+
+        Task editedTask = new Task(editedReadOnlyTask);
+        tasks.setTask(target, editedTask);
     }
 
     /**
@@ -157,10 +192,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts the list alphabetically
+     * Removes {@code key} from this {@code AddressBook}.
+     * @throws TaskNotFoundException if the {@code key} is not in this {@code AddressBook}.
+     */
+    public boolean removeTask(ReadOnlyTask key) throws TaskNotFoundException {
+        if (tasks.remove(key)) {
+            return true;
+        } else {
+            throw new TaskNotFoundException();
+        }
+    }
+
+    /**
+     * Sorts the personList alphabetically
      */
     public void sortPersonListByName() {
         persons.sortPersonListByName();
+    }
+
+    /**
+     * Sorts the taskList alphabetically
+     */
+    public void sortTaskListByName() {
+        tasks.sortTaskListByName();
     }
 
     //// mod-level operations
@@ -180,6 +234,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<ReadOnlyPerson> getPersonList() {
         return persons.asObservableList();
+    }
+
+    @Override
+    public ObservableList<ReadOnlyTask> getTaskList() {
+        return tasks.asObservableList();
     }
 
     @Override

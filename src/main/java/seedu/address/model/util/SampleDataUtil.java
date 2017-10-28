@@ -15,6 +15,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.Appointment;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -52,11 +56,25 @@ public class SampleDataUtil {
         }
     }
 
+    public static Task[] getSampleTasks() {
+        try {
+            return new Task[] {
+                new Task(new Appointment("Meeting"), new Date("27/10/2017"), new StartTime("12:00")),
+                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("12:00"))
+            };
+        } catch (IllegalValueException e) {
+            throw new AssertionError("sample data cannot be invalid", e);
+        }
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         try {
             AddressBook sampleAb = new AddressBook();
             for (Person samplePerson : getSamplePersons()) {
                 sampleAb.addPerson(samplePerson);
+            }
+            for (Task sampleTask : getSampleTasks()) {
+                sampleAb.addTask(sampleTask);
             }
             return sampleAb;
         } catch (DuplicatePersonException e) {

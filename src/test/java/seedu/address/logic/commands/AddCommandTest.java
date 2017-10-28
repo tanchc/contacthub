@@ -25,6 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -143,6 +144,12 @@ public class AddCommandTest {
         @Override
         public void deleteMod(Mod mod) throws DuplicatePersonException, PersonNotFoundException {
             fail("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ReadOnlyTask> getFilteredTaskList() {
+            fail("This method should not be called.");
+            return null;
         }
     }
 

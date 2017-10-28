@@ -18,6 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.ReadOnlyTask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,6 +29,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final AddressBook addressBook;
     private final FilteredList<ReadOnlyPerson> filteredPersons;
+    private final FilteredList<ReadOnlyTask> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
     }
 
     public ModelManager() {
@@ -118,6 +121,11 @@ public class ModelManager extends ComponentManager implements Model {
 
             addressBook.updatePerson(oldPerson, newPerson);
         }
+    }
+
+    @Override
+    public ObservableList<ReadOnlyTask> getFilteredTaskList() {
+        return FXCollections.unmodifiableObservableList(filteredTasks);
     }
 
     @Override
