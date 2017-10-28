@@ -19,7 +19,7 @@ public class XmlAdaptedEmail {
      */
     public XmlAdaptedEmail() {}
     /**
-     * Converts a given Mod into this class for JAXB use.
+     * Converts a given Email into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created
      */

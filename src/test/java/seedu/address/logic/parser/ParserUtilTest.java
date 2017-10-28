@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_MOD = "#friend";
+    private static final String INVALID_MODULE = "#CS1231";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE_1 = "123456";
@@ -36,8 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL_1 = "rachel@example.com";
     private static final String VALID_EMAIL_2 = "rwalker@example.com";
-    private static final String VALID_MOD_1 = "friend";
-    private static final String VALID_MOD_2 = "neighbour";
+    private static final String VALID_MODULE_1 = " CS1010";
+    private static final String VALID_MODULE_2 = "CS1231";
 
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
@@ -165,27 +165,28 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() throws Exception {
+    public void parseModules_null_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parseMods(null);
+        ParserUtil.parseModules(null);
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsIllegalValueException() throws Exception {
+    public void parseModules_collectionWithInvalidModules_throwsIllegalValueException() throws Exception {
         thrown.expect(IllegalValueException.class);
-        ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, INVALID_MOD));
+        ParserUtil.parseModules(Arrays.asList(VALID_MODULE_1, INVALID_MODULE));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseMods(Collections.emptyList()).isEmpty());
+    public void parseModules_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseModules(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Mod> actualTagSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
-        Set<Mod> expectedTagSet = new HashSet<Mod>(Arrays.asList(new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
+    public void parseModules_collectionWithValidModules_returnsModset() throws Exception {
+        Set<Module> actualModuleSet = ParserUtil.parseModules(Arrays.asList(VALID_MODULE_1, VALID_MODULE_2));
+        Set<Module> expectedModuleSet = new HashSet<>(Arrays.asList(new Module(VALID_MODULE_1),
+                new Module(VALID_MODULE_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedModuleSet, actualModuleSet);
     }
 }

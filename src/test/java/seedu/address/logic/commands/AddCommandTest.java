@@ -20,7 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -142,7 +142,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteMod(Mod mod) throws DuplicatePersonException, PersonNotFoundException {
+        public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
             fail("This method should not be called.");
         }
 

@@ -58,7 +58,7 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhones(VALID_PHONE_BOB)
-                .withTags(VALID_MOD_GER1000).build();
+                .withModules(VALID_MOD_GER1000).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_BOB).withMods(VALID_MOD_GER1000).build();

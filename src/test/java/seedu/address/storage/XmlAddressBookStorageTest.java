@@ -101,10 +101,10 @@ public class XmlAddressBookStorageTest {
     }
 
     @Test
-    public void getTagList_modifyList_throwsUnsupportedOperationException() {
+    public void getModList_modifyList_throwsUnsupportedOperationException() {
         XmlSerializableAddressBook addressBook = new XmlSerializableAddressBook();
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getTagList().remove(0);
+        addressBook.getModuleList().remove(0);
     }
 
     /**

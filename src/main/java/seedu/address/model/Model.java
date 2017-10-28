@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -48,11 +48,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
     /**
-     * Sorts the list
+     * Sorts the list alphabetically
      */
     void sortPersonListByName();
 
-    void deleteMod(Mod mod)throws DuplicatePersonException, PersonNotFoundException;
+    void deleteModule(Module module)throws DuplicatePersonException, PersonNotFoundException;
 
     ObservableList<ReadOnlyTask> getFilteredTaskList();
 }

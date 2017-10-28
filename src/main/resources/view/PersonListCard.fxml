@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -30,7 +30,7 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="mods" />
+      <FlowPane fx:id="modules" />
       <FlowPane fx:id="phones" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
       <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
@@ -38,7 +38,7 @@
     </VBox>
     <ImageView fx:id="imageView">
       <image>
-        <Image url= "images/defaultPhoto.png"/>
+        <Image url="images/defaultPhoto.png"/>
       </image>
     </ImageView>
     </HBox>

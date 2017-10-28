@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
@@ -65,9 +65,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_CARRIE = " " + PREFIX_ADDRESS + VALID_ADDRESS_CARRIE;
-    public static final String MOD_DESC_CS2103 = " " + PREFIX_MOD + VALID_MOD_CS2103;
-    public static final String MOD_DESC_CS2101 = " " + PREFIX_MOD + VALID_MOD_CS2101;
-    public static final String MOD_DESC_GER1000 = " " + PREFIX_MOD + VALID_MOD_GER1000;
+    public static final String MOD_DESC_CS2103 = " " + PREFIX_MODULE + VALID_MOD_CS2103;
+    public static final String MOD_DESC_CS2101 = " " + PREFIX_MODULE + VALID_MOD_CS2101;
+    public static final String MOD_DESC_GER1000 = " " + PREFIX_MODULE + VALID_MOD_GER1000;
     public static final String URL_DESC_WEB = " " + PREFIX_PHOTO + VALID_WEB_PHOTO_URL;
     public static final String URL_DESC_LOCAL = " " + PREFIX_PHOTO + VALID_LOCAL_PHOTO_URL;
 
@@ -77,7 +77,7 @@ public class CommandTestUtil {
     // more than 8 numbers
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD + "hubby*"; // '*' not allowed in mods
+    public static final String INVALID_MOD_DESC = " " + PREFIX_MODULE + "hubby*"; // '*' not allowed in mods
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;

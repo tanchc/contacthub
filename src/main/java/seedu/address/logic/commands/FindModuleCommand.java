@@ -1,25 +1,25 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.ModContainsKeywordPredicate;
+import seedu.address.model.person.ModuleContainsKeywordPredicate;
 
 /**
- * Finds and lists all persons in address book whose mods contains any of the argument keywords.
+ * Finds and lists all persons in address book whose modules contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
-public class FindModCommand extends Command {
-    public static final String COMMAND_WORD = "findmod";
+public class FindModuleCommand extends Command {
+    public static final String COMMAND_WORD = "findmodule";
     public static final String COMMAND_ALIAS = "fm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose mods contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose modules contain any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2101" + "\n"
             + "Example: " + COMMAND_ALIAS + " CS2103T";
 
 
-    private final ModContainsKeywordPredicate predicate;
+    private final ModuleContainsKeywordPredicate predicate;
 
-    public FindModCommand(ModContainsKeywordPredicate predicate) {
+    public FindModuleCommand(ModuleContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -32,7 +32,7 @@ public class FindModCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindModCommand // instanceof handles nulls
-                && this.predicate.equals(((FindModCommand) other).predicate)); // state check
+                || (other instanceof FindModuleCommand // instanceof handles nulls
+                && this.predicate.equals(((FindModuleCommand) other).predicate)); // state check
     }
 }

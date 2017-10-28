@@ -30,7 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -49,7 +49,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -65,7 +65,8 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
     @Test
     public void add() throws Exception {
         Model model = getModel();
-        /* Case: add a person without mods to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add a person without modules to a non-empty address book,
+         * command with leading spaces and trailing spaces
          * -> added
          */
         ReadOnlyPerson toAdd = AMY;
@@ -91,17 +92,17 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
         /* Case: add a duplicate person except with different mods -> rejected */
-        // "CS2101" is an existing mod used in the default model, see TypicalPersons#ALICE
-        // This test will fail is a new mod that is not in the model is used, see the bug documented in
+        // "CS2101" is an existing module used in the default model, see TypicalPersons#ALICE
+        // This test will fail is a new module that is not in the model is used, see the bug documented in
         // AddressBook#addPerson(ReadOnlyPerson)
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + " " + PREFIX_MOD.getPrefix() + "CS2101";
+                + ADDRESS_DESC_AMY + " " + PREFIX_MODULE.getPrefix() + "CS2101";
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
         /* Case: add a person with all fields same as another person in the address book except name -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_BOB).withPhones(VALID_PHONE_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_AMY).withModules(VALID_MOD_CS2101).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
@@ -109,7 +110,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a person with all fields same as another person in the address book except phone -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_BOB)
                 .withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_AMY).withModules(VALID_MOD_CS2101).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_BOB + BIRTHDAY_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
@@ -117,14 +118,14 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a person with all fields same as another person in the address book except birthday -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_AMY)
                 .withBirthday(VALID_BIRTHDAY_BOB).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_AMY).withModules(VALID_MOD_CS2101).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a person with all fields same as another person in the address book except email -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_AMY).withEmails(VALID_EMAIL_BOB)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_MOD_CS2101).build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withModules(VALID_MOD_CS2101).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY
                 + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
@@ -132,7 +133,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a person with all fields same as another person in the address book except address -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_BOB).withModules(VALID_MOD_CS2101).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_BOB + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
@@ -211,10 +212,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
                 + INVALID_ADDRESS_DESC;
         assertCommandFailure(command, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
-        /* Case: invalid mod -> rejected */
+        /* Case: invalid module -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + INVALID_MOD_DESC;
-        assertCommandFailure(command, Mod.MESSAGE_MOD_CONSTRAINTS);
+        assertCommandFailure(command, Module.MESSAGE_MODULE_CONSTRAINTS);
     }
 
     /**

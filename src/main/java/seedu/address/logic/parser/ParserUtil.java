@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -99,15 +99,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> mods} into a {@code Set<Mod>}.
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>}.
      */
-    public static Set<Mod> parseMods(Collection<String> mods) throws IllegalValueException {
-        requireNonNull(mods);
-        final Set<Mod> modSet = new HashSet<>();
-        for (String modName : mods) {
-            modSet.add(new Mod(modName));
+    public static Set<Module> parseModules(Collection<String> modules) throws IllegalValueException {
+        requireNonNull(modules);
+        final Set<Module> moduleSet = new HashSet<>();
+        for (String moduleName : modules) {
+            moduleSet.add(new Module(moduleName));
         }
-        return modSet;
+        return moduleSet;
     }
 
     /**

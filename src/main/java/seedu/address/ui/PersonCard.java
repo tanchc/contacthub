@@ -53,7 +53,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private ImageView imageView;
     @FXML
-    private FlowPane mods;
+    private FlowPane modules;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
@@ -61,7 +61,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         initPhones(person);
         initEmails(person);
-        initTags(person);
+        initModules(person);
         initPhoto(person);
         bindListeners(person);
     }
@@ -71,12 +71,12 @@ public class PersonCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForMod(String modValue, int randNum) {
-        if (!modColors.containsKey(modValue)) {
-            modColors.put(modValue, colors[randNum]);
+    private static String getColorForModule(String moduleValue, int randNum) {
+        if (!modColors.containsKey(moduleValue)) {
+            modColors.put(moduleValue, colors[randNum]);
         }
 
-        return modColors.get(modValue);
+        return modColors.get(moduleValue);
     }
 
     /**
@@ -99,9 +99,9 @@ public class PersonCard extends UiPart<Region> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
         });
-        person.modProperty().addListener((observable, oldValue, newValue) -> {
-            mods.getChildren().clear();
-            initTags(person);
+        person.moduleProperty().addListener((observable, oldValue, newValue) -> {
+            modules.getChildren().clear();
+            initModules(person);
         });
     }
 
@@ -128,18 +128,18 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Initialise the mods for each person
+     * Initialise the modules for each person
      */
-    private void initTags(ReadOnlyPerson person) {
-        person.getMods().forEach(mod -> {
-            Label modLabel = new Label(mod.modName);
+    private void initModules(ReadOnlyPerson person) {
+        person.getModules().forEach(module -> {
+            Label moduleLabel = new Label(module.moduleName);
             int randNum = getRandom();
-            modLabel.setStyle("-fx-background-color: " + getColorForMod(mod.modName, randNum));
+            moduleLabel.setStyle("-fx-background-color: " + getColorForModule(module.moduleName, randNum));
             if (randNum > 6) {
-                modLabel.setStyle("-fx-text-fill: black");
+                moduleLabel.setStyle("-fx-text-fill: black");
             }
 
-            mods.getChildren().add(modLabel);
+            modules.getChildren().add(moduleLabel);
         });
     }
 

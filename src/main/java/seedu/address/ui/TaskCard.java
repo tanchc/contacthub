@@ -22,7 +22,7 @@ public class TaskCard extends UiPart<Region> {
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
-    private static HashMap<String, String> tagColors = new HashMap<String, String>();
+    private static HashMap<String, String> moduleColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -57,12 +57,12 @@ public class TaskCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForTag(String tagValue, int randNum) {
-        if (!tagColors.containsKey(tagValue)) {
-            tagColors.put(tagValue, colors[randNum]);
+    private static String getColorForMod(String modValue, int randNum) {
+        if (!moduleColors.containsKey(modValue)) {
+            moduleColors.put(modValue, colors[randNum]);
         }
 
-        return tagColors.get(tagValue);
+        return moduleColors.get(modValue);
     }
 
     /**

@@ -13,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -38,7 +38,7 @@ public class ModelManager extends ComponentManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing ContactHub: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -110,14 +110,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void deleteMod(Mod mod) throws DuplicatePersonException, PersonNotFoundException {
+    public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
         for (int i = 0; i < addressBook.getPersonList().size(); i++) {
             ReadOnlyPerson oldPerson = addressBook.getPersonList().get(i);
 
             Person newPerson = new Person(oldPerson);
-            Set<Mod> newTags = newPerson.getMods();
-            newTags.remove(mod);
-            newPerson.setTags(newTags);
+            Set<Module> newModules = newPerson.getModules();
+            newModules.remove(module);
+            newPerson.setModules(newModules);
 
             addressBook.updatePerson(oldPerson, newPerson);
         }

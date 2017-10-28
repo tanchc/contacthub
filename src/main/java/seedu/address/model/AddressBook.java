@@ -10,8 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.mod.Mod;
-import seedu.address.model.mod.UniqueModList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTaskList tasks;
-    private final UniqueModList mods;
+    private final UniqueModuleList modules;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -42,13 +42,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tasks = new UniqueTaskList();
-        mods = new UniqueModList();
+        modules = new UniqueModuleList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons and Mods in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons and Modules in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -65,8 +65,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tasks.setTasks(tasks);
     }
 
-    public void setTags(Set<Mod> mods) {
-        this.mods.setMods(mods);
+    public void setModules(Set<Module> modules) {
+        this.modules.setModules(modules);
     }
 
     /**
@@ -78,35 +78,35 @@ public class AddressBook implements ReadOnlyAddressBook {
             setPersons(newData.getPersonList());
             //setTasks(newData.getTaskList());
         } catch (DuplicatePersonException e) {
-            assert false : "AddressBooks should not have duplicate persons";
+            assert false : "ContactHub should not have duplicate persons";
         }
 
-        setTags(new HashSet<>(newData.getTagList()));
-        syncMasterTagListWith(persons);
+        setModules(new HashSet<>(newData.getModuleList()));
+        syncMasterModuleListWith(persons);
     }
 
     //// person-level operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's mods and updates {@link #mods} with any new mods found,
-     * and updates the Mod objects in the person to point to those in {@link #mods}.
+     * Adds a person to ContactHub.
+     * Also checks the new person's modules and updates {@link #modules} with any new modules found,
+     * and updates the Module objects in the person to point to those in {@link #modules}.
      *
      * @throws DuplicatePersonException if an equivalent person already exists.
      */
     public void addPerson(ReadOnlyPerson p) throws DuplicatePersonException {
         Person newPerson = new Person(p);
-        syncMasterTagListWith(newPerson);
-        // TODO: the mods master list will be updated even though the below line fails.
-        // This can cause the mods master list to have additional mods that are not modded to any person
+        syncMasterModuleListWith(newPerson);
+        // TODO: the modules master list will be updated even though the below line fails.
+        // This can cause the modules master list to have additional modules that are not modules to any person
         // in the person list.
         persons.add(newPerson);
     }
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * Adds a task to ContactHub.
+     * Also checks the new task and updates {@link #tasks} with any new tasks found,
+     * and updates the Task objects in the person to point to those in {@link #tasks}.
      *
      */
     public void addTask(ReadOnlyTask t) {
@@ -116,22 +116,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
-     * {@code AddressBook}'s mod list will be updated with the mods of {@code editedReadOnlyPerson}.
+     * {@code AddressBook}'s module list will be updated with the modules of {@code editedReadOnlyPerson}.
      *
      * @throws DuplicatePersonException if updating the person's details causes the person to be equivalent to
      *      another existing person in the list.
      * @throws PersonNotFoundException if {@code target} could not be found in the list.
      *
-     * @see #syncMasterTagListWith(Person)
+     * @see #syncMasterModuleListWith(Person)
      */
     public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedReadOnlyPerson)
             throws DuplicatePersonException, PersonNotFoundException {
         requireNonNull(editedReadOnlyPerson);
 
         Person editedPerson = new Person(editedReadOnlyPerson);
-        syncMasterTagListWith(editedPerson);
-        // TODO: the mods master list will be updated even though the below line fails.
-        // This can cause the mods master list to have additional mods that are not modded to any person
+        syncMasterModuleListWith(editedPerson);
+        // TODO: the modules master list will be updated even though the below line fails.
+        // This can cause the modules master list to have additional modules that are not modded to any person
         // in the person list.
         persons.setPerson(target, editedPerson);
     }
@@ -150,33 +150,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Ensures that every mod in this person:
-     *  - exists in the master list {@link #mods}
-     *  - points to a Mod object in the master list
+     * Ensures that every module in this person:
+     *  - exists in the master list {@link #modules}
+     *  - points to a Module object in the master list
      */
-    private void syncMasterTagListWith(Person person) {
-        final UniqueModList personTags = new UniqueModList(person.getMods());
-        mods.mergeFrom(personTags);
+    private void syncMasterModuleListWith(Person person) {
+        final UniqueModuleList personModules = new UniqueModuleList(person.getModules());
+        modules.mergeFrom(personModules);
 
-        // Create map with values = mod object references in the master list
-        // used for checking person mod references
-        final Map<Mod, Mod> masterTagObjects = new HashMap<>();
-        mods.forEach(mod -> masterTagObjects.put(mod, mod));
+        // Create map with values = module object references in the master list
+        // used for checking person module references
+        final Map<Module, Module> masterModuleObjects = new HashMap<>();
+        modules.forEach(module -> masterModuleObjects.put(module, module));
 
-        // Rebuild the list of person mods to point to the relevant mods in the master mod list.
-        final Set<Mod> correctTagReferences = new HashSet<>();
-        personTags.forEach(mod -> correctTagReferences.add(masterTagObjects.get(mod)));
-        person.setTags(correctTagReferences);
+        // Rebuild the list of person modules to point to the relevant modules in the master module list.
+        final Set<Module> correctModuleReferences = new HashSet<>();
+        personModules.forEach(module -> correctModuleReferences.add(masterModuleObjects.get(module)));
+        person.setModules(correctModuleReferences);
     }
 
     /**
-     * Ensures that every mod in these persons:
-     *  - exists in the master list {@link #mods}
-     *  - points to a Mod object in the master list
-     *  @see #syncMasterTagListWith(Person)
+     * Ensures that every module in these persons:
+     *  - exists in the master list {@link #modules}
+     *  - points to a Module object in the master list
+     *  @see #syncMasterModuleListWith(Person)
      */
-    private void syncMasterTagListWith(UniquePersonList persons) {
-        persons.forEach(this::syncMasterTagListWith);
+    private void syncMasterModuleListWith(UniquePersonList persons) {
+        persons.forEach(this::syncMasterModuleListWith);
     }
 
     /**
@@ -217,17 +217,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.sortTaskListByName();
     }
 
-    //// mod-level operations
+    //// module-level operations
 
-    public void addMod(Mod t) throws UniqueModList.DuplicateModException {
-        mods.add(t);
+    public void addModule(Module m) throws UniqueModuleList.DuplicateModuleException {
+        modules.add(m);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asObservableList().size() + " persons, " + mods.asObservableList().size() +  " mods";
+        return persons.asObservableList().size() + " persons, " + modules.asObservableList().size() +  " modules";
         // TODO: refine later
     }
 
@@ -242,8 +242,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Mod> getTagList() {
-        return mods.asObservableList();
+    public ObservableList<Module> getModuleList() {
+        return modules.asObservableList();
     }
 
     @Override
@@ -251,12 +251,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && this.persons.equals(((AddressBook) other).persons)
-                && this.mods.equalsOrderInsensitive(((AddressBook) other).mods));
+                && this.modules.equalsOrderInsensitive(((AddressBook) other).modules));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(persons, mods);
+        return Objects.hash(persons, modules);
     }
 }

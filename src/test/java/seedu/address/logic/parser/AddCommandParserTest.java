@@ -37,7 +37,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -54,7 +54,7 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_AMY, VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_MOD_CS2101).build();
+                .withModules(VALID_MOD_CS2101).build();
 
         // multiple names - last name accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_AMY
@@ -85,7 +85,7 @@ public class AddCommandParserTest {
         Person expectedPersonMultipleTags = new PersonBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_AMY, VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_MOD_CS2101, VALID_MOD_GER1000).build();
+                .withModules(VALID_MOD_CS2101, VALID_MOD_GER1000).build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MOD_DESC_GER1000
                         + MOD_DESC_CS2101, new AddCommand(expectedPersonMultipleTags));
@@ -96,7 +96,7 @@ public class AddCommandParserTest {
         // zero mods
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags().build();
+                .withModules().build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
     }
@@ -157,10 +157,10 @@ public class AddCommandParserTest {
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MOD_DESC_GER1000
                         + MOD_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 
-        // invalid mod
+        // invalid module
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_MOD_DESC
-                + VALID_MOD_CS2101, Mod.MESSAGE_MOD_CONSTRAINTS);
+                + VALID_MOD_CS2101, Module.MESSAGE_MODULE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB

@@ -3,11 +3,11 @@ package seedu.address.model.person;
 import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
-import seedu.address.model.mod.Mod;
-import seedu.address.model.mod.UniqueModList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 
 /**
- * A read-only immutable interface for a Person in the addressbook.
+ * A read-only immutable interface for a Person in ContactHub.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyPerson {
@@ -22,8 +22,8 @@ public interface ReadOnlyPerson {
     Set<Email> getEmails();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
-    ObjectProperty<UniqueModList> modProperty();
-    Set<Mod> getMods();
+    ObjectProperty<UniqueModuleList> moduleProperty();
+    Set<Module> getModules();
     ObjectProperty<Photo> photoProperty();
     Photo getPhoto();
 
@@ -55,10 +55,10 @@ public interface ReadOnlyPerson {
                 .append(getEmails().toString())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Photo url: ")
+                .append(" Photo URL: ")
                 .append(getPhoto())
-                .append(" Mods: ");
-        getMods().forEach(builder::append);
+                .append(" Module(s): ");
+        getModules().forEach(builder::append);
         return builder.toString();
     }
 

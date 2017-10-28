@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -19,7 +19,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
@@ -37,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_BIRTHDAY, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_MOD);
+                        PREFIX_ADDRESS, PREFIX_MODULE);
 
         Index index;
 
@@ -55,7 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .ifPresent(editPersonDescriptor::setBirthday);
             parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmails);
             ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
-            parseTagsForEdit(argMultimap.getAllValues(PREFIX_MOD)).ifPresent(editPersonDescriptor::setMods);
+            parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }
@@ -98,18 +98,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> mods} into a {@code Set<Mod>} if {@code mods} is non-empty.
-     * If {@code mods} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Mod>} containing zero mods.
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>} if {@code modules} is non-empty.
+     * If {@code modules} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Module>} containing zero modules.
      */
-    private Optional<Set<Mod>> parseTagsForEdit(Collection<String> mods) throws IllegalValueException {
-        assert mods != null;
+    private Optional<Set<Module>> parseModulesForEdit(Collection<String> modules) throws IllegalValueException {
+        assert modules != null;
 
-        if (mods.isEmpty()) {
+        if (modules.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> modSet = mods.size() == 1 && mods.contains("") ? Collections.emptySet() : mods;
-        return Optional.of(ParserUtil.parseMods(modSet));
+        Collection<String> moduleSet = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
+        return Optional.of(ParserUtil.parseModules(moduleSet));
     }
 
 }

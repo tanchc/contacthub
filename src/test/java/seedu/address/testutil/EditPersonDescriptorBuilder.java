@@ -33,7 +33,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setBirthday(person.getBirthday());
         descriptor.setEmails(person.getEmails());
         descriptor.setAddress(person.getAddress());
-        descriptor.setMods(person.getMods());
+        descriptor.setModules(person.getModules());
     }
 
     /**
@@ -100,9 +100,9 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withMods(String... mods) {
+    public EditPersonDescriptorBuilder withMods(String... modules) {
         try {
-            descriptor.setMods(ParserUtil.parseMods(Arrays.asList(mods)));
+            descriptor.setModules(ParserUtil.parseModules(Arrays.asList(modules)));
         } catch (IllegalValueException ive) {
             throw new IllegalArgumentException("mods are expected to be unique.");
         }

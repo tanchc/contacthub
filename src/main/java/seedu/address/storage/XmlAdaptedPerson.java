@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -37,7 +37,7 @@ public class XmlAdaptedPerson {
     private String photo;
 
     @XmlElement
-    private List<XmlAdaptedMod> modded = new ArrayList<>();
+    private List<XmlAdaptedModule> modules = new ArrayList<>();
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -64,9 +64,9 @@ public class XmlAdaptedPerson {
         }
         address = source.getAddress().value;
         photo = source.getPhoto().value;
-        modded = new ArrayList<>();
-        for (Mod mod : source.getMods()) {
-            modded.add(new XmlAdaptedMod(mod));
+        modules = new ArrayList<>();
+        for (Module mod : source.getModules()) {
+            modules.add(new XmlAdaptedModule(mod));
         }
     }
 
@@ -86,9 +86,9 @@ public class XmlAdaptedPerson {
             personEmails.add(email.toModelType());
         }
 
-        final List<Mod> personTags = new ArrayList<>();
-        for (XmlAdaptedMod mod : modded) {
-            personTags.add(mod.toModelType());
+        final List<Module> personModules = new ArrayList<>();
+        for (XmlAdaptedModule mod : modules) {
+            personModules.add(mod.toModelType());
         }
 
         final Name name = new Name(this.name);
@@ -97,7 +97,7 @@ public class XmlAdaptedPerson {
         final Set<Email> emails = new HashSet<>(personEmails);
         final Address address = new Address(this.address);
         final Photo photo = new Photo(this.photo);
-        final Set<Mod> mods = new HashSet<>(personTags);
-        return new Person(name, phones, birthday, emails, address, photo, mods);
+        final Set<Module> modules = new HashSet<>(personModules);
+        return new Person(name, phones, birthday, emails, address, photo, modules);
     }
 }

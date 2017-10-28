@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -24,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_BIRTHDAY = "25/09/1990";
     public static final String DEFAULT_EMAILS = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MODS = "friends";
+    public static final String DEFAULT_MODS = "CS1010";
 
     private Person person;
 
@@ -36,9 +36,9 @@ public class PersonBuilder {
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             Photo defaultPhoto = new Photo();
-            Set<Mod> defaultTags = SampleDataUtil.getModSet(DEFAULT_MODS);
+            Set<Module> defaultModules = SampleDataUtil.getModuleSet(DEFAULT_MODS);
             this.person = new Person(defaultName, defaultPhones, defaultBirthday, defaultEmails,
-                    defaultAddress, defaultPhoto, defaultTags);
+                    defaultAddress, defaultPhoto, defaultModules);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }
@@ -64,13 +64,13 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code Person} that we are building.
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... mods) {
+    public PersonBuilder withModules(String ... modules) {
         try {
-            this.person.setTags(SampleDataUtil.getModSet(mods));
+            this.person.setModules(SampleDataUtil.getModuleSet(modules));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("mods are expected to be unique.");
+            throw new IllegalArgumentException("modules are expected to be unique.");
         }
         return this;
     }

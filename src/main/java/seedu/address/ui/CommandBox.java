@@ -32,7 +32,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
-    private String[] suggestions = {"add", "sort", "delete", "list", "find", "findTag"};
+    private String[] suggestions = {"add", "sort", "delete", "list", "find", "findmodule"};
 
     public CommandBox(Logic logic) {
         super(FXML);

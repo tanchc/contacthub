@@ -1,4 +1,4 @@
-package seedu.address.model.mod;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -13,79 +13,79 @@ import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.commons.util.CollectionUtil;
 
 /**
- * A list of mods that enforces no nulls and uniqueness between its elements.
+ * A list of Modules that enforces no nulls and uniqueness between its elements.
  *
  * Supports minimal set of list operations for the app's features.
  *
- * @see Mod#equals(Object)
+ * @see Module#equals(Object)
  */
-public class UniqueModList implements Iterable<Mod> {
+public class UniqueModuleList implements Iterable<Module> {
 
-    private final ObservableList<Mod> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Module> internalList = FXCollections.observableArrayList();
 
     /**
-     * Constructs empty ModList.
+     * Constructs empty ModuleList.
      */
-    public UniqueModList() {}
+    public UniqueModuleList() {}
 
     /**
-     * Creates a UniqueModList using given mods.
+     * Creates a UniqueModuleList using given Modules.
      * Enforces no nulls.
      */
-    public UniqueModList(Set<Mod> mods) {
-        requireAllNonNull(mods);
-        internalList.addAll(mods);
+    public UniqueModuleList(Set<Module> modules) {
+        requireAllNonNull(modules);
+        internalList.addAll(modules);
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
     /**
-     * Returns all mods in this list as a Set.
+     * Returns all Modules in this list as a Set.
      * This set is mutable and change-insulated against the internal list.
      */
-    public Set<Mod> toSet() {
+    public Set<Module> toSet() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return new HashSet<>(internalList);
     }
 
     /**
-     * Replaces the Mods in this list with those in the argument mod list.
+     * Replaces the Modules in this list with those in the argument Module list.
      */
-    public void setMods(Set<Mod> mods) {
-        requireAllNonNull(mods);
-        internalList.setAll(mods);
+    public void setModules(Set<Module> modules) {
+        requireAllNonNull(modules);
+        internalList.setAll(modules);
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
     /**
-     * Ensures every mod in the argument list exists in this object.
+     * Ensures every Module in the argument list exists in this object.
      */
-    public void mergeFrom(UniqueModList from) {
-        final Set<Mod> alreadyInside = this.toSet();
+    public void mergeFrom(UniqueModuleList from) {
+        final Set<Module> alreadyInside = this.toSet();
         from.internalList.stream()
-                .filter(mod -> !alreadyInside.contains(mod))
+                .filter(Module -> !alreadyInside.contains(Module))
                 .forEach(internalList::add);
 
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
     /**
-     * Returns true if the list contains an equivalent Mod as the given argument.
+     * Returns true if the list contains an equivalent Module as the given argument.
      */
-    public boolean contains(Mod toCheck) {
+    public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
         return internalList.contains(toCheck);
     }
 
     /**
-     * Adds a Mod to the list.
+     * Adds a Module to the list.
      *
-     * @throws DuplicateModException if the Mod to add is a duplicate of an existing Mod in the list.
+     * @throws DuplicateModuleException if the Module to add is a duplicate of an existing Module in the list.
      */
-    public void add(Mod toAdd) throws DuplicateModException {
+    public void add(Module toAdd) throws DuplicateModuleException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateModException();
+            throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
 
@@ -93,7 +93,7 @@ public class UniqueModList implements Iterable<Mod> {
     }
 
     @Override
-    public Iterator<Mod> iterator() {
+    public Iterator<Module> iterator() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return internalList.iterator();
     }
@@ -101,7 +101,7 @@ public class UniqueModList implements Iterable<Mod> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Mod> asObservableList() {
+    public ObservableList<Module> asObservableList() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return FXCollections.unmodifiableObservableList(internalList);
     }
@@ -110,15 +110,15 @@ public class UniqueModList implements Iterable<Mod> {
     public boolean equals(Object other) {
         assert CollectionUtil.elementsAreUnique(internalList);
         return other == this // short circuit if same object
-                || (other instanceof UniqueModList // instanceof handles nulls
-                        && this.internalList.equals(((UniqueModList) other).internalList));
+                || (other instanceof UniqueModuleList // instanceof handles nulls
+                        && this.internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     /**
      * Returns true if the element in this list is equal to the elements in {@code other}.
      * The elements do not have to be in the same order.
      */
-    public boolean equalsOrderInsensitive(UniqueModList other) {
+    public boolean equalsOrderInsensitive(UniqueModuleList other) {
         assert CollectionUtil.elementsAreUnique(internalList);
         assert CollectionUtil.elementsAreUnique(other.internalList);
         return this == other || new HashSet<>(this.internalList).equals(new HashSet<>(other.internalList));
@@ -133,9 +133,9 @@ public class UniqueModList implements Iterable<Mod> {
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
-    public static class DuplicateModException extends DuplicateDataException {
-        protected DuplicateModException() {
-            super("Operation would result in duplicate mods");
+    public static class DuplicateModuleException extends DuplicateDataException {
+        protected DuplicateModuleException() {
+            super("Operation would result in duplicate Modules");
         }
     }
 

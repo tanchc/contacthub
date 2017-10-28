@@ -18,7 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
@@ -130,8 +130,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find mods of person in address book -> 0 persons found */
-        List<Mod> mods = new ArrayList<>(DANIEL.getMods());
-        command = FindCommand.COMMAND_WORD + " " + mods.get(0).modName;
+        List<Module> modules = new ArrayList<>(DANIEL.getModules());
+        command = FindCommand.COMMAND_WORD + " " + modules.get(0).moduleName;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

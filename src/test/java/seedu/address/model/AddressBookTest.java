@@ -16,7 +16,7 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.task.ReadOnlyTask;
@@ -31,7 +31,7 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
-        assertEquals(Collections.emptyList(), addressBook.getTagList());
+        assertEquals(Collections.emptyList(), addressBook.getModuleList());
     }
 
     @Test
@@ -51,8 +51,8 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsAssertionError() {
         // Repeat ALICE twice
         List<Person> newPersons = Arrays.asList(new Person(ALICE), new Person(ALICE));
-        List<Mod> newTags = new ArrayList<>(ALICE.getMods());
-        AddressBookStub newData = new AddressBookStub(newPersons, newTags);
+        List<Module> newModules = new ArrayList<>(ALICE.getModules());
+        AddressBookStub newData = new AddressBookStub(newPersons, newModules);
 
         thrown.expect(AssertionError.class);
         addressBook.resetData(newData);
@@ -65,9 +65,9 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getTagList_modifyList_throwsUnsupportedOperationException() {
+    public void getModuleList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getTagList().remove(0);
+        addressBook.getModuleList().remove(0);
     }
 
     /**
@@ -75,12 +75,12 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<ReadOnlyPerson> persons = FXCollections.observableArrayList();
-        private final ObservableList<Mod> mods = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Mod> mods) {
+        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules) {
             this.persons.setAll(persons);
-            this.mods.setAll(mods);
+            this.modules.setAll(modules);
         }
 
         @Override
@@ -89,11 +89,13 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<ReadOnlyTask> getTaskList() { return tasks; }
+        public ObservableList<ReadOnlyTask> getTaskList() {
+            return tasks;
+        }
 
         @Override
-        public ObservableList<Mod> getTagList() {
-            return mods;
+        public ObservableList<Module> getModuleList() {
+            return modules;
         }
     }
 

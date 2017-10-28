@@ -9,8 +9,8 @@ import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.mod.Mod;
-import seedu.address.model.mod.UniqueModList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 
 /**
  * Represents a Person in the address book.
@@ -25,22 +25,22 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Address> address;
     private ObjectProperty<Photo> photo;
 
-    private ObjectProperty<UniqueModList> mods;
+    private ObjectProperty<UniqueModuleList> modules;
 
     /**
      * Person with default photo of images/defaultPhoto/png
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address,
-                  Set<Mod> mods) {
-        this(name, phones, birthday, emails, address, new Photo(), mods);
+                  Set<Module> modules) {
+        this(name, phones, birthday, emails, address, new Photo(), modules);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Set<Phone> phones, Birthday birthday, Set<Email> emails, Address address, Photo photo,
-                  Set<Mod> mods) {
-        requireAllNonNull(name, phones, birthday, emails, address, photo, mods);
+                  Set<Module> modules) {
+        requireAllNonNull(name, phones, birthday, emails, address, photo, modules);
         this.name = new SimpleObjectProperty<>(name);
         this.phones = new SimpleObjectProperty<>(new PhoneList(phones));
         this.birthday = new SimpleObjectProperty<>(birthday);
@@ -48,7 +48,7 @@ public class Person implements ReadOnlyPerson {
         this.address = new SimpleObjectProperty<>(address);
         this.photo = new SimpleObjectProperty<>(photo);
         // protect internal mods from changes in the arg list
-        this.mods = new SimpleObjectProperty<>(new UniqueModList(mods));
+        this.modules = new SimpleObjectProperty<>(new UniqueModuleList(modules));
     }
 
     /**
@@ -56,7 +56,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhones(), source.getBirthday(), source.getEmails(), source.getAddress(),
-                source.getPhoto(), source.getMods());
+                source.getPhoto(), source.getModules());
     }
 
     public void setName(Name name) {
@@ -156,23 +156,23 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
-     * Returns an immutable mod set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     @Override
-    public Set<Mod> getMods() {
-        return Collections.unmodifiableSet(mods.get().toSet());
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules.get().toSet());
     }
 
-    public ObjectProperty<UniqueModList> modProperty() {
-        return mods;
+    public ObjectProperty<UniqueModuleList> moduleProperty() {
+        return modules;
     }
 
     /**
-     * Replaces this person's mods with the mods in the argument mod set.
+     * Replaces this person's modules with the modules in the argument module set.
      */
-    public void setTags(Set<Mod> replacement) {
-        mods.set(new UniqueModList(replacement));
+    public void setModules(Set<Module> replacement) {
+        modules.set(new UniqueModuleList(replacement));
     }
 
     @Override
@@ -185,7 +185,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phones, birthday, emails, address, mods);
+        return Objects.hash(name, phones, birthday, emails, address, modules);
     }
 
     @Override

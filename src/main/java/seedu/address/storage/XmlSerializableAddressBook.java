@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.task.ReadOnlyTask;
 
@@ -26,7 +26,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     @XmlElement
     private List<XmlAdaptedTask> tasks;
     @XmlElement
-    private List<XmlAdaptedMod> mods;
+    private List<XmlAdaptedModule> modules;
 
     /**
      * Creates an empty XmlSerializableAddressBook.
@@ -34,7 +34,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
      */
     public XmlSerializableAddressBook() {
         persons = new ArrayList<>();
-        mods = new ArrayList<>();
+        modules = new ArrayList<>();
     }
 
     /**
@@ -43,7 +43,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     public XmlSerializableAddressBook(ReadOnlyAddressBook src) {
         this();
         persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
-        mods.addAll(src.getTagList().stream().map(XmlAdaptedMod::new).collect(Collectors.toList()));
+        modules.addAll(src.getModuleList().stream().map(XmlAdaptedModule::new).collect(Collectors.toList()));
     }
 
     @Override
@@ -75,17 +75,17 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Mod> getTagList() {
-        final ObservableList<Mod> mods = this.mods.stream().map(t -> {
+    public ObservableList<Module> getModuleList() {
+        final ObservableList<Module> modules = this.modules.stream().map(m -> {
             try {
-                return t.toModelType();
+                return m.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();
                 //TODO: better error handling
                 return null;
             }
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
-        return FXCollections.unmodifiableObservableList(mods);
+        return FXCollections.unmodifiableObservableList(modules);
     }
 
 }

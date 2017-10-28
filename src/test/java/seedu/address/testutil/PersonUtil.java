@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -36,8 +36,8 @@ public class PersonUtil {
             s -> sb.append(PREFIX_EMAIL + s.value + " ")
         );
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getMods().stream().forEach(
-            s -> sb.append(PREFIX_MOD + s.modName + " ")
+        person.getModules().stream().forEach(
+            s -> sb.append(PREFIX_MODULE + s.moduleName + " ")
         );
         return sb.toString();
     }

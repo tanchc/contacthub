@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.task.ReadOnlyTask;
 
@@ -26,6 +26,6 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the mods list.
      * This list will not contain any duplicate mods.
      */
-    ObservableList<Mod> getTagList();
+    ObservableList<Module> getModuleList();
 
 }
