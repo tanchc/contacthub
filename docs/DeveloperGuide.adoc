@@ -546,6 +546,15 @@ document.goToLocation = function goToLocation(searchString) {
             }
 Should the above function fail to load a location for the contact's address, an alert will be sent to indicate that there is an issue
 
+=== Addition of TaskList
+
+The Task List Functionality is facilitated mainly by the `TaskListPanel` class which resides in the `UI` component.
+ It provides the user a list of their tasks to help remind them of what needs to be done.
+
+The `TaskListPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
+The `TaskListPanel` class also instantiates a list of `TaskCard` class which represents a UI component that displays information of a task.
+The `TaskListCard.fxml` is an FXML file that interacts with the TaskCard class to produce the graphic displaying the details of the task.
+
 == Documentation
 
 We use asciidoc for writing documentation.

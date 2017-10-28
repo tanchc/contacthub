@@ -79,6 +79,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized void addTask(ReadOnlyTask task) {
+        addressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        indicateAddressBookChanged();
+
+    }
+
+    @Override
     public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
             throws DuplicatePersonException, PersonNotFoundException {
         requireAllNonNull(target, editedPerson);
@@ -126,6 +134,12 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
         return FXCollections.unmodifiableObservableList(filteredTasks);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override

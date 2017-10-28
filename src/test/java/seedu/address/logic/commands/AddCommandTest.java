@@ -104,6 +104,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTask(ReadOnlyTask task) {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void resetData(ReadOnlyAddressBook newData) {
             fail("This method should not be called.");
         }
@@ -133,6 +138,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate) {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate) {
             fail("This method should not be called.");
         }
 
