@@ -212,6 +212,19 @@ Examples:
 * `addPhoto 1 p/https://www.facebook.com/AlexYeoh/photo1.jpg +
 Adds a photo of the given photo Url to the Person of index 1.
 
+=== Adding a task: `addtask` or `at`
+
+Adds a task to the address book +
+Format: `addtask t/APPOINTMENT d/DATE s/STARTTIME` +
+Format: `at t/APPOINTMENT d/DATE s/STARTTIME`
+
+Examples:
+
+* `addtask t/Work Meeting d/31/10/2017 s/12:00`
+* `at t/Work Meeting d/31/10/2017 s/12:00`
+* `addtask t/Soccer Match d/20/12/2017 s/08:00`
+* `at t/Soccer Match d/20/12/2017 s/08:00`
+
 === Listing entered commands : `history` or `h`
 
 Lists all the commands that you have entered in reverse chronological order. +
