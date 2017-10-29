@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
 
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
 
-    private static HashMap<String, String> modColors = new HashMap<String, String>();
+    private static HashMap<String, String> moduleColors = new HashMap<String, String>();
     private static Random random = new Random();
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -72,11 +72,11 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private static String getColorForModule(String moduleValue, int randNum) {
-        if (!modColors.containsKey(moduleValue)) {
-            modColors.put(moduleValue, colors[randNum]);
+        if (!moduleColors.containsKey(moduleValue)) {
+            moduleColors.put(moduleValue, colors[randNum]);
         }
 
-        return modColors.get(moduleValue);
+        return moduleColors.get(moduleValue);
     }
 
     /**
@@ -140,6 +140,7 @@ public class PersonCard extends UiPart<Region> {
             }
 
             modules.getChildren().add(moduleLabel);
+            modules.setHgap(GAP);
         });
     }
 
