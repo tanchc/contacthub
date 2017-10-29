@@ -306,6 +306,7 @@ Several keyboard keys have special operations when typing in command box. +
 
 * Escape: Clears the whole command box
 * Control: Relocates text cursor to the right completely
+* Delete: Deletes a chunk of word or chunk of whitespace on the left of the text cursor
 
 === Saving the data
 
@@ -357,3 +358,4 @@ e.g. `s 2`
 === Keyboard shortcuts
 * *Escape* : Clears the whole command box
 * *Control* : Relocates text cursor to the right completely
+* *Delete* : Deletes a chunk of words or chunk of whitespace on the left of the text cursor
