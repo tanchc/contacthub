@@ -39,6 +39,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code Appointment} of the {@code Task} that we are building.
      */
+
     public TaskBuilder withAppointment(String appointment) {
         this.task.setAppointment(new Appointment(appointment));
         return this;

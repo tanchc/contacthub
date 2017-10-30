@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
@@ -56,6 +57,16 @@ public class CommandTestUtil {
             + "/secondary/CHRIS-EVANS-865133.jpg";
     public static final String VALID_LOCAL_PHOTO_URL = "file://"
             + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
+    public static final String VALID_APPOINTMENT_MOVIE = "Movie";
+    public static final String VALID_APPOINTMENT_EVENT = "Event";
+    public static final String VALID_APPOINTMENT_BADMINTON = "Badminton";
+    public static final String VALID_DATE_MOVIE = "29/11/2017";
+    public static final String VALID_DATE_EVENT = "02/02/2018";
+    public static final String VALID_DATE_BADMINTON = "06/01/2018";
+    public static final String VALID_STARTTIME_MOVIE = "22:00";
+    public static final String VALID_STARTTIME_EVENT = "10:00";
+    public static final String VALID_STARTTIME_EVENT_EDIT = "15:00";
+    public static final String VALID_STARTTIME_BADMINTON = "20:00";
     public static final String VALID_APPOINTMENT_MEETING = "Meeting";
     public static final String VALID_APPOINTMENT_INTERVIEW = "Interview";
     public static final String VALID_DATE_MEETING = "25/11/2017";
@@ -97,8 +108,20 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_MOD_DESC = " " + PREFIX_MODULE + "hubby*"; // '*' not allowed in modules
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "25.12.2012"; // '.' not allowed
-    public static final String INVALID_START_TIME_DESC = " " + PREFIX_STARTTIME + "1000"; // missing ':' symbol
+
+    public static final String APPOINTMENT_DESC_MOVIE = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MOVIE;
+    public static final String APPOINTMENT_DESC_EVENT = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_EVENT;
+    public static final String APPOINTMENT_DESC_BADMINTON = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_BADMINTON;
+    public static final String DATE_DESC_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
+    public static final String DATE_DESC_EVENT = " " + PREFIX_DATE + VALID_DATE_EVENT;
+    public static final String DATE_DESC_BADMINTON = " " + PREFIX_DATE + VALID_DATE_BADMINTON;
+    public static final String STARTTIME_DESC_MOVIE = " " + PREFIX_STARTTIME + VALID_STARTTIME_MOVIE;
+    public static final String STARTTIME_DESC_EVENT = " " + PREFIX_STARTTIME + VALID_STARTTIME_EVENT;
+    public static final String STARTTIME_DESC_BADMINTON = " " + PREFIX_STARTTIME + VALID_STARTTIME_BADMINTON;
+
+    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT + "Meetings&"; // '&' not allowed
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01.01.2020"; // '.' not allowed
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "1300"; // missing ':' symbol
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
