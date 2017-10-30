@@ -21,7 +21,7 @@ public class AddTaskCommand extends UndoableCommand {
             + "Parameters: "
             + PREFIX_APPOINTMENT + "APPOINTMENT "
             + PREFIX_DATE + "DATE "
-            + PREFIX_STARTTIME + "STARTTIME\n"
+            + PREFIX_STARTTIME + "START_TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_APPOINTMENT + "Meeting "
             + PREFIX_DATE + "25/11/2017 "

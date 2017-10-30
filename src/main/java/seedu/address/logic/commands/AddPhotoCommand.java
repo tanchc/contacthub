@@ -20,10 +20,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class AddPhotoCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "addphoto";
+    public static final String COMMAND_ALIAS = "ap";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a photo to a person in the address book using "
             + "the index of the person in the latest listing.\n"
-            + "Parameters: INDEX (must be a positive integer) [URL of photo]\n"
+            + "Parameters: INDEX (must be a positive integer) u/[PHOTO_URL]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PHOTO
             + "https://www.facebook.com/AlexYeoh/photo1.jpg\n";
 

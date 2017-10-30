@@ -11,7 +11,7 @@ import seedu.address.model.person.ReadOnlyPerson;
  */
 public class ListModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "listmodule";
+    public static final String COMMAND_WORD = "listmodules";
     public static final String COMMAND_ALIAS = "lm";
 
     public static final String MESSAGE_SUCCESS = "Listed all modules";

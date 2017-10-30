@@ -56,6 +56,7 @@ public class AddressBookParser {
         switch (commandWord.toLowerCase()) {
 
         case AddPhotoCommand.COMMAND_WORD:
+        case AddPhotoCommand.COMMAND_ALIAS:
             return new AddPhotoCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
