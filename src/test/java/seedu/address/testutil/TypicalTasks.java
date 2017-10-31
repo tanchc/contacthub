@@ -6,10 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MOV
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BADMINTON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BADMINTON;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_EVENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_EVENT_EDIT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_BADMINTON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_EVENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_EVENT_EDIT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MOVIE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class TypicalTasks {
     public static final ReadOnlyTask WORK = new TaskBuilder().withAppointment("Work")
             .withDate("01/01/2018").withStartTime("08:00").build();
 
-    public static final ReadOnlyTask HOMEWORK = new TaskBuilder().withAppointment("Meeting")
+    public static final ReadOnlyTask HOMEWORK = new TaskBuilder().withAppointment("Homework")
             .withDate("12/01/2018").withStartTime("23:59").build();
 
     public static final ReadOnlyTask EXAM = new TaskBuilder().withAppointment("Exam")
@@ -53,13 +53,13 @@ public class TypicalTasks {
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final ReadOnlyTask MOVIE = new TaskBuilder().withAppointment(VALID_APPOINTMENT_MOVIE)
-            .withDate(VALID_DATE_MOVIE).withStartTime(VALID_STARTTIME_MOVIE).build();
+            .withDate(VALID_DATE_MOVIE).withStartTime(VALID_START_TIME_MOVIE).build();
     public static final ReadOnlyTask EVENT = new TaskBuilder().withAppointment(VALID_APPOINTMENT_EVENT)
-            .withDate(VALID_DATE_EVENT).withStartTime(VALID_STARTTIME_EVENT).build();
+            .withDate(VALID_DATE_EVENT).withStartTime(VALID_START_TIME_EVENT).build();
     public static final ReadOnlyTask EVENT_EDITED = new TaskBuilder().withAppointment(VALID_APPOINTMENT_EVENT)
-            .withDate(VALID_DATE_EVENT).withStartTime(VALID_STARTTIME_EVENT_EDIT).build();
+            .withDate(VALID_DATE_EVENT).withStartTime(VALID_START_TIME_EVENT_EDIT).build();
     public static final ReadOnlyTask BADMINTON = new TaskBuilder().withAppointment(VALID_APPOINTMENT_BADMINTON)
-            .withDate(VALID_DATE_BADMINTON).withStartTime(VALID_STARTTIME_BADMINTON).build();
+            .withDate(VALID_DATE_BADMINTON).withStartTime(VALID_START_TIME_BADMINTON).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

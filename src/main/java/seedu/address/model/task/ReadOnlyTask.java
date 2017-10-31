@@ -34,7 +34,7 @@ public interface ReadOnlyTask {
         builder.append(getAppointment())
                 .append(" Date: ")
                 .append(getDate())
-                .append(" StartTime: ")
+                .append(" Start Time: ")
                 .append(getStartTime());
         return builder.toString();
     }

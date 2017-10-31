@@ -78,7 +78,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * Generates a new AddCommand with the details of the given person.
+     * Generates a new AddTaskCommand with the details of the given person.
      */
     private AddTaskCommand getAddTaskCommandForTask(Task task, Model model) {
         AddTaskCommand command = new AddTaskCommand(task);

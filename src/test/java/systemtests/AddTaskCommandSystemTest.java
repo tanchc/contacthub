@@ -6,15 +6,15 @@ import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MOVI
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_EVENT;
-import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_EVENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_EVENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MOVIE;
 import static seedu.address.testutil.TypicalTasks.MOVIE;
 
 import org.junit.Test;
@@ -40,7 +40,7 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
          */
         ReadOnlyTask toAdd = MOVIE;
         String command = "   " + AddTaskCommand.COMMAND_WORD + "  " + APPOINTMENT_DESC_MOVIE + "  " + DATE_DESC_MOVIE
-                + "  " + STARTTIME_DESC_MOVIE + " ";
+                + "  " + START_TIME_DESC_MOVIE + " ";
         assertTaskCommandSuccess(command, toAdd);
 
         /* Case: undo adding Meeting to the list -> Meeting deleted */
@@ -56,28 +56,28 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: add a task with all fields same as another task in the address book except appointment -> added */
         toAdd = new TaskBuilder().withAppointment(VALID_APPOINTMENT_EVENT).withDate(VALID_DATE_MOVIE)
-                .withStartTime(VALID_STARTTIME_MOVIE).build();
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_EVENT + DATE_DESC_MOVIE + STARTTIME_DESC_MOVIE;
+                .withStartTime(VALID_START_TIME_MOVIE).build();
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_EVENT + DATE_DESC_MOVIE + START_TIME_DESC_MOVIE;
         assertTaskCommandSuccess(command, toAdd);
 
         /* Case: add a task with all fields same as another task in the address book except date -> added */
         toAdd = new TaskBuilder().withAppointment(VALID_APPOINTMENT_MOVIE).withDate(VALID_DATE_EVENT)
-                .withStartTime(VALID_STARTTIME_MOVIE).build();
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_EVENT + STARTTIME_DESC_MOVIE;
+                .withStartTime(VALID_START_TIME_MOVIE).build();
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_EVENT + START_TIME_DESC_MOVIE;
         assertTaskCommandSuccess(command, toAdd);
 
         /* Case: add a person with all fields same as another person in the address book except birthday -> added */
         toAdd = new TaskBuilder().withAppointment(VALID_APPOINTMENT_MOVIE).withDate(VALID_DATE_MOVIE)
-                .withStartTime(VALID_STARTTIME_EVENT).build();
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_MOVIE + STARTTIME_DESC_EVENT;
+                .withStartTime(VALID_START_TIME_EVENT).build();
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_MOVIE + START_TIME_DESC_EVENT;
         assertTaskCommandSuccess(command, toAdd);
 
         /* Case: missing appointment -> rejected */
-        command = AddTaskCommand.COMMAND_WORD + DATE_DESC_MOVIE + STARTTIME_DESC_MOVIE;
+        command = AddTaskCommand.COMMAND_WORD + DATE_DESC_MOVIE + START_TIME_DESC_MOVIE;
         assertTaskCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
 
         /* Case: missing date -> rejected */
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + STARTTIME_DESC_MOVIE;
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + START_TIME_DESC_MOVIE;
         assertTaskCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
 
         /* Case: missing startTime -> rejected */
@@ -89,11 +89,11 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
         assertTaskCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
 
         /* Case: invalid date -> rejected */
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + INVALID_DATE_DESC + STARTTIME_DESC_MOVIE;
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + INVALID_DATE_DESC + START_TIME_DESC_MOVIE;
         assertTaskCommandFailure(command, Date.MESSAGE_DATE_CONSTRAINTS);
 
         /* Case: invalid startTime -> rejected */
-        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_MOVIE + INVALID_STARTTIME_DESC;
+        command = AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MOVIE + DATE_DESC_MOVIE + INVALID_START_TIME_DESC;
         assertTaskCommandFailure(command, StartTime.MESSAGE_TIME_CONSTRAINTS);
     }
 
