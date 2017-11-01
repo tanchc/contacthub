@@ -65,6 +65,7 @@ public class EmailList implements Iterable<Email> {
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
+
     @Override
     public Iterator<Email> iterator() {
         assert CollectionUtil.elementsAreUnique(internalList);

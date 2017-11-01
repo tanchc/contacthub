@@ -87,6 +87,26 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
+     * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
+     */
+    @Override
+    public String getBrowserPhones() {
+        Set<Phone> phones = getPhones();
+        String allPhones = "";
+
+        for (Phone phone : phones) {
+            allPhones = allPhones.concat(phone.toString());
+            allPhones = allPhones.concat(", ");
+        }
+        if (allPhones.length() == 0) {
+            return "";
+        }
+        allPhones = allPhones.substring(0, allPhones.length() - 2);
+
+        return allPhones;
+    }
+
+    /**
      * Replaces this person's phones with the phones in the argument phone set.
      */
     public void setPhones(Set<Phone> replacement) {
@@ -116,12 +136,32 @@ public class Person implements ReadOnlyPerson {
         return Collections.unmodifiableSet(emails.get().toSet());
     }
 
+    /**
+     * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
+     */
+    @Override
+    public String getBrowserEmails() {
+        Set<Email> emails = getEmails();
+        String allEmails = "";
+
+        for (Email email : emails) {
+            allEmails = allEmails.concat(email.toString());
+            allEmails = allEmails.concat(", ");
+        }
+        if (allEmails.length() == 0) {
+            return "";
+        }
+        allEmails = allEmails.substring(0, allEmails.length() - 2);
+
+        return allEmails;
+    }
+
     public ObjectProperty<EmailList> emailProperty() {
         return emails;
     }
 
     /**
-     * Replaces this person's phones with the phones in the argument email set.
+     * Replaces this person's emails with the emails in the argument email set.
      */
     public void setEmails(Set<Email> replacement) {
         emails.set(new EmailList(replacement));
@@ -162,6 +202,26 @@ public class Person implements ReadOnlyPerson {
     @Override
     public Set<Module> getModules() {
         return Collections.unmodifiableSet(modules.get().toSet());
+    }
+
+    /**
+     * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
+     */
+    @Override
+    public String getBrowserModules() {
+        Set<Module> modules = getModules();
+        String allModules = "";
+
+        for (Module module : modules) {
+            allModules = allModules.concat(module.toString());
+            allModules = allModules.concat(", ");
+        }
+        if (allModules.length() == 0) {
+            return "";
+        }
+        allModules = allModules.substring(0, allModules.length() - 2);
+
+        return allModules;
     }
 
     public ObjectProperty<UniqueModuleList> moduleProperty() {

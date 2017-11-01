@@ -16,12 +16,15 @@ public interface ReadOnlyPerson {
     Name getName();
     ObjectProperty<PhoneList> phoneProperty();
     Set<Phone> getPhones();
+    String getBrowserPhones();
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
+    String getBrowserEmails();
     ObjectProperty<EmailList> emailProperty();
     Set<Email> getEmails();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
+    String getBrowserModules();
     ObjectProperty<UniqueModuleList> moduleProperty();
     Set<Module> getModules();
     ObjectProperty<Photo> photoProperty();
@@ -47,7 +50,7 @@ public interface ReadOnlyPerson {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone(s): ")
+                .append(" Phone Number(s): ")
                 .append(getPhones().toString())
                 .append(" Birthday: ")
                 .append(getBirthday())

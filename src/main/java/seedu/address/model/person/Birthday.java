@@ -19,6 +19,7 @@ public class Birthday {
             "\\d{2}/\\d{2}/\\d{4}";
 
     public final String value;
+    private String browserValue;
 
     //Validates given Birthday.
     public Birthday(String birthday) throws IllegalValueException {
@@ -28,6 +29,7 @@ public class Birthday {
             throw new IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
         }
         this.value = trimmedBirthday;
+        this.browserValue = trimmedBirthday;
     }
 
     /**
@@ -35,6 +37,10 @@ public class Birthday {
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
+    }
+
+    public String getBrowserValue() {
+        return browserValue;
     }
 
     @Override

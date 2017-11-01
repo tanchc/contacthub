@@ -64,4 +64,8 @@ public class Address {
         return gMapsAddress;
     }
 
+    public String getBrowserAddress() {
+        return value;
+    }
+
 }

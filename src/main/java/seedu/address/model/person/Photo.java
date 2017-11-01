@@ -44,6 +44,10 @@ public class Photo {
         this.value = photo;
     }
 
+    public String getBrowserPhoto() {
+        return value;
+    }
+
     /**
      * Returns true if a given string is a valid url.
      */

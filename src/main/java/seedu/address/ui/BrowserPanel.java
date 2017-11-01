@@ -13,6 +13,7 @@ import javafx.concurrent.Worker;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
@@ -108,11 +109,26 @@ public class BrowserPanel extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson p = event.getNewSelection().person;
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
-        String address = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        String mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        String address = p.getAddress().getBrowserAddress();
+        String birthday = p.getBirthday().getBrowserValue();
+        String name = p.getName().getBrowserName();
+        String photo = p.getPhoto().getBrowserPhoto();
+        String emails = p.getBrowserEmails();
+        String phones = p.getBrowserPhones();
+        String modules = p.getBrowserModules();
 
         browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
-                browser.getEngine().executeScript("document.goToLocation(\"" + address + "\")");
+                WebEngine panel = browser.getEngine();
+                panel.executeScript("document.goToLocation(\"" + mapAddress + "\")");
+                panel.executeScript("document.setBirthday(\"" + birthday + "\")");
+                panel.executeScript("document.setName(\"" + name + "\")");
+                panel.executeScript("document.setAddress(\"" + address + "\")");
+                panel.executeScript("document.setPhoto(\"" + photo + "\")");
+                panel.executeScript("document.setEmail(\"" + emails + "\")");
+                panel.executeScript("document.setPhone(\"" + phones + "\")");
+                panel.executeScript("document.setModule(\"" + modules + "\")");
             }
         });
 
