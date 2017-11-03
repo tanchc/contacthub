@@ -101,6 +101,7 @@ public class ParserUtilTest {
         ParserUtil.parsePhones(Arrays.asList(INVALID_PHONE, VALID_PHONE_1));
     }
 
+    // @@author ahmadalkaff
     @Test
     public void parsePhones_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parsePhones(Collections.emptyList()).isEmpty());
@@ -113,6 +114,7 @@ public class ParserUtilTest {
 
         assertEquals(expectedPhoneSet, actualPhoneSet);
     }
+    // @@author
 
     @Test
     public void parseAddress_null_throwsNullPointerException() throws Exception {
@@ -151,6 +153,7 @@ public class ParserUtilTest {
         ParserUtil.parseEmails(Arrays.asList(INVALID_EMAIL, VALID_EMAIL_1));
     }
 
+    // @@author ahmadalkaff
     @Test
     public void parseEmails_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseEmails(Collections.emptyList()).isEmpty());
@@ -163,6 +166,7 @@ public class ParserUtilTest {
 
         assertEquals(expectedEmailSet, actualEmailSet);
     }
+    // @@author
 
     @Test
     public void parseModules_null_throwsNullPointerException() throws Exception {

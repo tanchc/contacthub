@@ -75,10 +75,12 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate);
 
+    // @@author ahmadalkaff
     /**
      * Sorts the list alphabetically
      */
     void sortPersonListByName();
+    // @@author
 
     void deleteModule(Module module)throws DuplicatePersonException, PersonNotFoundException;
 

@@ -128,8 +128,9 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_ALIAS + " 3") instanceof ListCommand);
     }
 
+    // @@author ahmadalkaff
     @Test
-    public void parseCommand_listMod() throws Exception {
+    public void parseCommand_listModule() throws Exception {
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_WORD) instanceof ListModuleCommand);
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_ALIAS) instanceof ListModuleCommand);
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_WORD + " 3") instanceof ListModuleCommand);
@@ -143,6 +144,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " 3") instanceof SortCommand);
         assertTrue(parser.parseCommand(SortCommand.COMMAND_ALIAS + " 3") instanceof SortCommand);
     }
+    // @@author
 
     @Test
     public void parseCommand_select() throws Exception {

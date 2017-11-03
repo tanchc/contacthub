@@ -32,6 +32,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         this.nameLabel = getChildNode(NAME_FIELD_ID);
         this.addressLabel = getChildNode(ADDRESS_FIELD_ID);
 
+        // @@author ahmadalkaff
         Region phonesContainer = getChildNode(PHONES_FIELD_ID);
         this.phoneLabels = phonesContainer
                 .getChildrenUnmodifiable()
@@ -45,6 +46,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
                 .stream()
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
+        // @@author
 
         Region modulesContainer = getChildNode(MODULES_FIELD_ID);
         this.moduleLabels = modulesContainer

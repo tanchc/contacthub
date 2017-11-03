@@ -33,11 +33,13 @@ public class PersonBuilder {
     public PersonBuilder() {
         try {
             Name defaultName = new Name(DEFAULT_NAME);
+            // @@author ahmadalkaff
             Set<Phone> defaultPhones = SampleDataUtil.getPhoneSet(DEFAULT_PHONES);
             //@@author viviantan95
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
-            //@@author
+            //@@author ahmadalkaff
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
+            // @@author
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             //@@author viviantan95
             Photo defaultPhoto = new Photo();
@@ -100,7 +102,7 @@ public class PersonBuilder {
         try {
             this.person.setPhones(SampleDataUtil.getPhoneSet(phones));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("phone is expected to be unique.");
+            throw new IllegalArgumentException("phones are expected to be unique.");
         }
         return this;
     }
@@ -126,7 +128,7 @@ public class PersonBuilder {
         try {
             this.person.setEmails(SampleDataUtil.getEmailSet(emails));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("email is expected to be unique.");
+            throw new IllegalArgumentException("emails are expected to be unique.");
         }
         return this;
     }

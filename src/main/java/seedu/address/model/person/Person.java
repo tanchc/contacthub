@@ -79,6 +79,7 @@ public class Person implements ReadOnlyPerson {
         return name.get();
     }
 
+    // @@author ahmadalkaff
     /**
      * Returns an immutable phone set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -87,6 +88,7 @@ public class Person implements ReadOnlyPerson {
     public Set<Phone> getPhones() {
         return Collections.unmodifiableSet(phones.get().toSet());
     }
+    // @@author
 
     public ObjectProperty<PhoneList> phoneProperty() {
         return phones;
@@ -113,12 +115,14 @@ public class Person implements ReadOnlyPerson {
         return allPhones;
     }
 
+    // @@author ahmadalkaff
     /**
      * Replaces this person's phones with the phones in the argument phone set.
      */
     public void setPhones(Set<Phone> replacement) {
         phones.set(new PhoneList(replacement));
     }
+    // @@author
 
     //@@author viviantan95
     public void setBirthday(Birthday birthday) {
@@ -136,6 +140,7 @@ public class Person implements ReadOnlyPerson {
     }
     //@@author
 
+    // @@author ahmadalkaff
     /**
      * Returns an immutable email set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -144,6 +149,7 @@ public class Person implements ReadOnlyPerson {
     public Set<Email> getEmails() {
         return Collections.unmodifiableSet(emails.get().toSet());
     }
+    // @@author
 
     //@@author jshoung
     /**
@@ -170,12 +176,14 @@ public class Person implements ReadOnlyPerson {
         return emails;
     }
 
+    // @@author ahmadalkaff
     /**
      * Replaces this person's emails with the emails in the argument email set.
      */
     public void setEmails(Set<Email> replacement) {
         emails.set(new EmailList(replacement));
     }
+    // @@author
 
     public void setAddress(Address address) {
         this.address.set(requireNonNull(address));

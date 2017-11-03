@@ -203,12 +203,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    // @@author ahmadalkaff
     /**
      * Sorts the personList alphabetically
      */
     public void sortPersonListByName() {
         persons.sortPersonListByName();
     }
+    // @@author
 
     /**
      * Sorts the taskList alphabetically

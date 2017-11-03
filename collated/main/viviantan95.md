@@ -260,6 +260,10 @@ public class Birthday {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
+    public String getBrowserValue() {
+        return browserValue;
+    }
+
     @Override
     public String toString() {
         return value;

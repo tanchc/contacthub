@@ -50,12 +50,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         try {
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).ifPresent(editPersonDescriptor::setName);
+            // @@author ahmadalkaff
             parsePhonesForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhones);
             //@@author viviantan95
             ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY))
                     .ifPresent(editPersonDescriptor::setBirthday);
-            //@@author
+            //@@author ahmadalkaff
             parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmails);
+            // @@author
             ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
             parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
         } catch (IllegalValueException ive) {
@@ -69,6 +71,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editPersonDescriptor);
     }
 
+    // @@author ahmadalkaff
     /**
      * Parses {@code Collection<String> phones} into a {@code Set<Phone>} if {@code phones} is non-empty.
      * If {@code phones} contain only one element which is an empty string, it will be parsed into a
@@ -98,6 +101,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> emailSet = emails.size() == 1 && emails.contains("") ? Collections.emptySet() : emails;
         return Optional.of(ParserUtil.parseEmails(emailSet));
     }
+    // @@author
 
     /**
      * Parses {@code Collection<String> modules} into a {@code Set<Module>} if {@code modules} is non-empty.
