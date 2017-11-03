@@ -44,6 +44,7 @@ public class Photo {
         this.value = photo;
     }
 
+    //@@author jshoung
     public String getBrowserPhoto() {
         return value;
     }

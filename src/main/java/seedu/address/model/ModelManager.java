@@ -133,6 +133,7 @@ public class ModelManager extends ComponentManager implements Model {
         addressBook.sortPersonListByName();
     }
 
+    //@@author jshoung
     @Override
     public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
         for (int i = 0; i < addressBook.getPersonList().size(); i++) {

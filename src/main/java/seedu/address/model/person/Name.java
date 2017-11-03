@@ -44,6 +44,7 @@ public class Name {
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
+    //@@author jshoung
     public String getBrowserName() {
         return browserName;
     }

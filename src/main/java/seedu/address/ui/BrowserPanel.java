@@ -28,7 +28,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class BrowserPanel extends UiPart<Region> {
 
     public static final String DEFAULT_PAGE = "default.html";
-    public static final String ADDRESS_PAGE = "LocatedAddress.html";
+    public static final String ADDRESS_PAGE = "PersonBrowserPanel.html";
     public static final String GOOGLE_SEARCH_URL_PREFIX = "https://www.google.com.sg/search?safe=off&q=";
     public static final String GOOGLE_SEARCH_URL_SUFFIX = "&cad=h";
 
@@ -59,7 +59,7 @@ public class BrowserPanel extends UiPart<Region> {
      */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
         /*ClassLoader classLoader = getClass().getClassLoader();
-        File locatedAddressFile = new File(classLoader.getResource("view/LocatedAddress.html").getFile());
+        File locatedAddressFile = new File(classLoader.getResource("view/PersonBrowserPanel.html").getFile());
         File htmlTemplateFile = new File(classLoader.getResource("view/Template.html").getFile());
         resetPage(htmlTemplateFile, locatedAddressFile);
         String htmlString = FileUtils.readFileToString(locatedAddressFile);
@@ -104,6 +104,7 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
+    //@@author Clement Tan, jshoung
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));

@@ -1,10 +1,6 @@
-package seedu.address.model.person;
-
-import static java.util.Objects.requireNonNull;
-
-import seedu.address.commons.exceptions.IllegalValueException;
-
-//@@author viviantan95
+# viviantan95
+###### \java\seedu\address\model\person\Birthday.java
+``` java
 /**
  * Represents a Person's Birthday in the address book.
  * Guarantees: immutable, is valid as declared in {@link #isValidBirthday(String)}
@@ -39,26 +35,4 @@ public class Birthday {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
-    //@@author jshoung
-    public String getBrowserValue() {
-        return browserValue;
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this //short circuit if same object
-                || (other instanceof Birthday
-                && this.value.equals(((Birthday) other).value));
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-}
+```
