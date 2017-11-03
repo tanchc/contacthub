@@ -30,7 +30,9 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhones(person.getPhones());
+        //@@author viviantan95
         descriptor.setBirthday(person.getBirthday());
+        //@@author
         descriptor.setEmails(person.getEmails());
         descriptor.setAddress(person.getAddress());
         descriptor.setModules(person.getModules());
@@ -60,6 +62,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    //@@author viviantan95
     /**
      * Sets the {@code Birthday} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -71,6 +74,7 @@ public class EditPersonDescriptorBuilder {
         }
         return this;
     }
+    //@@author
 
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.

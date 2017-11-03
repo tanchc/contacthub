@@ -27,6 +27,7 @@ public class Person implements ReadOnlyPerson {
 
     private ObjectProperty<UniqueModuleList> modules;
 
+    //@@author viviantan95
     /**
      * Person with default photo of images/defaultPhoto/png
      */
@@ -34,6 +35,7 @@ public class Person implements ReadOnlyPerson {
                   Set<Module> modules) {
         this(name, phones, birthday, emails, address, new Photo(), modules);
     }
+    //@@author
 
     /**
      * Every field must be present and not null.
@@ -43,10 +45,14 @@ public class Person implements ReadOnlyPerson {
         requireAllNonNull(name, phones, birthday, emails, address, photo, modules);
         this.name = new SimpleObjectProperty<>(name);
         this.phones = new SimpleObjectProperty<>(new PhoneList(phones));
+        //@@author viviantan95
         this.birthday = new SimpleObjectProperty<>(birthday);
+        //@@author
         this.emails = new SimpleObjectProperty<>(new EmailList(emails));
         this.address = new SimpleObjectProperty<>(address);
+        //@@author viviantan95
         this.photo = new SimpleObjectProperty<>(photo);
+        //@@author
         // protect internal mods from changes in the arg list
         this.modules = new SimpleObjectProperty<>(new UniqueModuleList(modules));
     }
@@ -114,6 +120,7 @@ public class Person implements ReadOnlyPerson {
         phones.set(new PhoneList(replacement));
     }
 
+    //@@author viviantan95
     public void setBirthday(Birthday birthday) {
         this.birthday.set(requireNonNull(birthday));
     }
@@ -127,6 +134,7 @@ public class Person implements ReadOnlyPerson {
     public Birthday getBirthday() {
         return birthday.get();
     }
+    //@@author
 
     /**
      * Returns an immutable email set, which throws {@code UnsupportedOperationException}
@@ -183,6 +191,7 @@ public class Person implements ReadOnlyPerson {
         return address.get();
     }
 
+    //@@author viviantan95
     public void setPhoto(Photo photo) {
         this.photo.set(requireNonNull(photo));
     }
@@ -196,6 +205,7 @@ public class Person implements ReadOnlyPerson {
     public Photo getPhoto() {
         return photo.get();
     }
+    //@@author
 
     /**
      * Returns an immutable module set, which throws {@code UnsupportedOperationException}

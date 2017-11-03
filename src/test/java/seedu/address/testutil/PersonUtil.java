@@ -31,7 +31,9 @@ public class PersonUtil {
         person.getPhones().stream().forEach(
             s -> sb.append(PREFIX_PHONE + s.value + " ")
         );
+        //@@author viviantan95
         sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
+        //@@author
         person.getEmails().stream().forEach(
             s -> sb.append(PREFIX_EMAIL + s.value + " ")
         );

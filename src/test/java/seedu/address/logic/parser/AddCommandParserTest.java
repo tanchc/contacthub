@@ -76,10 +76,12 @@ public class AddCommandParserTest {
                 + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB
                         + MOD_DESC_CS2101, new AddCommand(expectedPerson));
 
+        //@@author viviantan95
         // multiple birthdays - last birthday accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+        //@@author
 
         // multiple mods - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder().withName(VALID_NAME_BOB)
@@ -121,9 +123,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);
 
+        //@@author viviantan95
         // missing birthday prefix
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + VALID_BIRTHDAY_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
+        //@@author
 
         // all prefixes missing
         assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + VALID_PHONE_BOB
@@ -152,10 +156,12 @@ public class AddCommandParserTest {
                 + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + MOD_DESC_GER1000
                 + MOD_DESC_CS2101, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
+        //@@author viviantan95
         // invalid birthday
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MOD_DESC_GER1000
                         + MOD_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
+        //@@author
 
         // invalid module
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB

@@ -42,7 +42,9 @@ public class CommandBoxTest extends GuiUnitTest {
         Logic logic = new LogicManager(model);
 
         CommandBox commandBox = new CommandBox(logic);
+        //@@author viviantan95
         commandBoxForTest = commandBox;
+        //@@author
         commandBoxHandle = new CommandBoxHandle(getChildNode(commandBox.getRoot(),
                 CommandBoxHandle.COMMAND_INPUT_FIELD_ID));
         uiPartRule.setUiPart(commandBox);
@@ -79,6 +81,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertEquals(defaultStyleOfCommandBox, commandBoxHandle.getStyleClass());
     }
 
+    //@@author viviantan95
     @Test
     public void handleKeyPress_escape() {
         //empty command box
@@ -250,6 +253,7 @@ public class CommandBoxTest extends GuiUnitTest {
         guiRobot.push(KeyCode.INSERT);
         assertTrue(correctTextField.equals(textField.getText()));
     }
+    //@@author
 
     @Test
     public void handleKeyPress_startingWithUp() {

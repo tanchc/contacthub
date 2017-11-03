@@ -17,8 +17,10 @@ public interface ReadOnlyPerson {
     ObjectProperty<PhoneList> phoneProperty();
     Set<Phone> getPhones();
     String getBrowserPhones();
+    //@@author viviantan95
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
+    //@@author
     String getBrowserEmails();
     ObjectProperty<EmailList> emailProperty();
     Set<Email> getEmails();
@@ -27,8 +29,10 @@ public interface ReadOnlyPerson {
     String getBrowserModules();
     ObjectProperty<UniqueModuleList> moduleProperty();
     Set<Module> getModules();
+    //@@author viviantan95
     ObjectProperty<Photo> photoProperty();
     Photo getPhoto();
+    //@@author
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -38,10 +42,14 @@ public interface ReadOnlyPerson {
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getPhones().equals(this.getPhones())
+                //@@author viviantan95
                 && other.getBirthday().equals(this.getBirthday())
+                //@@author
                 && other.getEmails().equals(this.getEmails())
                 && other.getAddress().equals(this.getAddress()))
+                //@@author viviantan95
                 && other.getPhoto().equals(this.getPhoto());
+        //@@author
     }
 
     /**
@@ -52,14 +60,18 @@ public interface ReadOnlyPerson {
         builder.append(getName())
                 .append(" Phone Number(s): ")
                 .append(getPhones().toString())
+                //@@author viviantan95
                 .append(" Birthday: ")
                 .append(getBirthday())
+                //@@author
                 .append(" Email(s): ")
                 .append(getEmails().toString())
                 .append(" Address: ")
                 .append(getAddress())
+                //@@author viviantan95
                 .append(" Photo URL: ")
                 .append(getPhoto())
+                //@@author
                 .append(" Module(s): ");
         getModules().forEach(builder::append);
         return builder.toString();

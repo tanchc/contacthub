@@ -44,8 +44,10 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     private FlowPane phones;
+    //@@author viviantan95
     @FXML
     private Label birthday;
+    //@@author
     @FXML
     private Label address;
     @FXML
@@ -62,7 +64,9 @@ public class PersonCard extends UiPart<Region> {
         initPhones(person);
         initEmails(person);
         initModules(person);
+        //@@author viviantan95
         initPhoto(person);
+        //@@author
         bindListeners(person);
     }
 
@@ -89,16 +93,20 @@ public class PersonCard extends UiPart<Region> {
             phones.getChildren().clear();
             initPhones(person);
         });
+        //@@author viviantan95
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
+        //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         person.emailProperty().addListener((observable, oldValue, newValue) -> {
             emails.getChildren().clear();
             initEmails(person);
         });
+        //@@author viviantan95
         person.photoProperty().addListener((observable, oldValue, newValue) -> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
         });
+        //@@author
         person.moduleProperty().addListener((observable, oldValue, newValue) -> {
             modules.getChildren().clear();
             initModules(person);
@@ -144,6 +152,7 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    //@@author viviantan95
     /**
      *
      * Initialise the photo for each person
@@ -152,6 +161,7 @@ public class PersonCard extends UiPart<Region> {
         imageView.setImage(new Image(person.getPhoto().toString(), 126, 126, true,
                 false));
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

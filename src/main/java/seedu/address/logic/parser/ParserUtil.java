@@ -79,6 +79,7 @@ public class ParserUtil {
         return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
     }
 
+    //@@author viviantan95
     /**
      * Parses a {@code Optional<String> birthday} into an {@code Optional<Birthday>} if {@code birthday} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
@@ -87,6 +88,7 @@ public class ParserUtil {
         requireNonNull(birthday);
         return birthday.isPresent() ? Optional.of(new Birthday(birthday.get())) : Optional.empty();
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
@@ -113,6 +115,7 @@ public class ParserUtil {
         return moduleSet;
     }
 
+    //@@author viviantan95
     /**
      * Parses {@code Optional<String> photo} into a {@code Optional<Photo>}.
      * See header comment of this class regarding the use of {@code Optional} parameters.
@@ -121,6 +124,7 @@ public class ParserUtil {
         requireNonNull(photo);
         return photo.isPresent() ? Optional.of(new Photo(photo.get())) : Optional.empty();
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> appointment} into an {@code Optional<Appointment>} if {@code appointment}

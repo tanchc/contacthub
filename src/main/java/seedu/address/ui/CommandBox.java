@@ -26,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
- */
+ **/
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
@@ -67,6 +67,7 @@ public class CommandBox extends UiPart<Region> {
             keyEvent.consume();
             navigateToNextInput();
             break;
+        //@@author viviantan95
         case ESCAPE:
             commandTextField.setText("");
             break;
@@ -82,11 +83,12 @@ public class CommandBox extends UiPart<Region> {
                     + PREFIX_EMAIL + " " + PREFIX_ADDRESS + " " + PREFIX_MODULE);
             commandTextField.positionCaret(6);
             break;
+        //@@author
         default:
             // let JavaFx handle the keypress
         }
     }
-
+    //@@author viviantan95
     /**
      * Updates the text field by the position of the caret
      * 1. If the caret is in the extreme left position, break.
@@ -182,6 +184,7 @@ public class CommandBox extends UiPart<Region> {
         String toString = Character.toString(charAfterCaret);
         return (toString.equals(" "));
     }
+    //@@author
 
     /**
      * Updates the text field with the previous input in {@code historySnapshot},
@@ -271,10 +274,12 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    //@@author viviantan95
     /**
      * Gets text field for test
      */
     public TextField getCommandTextField() {
         return commandTextField;
     }
+    //@@author
 }
