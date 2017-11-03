@@ -16,7 +16,7 @@ public class StartTime {
             "\\d{2}:\\d{2}";
     public final String value;
 
-    //Validates given Birthday.
+    //Validates given StartTime.
     public StartTime(String startTime) throws IllegalValueException {
         requireNonNull(startTime);
         String trimmedTime = startTime.trim();
@@ -27,7 +27,7 @@ public class StartTime {
     }
 
     /**
-     * Returns true if a given String is a valid Birthday.
+     * Returns true if a given String is a valid StartTime.
      */
     public static boolean isValidTime(String test) {
         return test.matches(TIME_VALIDATION_REGEX);

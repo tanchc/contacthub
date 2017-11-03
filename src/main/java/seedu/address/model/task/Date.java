@@ -9,7 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Date {
     public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Birthday must be in the format of DD/MM/YYYY";
+            "Date must be in the format of DD/MM/YYYY";
 
     public static final String DATE_VALIDATION_REGEX =
             "\\d{2}/\\d{2}/\\d{4}";
@@ -27,7 +27,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given String is a valid Birthday.
+     * Returns true if a given String is a valid Date.
      */
     public static boolean isValidDate(String test) {
         return test.matches(DATE_VALIDATION_REGEX);

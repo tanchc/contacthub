@@ -10,10 +10,10 @@ import seedu.address.model.person.Name;
 public class Appointment {
 
     public static final String MESSAGE_APPOINTMENT_CONSTRAINTS =
-            "Person names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Appointment name should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String APPOINTMENT_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -27,7 +27,7 @@ public class Appointment {
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid appointment name.
      */
     public static boolean isValidName(String test) {
         return test.matches(APPOINTMENT_VALIDATION_REGEX);
