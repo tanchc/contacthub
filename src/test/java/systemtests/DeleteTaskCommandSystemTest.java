@@ -1,3 +1,4 @@
+// @@author ahmadalkaff
 package systemtests;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
@@ -25,11 +26,12 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
 
     @Test
     public void delete() {
-        /* --------------- Performing delete task operation while an unfiltered list is being shown ----------------- */
+        /* -------------- Performing delete task operation while an unfiltered list is being shown ---------------- */
 
         /* Case: delete the first task in the list, command with leading spaces and trailing spaces -> deleted */
         Model expectedModel = getModel();
-        String command = "     " + DeleteTaskCommand.COMMAND_WORD + "      " + INDEX_FIRST_TASK.getOneBased() + "       ";
+        String command = "     " + DeleteTaskCommand.COMMAND_WORD + "      "
+                + INDEX_FIRST_TASK.getOneBased() + "       ";
         ReadOnlyTask deletedTask = removeTask(expectedModel, INDEX_FIRST_TASK);
         String expectedResultMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedTask);
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
@@ -55,9 +57,9 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(middleTaskIndex);
 
 
-//        Index index = INDEX_FIRST_TASK;
-//        int invalidIndex = getModel().getAddressBook().getPersonList().size();
-        /* --------------------------------- Performing invalid delete operation ------------------------------------ */
+        Index index = INDEX_FIRST_TASK;
+        int invalidIndex = getModel().getAddressBook().getPersonList().size();
+        /* ---------------------------- Performing invalid delete task operation ------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
         command = DeleteTaskCommand.COMMAND_WORD + " 0";
@@ -74,10 +76,12 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */
-        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " abc", MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " abc",
+                MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
 
         /* Case: invalid arguments (extra argument) -> rejected */
-        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " 1 abc", MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " 1 abc",
+                MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
     }
 
     /**
@@ -128,7 +132,7 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String)} except that the browser url
      * and selected card are expected to update accordingly depending on the card at {@code expectedSelectedCardIndex}.
-     * @see DeleteCommandSystemTest#assertCommandSuccess(String, Model, String)
+     * @see DeleteTaskCommandSystemTest#assertCommandSuccess(String, Model, String)
      * @see AddressBookSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,

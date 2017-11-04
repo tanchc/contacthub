@@ -881,7 +881,8 @@ public class PhoneList implements Iterable<Phone> {
      * Sorts the list alphabetically
      */
     public void sortPersonListByName() {
-        Collections.sort(internalList, Comparator.comparing(firstPerson -> firstPerson.getName().fullName));
+        Collections.sort(internalList, Comparator.comparing(firstPerson -> firstPerson
+                .getName().fullName.toUpperCase()));
     }
 ```
 ###### /java/seedu/address/model/util/SampleDataUtil.java
@@ -1024,6 +1025,7 @@ public class XmlAdaptedPhone {
             phones.getChildren().clear();
             initPhones(person);
         });
+
 ```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java
@@ -1031,6 +1033,7 @@ public class XmlAdaptedPhone {
             emails.getChildren().clear();
             initEmails(person);
         });
+
 ```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java

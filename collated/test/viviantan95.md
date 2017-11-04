@@ -1,5 +1,5 @@
 # viviantan95
-###### \java\seedu\address\logic\commands\AddPhotoCommandTest.java
+###### /java/seedu/address/logic/commands/AddPhotoCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -107,49 +107,49 @@ public class AddPhotoCommandTest {
 
 }
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String VALID_BIRTHDAY_AMY = "11/11/1991";
     public static final String VALID_BIRTHDAY_BOB = "22/22/1992";
     public static final String VALID_BIRTHDAY_CARRIE = "33/33/1993";
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
             + "/secondary/CHRIS-EVANS-865133.jpg";
     public static final String VALID_LOCAL_PHOTO_URL = "file://"
             + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY + "11/01/19955";
     // more than 8 numbers
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
 ```
-###### \java\seedu\address\logic\parser\AddCommandParserTest.java
+###### /java/seedu/address/logic/parser/AddCommandParserTest.java
 ``` java
         // multiple birthdays - last birthday accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + MOD_DESC_CS2101, new AddCommand(expectedPerson));
 ```
-###### \java\seedu\address\logic\parser\AddCommandParserTest.java
+###### /java/seedu/address/logic/parser/AddCommandParserTest.java
 ``` java
         // missing birthday prefix
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + VALID_BIRTHDAY_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
 ```
-###### \java\seedu\address\logic\parser\AddCommandParserTest.java
+###### /java/seedu/address/logic/parser/AddCommandParserTest.java
 ``` java
         // invalid birthday
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MOD_DESC_GER1000
                         + MOD_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 ```
-###### \java\seedu\address\model\person\PhotoTest.java
+###### /java/seedu/address/model/person/PhotoTest.java
 ``` java
 package seedu.address.model.person;
 
@@ -172,11 +172,11 @@ public class PhotoTest {
     }
 }
 ```
-###### \java\seedu\address\testutil\EditPersonDescriptorBuilder.java
+###### /java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 ``` java
         descriptor.setBirthday(person.getBirthday());
 ```
-###### \java\seedu\address\testutil\EditPersonDescriptorBuilder.java
+###### /java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 ``` java
     /**
      * Sets the {@code Birthday} of the {@code EditPersonDescriptor} that we are building.
@@ -190,19 +190,19 @@ public class PhotoTest {
         return this;
     }
 ```
-###### \java\seedu\address\testutil\PersonBuilder.java
+###### /java/seedu/address/testutil/PersonBuilder.java
 ``` java
     public static final String DEFAULT_BIRTHDAY = "25/09/1990";
 ```
-###### \java\seedu\address\testutil\PersonBuilder.java
+###### /java/seedu/address/testutil/PersonBuilder.java
 ``` java
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
 ```
-###### \java\seedu\address\testutil\PersonBuilder.java
+###### /java/seedu/address/testutil/PersonBuilder.java
 ``` java
             Photo defaultPhoto = new Photo();
 ```
-###### \java\seedu\address\testutil\PersonBuilder.java
+###### /java/seedu/address/testutil/PersonBuilder.java
 ``` java
     /**
      * Sets the {@code Birthday} of the {@code Birthday} that we are building.
@@ -216,15 +216,15 @@ public class PhotoTest {
         return this;
     }
 ```
-###### \java\seedu\address\testutil\PersonUtil.java
+###### /java/seedu/address/testutil/PersonUtil.java
 ``` java
         sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
 ```
-###### \java\seedu\address\ui\CommandBoxTest.java
+###### /java/seedu/address/ui/CommandBoxTest.java
 ``` java
         commandBoxForTest = commandBox;
 ```
-###### \java\seedu\address\ui\CommandBoxTest.java
+###### /java/seedu/address/ui/CommandBoxTest.java
 ``` java
     @Test
     public void handleKeyPress_escape() {
@@ -398,7 +398,7 @@ public class PhotoTest {
         assertTrue(correctTextField.equals(textField.getText()));
     }
 ```
-###### \java\systemtests\AddCommandSystemTest.java
+###### /java/systemtests/AddCommandSystemTest.java
 ``` java
         /* Case: add a person with all fields same as another person in the address book except birthday -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhones(VALID_PHONE_AMY)
@@ -408,20 +408,20 @@ public class PhotoTest {
                 + ADDRESS_DESC_AMY + MOD_DESC_CS2101;
         assertCommandSuccess(command, toAdd);
 ```
-###### \java\systemtests\AddCommandSystemTest.java
+###### /java/systemtests/AddCommandSystemTest.java
 ``` java
         /* Case: missing birthday -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 ```
-###### \java\systemtests\AddCommandSystemTest.java
+###### /java/systemtests/AddCommandSystemTest.java
 ``` java
         /* Case: invalid birthday -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_DESC + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         assertCommandFailure(command, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 ```
-###### \java\systemtests\EditCommandSystemTest.java
+###### /java/systemtests/EditCommandSystemTest.java
 ``` java
         /* Case: invalid birthday -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
