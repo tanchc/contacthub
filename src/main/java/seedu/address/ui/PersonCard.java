@@ -22,7 +22,7 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
     private static final double GAP = 8;
 
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "black", "grey", "yellow", "pink" };
+    private static String[] colors = { "red", "blue", "orange", "brown", "green" };
 
     private static HashMap<String, String> moduleColors = new HashMap<String, String>();
     private static Random random = new Random();
@@ -149,9 +149,9 @@ public class PersonCard extends UiPart<Region> {
             Label moduleLabel = new Label(module.moduleName);
             int randNum = getRandom();
             moduleLabel.setStyle("-fx-background-color: " + getColorForModule(module.moduleName, randNum));
-            if (randNum > 6) {
-                moduleLabel.setStyle("-fx-text-fill: black");
-            }
+            //            if (randNum > 6) {
+            //                moduleLabel.setStyle("-fx-text-fill: black");
+            //            }
 
             modules.getChildren().add(moduleLabel);
             modules.setHgap(GAP);
