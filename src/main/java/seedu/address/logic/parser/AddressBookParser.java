@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListModuleCommand;
+import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -170,6 +171,13 @@ public class AddressBookParser {
         case BusCommand.COMMAND_ALIAS:
             return new BusCommand();
             // @@author
+
+        // @@author jshoung
+        case MapCommand.COMMAND_WORD:
+        case MapCommand.COMMAND_ALIAS:
+            return new MapCommand();
+            // @@author
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

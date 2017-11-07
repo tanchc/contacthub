@@ -223,6 +223,11 @@ Format: `help`
 Opens the official reference for NUS bus routes. +
 Format: `bus`
 
+=== Viewing NUS map : `map` or `m` [Since v1.5rc]
+
+Opens the official map for NUS. +
+Format: `map`
+
 == Tasklist Commands
 
 * These commands are used for the tasklist.
