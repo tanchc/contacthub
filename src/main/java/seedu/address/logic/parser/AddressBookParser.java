@@ -147,6 +147,9 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+        // @@author jshoung
+        case HelpCommand.COMMAND_ALIAS:
+        // @@author
             return new HelpCommand();
 
         case UndoCommand.COMMAND_WORD:
