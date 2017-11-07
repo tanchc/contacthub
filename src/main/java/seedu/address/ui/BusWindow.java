@@ -3,7 +3,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -15,18 +14,11 @@ import seedu.address.commons.util.FxViewUtil;
  */
 public class BusWindow extends UiPart<Region> {
 
-//    public static final String BUSGUIDE_FILE_PATH = "/docs/images/bus.jpg";
 
     private static final Logger logger = LogsCenter.getLogger(BusWindow.class);
     private static final String ICON = "/images/bus_icon.png";
     private static final String FXML = "BusWindow.fxml";
     private static final String TITLE = "Bus Routes";
-
-    @FXML
-//    private WebView browser;
-
-//    private ImageView imageview;
-//    private Image image;
 
     private final Stage dialogStage;
 
@@ -37,13 +29,6 @@ public class BusWindow extends UiPart<Region> {
         dialogStage = createDialogStage(TITLE, null, scene);
         dialogStage.setMaximized(false);
         FxViewUtil.setStageIcon(dialogStage, ICON);
-
-//        String busImg = getClass().getResource(BUSGUIDE_FILE_PATH).toString();
-
-//        image = new Image(busImg);
-//        imageview = new ImageView();
-//
-//        imageview.setImage(image);
     }
 
     /**
