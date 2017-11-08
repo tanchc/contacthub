@@ -18,6 +18,7 @@ import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.ShowSummaryRequestEvent;
 import seedu.address.model.person.ReadOnlyPerson;
 
 //import org.apache.commons.io.FileUtils;
@@ -96,16 +97,19 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(defaultPage.toExternalForm());
     }
 
-    //@@author jshoung
-
-    //@@author
-
     /**
      * Frees resources allocated to the browser.
      */
     public void freeResources() {
         browser = null;
     }
+
+    //@@author jshoung
+    @Subscribe
+    private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
+        loadDefaultPage();
+    }
+    //@@author
 
     //@@author tanchc
     @Subscribe
@@ -147,5 +151,5 @@ public class BrowserPanel extends UiPart<Region> {
 
         loadAddressPage(event.getNewSelection().person);
     }
-    //@@author jshoung
+    //@@author
 }

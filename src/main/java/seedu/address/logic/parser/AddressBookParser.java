@@ -28,6 +28,7 @@ import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -183,6 +184,12 @@ public class AddressBookParser {
         case GetModuleCommand.COMMAND_WORD:
         case GetModuleCommand.COMMAND_ALIAS:
             return new GetModuleCommandParser().parse(arguments);
+            // @@author
+
+        // @@author jshoung
+        case SummaryCommand.COMMAND_WORD:
+        case SummaryCommand.COMMAND_ALIAS:
+            return new SummaryCommand();
             // @@author
 
         default:

@@ -44,9 +44,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * Commands are `case insensitive`.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
-* Items in square brackets are optional.
-* Items with `…`​ after them can be used multiple times.
-* Items can be in any order.
+* Parameters in `[square brackets]` are optional.
+* Paramters with `…`​ after them can be used multiple times.
+* Parameters can be in any order.
 * Each command has a given abbreviation you can use in place of the command itself.
 ====
 
@@ -225,6 +225,12 @@ Format: `bus`
 
 Opens the official map for NUS in a new window. +
 Format: `map`
+
+=== Viewing command summary : `summary` or `sm` [Since v1.5rc]
+
+The command summary is open by default in the browser upon starting the application.
+ This command is used to reopen it after using other commands. e.g. `getmodule` +
+Format: `summary`
 
 === Viewing module information : `getmodule` or `gm` [Since v1.5rc]
 
