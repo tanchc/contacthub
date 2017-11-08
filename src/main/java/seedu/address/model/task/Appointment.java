@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
+
 
 /**
  * Represents a Task's appointment in the address book.
@@ -45,8 +45,8 @@ public class Appointment {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && this.appointmentName.equals(((Name) other).fullName)); // state check
+                || (other instanceof Appointment // instanceof handles nulls
+                && this.appointmentName.equals(((Appointment) other).appointmentName)); // state check
     }
 
     @Override
