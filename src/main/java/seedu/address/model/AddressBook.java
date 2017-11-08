@@ -29,7 +29,9 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    // @@author tanchc
     private final UniqueTaskList tasks;
+    // @@author
     private final UniqueModuleList modules;
 
     /*
@@ -41,7 +43,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        // @@author tanchc
         tasks = new UniqueTaskList();
+        // @@author
         modules = new UniqueModuleList();
     }
 
@@ -60,11 +64,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<? extends ReadOnlyPerson> persons) throws DuplicatePersonException {
         this.persons.setPersons(persons);
     }
-
+    // @@author tanchc
     public void setTasks(List<? extends ReadOnlyTask> tasks) {
         this.tasks.setTasks(tasks);
     }
-
+    // @@author
     public void setModules(Set<Module> modules) {
         this.modules.setModules(modules);
     }
@@ -102,7 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         // in the person list.
         persons.add(newPerson);
     }
-
+    // @@author tanchc
     /**
      * Adds a task to ContactHub.
      * Also checks the new task and updates {@link #tasks} with any new tasks found,
@@ -113,7 +117,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         Task newTask = new Task(t);
         tasks.add(newTask);
     }
-
+    // @@author
     /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
      * {@code AddressBook}'s module list will be updated with the modules of {@code editedReadOnlyPerson}.
@@ -135,7 +139,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         // in the person list.
         persons.setPerson(target, editedPerson);
     }
-
+    // @@author tanchc
     /**
      * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
      *
@@ -148,7 +152,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         Task editedTask = new Task(editedReadOnlyTask);
         tasks.setTask(target, editedTask);
     }
-
+    // @@author
     /**
      * Ensures that every module in this person:
      *  - exists in the master list {@link #modules}
@@ -190,7 +194,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new PersonNotFoundException();
         }
     }
-
+    // @@author tanchc
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * @throws TaskNotFoundException if the {@code key} is not in this {@code AddressBook}.
@@ -210,8 +214,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void sortPersonListByName() {
         persons.sortPersonListByName();
     }
-    // @@author
-
+    // @@author tanchc
     /**
      * Sorts the taskList alphabetically
      */
@@ -237,12 +240,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<ReadOnlyPerson> getPersonList() {
         return persons.asObservableList();
     }
-
+    // @@author tanchc
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
         return tasks.asObservableList();
     }
-
+    // @@author
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.asObservableList();

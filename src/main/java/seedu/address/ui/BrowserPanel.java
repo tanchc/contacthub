@@ -106,7 +106,7 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
-    //@@author tanchc, jshoung
+    // @@author tanchc, jshoung
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));

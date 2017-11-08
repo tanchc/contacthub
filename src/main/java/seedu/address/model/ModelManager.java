@@ -30,8 +30,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final AddressBook addressBook;
     private final FilteredList<ReadOnlyPerson> filteredPersons;
+    // @@author tanchc
     private final FilteredList<ReadOnlyTask> filteredTasks;
-
+    // @@author
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -43,7 +44,9 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // @@author tanchc
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        // @@author
     }
 
     public ModelManager() {
@@ -149,7 +152,7 @@ public class ModelManager extends ComponentManager implements Model {
             addressBook.updatePerson(oldPerson, newPerson);
         }
     }
-
+    // @@author tanchc
     @Override
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
         return FXCollections.unmodifiableObservableList(filteredTasks);
@@ -160,7 +163,7 @@ public class ModelManager extends ComponentManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
-
+    // @@author
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
