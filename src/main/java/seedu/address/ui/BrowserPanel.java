@@ -18,6 +18,7 @@ import javafx.scene.web.WebView;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.ShowSummaryRequestEvent;
 import seedu.address.model.person.ReadOnlyPerson;
 
 //import org.apache.commons.io.FileUtils;
@@ -98,10 +99,6 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(defaultPage.toExternalForm());
     }
 
-    //@@author jshoung
-
-    //@@author
-
     /**
      * Frees resources allocated to the browser.
      */
@@ -111,14 +108,16 @@ public class BrowserPanel extends UiPart<Region> {
 
     // @@author tanchc, jshoung
     @Subscribe
+    private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
+        loadDefaultPage();
+    }
+    @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson p = event.getNewSelection().person;
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
         String mapAddress;
-        //@@author
 
-        //@@author jshoung
         if (stopIndex < 0) {
             mapAddress = p.getAddress().getGMapsAddress();
         } else {
@@ -149,5 +148,4 @@ public class BrowserPanel extends UiPart<Region> {
 
         loadAddressPage(event.getNewSelection().person);
     }
-    //@@author jshoung
 }

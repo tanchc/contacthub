@@ -2,6 +2,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ClearPersonSelectionEvent;
 import seedu.address.commons.events.ui.GetModuleRequestEvent;
 
 /**
@@ -29,6 +30,7 @@ public class GetModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         EventsCenter.getInstance().post(new GetModuleRequestEvent(module));
+        EventsCenter.getInstance().post(new ClearPersonSelectionEvent());
         return new CommandResult(SHOWING_MODULE_MESSAGE + module);
     }
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -57,10 +57,10 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhones(VALID_PHONE_BOB)
-                .withModules(VALID_MOD_GER1000).build();
+                .withModules(VALID_MODULE_GER1000).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhones(VALID_PHONE_BOB).withMods(VALID_MOD_GER1000).build();
+                .withPhones(VALID_PHONE_BOB).withMods(VALID_MODULE_GER1000).build();
         EditCommand editCommand = prepareCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
