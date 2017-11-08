@@ -18,6 +18,7 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.GetModuleRequestEvent;
 import seedu.address.commons.events.ui.ShowBusRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.events.ui.ShowMapRequestEvent;
@@ -222,6 +223,14 @@ public class MainWindow extends UiPart<Region> {
         MapWindow mapWindow = new MapWindow();
         mapWindow.show();
     }
+
+    /**
+     * Opens the module in browser.
+     */
+    @FXML
+    public void handleModule(String module) {
+        browserPanel.loadPage("https://nusmods.com/modules/" + module);
+    }
     //@@author
 
     void show() {
@@ -262,5 +271,12 @@ public class MainWindow extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleMap();
     }
+
+    @Subscribe
+    private void handleShowModuleEvent(GetModuleRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleModule(event.module);
+    }
+
     //@@author
 }
