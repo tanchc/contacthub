@@ -224,7 +224,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 ```
-###### \java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
 /**
  * Represents a Person's Birthday in the address book.
@@ -261,7 +261,7 @@ public class Birthday {
     }
 
 ```
-###### \java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
 
     @Override
@@ -382,7 +382,7 @@ public class Photo {
     }
 
 ```
-###### \java\seedu\address\model\person\Photo.java
+###### /java/seedu/address/model/person/Photo.java
 ``` java
     /**
      * Returns true if a given string is a valid url.

@@ -155,7 +155,7 @@ public class AddPhotoCommandTest {
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MODULE_DESC_GER1000
                         + MODULE_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 ```
-###### \java\seedu\address\logic\parser\AddPhotoCommandParserTest.java
+###### /java/seedu/address/logic/parser/AddPhotoCommandParserTest.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -207,7 +207,7 @@ public class AddPhotoCommandParserTest {
 
 }
 ```
-###### \java\seedu\address\model\person\PhotoTest.java
+###### /java/seedu/address/model/person/PhotoTest.java
 ``` java
 package seedu.address.model.person;
 

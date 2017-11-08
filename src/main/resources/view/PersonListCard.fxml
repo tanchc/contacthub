@@ -33,11 +33,13 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="modules" />
+      <!-- @@author ahmadalkaff -->
       <FlowPane fx:id="phones" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
       <!-- @@author viviantan95 -->
       <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
       <!-- @@author -->
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      <!-- @@author ahmadalkaff -->
       <FlowPane fx:id="emails" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
     </VBox>
       <!-- @@author viviantan95 -->
