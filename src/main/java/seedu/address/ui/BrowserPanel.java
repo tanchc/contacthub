@@ -98,10 +98,6 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(defaultPage.toExternalForm());
     }
 
-    //@@author jshoung
-
-    //@@author
-
     /**
      * Frees resources allocated to the browser.
      */
@@ -116,9 +112,7 @@ public class BrowserPanel extends UiPart<Region> {
         ReadOnlyPerson p = event.getNewSelection().person;
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
         String mapAddress;
-        //@@author
 
-        //@@author jshoung
         if (stopIndex < 0) {
             mapAddress = p.getAddress().getGMapsAddress();
         } else {
@@ -149,5 +143,4 @@ public class BrowserPanel extends UiPart<Region> {
 
         loadAddressPage(event.getNewSelection().person);
     }
-    //@@author jshoung
 }
