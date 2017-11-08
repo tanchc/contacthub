@@ -111,6 +111,7 @@ public class BrowserPanel extends UiPart<Region> {
     private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
         loadDefaultPage();
     }
+    // @@author
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
