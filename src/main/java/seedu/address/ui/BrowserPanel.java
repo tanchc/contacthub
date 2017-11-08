@@ -28,7 +28,9 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class BrowserPanel extends UiPart<Region> {
 
     public static final String DEFAULT_PAGE = "default.html";
+    //@@author tanchc
     public static final String ADDRESS_PAGE = "PersonBrowserPanel.html";
+    //@@author
     public static final String GOOGLE_SEARCH_URL_PREFIX = "https://www.google.com.sg/search?safe=off&q=";
     public static final String GOOGLE_SEARCH_URL_SUFFIX = "&cad=h";
 
@@ -53,7 +55,7 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(GOOGLE_SEARCH_URL_PREFIX + person.getName().fullName.replaceAll(" ", "+")
                 + GOOGLE_SEARCH_URL_SUFFIX);
     }*/
-
+    // @@author tanchc
     /**
      * Loads the located address page of the user's address.
      */
@@ -76,7 +78,7 @@ public class BrowserPanel extends UiPart<Region> {
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
         loadPage(addressPage.toExternalForm());
     }
-
+    // @@author
     /**
      * resets the address page.
      */
@@ -104,7 +106,7 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
-    //@@author Clement Tan, jshoung
+    //@@author tanchc, jshoung
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
