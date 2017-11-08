@@ -1,3 +1,4 @@
+// @@author tanchc
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
@@ -5,18 +6,18 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents teh start time of the Task in the address book.
+ * Represents the start time of the Task in the address book.
  */
 public class StartTime {
 
     public static final String MESSAGE_TIME_CONSTRAINTS =
-            "StartTime must be in the format of HH/MM";
+            "StartTime must be in the format of HH:MM";
 
     public static final String TIME_VALIDATION_REGEX =
             "\\d{2}:\\d{2}";
     public final String value;
 
-    //Validates given StartTime.
+    // Validates given StartTime
     public StartTime(String startTime) throws IllegalValueException {
         requireNonNull(startTime);
         String trimmedTime = startTime.trim();

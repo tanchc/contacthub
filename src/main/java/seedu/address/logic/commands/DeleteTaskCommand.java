@@ -18,7 +18,7 @@ public class DeleteTaskCommand extends UndoableCommand {
     public static final String COMMAND_ALIAS = "dt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the last task listing.\n"
+            + ": Deletes the task identified by the index number used in the task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + "\n"
             + "Example: " + COMMAND_ALIAS + " 1";

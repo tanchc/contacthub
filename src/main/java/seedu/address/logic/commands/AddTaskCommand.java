@@ -1,3 +1,4 @@
+// @@author tanchc
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -17,7 +18,7 @@ public class AddTaskCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "addtask";
     public static final String COMMAND_ALIAS = "at";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
             + "Parameters: "
             + PREFIX_APPOINTMENT + "APPOINTMENT "
             + PREFIX_DATE + "DATE "

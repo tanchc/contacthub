@@ -20,10 +20,10 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<ReadOnlyPerson> TYPICAL_PERSONS =
             FXCollections.observableList(getTypicalPersons());
-
+    // @@author tanchc
     private static final JumpToPersonListRequestEvent JUMP_TO_SECOND_EVENT =
             new JumpToPersonListRequestEvent(INDEX_SECOND_PERSON);
-
+    // @@author
     private PersonListPanelHandle personListPanelHandle;
 
     @Before

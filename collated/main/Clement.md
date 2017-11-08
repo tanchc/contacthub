@@ -1,12 +1,19 @@
 # Clement
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson p = event.getNewSelection().person;
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
-        String mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        String mapAddress;
+
+        if (stopIndex < 0) {
+            mapAddress = p.getAddress().getGMapsAddress();
+        } else {
+            mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        }
+
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
         String name = p.getName().getBrowserName();

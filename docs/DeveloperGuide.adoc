@@ -346,20 +346,20 @@ image::UndoRedoActivityDiagram.png[width="200"]
 // end::undoredo[]
 
 
-// tag::findMod[]
-=== Find Mod mechanism
+// tag::findModule[]
+=== FindModule mechanism
 
-The Find Mod mechanism is implemented using the `FindModCommand`, which resides inside `Logic`. It supports listing all the contacts in the address book associated with.
+The FindModule mechanism is implemented using the `FindModuleCommand`, which resides inside `Logic`. It supports listing all the contacts in the address book associated with.
 
-When the user requests for contacts associated to a mod name(s), the list of contacts will be created and shown.
+When the user requests for contacts associated to a module(s), the list of contacts will be created and shown.
 
-`FindModCommand` inherits from Command and is implemented this way.
+`FindModuleCommand` inherits from Command and is implemented this way.
 [source,java]
 ----
-public class FindModCommand extends Command {
+public class FindModuleCommand extends Command {
     @Override
     public CommandResult execute() {
-        // ... findMod logic ...
+        // ... findModule logic ...
         }
 }
 ----
@@ -368,20 +368,20 @@ Suppose that the user has just launched ContactHub. The contact list will be arr
 
 image::ListCommand.png[width="300"]
 
-The user executes `FindModCommand`, the list will now show the contacts associated to the mod name(s) keyed in.
+The user executes `FindModuleCommand`, the list will now show the contacts associated to the module(s) keyed in.
 
-image::FindModCommand.png[width="300"]
+image::FindModuleCommand.png[width="300"]
 
-The user can continue to add more mod names for the FindModCommand, and if any contacts contains any of the mod name(s) keyed in, they will show up
+The user can continue to add more mod names for the FindModuleCommand, and if any contacts contains any of the module(s) keyed in, they will show up
 
 [NOTE]
-Upon exiting ContactHub, the contact list will not be filtered for according to the last mod name(s) keyed in in the next launch.
+Upon exiting ContactHub, the contact list will not be filtered for according to the last module(s) keyed in in the next launch.
 
 ==== Design Considerations
 
-**Aspect:** Implementation of `FindModCommand` +
-**Alternative 1 (current choice):** `FindModCommand` inherits from `Command`. +
-**Pros:** After filtering, the contact list remains will only show contacts associated to the mod name(s) keyed in. +
+**Aspect:** Implementation of `FindModuleCommand` +
+**Alternative 1 (current choice):** `FindModuleCommand` inherits from `Command`. +
+**Pros:** After filtering, the contact list remains will only show contacts associated to the module(s) keyed in. +
 **Cons:** The contact list cannot be saved after filtering. +
 **Alternative 2:** Implement undo/redo for `FilterCommand`. +
 **Pros:** The user can switch between the filtered contact list and the original contact list.  +
@@ -389,14 +389,14 @@ Upon exiting ContactHub, the contact list will not be filtered for according to 
 
 ---
 
-**Aspect:** How findMod executes +
+**Aspect:** How findModule executes +
 **Alternative 1 (current choice):** Uses the Java Collections.stream() method to filter the contact list. +
 **Pros:** Easy to implement. +
 **Cons:** It is difficult to debug. +
 **Alternative 2:** Creates a new findMod algorithm. +
 **Pros:** It is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
-// end::findMod[]
+// end::findModule[]
 
 // tag::sort[]
 === Sort mechanism
@@ -822,12 +822,12 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: ListMod
+=== Use case: ListModule
 
 *MSS*
 
-1. User requests to list all mods in the address book.
-2. ContactHub shows a list of mods in the address book.
+1. User requests to list all module(s) in ContactHub.
+2. ContactHub shows a list of module(s) in ContactHub.
 +
 Use case ends.
 
@@ -884,19 +884,19 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Find mod(s)
+=== Use case: Find module(s)
 
 *MSS*
 
-1.  User requests to find a person(s) with the searched mod name
-2.  ContactHub displays a list of person(s) with the mod name keyed in
+1.  User requests to find a person(s) with the searched module.
+2.  ContactHub displays a list of person(s) with the mod name keyed in.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. ContactHub does not contain anyone with the mod.
+* 2a. ContactHub does not contain anyone with the module.
 +
 Use case ends.
 
@@ -953,6 +953,78 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+[discrete]
+=== Use case: Add task
+
+*MSS*
+
+1.  User adds a task to ContactHub
+2.  ContactHub adds the task to the task list
+3.  ContactHub displays a successful added message with the task's details
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The format for add task is incorrect.
+[none]
+** 1a1. ContactHub shows an error message
+** 1a2. User adds a task to the ContactHub
++
+Steps 1a1-1a2 are repeated until the details are in the correct format.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit task
+
+*MSS*
+
+1. User requests to edit a specific task in the task list.
+2. User keys in the new details of the task.
+3. ContactHub stores the new details of the task.
++
+Use case ends.
+
+*Extensions*
+
+* 1a. The given index is invalid
++
+[none]
+** 1a1. ContactHub shows an error message.
++
+Use case ends.
+
+[none]
+* 1b. The task list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Delete task
+
+*MSS*
+
+1.  User requests to delete a specific task in the list.
+2.  ContactHub deletes the task.
++
+Use case ends.
+
+*Extensions*
+
+
+* 1a. The given index is invalid.
++
+[none]
+** 1a1. ContactHub shows an error message.
++
+Use case ends.
+
+[none]
+* 1b. The list is empty.
++
+Use case ends.
 
 [discrete]
 === Use case: History

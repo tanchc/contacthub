@@ -10,11 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MOD_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -25,8 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -54,43 +54,43 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_AMY, VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withModules(VALID_MOD_CS2101).build();
+                .withModules(VALID_MODULE_CS2101).build();
 
         // multiple names - last name accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_AMY
                 + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPerson));
 
         // multiple phones - multiple phones accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_AMY
                 + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPerson));
 
         // multiple emails - multiple emails accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB
-                        + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPerson));
 
         //@@author viviantan95
         // multiple birthdays - last birthday accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + MOD_DESC_CS2101, new AddCommand(expectedPerson));
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPerson));
         //@@author
 
         // multiple mods - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_AMY, VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withModules(VALID_MOD_CS2101, VALID_MOD_GER1000).build();
+                .withModules(VALID_MODULE_CS2101, VALID_MODULE_GER1000).build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MOD_DESC_GER1000
-                        + MOD_DESC_CS2101, new AddCommand(expectedPersonMultipleTags));
+                + BIRTHDAY_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MODULE_DESC_GER1000
+                        + MODULE_DESC_CS2101, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -138,35 +138,35 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB
-                + BIRTHDAY_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MOD_DESC_GER1000
-                + MOD_DESC_CS2101, Name.MESSAGE_NAME_CONSTRAINTS);
+                + BIRTHDAY_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MODULE_DESC_GER1000
+                + MODULE_DESC_CS2101, Name.MESSAGE_NAME_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + INVALID_PHONE_DESC
-                + BIRTHDAY_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MOD_DESC_GER1000
-                + MOD_DESC_CS2101, Phone.MESSAGE_PHONE_CONSTRAINTS);
+                + BIRTHDAY_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + MODULE_DESC_GER1000
+                + MODULE_DESC_CS2101, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
-                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + MOD_DESC_GER1000
-                + MOD_DESC_CS2101, Email.MESSAGE_EMAIL_CONSTRAINTS);
+                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + MODULE_DESC_GER1000
+                + MODULE_DESC_CS2101, Email.MESSAGE_EMAIL_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
-                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + MOD_DESC_GER1000
-                + MOD_DESC_CS2101, Address.MESSAGE_ADDRESS_CONSTRAINTS);
+                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + MODULE_DESC_GER1000
+                + MODULE_DESC_CS2101, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
         //@@author viviantan95
         // invalid birthday
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
-                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MOD_DESC_GER1000
-                        + MOD_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MODULE_DESC_GER1000
+                        + MODULE_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
         //@@author
 
         // invalid module
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_MOD_DESC
-                + VALID_MOD_CS2101, Module.MESSAGE_MODULE_CONSTRAINTS);
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_MODULE_DESC
+                + VALID_MODULE_CS2101, Module.MESSAGE_MODULE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB

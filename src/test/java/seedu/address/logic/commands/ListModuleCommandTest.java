@@ -1,9 +1,9 @@
 // @@author ahmadalkaff
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -71,7 +71,7 @@ public class ListModuleCommandTest {
             throws DuplicatePersonException {
         model.addPerson(AMY);
         expectedModel.addPerson(AMY);
-        tempList.add(VALID_MOD_CS2101);
+        tempList.add(VALID_MODULE_CS2101);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);
@@ -91,13 +91,13 @@ public class ListModuleCommandTest {
             throws DuplicatePersonException, PersonNotFoundException {
         model.addPerson(BOB);
         expectedModel.addPerson(BOB);
-        tempList.add(VALID_MOD_GER1000);
-        tempList.add(VALID_MOD_CS2101);
+        tempList.add(VALID_MODULE_GER1000);
+        tempList.add(VALID_MODULE_CS2101);
 
         model.updatePerson(BOB, BOB_EDITED);
         expectedModel.updatePerson(BOB, BOB_EDITED);
-        tempList.remove(VALID_MOD_GER1000);
-        tempList.add(VALID_MOD_CS2103);
+        tempList.remove(VALID_MODULE_GER1000);
+        tempList.add(VALID_MODULE_CS2103);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);
@@ -112,12 +112,12 @@ public class ListModuleCommandTest {
         expectedModel.addPerson(AMY);
         expectedModel.addPerson(BOB);
         expectedModel.addPerson(CARRIE);
-        tempList.add(VALID_MOD_CS2101);
-        tempList.add(VALID_MOD_GER1000);
+        tempList.add(VALID_MODULE_CS2101);
+        tempList.add(VALID_MODULE_GER1000);
 
         model.deletePerson(BOB);
         expectedModel.deletePerson(BOB);
-        tempList.remove(VALID_MOD_GER1000);
+        tempList.remove(VALID_MODULE_GER1000);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);

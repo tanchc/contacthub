@@ -1,5 +1,5 @@
 # ahmadalkaff
-###### /java/guitests/guihandles/PersonCardHandle.java
+###### \java\guitests\guihandles\PersonCardHandle.java
 ``` java
         Region phonesContainer = getChildNode(PHONES_FIELD_ID);
         this.phoneLabels = phonesContainer
@@ -15,14 +15,14 @@
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
 ```
-###### /java/seedu/address/logic/commands/AddCommandTest.java
+###### \java\seedu\address\logic\commands\AddCommandTest.java
 ``` java
         @Override
         public void sortPersonListByName() {
             fail("This method should not be called.");
         }
 ```
-###### /java/seedu/address/logic/commands/DeleteTaskCommandTest.java
+###### \java\seedu\address\logic\commands\DeleteTaskCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -146,7 +146,7 @@ public class DeleteTaskCommandTest {
 
 }
 ```
-###### /java/seedu/address/logic/commands/EditTaskCommandTest.java
+###### \java\seedu\address\logic\commands\EditTaskCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -313,13 +313,13 @@ public class EditTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/ListModuleCommandTest.java
+###### \java\seedu\address\logic\commands\ListModuleCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -387,7 +387,7 @@ public class ListModuleCommandTest {
             throws DuplicatePersonException {
         model.addPerson(AMY);
         expectedModel.addPerson(AMY);
-        tempList.add(VALID_MOD_CS2101);
+        tempList.add(VALID_MODULE_CS2101);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);
@@ -407,13 +407,13 @@ public class ListModuleCommandTest {
             throws DuplicatePersonException, PersonNotFoundException {
         model.addPerson(BOB);
         expectedModel.addPerson(BOB);
-        tempList.add(VALID_MOD_GER1000);
-        tempList.add(VALID_MOD_CS2101);
+        tempList.add(VALID_MODULE_GER1000);
+        tempList.add(VALID_MODULE_CS2101);
 
         model.updatePerson(BOB, BOB_EDITED);
         expectedModel.updatePerson(BOB, BOB_EDITED);
-        tempList.remove(VALID_MOD_GER1000);
-        tempList.add(VALID_MOD_CS2103);
+        tempList.remove(VALID_MODULE_GER1000);
+        tempList.add(VALID_MODULE_CS2103);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);
@@ -428,19 +428,19 @@ public class ListModuleCommandTest {
         expectedModel.addPerson(AMY);
         expectedModel.addPerson(BOB);
         expectedModel.addPerson(CARRIE);
-        tempList.add(VALID_MOD_CS2101);
-        tempList.add(VALID_MOD_GER1000);
+        tempList.add(VALID_MODULE_CS2101);
+        tempList.add(VALID_MODULE_GER1000);
 
         model.deletePerson(BOB);
         expectedModel.deletePerson(BOB);
-        tempList.remove(VALID_MOD_GER1000);
+        tempList.remove(VALID_MODULE_GER1000);
         Collections.sort(tempList);
         expectedMessage = listModuleMessage + tempList.toString().replace(",", "]").replace(" ", " [");
         assertCommandSuccess(listModuleCommand, model, expectedMessage, expectedModel);
     }
 }
 ```
-###### /java/seedu/address/logic/commands/SortCommandTest.java
+###### \java\seedu\address\logic\commands\SortCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -483,7 +483,20 @@ public class SortCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParserTest.java
+###### \java\seedu\address\logic\parser\AddressBookParserTest.java
+``` java
+    @Test
+    public void parseCommand_findModule() throws Exception {
+        List<String> keywords = Arrays.asList("CS2101", "CS2103");
+        FindModuleCommand command = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        FindModuleCommand commandAlias = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_ALIAS + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindModuleCommand(new ModuleContainsKeywordPredicate(keywords)), command);
+        assertEquals(new FindModuleCommand(new ModuleContainsKeywordPredicate(keywords)), commandAlias);
+    }
+```
+###### \java\seedu\address\logic\parser\AddressBookParserTest.java
 ``` java
     @Test
     public void parseCommand_listModule() throws Exception {
@@ -501,7 +514,281 @@ public class SortCommandTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_ALIAS + " 3") instanceof SortCommand);
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtilTest.java
+###### \java\seedu\address\logic\parser\AddTaskCommandParserTest.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.Test;
+
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.model.task.Appointment;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
+
+public class AddTaskCommandParserTest {
+    private AddTaskCommandParser parser = new AddTaskCommandParser();
+
+    @Test
+    public void parse_allFieldsPresent_success() {
+        Task expectedTask = new TaskBuilder().withAppointment(VALID_APPOINTMENT_MEETING)
+                .withDate(VALID_DATE_MEETING).withStartTime(VALID_START_TIME_MEETING).build();
+
+        assertParseSuccess(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING
+                + DATE_DESC_MEETING + START_TIME_DESC_MEETING, new AddTaskCommand(expectedTask));
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
+
+        // missing appointment prefix
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + VALID_APPOINTMENT_MEETING + DATE_DESC_MEETING
+                + START_TIME_DESC_MEETING, expectedMessage);
+
+        // missing date prefix
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING + VALID_DATE_MEETING
+                + START_TIME_DESC_MEETING, expectedMessage);
+
+        // missing start time prefix
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING + DATE_DESC_MEETING
+                + VALID_START_TIME_MEETING, expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + VALID_APPOINTMENT_MEETING
+                + VALID_DATE_MEETING + VALID_START_TIME_MEETING, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        // invalid appointment
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + INVALID_APPOINTMENT_DESC + DATE_DESC_MEETING
+                + START_TIME_DESC_MEETING, Appointment.MESSAGE_APPOINTMENT_CONSTRAINTS);
+
+        // invalid date
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING + INVALID_DATE_DESC
+                + START_TIME_DESC_MEETING, Date.MESSAGE_DATE_CONSTRAINTS);
+
+        // invalid start time
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING + DATE_DESC_MEETING
+                + INVALID_START_TIME_DESC, StartTime.MESSAGE_TIME_CONSTRAINTS);
+
+        // two invalid values, only invalid start time reported
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING + INVALID_DATE_DESC
+                + DATE_DESC_MEETING + INVALID_START_TIME_DESC, StartTime.MESSAGE_TIME_CONSTRAINTS);
+
+        // three invalid values, only invalid start time reported
+        assertParseFailure(parser, AddTaskCommand.COMMAND_WORD + INVALID_APPOINTMENT_DESC
+                + APPOINTMENT_DESC_MEETING + INVALID_DATE_DESC + DATE_DESC_MEETING
+                + INVALID_START_TIME_DESC, StartTime.MESSAGE_TIME_CONSTRAINTS);
+    }
+}
+```
+###### \java\seedu\address\logic\parser\DeleteTaskCommandParserTest.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import org.junit.Test;
+
+import seedu.address.logic.commands.DeleteTaskCommand;
+
+/**
+ * As we are only doing white-box testing, our test cases do not cover path variations
+ * outside of the DeleteTaskCommand code. For example, inputs "1" and "1 abc" take the
+ * same path through the DeleteTaskCommand, and therefore we test only one of them.
+ * The path variation for those two cases occur inside the ParserUtil, and
+ * therefore should be covered by the ParserUtilTest.
+ */
+public class DeleteTaskCommandParserTest {
+
+    private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsDeleteTaskCommand() {
+        assertParseSuccess(parser, "1", new DeleteTaskCommand(INDEX_FIRST_TASK));
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+    }
+}
+```
+###### \java\seedu\address\logic\parser\EditTaskCommandParserTest.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.task.Appointment;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.StartTime;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
+
+public class EditTaskCommandParserTest {
+
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE);
+
+    private EditTaskCommandParser parser = new EditTaskCommandParser();
+
+    @Test
+    public void parse_missingParts_failure() {
+        // no index specified
+        assertParseFailure(parser, VALID_APPOINTMENT_MEETING, MESSAGE_INVALID_FORMAT);
+
+        // no field specified
+        assertParseFailure(parser, "1", EditTaskCommand.MESSAGE_NOT_EDITED);
+
+        // no index and no field specified
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidPreamble_failure() {
+        // negative index
+        assertParseFailure(parser, "-5" + APPOINTMENT_DESC_MEETING, MESSAGE_INVALID_FORMAT);
+
+        // zero index
+        assertParseFailure(parser, "0" + APPOINTMENT_DESC_MEETING, MESSAGE_INVALID_FORMAT);
+
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        assertParseFailure(parser, "1" + INVALID_APPOINTMENT_DESC,
+                Appointment.MESSAGE_APPOINTMENT_CONSTRAINTS); // invalid appointment
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC,
+                Date.MESSAGE_DATE_CONSTRAINTS); // invalid date
+        assertParseFailure(parser, "1" + INVALID_START_TIME_DESC,
+                StartTime.MESSAGE_TIME_CONSTRAINTS); // invalid start time
+
+        // invalid date followed by valid start time
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC + START_TIME_DESC_MEETING,
+                Date.MESSAGE_DATE_CONSTRAINTS);
+
+        // valid date followed by invalid date. The test case for invalid date followed by valid date
+        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
+        assertParseFailure(parser, "1" + DATE_DESC_MEETING + INVALID_DATE_DESC, Date.MESSAGE_DATE_CONSTRAINTS);
+
+        // multiple invalid values, but only the first invalid value is captured
+        assertParseFailure(parser, "1" + INVALID_APPOINTMENT_DESC + INVALID_DATE_DESC
+                + VALID_APPOINTMENT_MEETING + VALID_DATE_MEETING, Appointment.MESSAGE_APPOINTMENT_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_allFieldsSpecified_success() {
+        Index targetIndex = INDEX_SECOND_TASK;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_MEETING + START_TIME_DESC_MEETING
+                + APPOINTMENT_DESC_MEETING;
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withAppointment(VALID_APPOINTMENT_MEETING).withDate(VALID_DATE_MEETING)
+                .withStartTime(VALID_START_TIME_MEETING).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_someFieldsSpecified_success() {
+        Index targetIndex = INDEX_FIRST_TASK;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING)
+                .withStartTime(VALID_START_TIME_MEETING).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_oneFieldSpecified_success() {
+        // appointment - this fails
+        Index targetIndex = INDEX_THIRD_TASK;
+        String userInput = targetIndex.getOneBased() + APPOINTMENT_DESC_MEETING;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withAppointment(VALID_APPOINTMENT_MEETING).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // date - this pass
+        userInput = targetIndex.getOneBased() + DATE_DESC_MEETING;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
+        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // start time - this pass
+        userInput = targetIndex.getOneBased() + START_TIME_DESC_MEETING;
+        descriptor = new EditTaskDescriptorBuilder().withStartTime(VALID_START_TIME_MEETING).build();
+        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_invalidValueFollowedByValidValue_failure() {
+        // no other valid values specified
+        Index targetIndex = INDEX_FIRST_TASK;
+        String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // other valid values specified
+        userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING)
+            .withStartTime(VALID_START_TIME_MEETING).build();
+        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+}
+```
+###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
     @Test
     public void parsePhones_emptyCollection_returnsEmptySet() throws Exception {
@@ -516,7 +803,7 @@ public class SortCommandTest {
         assertEquals(expectedPhoneSet, actualPhoneSet);
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtilTest.java
+###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
     @Test
     public void parseEmails_emptyCollection_returnsEmptySet() throws Exception {
@@ -531,21 +818,22 @@ public class SortCommandTest {
         assertEquals(expectedEmailSet, actualEmailSet);
     }
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
             Set<Phone> defaultPhones = SampleDataUtil.getPhoneSet(DEFAULT_PHONES);
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
 ```
-###### /java/seedu/address/testutil/PersonUtil.java
+###### \java\seedu\address\testutil\PersonUtil.java
 ``` java
         person.getPhones().stream().forEach(
             s -> sb.append(PREFIX_PHONE + s.value + " ")
         );
+
 ```
-###### /java/seedu/address/testutil/PersonUtil.java
+###### \java\seedu\address\testutil\PersonUtil.java
 ``` java
         person.getEmails().stream().forEach(
             s -> sb.append(PREFIX_EMAIL + s.value + " ")

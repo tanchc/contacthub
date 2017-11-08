@@ -210,6 +210,8 @@ public abstract class AddressBookSystemTest {
      * Asserts that the command box's shows the default style.
      */
     protected void assertCommandBoxShowsDefaultStyle() {
+        System.out.println(COMMAND_BOX_DEFAULT_STYLE);
+        System.out.println(getCommandBox().getStyleClass());
         assertEquals(COMMAND_BOX_DEFAULT_STYLE, getCommandBox().getStyleClass());
     }
 

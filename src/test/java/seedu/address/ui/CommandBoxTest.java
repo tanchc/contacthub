@@ -99,7 +99,7 @@ public class CommandBoxTest extends GuiUnitTest {
     }
 
     @Test
-    public void handleKeyPress_control() {
+    public void handleKeyPress_alt() {
         //gets text field
         TextField textField = commandBoxForTest.getCommandTextField();
         //insert text for testing
@@ -109,11 +109,17 @@ public class CommandBoxTest extends GuiUnitTest {
         //check if myTextField text cursor is same length as text in command box
         assertTrue(textField.getCaretPosition() == commandBoxHandle.getInput().length());
 
-        //check if text cursor is flushed to the right after move left once and Control is pushed
+        //check if text cursor is flushed to the right after move left once and alt is pushed
         guiRobot.push(KeyCode.LEFT);
-        guiRobot.push(KeyCode.CONTROL);
+        guiRobot.push(KeyCode.ALT);
         assertFalse(textField.getCaretPosition() == 3);
         assertTrue(textField.getCaretPosition() == 4);
+
+        //check if text cursor is flushed to the right if initial text cursor is to the extreme left
+        textField.positionCaret(0);
+        guiRobot.push(KeyCode.ALT);
+        assertTrue(textField.getCaretPosition() == 4);
+        assertFalse(textField.getCaretPosition() == 0);
     }
 
     @Test
