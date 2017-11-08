@@ -94,6 +94,12 @@ public class AddPhotoCommandTest {
         //different person
         AddPhotoCommand diffPersonCommand = new AddPhotoCommand(INDEX_SECOND_PERSON, photo);
         assertFalse(command.equals(diffPersonCommand));
+
+        //different index -> returns false
+        assertFalse(command.equals(new AddPhotoCommand(INDEX_SECOND_PERSON, photo)));
+
+        //different types -> returns false
+        assertFalse(command.equals(new ClearCommand()));
     }
 
     //Returns an object of AddPhotoCommand with {@param index} and {@param photo}

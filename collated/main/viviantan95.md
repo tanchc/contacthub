@@ -31,10 +31,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class AddPhotoCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "addphoto";
+    public static final String COMMAND_ALIAS = "ap";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a photo to a person in the address book using "
             + "the index of the person in the latest listing.\n"
-            + "Parameters: INDEX (must be a positive integer) [URL of photo]\n"
+            + "Parameters: INDEX (must be a positive integer) u/[PHOTO_URL]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PHOTO
             + "https://www.facebook.com/AlexYeoh/photo1.jpg\n";
 
@@ -176,6 +177,7 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
 ###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case AddPhotoCommand.COMMAND_WORD:
+        case AddPhotoCommand.COMMAND_ALIAS:
             return new AddPhotoCommandParser().parse(arguments);
 ```
 ###### \java\seedu\address\logic\parser\CliSyntax.java
@@ -184,7 +186,7 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
 ```
 ###### \java\seedu\address\logic\parser\CliSyntax.java
 ``` java
-    public static final Prefix PREFIX_PHOTO = new Prefix("ap/");
+    public static final Prefix PREFIX_PHOTO = new Prefix("u/");
 ```
 ###### \java\seedu\address\logic\parser\EditCommandParser.java
 ``` java
@@ -222,7 +224,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 ```
-
 ###### \java\seedu\address\model\person\Birthday.java
 ``` java
 /**
@@ -240,7 +241,6 @@ public class Birthday {
 
     public final String value;
     private String browserValue;
-
 
     //Validates given Birthday.
     public Birthday(String birthday) throws IllegalValueException {
@@ -260,9 +260,9 @@ public class Birthday {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
-    public String getBrowserValue() {
-        return browserValue;
-    }
+```
+###### \java\seedu\address\model\person\Birthday.java
+``` java
 
     @Override
     public String toString() {
@@ -381,6 +381,9 @@ public class Photo {
         this.value = photo;
     }
 
+```
+###### \java\seedu\address\model\person\Photo.java
+``` java
     /**
      * Returns true if a given string is a valid url.
      */
