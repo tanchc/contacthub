@@ -1,0 +1,82 @@
+= Vivian Tan - Project Portfolio
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== Project: ContactHub
+ContactHub is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+
+*Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/viviantan95.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/viviantan95.md[Test code]] {give links to collated code files}
+
+=== Enhancement Added: AddPhoto
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=addPhoto]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+Adding a photo to each contact of ContactHub would make the contacts more recognisable to the user, hence easier
+identification of contacts.
+Furthermore ContactHub's target audience is university students, therefore to make the application more interesting
+ and youthful, so as to add a fun factor when using ContactHub.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=addPhoto]
+
+#End of Extract#
+
+---
+
+=== Enhancement Added: Keyboard Shortcuts
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=Keyboardshortcuts]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+When using ContactHub, it is sometimes quite a hassle when using the command line. Especially when adding
+numerous contacts or when typing incorrect information. Hence, with keyboard shortcuts, using the command line
+would be much more easier and time saving. This would benefit the user greatly as well as attract more users to
+use ContactHub.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=Keyboardshortcuts]
+
+#End of Extract#
+
+---
+
+=== Enhancement Proposed:
+
+{Explain similar to the Undo/Redo feature above.}
+
+=== Other contributions
+
+
+== Project: PowerPointLabs
+
+{Optionally (not graded), you may include other projects in your portfolio.}

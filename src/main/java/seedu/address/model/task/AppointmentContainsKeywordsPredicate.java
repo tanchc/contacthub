@@ -18,7 +18,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<ReadOnlyT
     @Override
     public boolean test(ReadOnlyTask task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getAppointment().appointmentName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getAppointment().appointment, keyword));
     }
 
     @Override

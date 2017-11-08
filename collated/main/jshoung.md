@@ -1,5 +1,5 @@
 # jshoung
-###### \java\seedu\address\commons\events\ui\GetModuleRequestEvent.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -156,45 +156,7 @@ public class MapCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
-``` java
-        case HelpCommand.COMMAND_ALIAS:
-```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
-``` java
-        case BusCommand.COMMAND_WORD:
-        case BusCommand.COMMAND_ALIAS:
-            return new BusCommand();
-```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
-``` java
-        case MapCommand.COMMAND_WORD:
-        case MapCommand.COMMAND_ALIAS:
-            return new MapCommand();
-```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
-``` java
-        case GetModuleCommand.COMMAND_WORD:
-        case GetModuleCommand.COMMAND_ALIAS:
-            return new GetModuleCommandParser().parse(arguments);
-```
-###### \java\seedu\address\model\ModelManager.java
-``` java
-    @Override
-    public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
-        for (int i = 0; i < addressBook.getPersonList().size(); i++) {
-            ReadOnlyPerson oldPerson = addressBook.getPersonList().get(i);
-
-            Person newPerson = new Person(oldPerson);
-            Set<Module> newModules = newPerson.getModules();
-            newModules.remove(module);
-            newPerson.setModules(newModules);
-
-            addressBook.updatePerson(oldPerson, newPerson);
-        }
-    }
-```
-###### \java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
     public String getBrowserAddress() {
         return value;
@@ -202,7 +164,7 @@ public class MapCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
     public String getBrowserValue() {
         return browserValue;
@@ -227,7 +189,7 @@ public class MapCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Name.java
+###### /java/seedu/address/model/person/Name.java
 ``` java
     public String getBrowserName() {
         return browserName;
@@ -252,7 +214,7 @@ public class MapCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
@@ -275,7 +237,7 @@ public class MapCommand extends Command {
     }
 
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
@@ -302,7 +264,7 @@ public class MapCommand extends Command {
     }
 
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
@@ -355,7 +317,7 @@ public class MapCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Photo.java
+###### /java/seedu/address/model/person/Photo.java
 ``` java
     public String getBrowserPhoto() {
         return value;
@@ -402,213 +364,7 @@ public class MapCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
-
-```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
-        if (stopIndex < 0) {
-            mapAddress = p.getAddress().getGMapsAddress();
-        } else {
-            mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
-        }
-
-        String address = p.getAddress().getBrowserAddress();
-        String birthday = p.getBirthday().getBrowserValue();
-        String name = p.getName().getBrowserName();
-        String photo = p.getPhoto().getBrowserPhoto();
-        String emails = p.getBrowserEmails();
-        String phones = p.getBrowserPhones();
-        String modules = p.getBrowserModules();
-
-        browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if (newState == Worker.State.SUCCEEDED) {
-                WebEngine panel = browser.getEngine();
-                panel.executeScript("document.goToLocation(\"" + mapAddress + "\")");
-                panel.executeScript("document.setBirthday(\"" + birthday + "\")");
-                panel.executeScript("document.setName(\"" + name + "\")");
-                panel.executeScript("document.setAddress(\"" + address + "\")");
-                panel.executeScript("document.setPhoto(\"" + photo + "\")");
-                panel.executeScript("document.setEmail(\"" + emails + "\")");
-                panel.executeScript("document.setPhone(\"" + phones + "\")");
-                panel.executeScript("document.setModule(\"" + modules + "\")");
-            }
-        });
-
-        loadAddressPage(event.getNewSelection().person);
-    }
-```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
-}
-```
-###### \java\seedu\address\ui\BusWindow.java
-``` java
-package seedu.address.ui;
-
-import java.util.logging.Logger;
-
-import javafx.scene.Scene;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.FxViewUtil;
-
-/**
- * Controller for bus page
- */
-public class BusWindow extends UiPart<Region> {
-
-
-    private static final Logger logger = LogsCenter.getLogger(BusWindow.class);
-    private static final String ICON = "/images/bus_icon.png";
-    private static final String FXML = "BusWindow.fxml";
-    private static final String TITLE = "Bus Routes";
-
-    private final Stage dialogStage;
-
-    public BusWindow() {
-        super(FXML);
-        Scene scene = new Scene(getRoot());
-        //Null passed as the parent stage to make it non-modal.
-        dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setMaximized(false);
-        FxViewUtil.setStageIcon(dialogStage, ICON);
-    }
-
-    /**
-     * Shows the bus window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
-     */
-    public void show() {
-        logger.fine("Showing bus routes for NUS.");
-        dialogStage.showAndWait();
-    }
-}
-```
-###### \java\seedu\address\ui\MainWindow.java
-``` java
-    /**
-     * Opens the bus window.
-     */
-    @FXML
-    public void handleBus() {
-        BusWindow busWindow = new BusWindow();
-        busWindow.show();
-    }
-
-    /**
-     * Opens the map window.
-     */
-    @FXML
-    public void handleMap() {
-        MapWindow mapWindow = new MapWindow();
-        mapWindow.show();
-    }
-
-    /**
-     * Opens the module in browser.
-     */
-    @FXML
-    public void handleModule(String module) {
-        browserPanel.loadPage("https://nusmods.com/modules/" + module);
-    }
-```
-###### \java\seedu\address\ui\MainWindow.java
-``` java
-    @Subscribe
-    private void handleShowBusEvent(ShowBusRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleBus();
-    }
-
-    @Subscribe
-    private void handleShowMapEvent(ShowMapRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleMap();
-    }
-
-    @Subscribe
-    private void handleShowModuleEvent(GetModuleRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleModule(event.module);
-    }
-
-```
-###### \java\seedu\address\ui\MapWindow.java
-``` java
-package seedu.address.ui;
-
-import java.util.logging.Logger;
-
-import javafx.scene.Scene;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.FxViewUtil;
-
-/**
- * Controller for map page
- */
-public class MapWindow extends UiPart<Region> {
-
-
-    private static final Logger logger = LogsCenter.getLogger(MapWindow.class);
-    private static final String ICON = "/images/map_icon.png";
-    private static final String FXML = "MapWindow.fxml";
-    private static final String TITLE = "NUS Map";
-
-    private final Stage dialogStage;
-
-    MapWindow() {
-        super(FXML);
-        Scene scene = new Scene(getRoot());
-        //Null passed as the parent stage to make it non-modal.
-        dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setMaximized(true);
-        FxViewUtil.setStageIcon(dialogStage, ICON);
-    }
-
-    /**
-     * Shows the map window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
-     */
-    public void show() {
-        logger.fine("Showing map for NUS.");
-        dialogStage.showAndWait();
-    }
-}
-```
-###### \java\seedu\address\ui\ResultDisplay.java
+###### /java/seedu/address/ui/ResultDisplay.java
 ``` java
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
@@ -644,23 +400,7 @@ public class MapWindow extends UiPart<Region> {
 
 }
 ```
-###### \resources\view\BusWindow.fxml
-``` fxml
-
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
-   <content>
-      <ImageView fitHeight="1000.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../docs/images/bus.jpg" />
-         </image>
-      </ImageView>
-   </content>
-</ScrollPane>
-```
-###### \resources\view\DarkThemeCommands.css
+###### /resources/view/DarkThemeCommands.css
 ``` css
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
@@ -1042,23 +782,13 @@ li {
     -fx-font-size: 11;
 }
 ```
-###### \resources\view\MapWindow.fxml
-``` fxml
-
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
-   <ImageView fitHeight="2600.0" fitWidth="2600.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../docs/images/map.jpg"/>
-      </image>
-   </ImageView>
-</ScrollPane>
-```
-###### \resources\view\PersonListPanel.fxml
+###### /resources/view/PersonListPanel.fxml
 ``` fxml
   <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
+</VBox>
+```
+###### /resources/view/TaskListPanel.fxml
+``` fxml
+  <ListView fx:id="taskListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
 ```
