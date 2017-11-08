@@ -94,7 +94,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Sorts the list alphabetically
      */
     public void sortTaskListByName() {
-        Collections.sort(internalList, Comparator.comparing(firstTask -> firstTask.getAppointment().appointmentName));
+        Collections.sort(internalList, Comparator.comparing(firstTask -> firstTask.getAppointment().appointment));
     }
 
     @Override

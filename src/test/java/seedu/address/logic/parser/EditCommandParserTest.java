@@ -7,11 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MOD_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -19,8 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -45,7 +45,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String MOD_EMPTY = " " + PREFIX_MODULE;
+    private static final String MODULE_EMPTY = " " + PREFIX_MODULE;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_EMAIL_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_ADDRESS_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_MOD_DESC, Module.MESSAGE_MODULE_CONSTRAINTS); // invalid module
+        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_MODULE_CONSTRAINTS); // invalid module
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_PHONE_CONSTRAINTS);
@@ -94,14 +94,14 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_MOD} alone will reset the mods of the {@code Person} being edited,
+        // while parsing {@code PREFIX_MODULE} alone will reset the mods of the {@code Person} being edited,
         // parsing it together with a valid module results in error
-        assertParseFailure(parser, "1" + MOD_DESC_CS2101 + MOD_DESC_GER1000
-                + MOD_EMPTY, Module.MESSAGE_MODULE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MOD_DESC_CS2101 + MOD_EMPTY
-                + MOD_DESC_GER1000, Module.MESSAGE_MODULE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MOD_EMPTY + MOD_DESC_CS2101
-                + MOD_DESC_GER1000, Module.MESSAGE_MODULE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_DESC_CS2101 + MODULE_DESC_GER1000
+                + MODULE_EMPTY, Module.MESSAGE_MODULE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_DESC_CS2101 + MODULE_EMPTY
+                + MODULE_DESC_GER1000, Module.MESSAGE_MODULE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_EMPTY + MODULE_DESC_CS2101
+                + MODULE_DESC_GER1000, Module.MESSAGE_MODULE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
@@ -111,12 +111,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + MOD_DESC_GER1000
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MOD_DESC_CS2101;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + MODULE_DESC_GER1000
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MODULE_DESC_CS2101;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhones(VALID_PHONE_BOB).withEmails(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withMods(VALID_MOD_GER1000, VALID_MOD_CS2101).build();
+                .withMods(VALID_MODULE_GER1000, VALID_MODULE_CS2101).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -162,8 +162,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // mods
-        userInput = targetIndex.getOneBased() + MOD_DESC_CS2101;
-        descriptor = new EditPersonDescriptorBuilder().withMods(VALID_MOD_CS2101).build();
+        userInput = targetIndex.getOneBased() + MODULE_DESC_CS2101;
+        descriptor = new EditPersonDescriptorBuilder().withMods(VALID_MODULE_CS2101).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -172,12 +172,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased()  + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + MOD_DESC_CS2101 + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + MOD_DESC_CS2101
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MOD_DESC_GER1000;
+                + MODULE_DESC_CS2101 + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + MODULE_DESC_CS2101
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_GER1000;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhones(VALID_PHONE_AMY, VALID_PHONE_BOB)
                 .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withMods(VALID_MOD_CS2101, VALID_MOD_GER1000).build();
+                .withMods(VALID_MODULE_CS2101, VALID_MODULE_GER1000).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -197,9 +197,9 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetMods_success() {
+    public void parse_resetModules_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + MOD_EMPTY;
+        String userInput = targetIndex.getOneBased() + MODULE_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withMods().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

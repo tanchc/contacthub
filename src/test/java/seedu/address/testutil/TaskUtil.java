@@ -24,7 +24,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(ReadOnlyTask task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_APPOINTMENT + task.getAppointment().appointmentName + " ");
+        sb.append(PREFIX_APPOINTMENT + task.getAppointment().appointment + " ");
         sb.append(PREFIX_DATE + task.getDate().value + " ");
         sb.append(PREFIX_STARTTIME + task.getStartTime().value + " ");
         return sb.toString();

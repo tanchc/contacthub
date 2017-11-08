@@ -1,5 +1,5 @@
 # jshoung
-###### \src\main\java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
@@ -46,7 +46,7 @@
 
 }
 ```
-###### \src\main\java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
     public String getBrowserAddress() {
         return value;
@@ -54,7 +54,7 @@
 
 }
 ```
-###### \src\main\java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
     public String getBrowserValue() {
         return browserValue;
@@ -79,7 +79,7 @@
 
 }
 ```
-###### \src\main\java\seedu\address\model\person\Name.java
+###### /java/seedu/address/model/person/Name.java
 ``` java
     public String getBrowserName() {
         return browserName;
@@ -104,7 +104,7 @@
 
 }
 ```
-###### \src\main\java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
@@ -126,38 +126,8 @@
         return allPhones;
     }
 
-    /**
-     * Replaces this person's phones with the phones in the argument phone set.
-     */
-    public void setPhones(Set<Phone> replacement) {
-        phones.set(new PhoneList(replacement));
-    }
-
-    public void setBirthday(Birthday birthday) {
-        this.birthday.set(requireNonNull(birthday));
-    }
-
-    @Override
-    public ObjectProperty<Birthday> birthdayProperty() {
-        return birthday;
-    }
-
-    @Override
-    public Birthday getBirthday() {
-        return birthday.get();
-    }
-
-    /**
-     * Returns an immutable email set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    @Override
-    public Set<Email> getEmails() {
-        return Collections.unmodifiableSet(emails.get().toSet());
-    }
-
 ```
-###### \src\main\java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
@@ -183,52 +153,8 @@
         return emails;
     }
 
-    /**
-     * Replaces this person's emails with the emails in the argument email set.
-     */
-    public void setEmails(Set<Email> replacement) {
-        emails.set(new EmailList(replacement));
-    }
-
-    public void setAddress(Address address) {
-        this.address.set(requireNonNull(address));
-    }
-
-    @Override
-    public ObjectProperty<Address> addressProperty() {
-        return address;
-    }
-
-    @Override
-    public Address getAddress() {
-        return address.get();
-    }
-
-    public void setPhoto(Photo photo) {
-        this.photo.set(requireNonNull(photo));
-    }
-
-    @Override
-    public ObjectProperty<Photo> photoProperty() {
-        return photo;
-    }
-
-    @Override
-    public Photo getPhoto() {
-        return photo.get();
-    }
-
-    /**
-     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    @Override
-    public Set<Module> getModules() {
-        return Collections.unmodifiableSet(modules.get().toSet());
-    }
-
 ```
-###### \src\main\java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
@@ -281,7 +207,7 @@
 
 }
 ```
-###### \src\main\java\seedu\address\model\person\Photo.java
+###### /java/seedu/address/model/person/Photo.java
 ``` java
     public String getBrowserPhoto() {
         return value;
@@ -328,7 +254,7 @@
     }
 }
 ```
-###### \src\main\java\seedu\address\ui\ResultDisplay.java
+###### /java/seedu/address/ui/ResultDisplay.java
 ``` java
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
@@ -364,7 +290,7 @@
 
 }
 ```
-###### \src\main\resources\view\DarkThemeCommands.css
+###### /resources/view/DarkThemeCommands.css
 ``` css
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
@@ -746,170 +672,13 @@ li {
     -fx-font-size: 11;
 }
 ```
-###### \src\main\resources\view\default.html
-``` html
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="DarkThemeCommands.css">
-</head>
-
-<body class="background">
-<!-- <img src="https://i.imgur.com/BduVh7O.png" draggable="false" alt="ContactHub Logo"> -->
-<h1>ContactHub Commands</h1>
-<ul>
-    <li><span class="command">add</span>: Adds a person to the address book.<br>
-        <span class="command">Format</span>: add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/MOD]...<br></li>
-    <li><span class="command">edit</span>: Edits the details of the person identified by the index number used in the last person listing. Existing values will be overwritten by the input values.<br>
-        <span class="command">Format</span>: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/MOD]...<br></li>
-    <li><span class="command">find</span>: Finds persons whose names contain any of the given keywords.<br>
-        <span class="command">Format</span>: find KEYWORD [MORE_KEYWORDS]...<br></li>
-    <li><span class="command">findmodule</span>: Finds moduless whose names contain any of the given keywords.<br>
-        <span class="command">Format</span>: findmod KEYWORD [MORE_KEYWORDS]...<br></li>
-    <li><span class="command">listmodules</span>: Shows a list of all modules in the address book.<br></li>
-    <li><span class="command">delete</span>: Deletes the specified person from the address book.<br>
-        <span class="command">Format</span>: delete INDEX<br></li>
-    <li><span class="command">select</span>: Selects the person identified by the index number used in the last person listing.<br>
-        <span class="command">Format</span>: select INDEX<br></li>
-    <li><span class="command">addphoto</span>: Adds a photo to a person in the address book using the index of the person in the latest listing.<br>
-        <span class="command">Format</span>: addphoto INDEX u/IMAGE_URL<br></li>
-    <li><span class="command">help</span>: Opens the User Guide.<br></li>
-    <li><span class="command">list</span>: Shows a list of all persons in the address book.<br></li>
-    <li><span class="command">clear</span>: Clears all entries from the address book.<br></li>
-    <li><span class="command">undo</span>: Restores the address book to the state before the previous undoable command was executed.<br></li>
-    <li><span class="command">redo</span>: Reverses the most recent undo command.<br></li>
-    <li><span class="command">exit</span>: Exits the program.<br></li>
-</ul>
-</body>
-</html>
-
-```
-###### \src\main\resources\view\PersonBrowserPanel.html
-``` html
-        document.setName = function setName(name) {
-            document.getElementById("name").innerHTML = name;
-        }
-
-        document.setBirthday = function setBirthday(birthday) {
-            document.getElementById("birthday").innerHTML = "Birthday: " + birthday;
-        }
-
-        document.setEmail = function setEmail(email) {
-            document.getElementById("email").innerHTML = "Email(s): " + email;
-        }
-
-        document.setPhone = function setPhone(phone) {
-            document.getElementById("phone").innerHTML = "Phone(s): " + phone;
-        }
-
-        document.setModule = function setModule(module) {
-            document.getElementById("module").innerHTML = "Module(s): " + module;
-        }
-
-        document.setAddress = function setAddress(address) {
-            document.getElementById("address").innerHTML = "Address: " + address;
-        }
-
-        document.setPhoto = function setPhoto(photo) {
-            if (photo === "images/defaultPhoto.png") {
-                alert("No custom image loaded");
-                document.getElementById("photo").src = "https://t3.ftcdn.net/jpg/00/64/67/52/240_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg";
-            } else {
-            document.getElementById("photo").src = photo;
-            }
-        }
-    }
-</script>
-
-```
-###### \src\main\resources\view\PersonBrowserPanel.html
-``` html
-<!-- First Grid: Picture & Contact Info -->
-<div class="w3-row">
-    <div class="w3-half w3-blue-grey w3-container w3-center" style="height:700px">
-        <div class="w3-padding-64 w3-center">
-            <h1 id="name"></h1>
-        </div>
-        <!--<div class="w3-padding-64 w3-center">-->
-            <img src="https://t3.ftcdn.net/jpg/00/64/67/52/240_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg" id="photo" class="w3-margin w3-circle" alt="Person" style="width:50%">
-        <!--</div>-->
-    </div>
-    <div class="w3-half w3-black w3-container w3-center" style="height:700px">
-        <div class="w3-padding-64">
-            <h1>Contact Information</h1>
-        </div>
-        <!--<div class="w3-padding-64">-->
-            <strong>
-                <p id="phone"></p>
-                <p id="address"></p>
-                <p id="email"></p>
-                <p id="birthday"></p>
-                <p id="module"></p>
-                <p id="remark"></p>
-            </strong>
-        <!--</div>-->
-    </div>
-
-</div>
-
-<!-- Second Grid: Map -->
-<div class="w3-row">
-    <div class="w3-black w3-container w3-center" style="height:700px" id="map_canvas"></div>
-</div>
-
-</body>
-</html>
-```
-###### \src\main\resources\view\PersonListPanel.fxml
+###### /resources/view/PersonListPanel.fxml
 ``` fxml
   <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
 ```
-###### \src\main\resources\view\TaskListPanel.fxml
+###### /resources/view/TaskListPanel.fxml
 ``` fxml
   <ListView fx:id="taskListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
-```
-###### \src\test\java\seedu\address\logic\commands\AddCommandTest.java
-``` java
-        @Override
-        public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
-            fail("This method should not be called.");
-        }
-
-    }
-
-    /**
-     * A Model stub that always throw a DuplicatePersonException when trying to add a person.
-     */
-    private class ModelStubThrowingDuplicatePersonException extends ModelStub {
-        @Override
-        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
-            throw new DuplicatePersonException();
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
-            personsAdded.add(new Person(person));
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
-}
 ```

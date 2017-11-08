@@ -2,7 +2,7 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.person.Name;
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Task's appointment in the address book.
@@ -18,36 +18,39 @@ public class Appointment {
      */
     public static final String APPOINTMENT_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String appointmentName;
+    public final String appointment;
 
-    public Appointment(String name) {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        this.appointmentName = trimmedName;
+    public Appointment(String appointment) throws IllegalValueException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        if (!isValidAppointment(trimmedAppointment)) {
+            throw new IllegalValueException(MESSAGE_APPOINTMENT_CONSTRAINTS);
+        }
+        this.appointment = trimmedAppointment;
     }
 
     /**
      * Returns true if a given string is a valid appointment name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidAppointment(String test) {
         return test.matches(APPOINTMENT_VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return appointmentName;
+        return appointment;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && this.appointmentName.equals(((Name) other).fullName)); // state check
+                || appointment.equals(((Appointment) other).appointment)
+                && this.appointment.equals(((Appointment) other).appointment);
     }
 
     @Override
     public int hashCode() {
-        return appointmentName.hashCode();
+        return appointment.hashCode();
     }
 
 }

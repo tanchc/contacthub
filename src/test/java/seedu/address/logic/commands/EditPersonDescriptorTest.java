@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
@@ -52,7 +52,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different mods -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMods(VALID_MOD_GER1000).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMods(VALID_MODULE_GER1000).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
