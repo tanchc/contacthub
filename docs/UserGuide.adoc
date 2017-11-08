@@ -253,16 +253,44 @@ Opens the `CS2101` NUSMods page in the browser.
 * These commands are used for the tasklist.
 
 
-=== Adding a task: `addtask` or `at` [Since ?]
+=== Adding a task: `addtask` or `at` [Since v1.4]
 
-Adds a task to the address book +
+Adds a task to ContactHub +
 Format: `addtask t/APPOINTMENT d/DATE s/START_TIME`
+
+=== Editing a task: `edittask` or `et` [Since v1.4]
+
+Edits an existing task in ContactHub +
+Format: `edittask t/APPOINTMENT d/DATE s/START_TIME`
+
+****
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the task listing. The index must be a positive integer* 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+****
 
 Examples:
 
-* `addtask t/Work Meeting d/31/10/2017 s/12:00`
-* `addtask t/Soccer Match d/20/12/2017 s/08:00`
+* `edittask 1 t/Work d/31/10/2017 s/12:00`
+Edits the appointment, date and start time of the 1st task to be `Work`, `31/10/2017` and `12:00` respectively.
+* `edittask 2 d/20/12/2017 s/08:00`
+Edits the date and start time of the 2nd task to be `20/12/2017` and `08:00` respectively.
 
+=== Deleting a task: `deletetask` or `dt` [Since v1.4]
+
+Deletes the specified task from ContactHub. +
+Format: `deletetask INDEX`
+
+****
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the most recent task listing.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `delete 1` +
+Deletes the 1st task in ContactHub.
 
 == System Commands
 
