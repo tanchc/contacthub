@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_CARRIE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CARRIE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_GER1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_GER1000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CARRIE;
@@ -26,6 +26,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.ReadOnlyTask;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -71,15 +72,15 @@ public class TypicalPersons {
     public static final ReadOnlyPerson AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withPhones(VALID_PHONE_AMY).withBirthday(VALID_BIRTHDAY_AMY)
             .withEmails(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withModules(VALID_MOD_CS2101).build();
+            .withModules(VALID_MODULE_CS2101).build();
     public static final ReadOnlyPerson BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
             .withEmails(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withModules(VALID_MOD_GER1000, VALID_MOD_CS2101).build();
+            .withModules(VALID_MODULE_GER1000, VALID_MODULE_CS2101).build();
     public static final ReadOnlyPerson BOB_EDITED = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB)
             .withEmails(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withModules(VALID_MOD_CS2103, VALID_MOD_CS2101).build();
+            .withModules(VALID_MODULE_CS2103, VALID_MODULE_CS2101).build();
     public static final ReadOnlyPerson CARRIE = new PersonBuilder().withName(VALID_NAME_CARRIE)
             .withPhones(VALID_PHONE_CARRIE).withBirthday(VALID_BIRTHDAY_CARRIE)
             .withEmails(VALID_EMAIL_CARRIE).withAddress(VALID_ADDRESS_CARRIE).build();
@@ -105,7 +106,29 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getTypicalAddressBookData() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+
+        for (ReadOnlyTask task : getTypicalTasks()) {
+                ab.addTask(task);
+        }
+
+        return ab;
+    }
+
+
     public static List<ReadOnlyPerson> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<ReadOnlyTask> getTypicalTasks() {
+        return TypicalTasks.getTypicalTasks();
     }
 }

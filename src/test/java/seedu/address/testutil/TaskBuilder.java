@@ -41,7 +41,11 @@ public class TaskBuilder {
      */
 
     public TaskBuilder withAppointment(String appointment) {
-        this.task.setAppointment(new Appointment(appointment));
+        try {
+            this.task.setAppointment(new Appointment(appointment));
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("appointment is expected to be alphanumeric.");
+        }
         return this;
     }
 

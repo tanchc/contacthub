@@ -10,13 +10,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class StartTime {
 
     public static final String MESSAGE_TIME_CONSTRAINTS =
-            "StartTime must be in the format of HH/MM";
+            "StartTime must be in the format of HH:MM";
 
     public static final String TIME_VALIDATION_REGEX =
             "\\d{2}:\\d{2}";
     public final String value;
 
-    //Validates given StartTime.
+    // Validates given StartTime
     public StartTime(String startTime) throws IllegalValueException {
         requireNonNull(startTime);
         String trimmedTime = startTime.trim();

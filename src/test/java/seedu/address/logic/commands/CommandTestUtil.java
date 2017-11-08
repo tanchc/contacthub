@@ -52,9 +52,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ADDRESS_CARRIE = "Block 231, Carrie Street 3";
-    public static final String VALID_MOD_CS2103 = "CS2103";
-    public static final String VALID_MOD_CS2101 = "CS2101";
-    public static final String VALID_MOD_GER1000 = "GER1000";
+    public static final String VALID_MODULE_CS2103 = "CS2103";
+    public static final String VALID_MODULE_CS2101 = "CS2101";
+    public static final String VALID_MODULE_GER1000 = "GER1000";
     //@@author viviantan95
     public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
             + "/secondary/CHRIS-EVANS-865133.jpg";
@@ -92,17 +92,17 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_CARRIE = " " + PREFIX_ADDRESS + VALID_ADDRESS_CARRIE;
-    public static final String MOD_DESC_CS2103 = " " + PREFIX_MODULE + VALID_MOD_CS2103;
-    public static final String MOD_DESC_CS2101 = " " + PREFIX_MODULE + VALID_MOD_CS2101;
-    public static final String MOD_DESC_GER1000 = " " + PREFIX_MODULE + VALID_MOD_GER1000;
+    public static final String MODULE_DESC_CS2103 = " " + PREFIX_MODULE + VALID_MODULE_CS2103;
+    public static final String MODULE_DESC_CS2101 = " " + PREFIX_MODULE + VALID_MODULE_CS2101;
+    public static final String MODULE_DESC_GER1000 = " " + PREFIX_MODULE + VALID_MODULE_GER1000;
     public static final String URL_DESC_WEB = " " + PREFIX_PHOTO + VALID_WEB_PHOTO_URL;
     public static final String URL_DESC_LOCAL = " " + PREFIX_PHOTO + VALID_LOCAL_PHOTO_URL;
     public static final String APPOINTMENT_DESC_MEETING = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MEETING;
     public static final String APPOINTMENT_DESC_INTERVIEW = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_INTERVIEW;
     public static final String DATE_DESC_MEETING = " " + PREFIX_DATE + VALID_DATE_MEETING;
     public static final String DATE_DESC_INTERVIEW = " " + PREFIX_DATE + VALID_DATE_INTERVIEW;
-    public static final String START_TIME_DESC_MEETING = " " + PREFIX_STARTTIME + VALID_DATE_MEETING;
-    public static final String START_TIME_DESC_INTERVIEW = " " + PREFIX_STARTTIME + VALID_DATE_INTERVIEW;
+    public static final String START_TIME_DESC_MEETING = " " + PREFIX_STARTTIME + VALID_START_TIME_MEETING;
+    public static final String START_TIME_DESC_INTERVIEW = " " + PREFIX_STARTTIME + VALID_START_TIME_INTERVIEW;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -112,7 +112,7 @@ public class CommandTestUtil {
     //@@author
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_MOD_DESC = " " + PREFIX_MODULE + "hubby*"; // '*' not allowed in modules
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "hubby*"; // '*' not allowed in modules
     //@@author viviantan95
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
     //@@author
@@ -139,13 +139,13 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhones(VALID_PHONE_AMY).withBirthday(VALID_BIRTHDAY_AMY).withEmails(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withMods(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_AMY).withMods(VALID_MODULE_CS2101).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhones(VALID_PHONE_BOB).withBirthday(VALID_BIRTHDAY_BOB).withEmails(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withMods(VALID_MOD_GER1000, VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_BOB).withMods(VALID_MODULE_GER1000, VALID_MODULE_CS2101).build();
         DESC_CARRIE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CARRIE)
                 .withPhones(VALID_PHONE_CARRIE).withBirthday(VALID_BIRTHDAY_CARRIE).withEmails(VALID_EMAIL_CARRIE)
-                .withAddress(VALID_ADDRESS_CARRIE).withMods(VALID_MOD_CS2101).build();
+                .withAddress(VALID_ADDRESS_CARRIE).withMods(VALID_MODULE_CS2101).build();
         DESC_MEETING = new EditTaskDescriptorBuilder().withAppointment(VALID_APPOINTMENT_MEETING)
                 .withDate(VALID_DATE_MEETING).withStartTime(VALID_START_TIME_MEETING).build();
         DESC_INTERVIEW = new EditTaskDescriptorBuilder().withAppointment(VALID_APPOINTMENT_INTERVIEW)

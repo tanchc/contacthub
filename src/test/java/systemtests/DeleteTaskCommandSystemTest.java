@@ -57,8 +57,6 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(middleTaskIndex);
 
 
-        Index index = INDEX_FIRST_TASK;
-        int invalidIndex = getModel().getAddressBook().getPersonList().size();
         /* ---------------------------- Performing invalid delete task operation ------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
@@ -138,7 +136,7 @@ public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
                                       Index expectedSelectedCardIndex) {
         executeCommand(command);
-        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
 
         if (expectedSelectedCardIndex != null) {
             assertSelectedCardChanged(expectedSelectedCardIndex);

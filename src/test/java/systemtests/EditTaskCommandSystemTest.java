@@ -173,8 +173,11 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
                                       Index expectedSelectedCardIndex) {
         executeCommand(command);
+
         expectedModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        System.out.println(command);
+        System.out.println(expectedModel.getFilteredTaskList());
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertCommandBoxShowsDefaultStyle();
         if (expectedSelectedCardIndex != null) {
             assertSelectedCardChanged(expectedSelectedCardIndex);

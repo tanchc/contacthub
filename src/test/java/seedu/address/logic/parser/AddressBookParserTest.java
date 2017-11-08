@@ -22,6 +22,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ModuleContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -98,6 +100,19 @@ public class AddressBookParserTest {
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), commandAlias);
     }
+
+    // @@author ahmadalkaff
+    @Test
+    public void parseCommand_findModule() throws Exception {
+        List<String> keywords = Arrays.asList("CS2101", "CS2103");
+        FindModuleCommand command = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        FindModuleCommand commandAlias = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_ALIAS + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindModuleCommand(new ModuleContainsKeywordPredicate(keywords)), command);
+        assertEquals(new FindModuleCommand(new ModuleContainsKeywordPredicate(keywords)), commandAlias);
+    }
+    // @@author
 
     @Test
     public void parseCommand_help() throws Exception {

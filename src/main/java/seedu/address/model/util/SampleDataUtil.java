@@ -27,29 +27,33 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         try {
             return new Person[] {
-                new Person(new Name("Alex Yeoh"), getPhoneSet("87438807"), new Birthday("17/05/1995"),
-                    getEmailSet("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    new Photo("images/defaultPhoto.png"), getModuleSet("CS2101")),
-                new Person(new Name("Bernice Yu"), getPhoneSet("99272758"), new Birthday("08/01/1991"),
-                    getEmailSet("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        new Photo("images/defaultPhoto.png"), getModuleSet("CS2103", "CS2101")),
-                new Person(new Name("Charlotte Oliveiro"), getPhoneSet("93210283"),
-                    new Birthday("20/11/1987"), getEmailSet("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    new Photo("images/defaultPhoto.png"), getModuleSet("CS2103")),
-                new Person(new Name("David Li"), getPhoneSet("91031282"), new Birthday("29/02/1997"),
-                    getEmailSet("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    new Photo("images/defaultPhoto.png"), getModuleSet("GEQ1000")),
-                new Person(new Name("Irfan Ibrahim"), getPhoneSet("92492021"),
-                    new Birthday("01/01/1976"), getEmailSet("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
-                    new Photo("images/defaultPhoto.png"), getModuleSet("GER1000")),
-                new Person(new Name("Roy Balakrishnan"), getPhoneSet("92624417"),
-                    new Birthday("13/09/1966"), getEmailSet("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    new Photo("images/defaultPhoto.png"), getModuleSet("CFG1010"))
+                new Person(new Name("Alice Pauline"), getPhoneSet("85355255"), new Birthday("25/09/1990"),
+                    getEmailSet("alice@example.com"), new Address("123, Jurong West Ave 6, #08-111"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1231", "CS1010")),
+                new Person(new Name("Benson Meier"), getPhoneSet("98765432"), new Birthday("12/02/1985"),
+                    getEmailSet("johnd@example.com"),
+                    new Address("311, Clementi Ave 2, #02-25"),
+                        new Photo("images/defaultPhoto.png"), getModuleSet("CS1020", "CS1010")),
+                new Person(new Name("Carl Kurz"), getPhoneSet("95352563"),
+                    new Birthday("03/12/1973"), getEmailSet("heinz@example.com"),
+                    new Address("wall street"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1020", "CS1231")),
+                new Person(new Name("Daniel Meier"), getPhoneSet("87652533"), new Birthday("21/09/1988"),
+                    getEmailSet("cornelia@example.com"),
+                    new Address("10th street"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1010")),
+                new Person(new Name("Elle Meyer"), getPhoneSet("9482224"),
+                    new Birthday("04/08/1991"), getEmailSet("werner@example.com"),
+                    new Address("michigan ave"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1010")),
+                new Person(new Name("Fiona Kunz"), getPhoneSet("9482427"),
+                    new Birthday("01/10/1989"), getEmailSet("lydia@example.com"),
+                    new Address("little tokyo"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1010")),
+                new Person(new Name("George Best"), getPhoneSet("9482442"),
+                    new Birthday("15/05/1993"), getEmailSet("anna@example.com"),
+                    new Address("4th street"),
+                    new Photo("images/defaultPhoto.png"), getModuleSet("CS1010"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
@@ -59,8 +63,13 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                new Task(new Appointment("Meeting"), new Date("27/10/2017"), new StartTime("12:00")),
-                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("12:00"))
+                new Task(new Appointment("Meeting"), new Date("30/10/2017"), new StartTime("18:00")),
+                new Task(new Appointment("Soccer"), new Date("15/12/2017"), new StartTime("09:00")),
+                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("19:30")),
+                new Task(new Appointment("Work"), new Date("01/01/2018"), new StartTime("08:00")),
+                new Task(new Appointment("Homework"), new Date("12/01/2018"), new StartTime("23:59")),
+                new Task(new Appointment("Exam"), new Date("05/12/2017"), new StartTime("17:00")),
+                new Task(new Appointment("Competition"), new Date("25/11/2017"), new StartTime("12:00"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
