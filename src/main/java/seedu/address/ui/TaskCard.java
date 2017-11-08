@@ -57,7 +57,7 @@ public class TaskCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForMod(String modValue, int randNum) {
+    private static String getColorForModule(String modValue, int randNum) {
         if (!moduleColors.containsKey(modValue)) {
             moduleColors.put(modValue, colors[randNum]);
         }

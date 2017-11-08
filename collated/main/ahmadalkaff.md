@@ -1021,6 +1021,22 @@ public class XmlAdaptedPhone {
 ```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java
+    @FXML
+    private FlowPane phones;
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
+    @FXML
+    private FlowPane emails;
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
+        initPhones(person);
+        initEmails(person);
+        initModules(person);
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
         person.phoneProperty().addListener((observable, oldValue, newValue) -> {
             phones.getChildren().clear();
             initPhones(person);
@@ -1058,4 +1074,13 @@ public class XmlAdaptedPhone {
             emails.setHgap(GAP);
         });
     }
+```
+###### /resources/view/PersonListCard.fxml
+``` fxml
+      <FlowPane fx:id="phones" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
+```
+###### /resources/view/PersonListCard.fxml
+``` fxml
+      <FlowPane fx:id="emails" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
+    </VBox>
 ```

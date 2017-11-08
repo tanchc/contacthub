@@ -224,15 +224,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 ```
-<<<<<<< HEAD
-<<<<<<< HEAD
 ###### /java/seedu/address/model/person/Birthday.java
-=======
-###### \java\seedu\address\model\person\Birthday.java
->>>>>>> a64da38ede5c20b3c82b060ac2f01163bc20f361
-=======
-###### /java/seedu/address/model/person/Birthday.java
->>>>>>> 3c8e7f206806f79cc43e29dde645f6a82218f9fc
 ``` java
 /**
  * Represents a Person's Birthday in the address book.
@@ -268,13 +260,8 @@ public class Birthday {
         return test.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3c8e7f206806f79cc43e29dde645f6a82218f9fc
 ```
-###### \java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
 
     @Override
@@ -295,11 +282,6 @@ public class Birthday {
     }
 
 }
-<<<<<<< HEAD
->>>>>>> a64da38ede5c20b3c82b060ac2f01163bc20f361
-=======
-
->>>>>>> 3c8e7f206806f79cc43e29dde645f6a82218f9fc
 ```
 ###### /java/seedu/address/model/person/Person.java
 ``` java
@@ -399,13 +381,8 @@ public class Photo {
         this.value = photo;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3c8e7f206806f79cc43e29dde645f6a82218f9fc
 ```
-###### \java\seedu\address\model\person\Photo.java
+###### /java/seedu/address/model/person/Photo.java
 ``` java
     /**
      * Returns true if a given string is a valid url.
@@ -447,10 +424,6 @@ public class Photo {
         return value.hashCode();
     }
 }
-<<<<<<< HEAD
->>>>>>> a64da38ede5c20b3c82b060ac2f01163bc20f361
-=======
->>>>>>> 3c8e7f206806f79cc43e29dde645f6a82218f9fc
 ```
 ###### /java/seedu/address/model/person/ReadOnlyPerson.java
 ``` java

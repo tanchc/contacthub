@@ -42,6 +42,7 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    // @@author ahmadalkaff
     @FXML
     private FlowPane phones;
     //@@author viviantan95
@@ -50,8 +51,10 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private Label address;
+    // @@author ahmadalkaff
     @FXML
     private FlowPane emails;
+    // @@author
     @FXML
     private ImageView imageView;
     @FXML
@@ -61,6 +64,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        // @@author ahmadalkaff
         initPhones(person);
         initEmails(person);
         initModules(person);
