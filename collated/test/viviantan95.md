@@ -96,6 +96,12 @@ public class AddPhotoCommandTest {
         //different person
         AddPhotoCommand diffPersonCommand = new AddPhotoCommand(INDEX_SECOND_PERSON, photo);
         assertFalse(command.equals(diffPersonCommand));
+
+        //different index -> returns false
+        assertFalse(command.equals(new AddPhotoCommand(INDEX_SECOND_PERSON, photo)));
+
+        //different types -> returns false
+        assertFalse(command.equals(new ClearCommand()));
     }
 
     //Returns an object of AddPhotoCommand with {@param index} and {@param photo}
@@ -127,7 +133,7 @@ public class AddPhotoCommandTest {
 ```
 ###### \java\seedu\address\logic\commands\CommandTestUtil.java
 ``` java
-    public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
+    public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto1.png"; //Not a valid URL
 ```
 ###### \java\seedu\address\logic\parser\AddCommandParserTest.java
 ``` java
@@ -148,6 +154,58 @@ public class AddPhotoCommandTest {
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + BIRTHDAY_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MOD_DESC_GER1000
                         + MOD_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
+```
+###### \java\seedu\address\logic\parser\AddPhotoCommandParserTest.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_URL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LOCAL;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import org.junit.Test;
+
+import seedu.address.logic.commands.AddPhotoCommand;
+import seedu.address.model.person.Photo;
+
+public class AddPhotoCommandParserTest {
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPhotoCommand.MESSAGE_USAGE);
+
+    private AddPhotoCommandParser parser = new AddPhotoCommandParser();
+
+    @Test
+    public void parse_invalidInfo_failure() {
+        //zero index
+        assertParseFailure(parser, "0" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
+
+        //negative index
+        assertParseFailure(parser, "-1" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
+
+        //index out of bound
+        assertParseFailure(parser, "9999" + URL_DESC_LOCAL, AddPhotoCommand.MESSAGE_ADDPHOTO_UNSUCCESS);
+
+        //index containing chars
+        assertParseFailure(parser, "test" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
+
+        //invalid Url
+        assertParseFailure(parser, "1" + INVALID_URL_DESC, Photo.MESSAGE_PHOTO_CONSTRAINTS);
+    }
+
+
+    //Missing information when using addPhoto command -> failure
+    @Test
+    public void parse_missingInfo_failure() {
+        //missing index
+        assertParseFailure(parser, URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
+
+
+        //missing both index and URL
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+    }
+
+}
 ```
 ###### \java\seedu\address\model\person\PhotoTest.java
 ``` java

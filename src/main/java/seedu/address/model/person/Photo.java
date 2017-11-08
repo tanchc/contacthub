@@ -49,7 +49,9 @@ public class Photo {
     public String getBrowserPhoto() {
         return value;
     }
+    //@@author
 
+    //@@author viviantan95
     /**
      * Returns true if a given string is a valid url.
      */
