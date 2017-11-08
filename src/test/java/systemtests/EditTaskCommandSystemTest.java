@@ -65,14 +65,14 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
         command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + APPOINTMENT_DESC_MEETING
                 + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
         assertCommandSuccess(command, index, MEETING);
-
+        // @@author tanchc
         /* Case: edit some fields -> edited */
         index = INDEX_FIRST_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + VALID_DATE_MOVIE;
+        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + DATE_DESC_MEETING;
         ReadOnlyTask taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
         editedTask = new TaskBuilder(taskToEdit).withDate(VALID_DATE_MEETING).build();
         assertCommandSuccess(command, index, editedTask);
-
+        // @@author ahmadalkaff
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
