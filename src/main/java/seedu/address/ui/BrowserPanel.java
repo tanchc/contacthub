@@ -106,7 +106,7 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
-    // @@author tanchc, jshoung
+    // @@author jshoung
     @Subscribe
     private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
         loadDefaultPage();
@@ -115,6 +115,7 @@ public class BrowserPanel extends UiPart<Region> {
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson p = event.getNewSelection().person;
+        // @@author tanchc
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
         String mapAddress;
 
@@ -123,7 +124,7 @@ public class BrowserPanel extends UiPart<Region> {
         } else {
             mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
         }
-
+        // @@author jshoung
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
         String name = p.getName().getBrowserName();
@@ -131,11 +132,12 @@ public class BrowserPanel extends UiPart<Region> {
         String emails = p.getBrowserEmails();
         String phones = p.getBrowserPhones();
         String modules = p.getBrowserModules();
-
+        // @@author tanchc
         browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
                 WebEngine panel = browser.getEngine();
                 panel.executeScript("document.goToLocation(\"" + mapAddress + "\")");
+                // @@author jshoung
                 panel.executeScript("document.setBirthday(\"" + birthday + "\")");
                 panel.executeScript("document.setName(\"" + name + "\")");
                 panel.executeScript("document.setAddress(\"" + address + "\")");
@@ -145,7 +147,7 @@ public class BrowserPanel extends UiPart<Region> {
                 panel.executeScript("document.setModule(\"" + modules + "\")");
             }
         });
-
+        // @@author tanchc
         loadAddressPage(event.getNewSelection().person);
     }
 }
