@@ -484,7 +484,8 @@ public class Photo {
         case ESCAPE:
             commandTextField.setText("");
             break;
-        case CONTROL:
+        case ALT:
+            keyEvent.consume();
             commandTextField.positionCaret(commandTextField.getText().length());
             break;
         case DELETE:
