@@ -55,7 +55,7 @@ public class SampleDataUtil {
             throw new AssertionError("sample data cannot be invalid", e);
         }
     }
-
+    // @@author tanchc
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
@@ -66,16 +66,18 @@ public class SampleDataUtil {
             throw new AssertionError("sample data cannot be invalid", e);
         }
     }
-
+    // @@author
     public static ReadOnlyAddressBook getSampleAddressBook() {
         try {
             AddressBook sampleAb = new AddressBook();
             for (Person samplePerson : getSamplePersons()) {
                 sampleAb.addPerson(samplePerson);
             }
+            // @@author tanchc
             for (Task sampleTask : getSampleTasks()) {
                 sampleAb.addTask(sampleTask);
             }
+            // @@author
             return sampleAb;
         } catch (DuplicatePersonException e) {
             throw new AssertionError("sample data cannot contain duplicate persons", e);

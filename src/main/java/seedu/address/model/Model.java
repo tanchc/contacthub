@@ -16,10 +16,10 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    // @@author tanchc
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyTask> PREDICATE_SHOW_ALL_TASKS = unused -> true;
-
+    // @@author
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
 
@@ -28,16 +28,16 @@ public interface Model {
 
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
-
+    // @@author tanchc
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
-
+    // @@author
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
-
+    // @@author tanchc
     /** Adds the given task */
     void addTask(ReadOnlyTask task);
-
+    // @@author
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
@@ -59,16 +59,16 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
-
+    // @@author tanchc
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
-
+    // @@author
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
-
+    // @@author tanchc
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

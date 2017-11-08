@@ -180,6 +180,187 @@ public class MapCommand extends Command {
 ```
 ###### /java/seedu/address/model/ModelManager.java
 ``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to clear the person selection.
+ */
+public class ClearPersonSelectionEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### \java\seedu\address\commons\events\ui\GetModuleRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the module page.
+ */
+public class GetModuleRequestEvent extends BaseEvent {
+    public final String module;
+
+    public GetModuleRequestEvent(String module) {
+        this.module = module;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### \java\seedu\address\commons\events\ui\ShowBusRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the bus page.
+ */
+public class ShowBusRequestEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### \java\seedu\address\commons\events\ui\ShowMapRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the map page.
+
+ */
+public class ShowMapRequestEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### \java\seedu\address\commons\events\ui\ShowSummaryRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the command summary.
+ */
+public class ShowSummaryRequestEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### \java\seedu\address\logic\commands\BusCommand.java
+``` java
+package seedu.address.logic.commands;
+
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ShowBusRequestEvent;
+
+/**
+ * Opens bus route map for NUS
+ */
+public class BusCommand extends Command {
+
+    public static final String COMMAND_WORD = "bus";
+    public static final String COMMAND_ALIAS = "b";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows bus routes for NUS.\n"
+            + "Example: " + COMMAND_WORD;
+
+    static final String SHOWING_BUS_MESSAGE = "Opened bus window.";
+
+    @Override
+    public CommandResult execute() {
+        EventsCenter.getInstance().post(new ShowBusRequestEvent());
+        return new CommandResult(SHOWING_BUS_MESSAGE);
+    }
+}
+```
+###### \java\seedu\address\logic\commands\GetModuleCommand.java
+``` java
+package seedu.address.logic.commands;
+
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ClearPersonSelectionEvent;
+import seedu.address.commons.events.ui.GetModuleRequestEvent;
+
+/**
+ *
+ * Opens NUSMods webpage to get module information.
+ *
+ */
+public class GetModuleCommand extends Command {
+    public static final String COMMAND_WORD = "getmodule";
+    public static final String COMMAND_ALIAS = "gm";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows module information.\n"
+            + "Parameters: KEYWORD\n"
+            + "Example: " + COMMAND_WORD + " CS2101" + "\n"
+            + "Example: " + COMMAND_ALIAS + " CS2103T";
+
+    public static final String SHOWING_MODULE_MESSAGE = "Loaded module information for: ";
+
+    private final String module;
+
+    public GetModuleCommand(String module) {
+        this.module = module;
+    }
+```
+###### \java\seedu\address\logic\parser\AddressBookParser.java
+``` java
+        case HelpCommand.COMMAND_ALIAS:
+```
+###### \java\seedu\address\logic\parser\AddressBookParser.java
+``` java
+        case BusCommand.COMMAND_WORD:
+        case BusCommand.COMMAND_ALIAS:
+            return new BusCommand();
+```
+###### \java\seedu\address\logic\parser\AddressBookParser.java
+``` java
+        case MapCommand.COMMAND_WORD:
+        case MapCommand.COMMAND_ALIAS:
+            return new MapCommand();
+```
+###### \java\seedu\address\logic\parser\AddressBookParser.java
+``` java
+        case GetModuleCommand.COMMAND_WORD:
+        case GetModuleCommand.COMMAND_ALIAS:
+            return new GetModuleCommandParser().parse(arguments);
+```
+###### \java\seedu\address\logic\parser\AddressBookParser.java
+``` java
+        case SummaryCommand.COMMAND_WORD:
+        case SummaryCommand.COMMAND_ALIAS:
+            return new SummaryCommand();
+```
+###### \java\seedu\address\model\ModelManager.java
+``` java
     @Override
     public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
         for (int i = 0; i < addressBook.getPersonList().size(); i++) {
@@ -193,39 +374,8 @@ public class MapCommand extends Command {
             addressBook.updatePerson(oldPerson, newPerson);
         }
     }
-
-    @Override
-    public ObservableList<ReadOnlyTask> getFilteredTaskList() {
-        return FXCollections.unmodifiableObservableList(filteredTasks);
-    }
-
-    @Override
-    public void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
-}
 ```
-###### /java/seedu/address/model/person/Address.java
+###### \java\seedu\address\model\person\Address.java
 ``` java
     public String getBrowserAddress() {
         return value;
@@ -233,13 +383,13 @@ public class MapCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Birthday.java
+###### \java\seedu\address\model\person\Birthday.java
 ``` java
     public String getBrowserValue() {
         return browserValue;
     }
 ```
-###### /java/seedu/address/model/person/Name.java
+###### \java\seedu\address\model\person\Name.java
 ``` java
     public String getBrowserName() {
         return browserName;
@@ -264,7 +414,7 @@ public class MapCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
@@ -287,7 +437,7 @@ public class MapCommand extends Command {
     }
 
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
@@ -314,7 +464,7 @@ public class MapCommand extends Command {
     }
 
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
@@ -367,24 +517,21 @@ public class MapCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Photo.java
+###### \java\seedu\address\model\person\Photo.java
 ``` java
     public String getBrowserPhoto() {
         return value;
     }
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
-
+    @Subscribe
+    private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
+        loadDefaultPage();
+    }
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
-        if (stopIndex < 0) {
-            mapAddress = p.getAddress().getGMapsAddress();
-        } else {
-            mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
-        }
-
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
         String name = p.getName().getBrowserName();
@@ -392,11 +539,9 @@ public class MapCommand extends Command {
         String emails = p.getBrowserEmails();
         String phones = p.getBrowserPhones();
         String modules = p.getBrowserModules();
-
-        browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if (newState == Worker.State.SUCCEEDED) {
-                WebEngine panel = browser.getEngine();
-                panel.executeScript("document.goToLocation(\"" + mapAddress + "\")");
+```
+###### \java\seedu\address\ui\BrowserPanel.java
+``` java
                 panel.executeScript("document.setBirthday(\"" + birthday + "\")");
                 panel.executeScript("document.setName(\"" + name + "\")");
                 panel.executeScript("document.setAddress(\"" + address + "\")");
@@ -406,13 +551,100 @@ public class MapCommand extends Command {
                 panel.executeScript("document.setModule(\"" + modules + "\")");
             }
         });
+```
+###### \java\seedu\address\ui\BusWindow.java
+``` java
+package seedu.address.ui;
 
-        loadAddressPage(event.getNewSelection().person);
+import java.util.logging.Logger;
+
+import javafx.scene.Scene;
+import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.FxViewUtil;
+
+/**
+ * Controller for bus page
+ */
+public class BusWindow extends UiPart<Region> {
+
+
+    private static final Logger logger = LogsCenter.getLogger(BusWindow.class);
+    private static final String ICON = "/images/bus_icon.png";
+    private static final String FXML = "BusWindow.fxml";
+    private static final String TITLE = "Bus Routes";
+
+    private final Stage dialogStage;
+
+    public BusWindow() {
+        super(FXML);
+        Scene scene = new Scene(getRoot());
+        //Null passed as the parent stage to make it non-modal.
+        dialogStage = createDialogStage(TITLE, null, scene);
+        dialogStage.setMaximized(false);
+        FxViewUtil.setStageIcon(dialogStage, ICON);
+    }
+
+    /**
+     * Shows the bus window.
+     * @throws IllegalStateException
+     * <ul>
+     *     <li>
+     *         if this method is called on a thread other than the JavaFX Application Thread.
+     *     </li>
+     *     <li>
+     *         if this method is called during animation or layout processing.
+     *     </li>
+     *     <li>
+     *         if this method is called on the primary stage.
+     *     </li>
+     *     <li>
+     *         if {@code dialogStage} is already showing.
+     *     </li>
+     * </ul>
+     */
+    public void show() {
+        logger.fine("Showing bus routes for NUS.");
+        dialogStage.showAndWait();
+    }
+}
+```
+###### \java\seedu\address\ui\MainWindow.java
+``` java
+    /**
+     * Opens the bus window.
+     */
+    @FXML
+    public void handleBus() {
+        BusWindow busWindow = new BusWindow();
+        busWindow.show();
+    }
+
+    /**
+     * Opens the map window.
+     */
+    @FXML
+    public void handleMap() {
+        MapWindow mapWindow = new MapWindow();
+        mapWindow.show();
+    }
+
+    /**
+     * Opens the module in browser.
+     */
+    @FXML
+    public void handleModule(String module) {
+        browserPanel.loadPage("https://nusmods.com/modules/" + module);
     }
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\MainWindow.java
 ``` java
-}
+    @Subscribe
+    private void handleShowBusEvent(ShowBusRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleBus();
+    }
 ```
 ###### /java/seedu/address/ui/BusWindow.java
 ``` java
@@ -579,7 +811,25 @@ public class MapWindow extends UiPart<Region> {
     }
 }
 ```
-###### /java/seedu/address/ui/ResultDisplay.java
+###### \java\seedu\address\ui\PersonListPanel.java
+``` java
+    /**
+     * Scrolls to the top and clears person selection.
+     */
+    private void scrollToAndClear() {
+        Platform.runLater(() -> {
+            personListView.scrollTo(1);
+            personListView.getSelectionModel().clearSelection();
+        });
+    }
+
+    @Subscribe
+    private void handleClearPersonListRequestEvent(ClearPersonSelectionEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        scrollToAndClear();
+    }
+```
+###### \java\seedu\address\ui\ResultDisplay.java
 ``` java
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
@@ -1033,12 +1283,21 @@ li {
 
 ###### /resources/view/PersonListPanel.fxml
 ``` fxml
-  <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
-</VBox>
-```
 
-###### /resources/view/TaskListPanel.fxml
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <ImageView fitHeight="2600.0" fitWidth="2600.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../docs/images/map.jpg"/>
+      </image>
+   </ImageView>
+</ScrollPane>
+```
+###### \resources\view\PersonListPanel.fxml
 ``` fxml
-  <ListView fx:id="taskListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
+  <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
 ```

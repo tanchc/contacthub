@@ -115,11 +115,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_ALIAS:
             // @@author
             return new FindCommandParser().parse(arguments);
-
+        // @@author tanchc
         case FindModuleCommand.COMMAND_WORD:
         case FindModuleCommand.COMMAND_ALIAS:
             return new FindModuleCommandParser().parse(arguments);
-
+        // @@author
         case ListCommand.COMMAND_WORD:
         // @@author ahmadalkaff
         case ListCommand.COMMAND_ALIAS:
