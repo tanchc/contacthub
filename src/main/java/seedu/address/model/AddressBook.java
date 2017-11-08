@@ -80,7 +80,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         try {
             setPersons(newData.getPersonList());
+            // @@author tanchc
             setTasks(newData.getTaskList());
+            // @@author
         } catch (DuplicatePersonException e) {
             assert false : "ContactHub should not have duplicate persons";
         }

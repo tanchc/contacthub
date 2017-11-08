@@ -103,12 +103,12 @@ public class AddCommandTest {
         public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
             fail("This method should not be called.");
         }
-
+        // @@author tanchc
         @Override
         public void addTask(ReadOnlyTask task) {
             fail("This method should not be called.");
         }
-
+        // @@author
         @Override
         public void resetData(ReadOnlyAddressBook newData) {
             fail("This method should not be called.");
@@ -157,12 +157,11 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate) {
             fail("This method should not be called.");
         }
-
+        // @@author tanchc
         @Override
         public void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate) {
             fail("This method should not be called.");
         }
-
         // @@author ahmadalkaff
         @Override
         public void sortPersonListByName() {

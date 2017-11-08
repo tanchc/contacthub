@@ -36,7 +36,9 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
      */
     public XmlSerializableAddressBook() {
         persons = new ArrayList<>();
+        // @@author tanchc
         tasks = new ArrayList<>();
+        // @@author
         modules = new ArrayList<>();
     }
 

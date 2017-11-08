@@ -60,13 +60,13 @@ public class PersonListPanel extends UiPart<Region> {
             personListView.getSelectionModel().clearAndSelect(index);
         });
     }
-
+    // @@author tanchc
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToPersonListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         scrollTo(event.targetIndex);
     }
-
+    // @@author
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code PersonCard}.
      */

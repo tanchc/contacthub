@@ -28,16 +28,16 @@ public interface Model {
 
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
-
+    // @@author tanchc
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
-
+    // @@author
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
-
+    // @@author tanchc
     /** Adds the given task */
     void addTask(ReadOnlyTask task);
-
+    // @@author
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
@@ -68,7 +68,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
-
+    // @@author tanchc
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

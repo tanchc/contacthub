@@ -60,7 +60,7 @@ public class CommandTestUtil {
             + "/secondary/CHRIS-EVANS-865133.jpg";
     public static final String VALID_LOCAL_PHOTO_URL = "file://"
             + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
-    //@@author
+    // @@author tanchc
     public static final String VALID_APPOINTMENT_MOVIE = "Movie";
     public static final String VALID_APPOINTMENT_EVENT = "Event";
     public static final String VALID_APPOINTMENT_BADMINTON = "Badminton";
@@ -77,6 +77,7 @@ public class CommandTestUtil {
     public static final String VALID_DATE_INTERVIEW = "28/10/2017";
     public static final String VALID_START_TIME_MEETING = "12:00";
     public static final String VALID_START_TIME_INTERVIEW = "10:00";
+    // @@author
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_CARRIE = " " + PREFIX_NAME + VALID_NAME_CARRIE;
@@ -97,13 +98,14 @@ public class CommandTestUtil {
     public static final String MOD_DESC_GER1000 = " " + PREFIX_MODULE + VALID_MOD_GER1000;
     public static final String URL_DESC_WEB = " " + PREFIX_PHOTO + VALID_WEB_PHOTO_URL;
     public static final String URL_DESC_LOCAL = " " + PREFIX_PHOTO + VALID_LOCAL_PHOTO_URL;
+    // @@author tanchc
     public static final String APPOINTMENT_DESC_MEETING = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MEETING;
     public static final String APPOINTMENT_DESC_INTERVIEW = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_INTERVIEW;
     public static final String DATE_DESC_MEETING = " " + PREFIX_DATE + VALID_DATE_MEETING;
     public static final String DATE_DESC_INTERVIEW = " " + PREFIX_DATE + VALID_DATE_INTERVIEW;
     public static final String START_TIME_DESC_MEETING = " " + PREFIX_STARTTIME + VALID_DATE_MEETING;
     public static final String START_TIME_DESC_INTERVIEW = " " + PREFIX_STARTTIME + VALID_DATE_INTERVIEW;
-
+    // @@author
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     //@@author viviantan95
@@ -115,7 +117,7 @@ public class CommandTestUtil {
     public static final String INVALID_MOD_DESC = " " + PREFIX_MODULE + "hubby*"; // '*' not allowed in modules
     //@@author viviantan95
     public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
-    //@@author
+    // @@author tanchc
     public static final String APPOINTMENT_DESC_MOVIE = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MOVIE;
     public static final String APPOINTMENT_DESC_EVENT = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_EVENT;
     public static final String APPOINTMENT_DESC_BADMINTON = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_BADMINTON;
@@ -129,7 +131,7 @@ public class CommandTestUtil {
     public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT + "Meetings&"; // '&' not allowed
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01.01.2020"; // '.' not allowed
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_STARTTIME + "1300"; // missing ':' symbol
-
+    // @@author
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCommand.EditPersonDescriptor DESC_CARRIE;

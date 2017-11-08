@@ -1,5 +1,5 @@
 # ahmadalkaff
-###### /java/guitests/guihandles/PersonCardHandle.java
+###### \java\guitests\guihandles\PersonCardHandle.java
 ``` java
         Region phonesContainer = getChildNode(PHONES_FIELD_ID);
         this.phoneLabels = phonesContainer
@@ -15,14 +15,14 @@
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
 ```
-###### /java/seedu/address/logic/commands/AddCommandTest.java
+###### \java\seedu\address\logic\commands\AddCommandTest.java
 ``` java
         @Override
         public void sortPersonListByName() {
             fail("This method should not be called.");
         }
 ```
-###### /java/seedu/address/logic/commands/DeleteTaskCommandTest.java
+###### \java\seedu\address\logic\commands\DeleteTaskCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -146,7 +146,7 @@ public class DeleteTaskCommandTest {
 
 }
 ```
-###### /java/seedu/address/logic/commands/EditTaskCommandTest.java
+###### \java\seedu\address\logic\commands\EditTaskCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -313,7 +313,7 @@ public class EditTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/ListModuleCommandTest.java
+###### \java\seedu\address\logic\commands\ListModuleCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -440,7 +440,7 @@ public class ListModuleCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/SortCommandTest.java
+###### \java\seedu\address\logic\commands\SortCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -483,7 +483,7 @@ public class SortCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParserTest.java
+###### \java\seedu\address\logic\parser\AddressBookParserTest.java
 ``` java
     @Test
     public void parseCommand_listModule() throws Exception {
@@ -501,7 +501,7 @@ public class SortCommandTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_ALIAS + " 3") instanceof SortCommand);
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtilTest.java
+###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
     @Test
     public void parsePhones_emptyCollection_returnsEmptySet() throws Exception {
@@ -516,7 +516,7 @@ public class SortCommandTest {
         assertEquals(expectedPhoneSet, actualPhoneSet);
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtilTest.java
+###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
     @Test
     public void parseEmails_emptyCollection_returnsEmptySet() throws Exception {
@@ -531,21 +531,22 @@ public class SortCommandTest {
         assertEquals(expectedEmailSet, actualEmailSet);
     }
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
             Set<Phone> defaultPhones = SampleDataUtil.getPhoneSet(DEFAULT_PHONES);
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
             Set<Email> defaultEmails = SampleDataUtil.getEmailSet(DEFAULT_EMAILS);
 ```
-###### /java/seedu/address/testutil/PersonUtil.java
+###### \java\seedu\address\testutil\PersonUtil.java
 ``` java
         person.getPhones().stream().forEach(
             s -> sb.append(PREFIX_PHONE + s.value + " ")
         );
+
 ```
-###### /java/seedu/address/testutil/PersonUtil.java
+###### \java\seedu\address\testutil\PersonUtil.java
 ``` java
         person.getEmails().stream().forEach(
             s -> sb.append(PREFIX_EMAIL + s.value + " ")
