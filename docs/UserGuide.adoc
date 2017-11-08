@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103AUG2017-T11-B2/main
 
-By: `CS2103T T11-B2`      Since: `Sep 2017`      Licence: `MIT`
+By: `CS2103T T11-B2` Since: `Sep 2017` License: `MIT` Version: `1.5rc`
 
 == Quick Start
 
@@ -22,7 +22,7 @@ By: `CS2103T T11-B2`      Since: `Sep 2017`      Licence: `MIT`
 Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `ContactHub.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your ContactHub.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -37,24 +37,22 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * **`delete`** `3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
-.  Refer to the link:#Commands[Commands] section below for details of each command.
-
-== Commands
+.  Refer to the sections below for details of each command.
 
 ====
 *Command Format*
 
 * Commands are `case insensitive`.
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [m/MODULE]` can be used as `n/John Doe m/CS2101` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times e.g. `p/PHONE_NUMBER...` can be used as `p/12345678`, `p/12345678 p/87654321` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* Each command has a given abbreviation you can use in place of the command itself. e.g. `clear` and `c` are both acceptable.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+* Items in square brackets are optional.
+* Items with `…`​ after them can be used multiple times.
+* Items can be in any order.
+* Each command has a given abbreviation you can use in place of the command itself.
 ====
 
-=== Viewing help : `help`
+== Contact Commands
 
-Format: `help`
+* These commands are for any actions relating to your contacts.
 
 === Adding a person: `add` or `a`
 
@@ -74,11 +72,6 @@ Examples:
 
 Shows a list of all persons in the address book. +
 Format: `list`
-
-=== Listing all modules : `listmodules` or `lm` [Since v1.2]
-
-Shows a list of all modules in the address book. +
-Format: `listmodules`
 
 === Sorting all persons : `sort` or `s`
 
@@ -115,7 +108,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Contacts matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
@@ -124,27 +117,6 @@ Examples:
 Returns `john` and `John Doe`
 * `find Betsy Tim John`  +
 Returns any person having names `Betsy`, `Tim`, or `John`
-
-=== Locating persons by modules: `findmodule` or `fm` [Since v1.2]
-
-Finds persons whose modules contain any of the given keywords. +
-Format: `findmodule KEYWORD [MORE_KEYWORDS]`
-
-****
-* The search is case insensitive. e.g `cs2103` will match `CS2103`
-* The order of the keywords does not matter. e.g. `CS2101 CS2103` will match `CS2103 CS2101`
-* Only the modules are searched.
-* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
-* Modules matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2101 CS2103` will return
-  contacts with modules containing either 'CS2101', 'CS2103' or both
-****
-
-Examples:
-
-* `findmodule CS2101` +
-Returns `Alex Yeoh` and `Bernice Yu` with modules containing 'CS2101' inside
-* `findmodule CS2101 CS2103`  +
-Returns any person having modules `CS2101` or `CS2103`
 
 === Deleting a person : `delete` or `d`
 
@@ -186,13 +158,41 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
-=== Adding a photo to a Person: `addPhoto` or `ap`
+=== Clearing all entries : `clear` or `c`
 
-Add a custom photo to the profile a Person in Contacthub. +
+Clears all contact entries from ContactHub. +
+Format: `clear`
+
+=== Listing all modules : `listmodules` or `lm` [Since v1.2]
+
+Shows a list of all modules in the address book. +
+Format: `listmodules`
+
+=== Locating persons by modules: `findmodule` or `fm` [Since v1.2]
+
+Finds persons whose modules contain any of the given keywords. +
+Format: `findmodule KEYWORD [MORE_KEYWORDS]`
+
+****
+* Only the exact module name is matched e.g. `CS2103` will not match `CS2103T`
+* Contacts matching at least one keyword will be returned. e.g. `CS2101 CS2103` will return
+  contacts with modules containing either 'CS2101', 'CS2103' or both
+****
+
+Examples:
+
+* `findmodule CS2101` +
+Returns `Alex Yeoh` and `Bernice Yu` with modules containing 'CS2101' inside
+* `findmodule CS2101 CS2103`  +
+Returns any person having modules `CS2101` or `CS2103`
+
+=== Adding a photo to a Contact: `addPhoto` or `ap` [Since ?]
+
+Add a custom photo to the profile of a Contact in Contacthub. +
 Format: `addphoto INDEX u/PHOTO_URL`
 
 ****
-* Adds a photo to the Person of the specific `INDEX`.
+* Adds a photo to the Contact of the specific `INDEX`.
 * The index refers to the index number shown in the most recent listing.
 * The index must be valid and a positive integer 1, 2, 3, ...
 * The URL of the photo stored in the internet must be valid.
@@ -202,11 +202,50 @@ Format: `addphoto INDEX u/PHOTO_URL`
 Examples:
 
 * `addphoto 1 u/https://www.facebook.com/AlexYeoh/photo1.jpg` +
-Sets the photo of the 1st person to that in the given URL.
+Sets the photo of the 1st contact to that in the given URL.
 * `addphoto 1` +
-Resets the photo of the 1st person back to the default image.
+Resets the photo of the 1st contact back to the default image.
 
-=== Adding a task: `addtask` or `at`
+== View Commands
+
+* These commands are used to open the described information in
+either a new window or in the browser panel.
+
+=== Viewing help : `help` or `h`
+
+Opens the User Guide in a new window. +
+Format: `help`
+
+=== Viewing bus routes : `bus` or `b` [Since v1.5rc]
+
+Opens the official reference for NUS bus routes in a new window. +
+Format: `bus`
+
+=== Viewing NUS map : `map` or `m` [Since v1.5rc]
+
+Opens the official map for NUS in a new window. +
+Format: `map`
+
+=== Viewing module information : `getmodule` or `gm` [Since v1.5rc]
+
+Opens the NUSMods module information page for the given module in the browser. +
+Format: `getmodule KEYWORD`
+
+Examples:
+
+* `getmodule CS2101` +
+Opens the `CS2101` NUSMods page in the browser.
+
+****
+* Entering an invalid module will load the main NUSMods page.
+****
+
+== Tasklist Commands
+
+* These commands are used for the tasklist.
+
+
+=== Adding a task: `addtask` or `at` [Since ?]
 
 Adds a task to the address book +
 Format: `addtask t/APPOINTMENT d/DATE s/START_TIME`
@@ -215,6 +254,11 @@ Examples:
 
 * `addtask t/Work Meeting d/31/10/2017 s/12:00`
 * `addtask t/Soccer Match d/20/12/2017 s/08:00`
+
+
+== System Commands
+
+* These commands are for general application functions that aren't specific to any feature.
 
 === Listing entered commands : `history` or `h`
 
@@ -234,7 +278,7 @@ Format: `undo`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify the address book's content (`add`, `delete`, `edit` and `clear`).
+Undoable commands: Commands that modify contents of either contacts or tasklist.
 ====
 
 Examples:
@@ -276,69 +320,34 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
-=== Clearing all entries : `clear` or `c`
-
-Clears all entries from the address book. +
-Format: `clear`
-
 === Exiting the program : `exit` or `x`
 
 Exits the program. +
 Format: `exit`
 
-=== Keyboard shortcuts [Since v1.2]
+=== Saving data
 
-Several keyboard keys have special operations when typing in command box. +
-
-* Escape: Clears the whole command box
-* Control: Relocates text cursor to the right completely
-* Delete: Deletes a chunk of word or chunk of whitespace on the left of the text cursor
-* Insert: Fills the command box with the AddCommand parameters.
-
-=== Saving the data
-
-ContactHub data are saved in the hard disk automatically after any command that changes the data. +
+ContactHub data is saved in the hard disk automatically after any command that changes the data. +
 
 There is no need to save manually.
 
+
+== Keyboard Shortcuts [Since v1.2]
+
+Several keyboard keys have special operations when typing in command box. +
+
+* *Escape* : Clears the whole command box
+* *Control* : Relocates text cursor to the right completely
+* *Delete* : Deletes a chunk of words or chunk of whitespace on the left of the text cursor
+* *Insert* : Fills the command box with the AddCommand parameters.
+
 == Coming in v2.0
 
-=== Support for multiple phone numbers and emails
-=== Replacement of browser with extended details page
-=== Right-click functionality
-=== Note functionality
-=== Ability to add pictures for contacts
+* Right-click functionality
+* Note functionality
+* Map navigation functionality with CLI input
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
-
-== Command Summary
-
-* *Add* `add n/NAME p/PHONE_NUMBER... b/BIRTHDAY e/EMAIL... a/ADDRESS [m/MODULE]...` +
-e.g. `add n/James Ho p/22224444 p/66669999 b/02/02/1992 e/jamesho@example.com e/jho@live.com a/123, Clementi Rd, 1234665 m/CS2101` +
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER]... [b/BIRTHDAY] [e/EMAIL]... [a/ADDRESS] [m/MODULE]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *Find Module* : `findmodule KEYWORD [MORE_KEYWORDS]` +
-e.g. `findmodule CS2101 CS2103`
-* *Help* : `help`
-* *History* : `history`
-* *List* : `list`
-* *Listmodules* : `listmodules`
-* *Redo* : `redo`
-* *Select* : `select` +
-e.g. `select 2`
-* *Sort* : `sort`
-* *Undo* : `undo`
-
-== Keyboard shortcuts
-* *Escape* : Clears the whole command box
-* *Control* : Relocates text cursor to the right completely
-* *Delete* : Deletes a chunk of words or chunk of whitespace on the left of the text cursor
-* *Insert* : Fills the command box with the AddCommand parameters.

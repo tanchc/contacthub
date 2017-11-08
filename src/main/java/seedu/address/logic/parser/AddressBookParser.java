@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddPhotoCommand;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.BusCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -18,10 +19,12 @@ import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindModuleCommand;
+import seedu.address.logic.commands.GetModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListModuleCommand;
+import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -147,6 +150,9 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+        // @@author jshoung
+        case HelpCommand.COMMAND_ALIAS:
+            // @@author
             return new HelpCommand();
 
         case UndoCommand.COMMAND_WORD:
@@ -160,6 +166,24 @@ public class AddressBookParser {
         case RedoCommand.COMMAND_ALIAS:
             // @@author
             return new RedoCommand();
+
+        // @@author jshoung
+        case BusCommand.COMMAND_WORD:
+        case BusCommand.COMMAND_ALIAS:
+            return new BusCommand();
+            // @@author
+
+        // @@author jshoung
+        case MapCommand.COMMAND_WORD:
+        case MapCommand.COMMAND_ALIAS:
+            return new MapCommand();
+            // @@author
+
+        // @@author jshoung
+        case GetModuleCommand.COMMAND_WORD:
+        case GetModuleCommand.COMMAND_ALIAS:
+            return new GetModuleCommandParser().parse(arguments);
+            // @@author
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

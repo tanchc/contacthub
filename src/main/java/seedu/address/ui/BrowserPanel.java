@@ -84,8 +84,7 @@ public class BrowserPanel extends UiPart<Region> {
         String reset = FileUtils.readFileToString(resetFile);
         FileUtils.writeStringToFile(addressFile, reset);
     }*/
-
-    private void loadPage(String url) {
+    protected void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
     }
 
@@ -97,6 +96,10 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(defaultPage.toExternalForm());
     }
 
+    //@@author jshoung
+
+    //@@author
+
     /**
      * Frees resources allocated to the browser.
      */
@@ -104,13 +107,22 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
-    //@@author Clement Tan, jshoung
+    //@@author tanchc
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson p = event.getNewSelection().person;
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
-        String mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        String mapAddress;
+        //@@author
+
+        //@@author jshoung
+        if (stopIndex < 0) {
+            mapAddress = p.getAddress().getGMapsAddress();
+        } else {
+            mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
+        }
+
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
         String name = p.getName().getBrowserName();
@@ -135,4 +147,5 @@ public class BrowserPanel extends UiPart<Region> {
 
         loadAddressPage(event.getNewSelection().person);
     }
+    //@@author jshoung
 }
