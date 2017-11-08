@@ -231,7 +231,7 @@ Format: `map`
 === Viewing command summary : `summary` or `sm` [Since v1.5rc]
 
 The command summary is open by default in the browser upon starting the application.
- This command is used to reopen it after using other commands. e.g. `getmodule` +
+ This command is used to reopen it after using other commands that load in the browser. e.g. `getmodule` +
 Format: `summary`
 
 === Viewing module information : `getmodule` or `gm` [Since v1.5rc]
