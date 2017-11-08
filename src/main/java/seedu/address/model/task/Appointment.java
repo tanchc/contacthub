@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 
 /**
@@ -20,10 +21,13 @@ public class Appointment {
 
     public final String appointmentName;
 
-    public Appointment(String name) {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        this.appointmentName = trimmedName;
+    public Appointment(String appointment) throws IllegalValueException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        if (!isValidName(trimmedAppointment)) {
+            throw new IllegalValueException(MESSAGE_APPOINTMENT_CONSTRAINTS);
+        }
+        this.appointmentName = trimmedAppointment;
     }
 
     /**

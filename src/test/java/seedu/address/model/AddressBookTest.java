@@ -3,6 +3,8 @@ package seedu.address.model;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookPersons;
+import static seedu.address.testutil.TypicalTasks.EVENT;
+import static seedu.address.testutil.TypicalTasks.MEETING;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +22,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.Task;
 
 public class AddressBookTest {
 
@@ -32,6 +35,7 @@ public class AddressBookTest {
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
         assertEquals(Collections.emptyList(), addressBook.getModuleList());
+        assertEquals(Collections.emptyList(), addressBook.getTaskList());
     }
 
     @Test
@@ -52,7 +56,8 @@ public class AddressBookTest {
         // Repeat ALICE twice
         List<Person> newPersons = Arrays.asList(new Person(ALICE), new Person(ALICE));
         List<Module> newModules = new ArrayList<>(ALICE.getModules());
-        AddressBookStub newData = new AddressBookStub(newPersons, newModules);
+        List<Task> newTasks = Arrays.asList(new Task(MEETING), new Task(EVENT));
+        AddressBookStub newData = new AddressBookStub(newPersons, newModules, newTasks);
 
         thrown.expect(AssertionError.class);
         addressBook.resetData(newData);
@@ -70,6 +75,14 @@ public class AddressBookTest {
         addressBook.getModuleList().remove(0);
     }
 
+    // @@author ahmadalkaff
+    @Test
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        addressBook.getTaskList().remove(0);
+    }
+    // @@author
+
     /**
      * A stub ReadOnlyAddressBook whose persons and mods lists can violate interface constraints.
      */
@@ -78,9 +91,10 @@ public class AddressBookTest {
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules) {
+        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules, Collection<? extends Task> tasks) {
             this.persons.setAll(persons);
             this.modules.setAll(modules);
+            this.tasks.setAll(tasks);
         }
 
         @Override
