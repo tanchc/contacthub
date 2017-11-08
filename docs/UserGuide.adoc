@@ -229,7 +229,7 @@ Format: `map`
 === Viewing command summary : `summary` or `sm` [Since v1.5rc]
 
 The command summary is open by default in the browser upon starting the application.
- This command is used to reopen it after using other commands. e.g. `getmodule` +
+ This command is used to reopen it after using other commands that load in the browser. e.g. `getmodule` +
 Format: `summary`
 
 === Viewing module information : `getmodule` or `gm` [Since v1.5rc]
@@ -251,7 +251,7 @@ Opens the `CS2101` NUSMods page in the browser.
 * These commands are used for the tasklist.
 
 
-=== Adding a task: `addtask` or `at` [Since ?]
+=== Adding a task: `addtask` or `at` [Since v1.4]
 
 Adds a task to the address book +
 Format: `addtask t/APPOINTMENT d/DATE s/START_TIME`
