@@ -30,6 +30,7 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.VenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -191,6 +192,14 @@ public class AddressBookParser {
         case SummaryCommand.COMMAND_ALIAS:
             return new SummaryCommand();
             // @@author
+
+        // @@author jshoung
+        case VenueCommand.COMMAND_WORD:
+        case VenueCommand.COMMAND_ALIAS:
+            return new VenueCommandParser().parse(arguments);
+            // @@author
+
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
