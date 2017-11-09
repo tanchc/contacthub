@@ -26,6 +26,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.ReadOnlyTask;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -105,7 +106,29 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getTypicalAddressBookData() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+
+        for (ReadOnlyTask task : getTypicalTasks()) {
+                ab.addTask(task);
+        }
+
+        return ab;
+    }
+
+
     public static List<ReadOnlyPerson> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<ReadOnlyTask> getTypicalTasks() {
+        return TypicalTasks.getTypicalTasks();
     }
 }

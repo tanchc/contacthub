@@ -24,10 +24,10 @@ public class Appointment {
     public Appointment(String appointment) throws IllegalValueException {
         requireNonNull(appointment);
         String trimmedAppointment = appointment.trim();
-        if (!isValidAppointment(trimmedAppointment)) {
+        if (!isValidName(trimmedAppointment)) {
             throw new IllegalValueException(MESSAGE_APPOINTMENT_CONSTRAINTS);
         }
-        this.appointment = trimmedAppointment;
+        this.appointmentName = trimmedAppointment;
     }
 
     /**
@@ -45,8 +45,8 @@ public class Appointment {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || appointment.equals(((Appointment) other).appointment)
-                && this.appointment.equals(((Appointment) other).appointment);
+                || (other instanceof Appointment // instanceof handles nulls
+                && this.appointmentName.equals(((Appointment) other).appointmentName)); // state check
     }
 
     @Override

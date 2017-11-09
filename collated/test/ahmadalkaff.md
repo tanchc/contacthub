@@ -15,6 +15,183 @@
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
 ```
+###### \java\guitests\guihandles\TaskCardHandle.java
+``` java
+package guitests.guihandles;
+
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+
+/**
+ * Provides a handle to a task card in the task list panel.
+ */
+public class TaskCardHandle extends NodeHandle<Node> {
+    private static final String APPOINTMENT_FIELD_ID = "#appointment";
+    private static final String DATE_FIELD_ID = "#date";
+    private static final String START_TIME_FIELD_ID = "#startTime";
+
+    private final Label appointmentLabel;
+    private final Label dateLabel;
+    private final Label startTimeLabel;
+
+    public TaskCardHandle(Node cardNode) {
+        super(cardNode);
+
+        this.appointmentLabel = getChildNode(APPOINTMENT_FIELD_ID);
+        this.dateLabel = getChildNode(DATE_FIELD_ID);
+        this.startTimeLabel = getChildNode(START_TIME_FIELD_ID);
+    }
+
+    public String getAppointment() {
+        return appointmentLabel.getText();
+    }
+
+    public String getDate() {
+        return dateLabel.getText();
+    }
+
+    public String getStartTime() {
+        return startTimeLabel.getText();
+    }
+
+}
+```
+###### \java\guitests\guihandles\TaskListPanelHandle.java
+``` java
+package guitests.guihandles;
+
+import java.util.List;
+import java.util.Optional;
+
+import javafx.scene.control.ListView;
+import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.ui.TaskCard;
+
+/**
+ * Provides a handle for {@code TaskListPanel} containing the list of {@code TaskCard}.
+ */
+public class TaskListPanelHandle extends NodeHandle<ListView<TaskCard>> {
+    public static final String TASK_LIST_VIEW_ID = "#taskListView";
+
+    private Optional<TaskCard> lastRememberedSelectedTaskCard;
+
+    public TaskListPanelHandle(ListView<TaskCard> taskListPanelNode) {
+        super(taskListPanelNode);
+    }
+
+    /**
+     * Returns a handle to the selected {@code TaskCardHandle}.
+     * A maximum of 1 item can be selected at any time.
+     * @throws AssertionError if no card is selected, or more than 1 card is selected.
+     */
+    public TaskCardHandle getHandleToSelectedCard() {
+        List<TaskCard> taskList = getRootNode().getSelectionModel().getSelectedItems();
+        if (taskList.size() != 1) {
+            throw new AssertionError("Task list size expected 1.");
+        }
+
+        return new TaskCardHandle(taskList.get(0).getRoot());
+    }
+
+    /**
+     * Returns the index of the selected card.
+     */
+    public int getSelectedCardIndex() {
+        return getRootNode().getSelectionModel().getSelectedIndex();
+    }
+
+    /**
+     * Returns true if a card is currently selected.
+     */
+    public boolean isAnyCardSelected() {
+        List<TaskCard> selectedCardsList = getRootNode().getSelectionModel().getSelectedItems();
+
+        if (selectedCardsList.size() > 1) {
+            throw new AssertionError("Card list size expected 0 or 1.");
+        }
+
+        return !selectedCardsList.isEmpty();
+    }
+
+    /**
+     * Navigates the listview to display and select the task.
+     */
+    public void navigateToCard(ReadOnlyTask task) {
+        List<TaskCard> cards = getRootNode().getItems();
+        Optional<TaskCard> matchingCard = cards.stream().filter(card -> card.task.equals(task)).findFirst();
+
+        if (!matchingCard.isPresent()) {
+            throw new IllegalArgumentException("Task does not exist.");
+        }
+
+        guiRobot.interact(() -> {
+            getRootNode().scrollTo(matchingCard.get());
+            getRootNode().getSelectionModel().select(matchingCard.get());
+        });
+        guiRobot.pauseForHuman();
+    }
+
+    /**
+     * Returns the task card handle of a task associated with the {@code index} in the list.
+     */
+    public TaskCardHandle getTaskCardHandle(int index) {
+        return getTaskCardHandle(getRootNode().getItems().get(index).task);
+    }
+
+    /**
+     * Returns the {@code TaskCardHandle} of the specified {@code task} in the list.
+     */
+    public TaskCardHandle getTaskCardHandle(ReadOnlyTask task) {
+        Optional<TaskCardHandle> handle = getRootNode().getItems().stream()
+                .filter(card -> card.task.equals(task))
+                .map(card -> new TaskCardHandle(card.getRoot()))
+                .findFirst();
+        return handle.orElseThrow(() -> new IllegalArgumentException("Task does not exist."));
+    }
+
+    /**
+     * Selects the {@code TaskCard} at {@code index} in the list.
+     */
+    public void select(int index) {
+        getRootNode().getSelectionModel().select(index);
+    }
+
+    /**
+     * Remembers the selected {@code TaskCard} in the list.
+     */
+    public void rememberSelectedTaskCard() {
+        List<TaskCard> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+
+        if (selectedItems.size() == 0) {
+            lastRememberedSelectedTaskCard = Optional.empty();
+        } else {
+            lastRememberedSelectedTaskCard = Optional.of(selectedItems.get(0));
+        }
+    }
+
+    /**
+     * Returns true if the selected {@code TaskCard} is different from the value remembered by the most recent
+     * {@code rememberSelectedTaskCard()} call.
+     */
+    public boolean isSelectedTaskCardChanged() {
+        List<TaskCard> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+
+        if (selectedItems.size() == 0) {
+            return lastRememberedSelectedTaskCard.isPresent();
+        } else {
+            return !lastRememberedSelectedTaskCard.isPresent()
+                    || !lastRememberedSelectedTaskCard.get().equals(selectedItems.get(0));
+        }
+    }
+
+    /**
+     * Returns the size of the list.
+     */
+    public int getListSize() {
+        return getRootNode().getItems().size();
+    }
+}
+```
 ###### \java\seedu\address\logic\commands\AddCommandTest.java
 ``` java
         @Override
@@ -294,7 +471,7 @@ public class EditTaskCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        // assertFalse(standardCommand.equals(new ClearCommand()));
+         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_TASK, DESC_MEETING)));
@@ -519,11 +696,14 @@ public class SortCommandTest {
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
@@ -638,15 +818,21 @@ public class DeleteTaskCommandParserTest {
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -747,21 +933,20 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // appointment - this fails
+        // appointment
         Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + APPOINTMENT_DESC_MEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-                .withAppointment(VALID_APPOINTMENT_MEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withAppointment(VALID_APPOINTMENT_MEETING).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // date - this pass
+        // date
         userInput = targetIndex.getOneBased() + DATE_DESC_MEETING;
         descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // start time - this pass
+        // start time
         userInput = targetIndex.getOneBased() + START_TIME_DESC_MEETING;
         descriptor = new EditTaskDescriptorBuilder().withStartTime(VALID_START_TIME_MEETING).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
@@ -774,19 +959,15 @@ public class EditTaskCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
-        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
-        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING)
-            .withStartTime(VALID_START_TIME_MEETING).build();
-        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
     }
 
 }
+
 ```
 ###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
@@ -818,6 +999,23 @@ public class EditTaskCommandParserTest {
         assertEquals(expectedEmailSet, actualEmailSet);
     }
 ```
+###### \java\seedu\address\model\AddressBookTest.java
+``` java
+    @Test
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
+        thrown.expect(UnsupportedOperationException.class);
+        addressBook.getTaskList().remove(0);
+    }
+```
+###### \java\seedu\address\storage\XmlAddressBookStorageTest.java
+``` java
+    @Test
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
+        XmlSerializableAddressBook addressBook = new XmlSerializableAddressBook();
+        thrown.expect(UnsupportedOperationException.class);
+        addressBook.getTaskList().remove(0);
+    }
+```
 ###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
             Set<Phone> defaultPhones = SampleDataUtil.getPhoneSet(DEFAULT_PHONES);
@@ -838,4 +1036,409 @@ public class EditTaskCommandParserTest {
         person.getEmails().stream().forEach(
             s -> sb.append(PREFIX_EMAIL + s.value + " ")
         );
+```
+###### \java\systemtests\DeleteTaskCommandSystemTest.java
+``` java
+package systemtests;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS;
+import static seedu.address.testutil.TestUtil.getLastTaskIndex;
+import static seedu.address.testutil.TestUtil.getMidTaskIndex;
+import static seedu.address.testutil.TestUtil.getTask;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.model.Model;
+import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+
+public class DeleteTaskCommandSystemTest extends AddressBookSystemTest {
+
+    private static final String MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT =
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE);
+
+    @Test
+    public void delete() {
+        /* -------------- Performing delete task operation while an unfiltered list is being shown ---------------- */
+
+        /* Case: delete the first task in the list, command with leading spaces and trailing spaces -> deleted */
+        Model expectedModel = getModel();
+        String command = "     " + DeleteTaskCommand.COMMAND_WORD + "      "
+                + INDEX_FIRST_TASK.getOneBased() + "       ";
+        ReadOnlyTask deletedTask = removeTask(expectedModel, INDEX_FIRST_TASK);
+        String expectedResultMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedTask);
+        assertCommandSuccess(command, expectedModel, expectedResultMessage);
+
+        /* Case: delete the last task in the list -> deleted */
+        Model modelBeforeDeletingLast = getModel();
+        Index lastTaskIndex = getLastTaskIndex(modelBeforeDeletingLast);
+        assertCommandSuccess(lastTaskIndex);
+
+        /* Case: undo deleting the last task in the list -> last task restored */
+        command = UndoCommand.COMMAND_WORD;
+        expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, modelBeforeDeletingLast, expectedResultMessage);
+
+        /* Case: redo deleting the last task in the list -> last task deleted again */
+        command = RedoCommand.COMMAND_WORD;
+        removeTask(modelBeforeDeletingLast, lastTaskIndex);
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, modelBeforeDeletingLast, expectedResultMessage);
+
+        /* Case: delete the middle task in the list -> deleted */
+        Index middleTaskIndex = getMidTaskIndex(getModel());
+        assertCommandSuccess(middleTaskIndex);
+
+
+        /* ---------------------------- Performing invalid delete task operation ------------------------------- */
+
+        /* Case: invalid index (0) -> rejected */
+        command = DeleteTaskCommand.COMMAND_WORD + " 0";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+
+        /* Case: invalid index (-1) -> rejected */
+        command = DeleteTaskCommand.COMMAND_WORD + " -1";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+
+        /* Case: invalid index (size + 1) -> rejected */
+        Index outOfBoundsIndex = Index.fromOneBased(
+                getModel().getAddressBook().getTaskList().size() + 1);
+        command = DeleteTaskCommand.COMMAND_WORD + " " + outOfBoundsIndex.getOneBased();
+        assertCommandFailure(command, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        /* Case: invalid arguments (alphabets) -> rejected */
+        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " abc",
+                MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+
+        /* Case: invalid arguments (extra argument) -> rejected */
+        assertCommandFailure(DeleteTaskCommand.COMMAND_WORD + " 1 abc",
+                MESSAGE_INVALID_DELETE_TASK_COMMAND_FORMAT);
+    }
+
+    /**
+     * Removes the {@code ReadOnlyTask} at the specified {@code index} in {@code model}'s address book.
+     * @return the removed task
+     */
+    private ReadOnlyTask removeTask(Model model, Index index) {
+        ReadOnlyTask targetTask = getTask(model, index);
+        try {
+            model.deleteTask(targetTask);
+        } catch (TaskNotFoundException tnfe) {
+            throw new AssertionError("targetTask is retrieved from model.");
+        }
+        return targetTask;
+    }
+
+    /**
+     * Deletes the task at {@code toDelete} by creating a default {@code DeleteTaskCommand} using {@code toDelete} and
+     * performs the same verification as {@code assertCommandSuccess(String, Model, String)}.
+     * @see DeleteTaskCommandSystemTest#assertCommandSuccess(String, Model, String)
+     */
+    private void assertCommandSuccess(Index toDelete) {
+        Model expectedModel = getModel();
+        ReadOnlyTask deletedTask = removeTask(expectedModel, toDelete);
+        String expectedResultMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedTask);
+
+        assertCommandSuccess(
+                DeleteTaskCommand.COMMAND_WORD + " "
+                        + toDelete.getOneBased(), expectedModel, expectedResultMessage);
+    }
+
+    /**
+     * Executes {@code command} and in addition,<br>
+     * 1. Asserts that the command box displays an empty string.<br>
+     * 2. Asserts that the result display box displays {@code expectedResultMessage}.<br>
+     * 3. Asserts that the model related components equal to {@code expectedModel}.<br>
+     * 4. Asserts that the browser url and selected card remains unchanged.<br>
+     * 5. Asserts that the status bar's sync status changes.<br>
+     * 6. Asserts that the command box has the default style class.<br>
+     * Verifications 1 to 3 are performed by
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
+        assertCommandSuccess(command, expectedModel, expectedResultMessage, null);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Model, String)} except that the browser url
+     * and selected card are expected to update accordingly depending on the card at {@code expectedSelectedCardIndex}.
+     * @see DeleteTaskCommandSystemTest#assertCommandSuccess(String, Model, String)
+     * @see AddressBookSystemTest#assertSelectedCardChanged(Index)
+     */
+    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
+                                      Index expectedSelectedCardIndex) {
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+
+        if (expectedSelectedCardIndex != null) {
+            assertSelectedCardChanged(expectedSelectedCardIndex);
+        } else {
+            assertSelectedCardUnchanged();
+        }
+
+        assertCommandBoxShowsDefaultStyle();
+        assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * Executes {@code command} and in addition,<br>
+     * 1. Asserts that the command box displays {@code command}.<br>
+     * 2. Asserts that result display box displays {@code expectedResultMessage}.<br>
+     * 3. Asserts that the model related components equal to the current model.<br>
+     * 4. Asserts that the browser url, selected card and status bar remain unchanged.<br>
+     * 5. Asserts that the command box has the error style.<br>
+     * Verifications 1 to 3 are performed by
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandFailure(String command, String expectedResultMessage) {
+        Model expectedModel = getModel();
+
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
+    }
+}
+```
+###### \java\systemtests\EditTaskCommandSystemTest.java
+``` java
+package systemtests;
+
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalTasks.MEETING;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.model.Model;
+import seedu.address.model.task.Appointment;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.testutil.TaskBuilder;
+
+public class EditTaskCommandSystemTest extends AddressBookSystemTest {
+
+    @Test
+    public void edit() throws Exception {
+        Model model = getModel();
+
+        /* --------------- Performing edit task operation while an unfiltered list is being shown ------------------- */
+
+        /* Case: edit all fields, command with leading spaces, trailing spaces and multiple spaces between each field
+         * -> edited
+         */
+        Index index = INDEX_FIRST_TASK;
+        String command = " " + EditTaskCommand.COMMAND_WORD + "  " + index.getOneBased() + "  "
+                + APPOINTMENT_DESC_MEETING + "  " + DATE_DESC_MEETING + "  " + START_TIME_DESC_MEETING + " ";
+        Task editedTask = new TaskBuilder().withAppointment(VALID_APPOINTMENT_MEETING).withDate(VALID_DATE_MEETING)
+                .withStartTime(VALID_START_TIME_MEETING).build();
+        assertCommandSuccess(command, index, editedTask);
+
+        /* Case: undo editing the last task in the list -> last task restored */
+        command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* Case: redo editing the last task in the list -> last task edited again */
+        command = RedoCommand.COMMAND_WORD;
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        model.updateTask(
+                getModel().getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), editedTask);
+        assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* Case: edit a task with new values same as existing values -> edited */
+        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + APPOINTMENT_DESC_MEETING
+                + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
+        assertCommandSuccess(command, index, MEETING);
+```
+###### \java\systemtests\EditTaskCommandSystemTest.java
+``` java
+        /* --------------------------------- Performing invalid edit operation -------------------------------------- */
+
+        /* Case: invalid index (0) -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " 0" + APPOINTMENT_DESC_MEETING,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
+
+        /* Case: invalid index (-1) -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " -1" + APPOINTMENT_DESC_MEETING,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
+
+        /* Case: invalid index (size + 1) -> rejected */
+        int invalidIndex = getModel().getFilteredTaskList().size() + 1;
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " " + invalidIndex + APPOINTMENT_DESC_MEETING,
+                Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        /* Case: missing index -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + APPOINTMENT_DESC_MEETING,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
+
+        /* Case: missing all fields -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(),
+                EditTaskCommand.MESSAGE_NOT_EDITED);
+
+        /* Case: invalid appointment -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                        + INVALID_APPOINTMENT_DESC,
+                Appointment.MESSAGE_APPOINTMENT_CONSTRAINTS);
+
+        /* Case: invalid date -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                        + INVALID_DATE_DESC,
+                Date.MESSAGE_DATE_CONSTRAINTS);
+
+        /* Case: invalid start time -> rejected */
+        assertCommandFailure(EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                        + INVALID_START_TIME_DESC,
+                StartTime.MESSAGE_TIME_CONSTRAINTS);
+
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Index, ReadOnlyTask, Index)} except that
+     * the browser url and selected card remain unchanged.
+     * @param toEdit the index of the current model's filtered list
+     * @see EditTaskCommandSystemTest#assertCommandSuccess(String, Index, ReadOnlyTask, Index)
+     */
+    private void assertCommandSuccess(String command, Index toEdit, ReadOnlyTask editedTask) {
+        assertCommandSuccess(command, toEdit, editedTask, null);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
+     * 1. Asserts that result display box displays the success message of executing {@code EditTaskCommand}.<br>
+     * 2. Asserts that the model related components are updated to reflect the task at index {@code toEdit} being
+     * updated to values specified {@code editedTask}.<br>
+     * @param toEdit the index of the current model's filtered list.
+     * @see EditTaskCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
+     */
+    private void assertCommandSuccess(String command, Index toEdit, ReadOnlyTask editedTask,
+                                      Index expectedSelectedCardIndex) {
+        Model expectedModel = getModel();
+        try {
+            expectedModel.updateTask(
+                    expectedModel.getFilteredTaskList().get(toEdit.getZeroBased()), editedTask);
+            expectedModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        } catch (TaskNotFoundException e) {
+            throw new IllegalArgumentException(
+                    "editedTask isn't found in the model.");
+        }
+
+        assertCommandSuccess(command, expectedModel,
+                String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask), expectedSelectedCardIndex);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} except that the
+     * browser url and selected card remain unchanged.
+     * @see EditTaskCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
+     */
+    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
+        assertCommandSuccess(command, expectedModel, expectedResultMessage, null);
+    }
+
+    /**
+     * Executes {@code command} and in addition,<br>
+     * 1. Asserts that the command box displays an empty string.<br>
+     * 2. Asserts that the result display box displays {@code expectedResultMessage}.<br>
+     * 3. Asserts that the model related components equal to {@code expectedModel}.<br>
+     * 4. Asserts that the browser url and selected card update accordingly depending on the card at
+     * {@code expectedSelectedCardIndex}.<br>
+     * 5. Asserts that the status bar's sync status changes.<br>
+     * 6. Asserts that the command box has the default style class.<br>
+     * Verifications 1 to 3 are performed by
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see AddressBookSystemTest#assertSelectedCardChanged(Index)
+     */
+    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
+                                      Index expectedSelectedCardIndex) {
+        executeCommand(command);
+
+        expectedModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        System.out.println(command);
+        System.out.println(expectedModel.getFilteredTaskList());
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertCommandBoxShowsDefaultStyle();
+        if (expectedSelectedCardIndex != null) {
+            assertSelectedCardChanged(expectedSelectedCardIndex);
+        } else {
+            assertSelectedCardUnchanged();
+        }
+        assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * Executes {@code command} and in addition,<br>
+     * 1. Asserts that the command box displays {@code command}.<br>
+     * 2. Asserts that result display box displays {@code expectedResultMessage}.<br>
+     * 3. Asserts that the model related components equal to the current model.<br>
+     * 4. Asserts that the browser url, selected card and status bar remain unchanged.<br>
+     * 5. Asserts that the command box has the error style.<br>
+     * Verifications 1 to 3 are performed by
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandFailure(String command, String expectedResultMessage) {
+        Model expectedModel = getModel();
+
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
+    }
+}
+```
+###### \java\systemtests\ModelHelper.java
+``` java
+    /**
+     * Updates {@code model}'s filtered list to display only {@code toDisplay}.
+     */
+    public static void setFilteredTaskList(Model model, List<ReadOnlyTask> toDisplay) {
+        Optional<Predicate<ReadOnlyTask>> predicate =
+                toDisplay.stream().map(ModelHelper::getPredicateMatchingTasks).reduce(Predicate::or);
+        model.updateFilteredTaskList(predicate.orElse(PREDICATE_MATCHING_NO_TASKS));
+    }
+
+    /**
+     * @see ModelHelper#setFilteredTaskList(Model, List)
+     */
+    public static void setFilteredTaskList(Model model, ReadOnlyTask... toDisplay) {
+        setFilteredTaskList(model, Arrays.asList(toDisplay));
+    }
+
+    /**
+     * Returns a predicate that evaluates to true if this {@code ReadOnlyTask} equals to {@code other}.
+     */
+    private static Predicate<ReadOnlyTask> getPredicateMatchingTasks(ReadOnlyTask other) {
+        return task -> task.equals(other);
+    }
 ```

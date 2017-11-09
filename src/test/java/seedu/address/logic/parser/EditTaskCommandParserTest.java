@@ -2,15 +2,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -111,21 +117,20 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // appointment - this fails
+        // appointment
         Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + APPOINTMENT_DESC_MEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-                .withAppointment(VALID_APPOINTMENT_MEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withAppointment(VALID_APPOINTMENT_MEETING).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // date - this pass
+        // date
         userInput = targetIndex.getOneBased() + DATE_DESC_MEETING;
         descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // start time - this pass
+        // start time
         userInput = targetIndex.getOneBased() + START_TIME_DESC_MEETING;
         descriptor = new EditTaskDescriptorBuilder().withStartTime(VALID_START_TIME_MEETING).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
@@ -138,16 +143,11 @@ public class EditTaskCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
-        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
-        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING)
-            .withStartTime(VALID_START_TIME_MEETING).build();
-        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
     }
 
 }
