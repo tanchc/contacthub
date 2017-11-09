@@ -232,10 +232,11 @@ The command summary is open by default in the browser upon starting the applicat
  This command is used to reopen it after using other commands that load in the browser. e.g. `getmodule` +
 Format: `summary`
 
+// tag::nusmods[]
 === Viewing module information : `getmodule` or `gm` [Since v1.5rc]
 
 Opens the NUSMods module information page for the given module in the browser. +
-Format: `getmodule KEYWORD`
+Format: `getmodule MODULE_NAME`
 
 Examples:
 
@@ -245,6 +246,21 @@ Opens the `CS2101` NUSMods page in the browser.
 ****
 * Entering an invalid module will load the main NUSMods page.
 ****
+
+=== Viewing venue information : `venue` or `gm` [Since v1.5rc]
+
+Opens the NUSMods venue information page for the given venue in the browser. +
+Format: `venue VENUE_NAME`
+
+Examples:
+
+* `venue COM1-0204` +
+Opens the `COM1-0204` NUSMods page in the browser.
+
+****
+* Entering an invalid venue will load the main NUSMods page.
+****
+// end::nusmods[]
 
 == Tasklist Commands
 

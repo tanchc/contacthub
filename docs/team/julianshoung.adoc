@@ -4,9 +4,39 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Project: ContactHub
-ContactHub is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+ContactHub is a desktop address book application designed for NUS students. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/jshoung.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/jshoung.md[Test code]]
+
+=== Enhancement Added: NUSMods Implementation
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=nusmods]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+The enhancement allows students, our target audience, to conveniently check
+useful information within the application.
+
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=nusmods]
+
+#End of Extract#
+
+---
 
 === Enhancement Added:
 
@@ -15,7 +45,7 @@ ContactHub is a desktop address book application used for teaching Software Engi
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=undoredo]
+include::../UserGuide.adoc[tag=.]
 
 #End of Extract#
 
@@ -30,18 +60,27 @@ include::../UserGuide.adoc[tag=undoredo]
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=.]
 
 #End of Extract#
 
 ---
 
-=== Enhancement Proposed: Add command `remark`
-
-{Explain similar to the Undo/Redo feature above.}
+//=== Enhancement Proposed: Add command `remark`
+//
+//{Explain similar to the Undo/Redo feature above.}
 
 === Other contributions
 
-* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+* Addition of command summary page on previously blank default page.
+* Addition of person count to status bar footer.
+* Addition of Bus command to open NUS bus routes in new window.
+* Addition of Map command to open NUS Campus Map in new window.
+* Refactoring of tag functionality into module functionality.
+* Updated GUI color scheme to be consistent when person/task list empty.
+* Changed command input to be case insensitive.
+* Changed browser panel for selected person from Google search to detailed contact page.
+*
+//* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+//* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 
