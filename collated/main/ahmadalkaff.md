@@ -1,5 +1,5 @@
 # ahmadalkaff
-###### /java/seedu/address/logic/commands/DeleteTaskCommand.java
+###### \java\seedu\address\logic\commands\DeleteTaskCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -20,7 +20,7 @@ public class DeleteTaskCommand extends UndoableCommand {
     public static final String COMMAND_ALIAS = "dt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the last task listing.\n"
+            + ": Deletes the task identified by the index number used in the task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + "\n"
             + "Example: " + COMMAND_ALIAS + " 1";
@@ -61,15 +61,15 @@ public class DeleteTaskCommand extends UndoableCommand {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         Set<Phone> updatedPhones = editPersonDescriptor.getPhones().orElse(personToEdit.getPhones());
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         Set<Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         public void setPhones(Set<Phone> phones) {
             this.phones = phones;
@@ -79,7 +79,7 @@ public class DeleteTaskCommand extends UndoableCommand {
             return Optional.ofNullable(phones);
         }
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         public void setEmails(Set<Email> emails) {
             this.emails = emails;
@@ -89,7 +89,7 @@ public class DeleteTaskCommand extends UndoableCommand {
             return Optional.ofNullable(emails);
         }
 ```
-###### /java/seedu/address/logic/commands/EditTaskCommand.java
+###### \java\seedu\address\logic\commands\EditTaskCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -280,7 +280,7 @@ public class EditTaskCommand extends UndoableCommand {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/ListModuleCommand.java
+###### \java\seedu\address\logic\commands\ListModuleCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -345,7 +345,7 @@ public class ListModuleCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/logic/commands/SortCommand.java
+###### \java\seedu\address\logic\commands\SortCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -370,85 +370,85 @@ public class SortCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddCommandParser.java
+###### \java\seedu\address\logic\parser\AddCommandParser.java
 ``` java
             Set<Phone> phoneList = ParserUtil.parsePhones(argMultimap.getAllValues(PREFIX_PHONE));
 ```
-###### /java/seedu/address/logic/parser/AddCommandParser.java
+###### \java\seedu\address\logic\parser\AddCommandParser.java
 ``` java
             Set<Email> emailList = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case AddCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case EditCommand.COMMAND_ALIAS:
             return new EditCommandParser().parse(arguments);
 
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case EditTaskCommand.COMMAND_WORD:
         case EditTaskCommand.COMMAND_ALIAS:
             return new EditTaskCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case SelectCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case DeleteCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_ALIAS:
             return new DeleteTaskCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case ClearCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case FindCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case ListCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case ListModuleCommand.COMMAND_WORD:
         case ListModuleCommand.COMMAND_ALIAS:
             return new ListModuleCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case HistoryCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case SortCommand.COMMAND_WORD:
         case SortCommand.COMMAND_ALIAS:
             return new SortCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case ExitCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case UndoCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case RedoCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/DeleteTaskCommandParser.java
+###### \java\seedu\address\logic\parser\DeleteTaskCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -481,15 +481,15 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
 }
 ```
-###### /java/seedu/address/logic/parser/EditCommandParser.java
+###### \java\seedu\address\logic\parser\EditCommandParser.java
 ``` java
             parsePhonesForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhones);
 ```
-###### /java/seedu/address/logic/parser/EditCommandParser.java
+###### \java\seedu\address\logic\parser\EditCommandParser.java
 ``` java
             parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmails);
 ```
-###### /java/seedu/address/logic/parser/EditCommandParser.java
+###### \java\seedu\address\logic\parser\EditCommandParser.java
 ``` java
     /**
      * Parses {@code Collection<String> phones} into a {@code Set<Phone>} if {@code phones} is non-empty.
@@ -521,7 +521,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         return Optional.of(ParserUtil.parseEmails(emailSet));
     }
 ```
-###### /java/seedu/address/logic/parser/EditTaskCommandParser.java
+###### \java\seedu\address\logic\parser\EditTaskCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -579,7 +579,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
 }
 ```
-###### /java/seedu/address/logic/parser/ParserUtil.java
+###### \java\seedu\address\logic\parser\ParserUtil.java
 ``` java
     /**
      * Parses a {@code Optional<String> phone} into an {@code Optional<Phone>} if {@code phone} is present.
@@ -594,7 +594,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         return phoneSet;
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtil.java
+###### \java\seedu\address\logic\parser\ParserUtil.java
 ``` java
     /**
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
@@ -609,7 +609,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         return emailSet;
     }
 ```
-###### /java/seedu/address/model/AddressBook.java
+###### \java\seedu\address\model\AddressBook.java
 ``` java
     /**
      * Sorts the personList alphabetically
@@ -618,21 +618,21 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         persons.sortPersonListByName();
     }
 ```
-###### /java/seedu/address/model/Model.java
+###### \java\seedu\address\model\Model.java
 ``` java
     /**
      * Sorts the list alphabetically
      */
     void sortPersonListByName();
 ```
-###### /java/seedu/address/model/ModelManager.java
+###### \java\seedu\address\model\ModelManager.java
 ``` java
     @Override
     public void sortPersonListByName() {
         addressBook.sortPersonListByName();
     }
 ```
-###### /java/seedu/address/model/person/EmailList.java
+###### \java\seedu\address\model\person\EmailList.java
 ``` java
 package seedu.address.model.person;
 
@@ -734,7 +734,7 @@ public class EmailList implements Iterable<Email> {
     }
 }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns an immutable phone set, which throws {@code UnsupportedOperationException}
@@ -745,7 +745,7 @@ public class EmailList implements Iterable<Email> {
         return Collections.unmodifiableSet(phones.get().toSet());
     }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Replaces this person's phones with the phones in the argument phone set.
@@ -754,7 +754,7 @@ public class EmailList implements Iterable<Email> {
         phones.set(new PhoneList(replacement));
     }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns an immutable email set, which throws {@code UnsupportedOperationException}
@@ -765,7 +765,7 @@ public class EmailList implements Iterable<Email> {
         return Collections.unmodifiableSet(emails.get().toSet());
     }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Replaces this person's emails with the emails in the argument email set.
@@ -774,7 +774,7 @@ public class EmailList implements Iterable<Email> {
         emails.set(new EmailList(replacement));
     }
 ```
-###### /java/seedu/address/model/person/PhoneList.java
+###### \java\seedu\address\model\person\PhoneList.java
 ``` java
 package seedu.address.model.person;
 
@@ -875,7 +875,7 @@ public class PhoneList implements Iterable<Phone> {
     }
 }
 ```
-###### /java/seedu/address/model/person/UniquePersonList.java
+###### \java\seedu\address\model\person\UniquePersonList.java
 ``` java
     /**
      * Sorts the list alphabetically
@@ -885,7 +885,7 @@ public class PhoneList implements Iterable<Phone> {
                 .getName().fullName.toUpperCase()));
     }
 ```
-###### /java/seedu/address/model/util/SampleDataUtil.java
+###### \java\seedu\address\model\util\SampleDataUtil.java
 ``` java
     /**
      * Returns a phone set containing the list of strings given.
@@ -911,7 +911,7 @@ public class PhoneList implements Iterable<Phone> {
         return emails;
     }
 ```
-###### /java/seedu/address/storage/XmlAdaptedEmail.java
+###### \java\seedu\address\storage\XmlAdaptedEmail.java
 ``` java
 package seedu.address.storage;
 
@@ -952,21 +952,21 @@ public class XmlAdaptedEmail {
     }
 }
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         phones = new ArrayList<>();
         for (Phone phone : source.getPhones()) {
             phones.add(new XmlAdaptedPhone(phone));
         }
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         emails = new ArrayList<>();
         for (Email email : source.getEmails()) {
             emails.add(new XmlAdaptedEmail(email));
         }
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         final List<Phone> personPhones = new ArrayList<>();
         for (XmlAdaptedPhone phone : phones) {
@@ -978,7 +978,7 @@ public class XmlAdaptedEmail {
             personEmails.add(email.toModelType());
         }
 ```
-###### /java/seedu/address/storage/XmlAdaptedPhone.java
+###### \java\seedu\address\storage\XmlAdaptedPhone.java
 ``` java
 package seedu.address.storage;
 
@@ -1019,6 +1019,22 @@ public class XmlAdaptedPhone {
     }
 }
 ```
+###### \java\seedu\address\ui\PersonCard.java
+``` java
+    @FXML
+    private FlowPane phones;
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
+    @FXML
+    private FlowPane emails;
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
+        initPhones(person);
+        initEmails(person);
+        initModules(person);
+```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java
         person.phoneProperty().addListener((observable, oldValue, newValue) -> {
@@ -1027,7 +1043,7 @@ public class XmlAdaptedPhone {
         });
 
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
         person.emailProperty().addListener((observable, oldValue, newValue) -> {
             emails.getChildren().clear();
@@ -1035,7 +1051,7 @@ public class XmlAdaptedPhone {
         });
 
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
     /**
      * Initialise the phones for each person
@@ -1058,4 +1074,13 @@ public class XmlAdaptedPhone {
             emails.setHgap(GAP);
         });
     }
+```
+###### /resources/view/PersonListCard.fxml
+``` fxml
+      <FlowPane fx:id="phones" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
+```
+###### /resources/view/PersonListCard.fxml
+``` fxml
+      <FlowPane fx:id="emails" prefHeight="16.0" prefWidth="130.0" styleClass="cell_small_label" />
+    </VBox>
 ```

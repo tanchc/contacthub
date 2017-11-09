@@ -76,8 +76,9 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<ReadOnlyPerson> persons = FXCollections.observableArrayList();
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
+        // @@author tanchc
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
-
+        // @@author
         AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules) {
             this.persons.setAll(persons);
             this.modules.setAll(modules);
@@ -87,12 +88,12 @@ public class AddressBookTest {
         public ObservableList<ReadOnlyPerson> getPersonList() {
             return persons;
         }
-
+        // @@author tanchc
         @Override
         public ObservableList<ReadOnlyTask> getTaskList() {
             return tasks;
         }
-
+        // @@author
         @Override
         public ObservableList<Module> getModuleList() {
             return modules;

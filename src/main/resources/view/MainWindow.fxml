@@ -8,8 +8,9 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
+<!--@@author tanchc-->
 <VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+  <!--@@author tanchc-->
   <stylesheets>
     <URL value="@DarkTheme.css" />
     <URL value="@Extensions.css" />
@@ -43,6 +44,7 @@
       </padding>
       <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
     </VBox>
+    <!--@@author tanchc-->
       <VBox fx:id="taskList" minWidth="340.0" prefWidth="340.0" SplitPane.resizableWithParent="false">
         <padding>
           <Insets bottom="10" left="10" right="10" top="10" />
@@ -51,6 +53,7 @@
       </VBox>
 
     <StackPane fx:id="browserPlaceholder" prefWidth="200.0">
+      <!--@@author-->
       <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
       </padding>

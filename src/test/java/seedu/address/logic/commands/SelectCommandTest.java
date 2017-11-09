@@ -109,9 +109,10 @@ public class SelectCommandTest {
         } catch (CommandException ce) {
             throw new IllegalArgumentException("Execution of command should not fail.", ce);
         }
-
+        // @@author tanchc
         JumpToPersonListRequestEvent lastEvent = (JumpToPersonListRequestEvent) eventsCollectorRule
                 .eventsCollector.getMostRecent();
+        // @@author
         assertEquals(index, Index.fromZeroBased(lastEvent.targetIndex));
     }
 
