@@ -39,8 +39,9 @@ public class SelectCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        // @@author tanchc
         EventsCenter.getInstance().post(new JumpToPersonListRequestEvent(targetIndex));
+        // @@author
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));
 
     }

@@ -61,7 +61,6 @@ include::../UserGuide.adoc[tag=.]
 #Start of Extract [from: Developer Guide]#
 
 include::../DeveloperGuide.adoc[tag=.]
-
 #End of Extract#
 
 ---
@@ -83,4 +82,5 @@ include::../DeveloperGuide.adoc[tag=.]
 *
 //* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
 //* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+
 

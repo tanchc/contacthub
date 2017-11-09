@@ -21,11 +21,12 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
     private static final double GAP = 8;
-
+    // @@author tanchc
     private static String[] colors = { "red", "blue", "orange", "brown", "green" };
 
     private static HashMap<String, String> moduleColors = new HashMap<String, String>();
     private static Random random = new Random();
+    // @@author
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -42,6 +43,7 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    // @@author ahmadalkaff
     @FXML
     private FlowPane phones;
     //@@author viviantan95
@@ -50,8 +52,10 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private Label address;
+    // @@author ahmadalkaff
     @FXML
     private FlowPane emails;
+    // @@author
     @FXML
     private ImageView imageView;
     @FXML
@@ -61,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        // @@author ahmadalkaff
         initPhones(person);
         initEmails(person);
         initModules(person);
@@ -69,7 +74,7 @@ public class PersonCard extends UiPart<Region> {
         //@@author
         bindListeners(person);
     }
-
+    // @@author tanchc
     private static int getRandom() {
         int randNum = random.nextInt(colors.length);
         return randNum;
@@ -82,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
 
         return moduleColors.get(moduleValue);
     }
-
+    // @@author
     /**
      * Binds the individual UI elements to observe their respective {@code Person} properties
      * so that they will be notified of any changes.
@@ -147,12 +152,13 @@ public class PersonCard extends UiPart<Region> {
     private void initModules(ReadOnlyPerson person) {
         person.getModules().forEach(module -> {
             Label moduleLabel = new Label(module.moduleName);
+            // @@author tanchc
             int randNum = getRandom();
             moduleLabel.setStyle("-fx-background-color: " + getColorForModule(module.moduleName, randNum));
             //            if (randNum > 6) {
             //                moduleLabel.setStyle("-fx-text-fill: black");
             //            }
-
+            // @@author
             modules.getChildren().add(moduleLabel);
             modules.setHgap(GAP);
         });

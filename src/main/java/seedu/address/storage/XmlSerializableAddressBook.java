@@ -23,8 +23,10 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
 
     @XmlElement
     private List<XmlAdaptedPerson> persons;
+    // @@author tanchc
     @XmlElement
     private List<XmlAdaptedTask> tasks;
+    // @@author
     @XmlElement
     private List<XmlAdaptedModule> modules;
 
@@ -34,7 +36,9 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
      */
     public XmlSerializableAddressBook() {
         persons = new ArrayList<>();
+        // @@author tanchc
         tasks = new ArrayList<>();
+        // @@author
         modules = new ArrayList<>();
     }
 
@@ -61,7 +65,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return FXCollections.unmodifiableObservableList(persons);
     }
-
+    // @@author tanchc
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
         final ObservableList<ReadOnlyTask> tasks = this.tasks.stream().map(tk -> {
@@ -75,7 +79,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return FXCollections.unmodifiableObservableList(tasks);
     }
-
+    // @@author
     @Override
     public ObservableList<Module> getModuleList() {
         final ObservableList<Module> modules = this.modules.stream().map(m -> {

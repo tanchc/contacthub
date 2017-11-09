@@ -16,7 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
     //@@author viviantan95
     public static final Prefix PREFIX_PHOTO = new Prefix("u/");
-    //@@author
+    // @@author tanchc
     public static final Prefix PREFIX_APPOINTMENT = new Prefix("t/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_STARTTIME = new Prefix("s/");
