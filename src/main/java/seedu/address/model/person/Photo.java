@@ -22,8 +22,7 @@ public class Photo {
 
     public static final String PHOTO_VALIDATION_REGEX = "[^\\s].*";
 
-    private static final String DEFAULT_PHOTO = "file://" + Paths.get("src/main/resources/images/defaultPhoto.png")
-            .toAbsolutePath().toUri().getPath();
+    private static final String DEFAULT_PHOTO = "/images/defaultPhoto.png";
 
     public final String value;
     private Image image;
