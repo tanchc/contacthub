@@ -22,6 +22,7 @@ import seedu.address.commons.events.ui.GetModuleRequestEvent;
 import seedu.address.commons.events.ui.ShowBusRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.events.ui.ShowMapRequestEvent;
+import seedu.address.commons.events.ui.VenueRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
 import seedu.address.model.UserPrefs;
@@ -226,11 +227,19 @@ public class MainWindow extends UiPart<Region> {
     }
 
     /**
-     * Opens the module in browser.
+     * Opens the module info in browser.
      */
     @FXML
     public void handleModule(String module) {
         browserPanel.loadPage("https://nusmods.com/modules/" + module);
+    }
+
+    /**
+     * Opens the venue info in browser.
+     */
+    @FXML
+    public void handleVenue(String venue) {
+        browserPanel.loadPage("https://nusmods.com/venues/" + venue);
     }
     //@@author
 
@@ -277,6 +286,12 @@ public class MainWindow extends UiPart<Region> {
     private void handleShowModuleEvent(GetModuleRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleModule(event.module);
+    }
+
+    @Subscribe
+    private void handleShowVenueEvent(VenueRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleVenue(event.venue);
     }
 
     //@@author
