@@ -58,8 +58,9 @@ public class CommandTestUtil {
     //@@author viviantan95
     public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
             + "/secondary/CHRIS-EVANS-865133.jpg";
-    public static final String VALID_LOCAL_PHOTO_URL = "file://"
-            + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
+    public static final String VALID_LOCAL_PHOTO_URL = "images/defaultPhoto.png";
+//    public static final String VALID_LOCAL_PHOTO_URL = "file://"
+//            + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
     // @@author tanchc
     public static final String VALID_APPOINTMENT_MOVIE = "Movie";
     public static final String VALID_APPOINTMENT_EVENT = "Event";

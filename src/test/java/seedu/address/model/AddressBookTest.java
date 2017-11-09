@@ -92,7 +92,8 @@ public class AddressBookTest {
         // @@author tanchc
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
         // @@author
-        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules) {
+        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Module> modules,
+                        Collection<? extends ReadOnlyTask> tasks) {
             this.persons.setAll(persons);
             this.modules.setAll(modules);
             this.tasks.setAll(tasks);

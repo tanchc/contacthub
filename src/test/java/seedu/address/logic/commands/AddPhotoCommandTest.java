@@ -3,10 +3,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCAL_PHOTO_URL;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookPersons;
@@ -22,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -37,9 +35,40 @@ public class AddPhotoCommandTest {
     }
 
     @Test
-    public void execute_photoUrlNotFilteredList_success() throws Exception {
+    public void execute_localPhotoUrlFilteredList_success() throws Exception {
         ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedPhotoPerson = new Person(updatedPhotoPerson);
         Photo photo = new Photo(VALID_LOCAL_PHOTO_URL);
+        addedPhotoPerson.setPhoto(photo);
+        AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
+
+        expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, addedPhotoPerson);
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updatePerson(model.getFilteredPersonList().get(0), updatedPhotoPerson);
+
+        assertCommandSuccess(addPhotoCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_webPhotoUrlFilteredList_success() throws Exception {
+        ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedPhotoPerson = new Person(updatedPhotoPerson);
+        Photo photo = new Photo(VALID_WEB_PHOTO_URL);
+        addedPhotoPerson.setPhoto(photo);
+        AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
+
+        expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updatePerson(model.getFilteredPersonList().get(0), addedPhotoPerson);
+
+        assertCommandSuccess(addPhotoCommand, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
+    public void execute_defaultPhotoFilteredList_success() throws Exception {
+        ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Photo photo = new Photo();
         AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
 
         expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
@@ -50,10 +79,10 @@ public class AddPhotoCommandTest {
     }
 
     @Test
-    public void execute_photoUrlIsFilteredList_success() throws Exception {
+    public void execute_defaultPhotoUrlUnfilteredList_success() throws Exception {
         showFirstPersonOnly(model);
         ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Photo photo = new Photo(VALID_LOCAL_PHOTO_URL);
+        Photo photo = new Photo();
         AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
 
         expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
