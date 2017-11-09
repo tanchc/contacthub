@@ -8,6 +8,12 @@ ContactHub is a desktop address book application used for teaching Software Engi
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/ahmadalkaff.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/viviantan95.md[Test code]] {give links to collated code files}
 
+=== Enhancement Added: Command Alias
+
+==== Justification
+
+With the presence of Command Alias, users can interact with ContactHub faster and easier.
+
 === Enhancement Added: Sort
 
 ==== External behavior
