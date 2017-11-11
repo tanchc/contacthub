@@ -65,24 +65,6 @@ include::../DeveloperGuide.adoc[tag=listmodules]
 
 ---
 
-=== Enhancement Added: ListModules
-
-==== External behavior
-
----
-#Start of Extract [from: User Guide]#
-
-include::../UserGuide.adoc[tag=listmodules]
-
-#End of Extract#
-
----
-
-==== Justification
-
-When using ContactHub, all contacts can be assigned to a module. With the ListModules feature,
-users can now know all the modules in ContactHub.
-
 === Enhancement Added: Allow multiple phone numbers and emails
 
 ==== Justification
