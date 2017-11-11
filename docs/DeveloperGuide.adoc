@@ -93,7 +93,7 @@ When you are ready to start coding,
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
+*_Figure 2.1.1_* explains the high-level design of the App. Given below is a quick overview of the Main and Commons component.
 
 [TIP]
 The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
@@ -103,7 +103,8 @@ The `.pptx` files used to create diagrams in this document can be found in the l
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
 
-link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
+link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Two of those classes play important roles at the architecture level:
 
 * `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
 * `LogsCenter` : Used by many classes to write log messages to the App's log file.
@@ -174,15 +175,14 @@ _Figure 2.3.2 : Structure of Commands in the Logic Component. This diagram shows
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
-.  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
-.  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+`Logic` uses the `AddressBookParser` class to parse the user command. This results in a `Command` object which is executed by the `LogicManager`.
+The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
 
+The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 image::DeletePersonSdForLogic.png[width="800"]
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+_Figure 2.3.3 : Interactions Inside the Logic Component for the `delete 1` Command_
 
 === Model component
 
@@ -209,10 +209,6 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in xml format and read it back.
-
-=== Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 == Implementation
 
@@ -345,11 +341,50 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+// tag::listmodules[]
+=== ListModules mechanism
 
-// tag::findModule[]
+The ListModules mechanism is implemented using the `ListModuleCommand`, which resides inside `Logic`. It supports listing of all the modules in ContactHub associated with.
+
+When the user requests for the list of all the modules, a list of modules will be created and shown in an alphabetical manner in the result display.
+
+`ListModuleCommand` inherits from Command and is implemented this way.
+[source,java]
+----
+public class ListModuleCommand extends Command {
+    @Override
+    public CommandResult execute() {
+        // ... ListModules logic ...
+        }
+}
+----
+
+The user executes `ListModuleCommand`, the result display will list out all the modules in ContactHub.
+
+image::ListModuleCommand.png[width="300"]
+
+==== Design Considerations
+
+**Aspect:** Implementation of `ListModuleCommand` +
+**Alternative (current choice):** `ListModuleCommand` inherits from `Command`. +
+**Pros:** After listing, the contact list remains as per normal when command is keyed in. +
+**Cons:** The contact list cannot be sorted by modules after command is keyed in.
+
+---
+
+**Aspect:** How listModule executes +
+**Alternative 1 (current choice):** Uses the Java Collections.sort() method to get the list of all modules. +
+**Pros:** Easy to implement. +
+**Cons:** It is difficult to debug. +
+**Alternative 2:** Creates a new listModules algorithm. +
+**Pros:** It is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::listmodules[]
+
+// tag::findmodule[]
 === FindModule mechanism
 
-The FindModule mechanism is implemented using the `FindModuleCommand`, which resides inside `Logic`. It supports listing all the contacts in the address book associated with.
+The FindModule mechanism is implemented using the `FindModuleCommand`, which resides inside `Logic`. It supports listing of all the contacts in ContacHub associated with.
 
 When the user requests for contacts associated to a module(s), the list of contacts will be created and shown.
 
@@ -372,7 +407,7 @@ The user executes `FindModuleCommand`, the list will now show the contacts assoc
 
 image::FindModuleCommand.png[width="300"]
 
-The user can continue to add more mod names for the FindModuleCommand, and if any contacts contains any of the module(s) keyed in, they will show up
+The user can continue to add more module(s) for the FindModuleCommand, and if any contacts contains any of the module(s) keyed in, they will show up
 
 [NOTE]
 Upon exiting ContactHub, the contact list will not be filtered for according to the last module(s) keyed in in the next launch.
@@ -385,7 +420,7 @@ Upon exiting ContactHub, the contact list will not be filtered for according to 
 **Cons:** The contact list cannot be saved after filtering. +
 **Alternative 2:** Implement undo/redo for `FilterCommand`. +
 **Pros:** The user can switch between the filtered contact list and the original contact list.  +
-**Cons:** `FindModCommand` must be extended from `UndoableCommand` and must remember to call `super.execute()`, or lose the ability to undo/redo.
+**Cons:** `FindModuleCommand` must be extended from `UndoableCommand` and must remember to call `super.execute()`, or lose the ability to undo/redo.
 
 ---
 
@@ -393,10 +428,10 @@ Upon exiting ContactHub, the contact list will not be filtered for according to 
 **Alternative 1 (current choice):** Uses the Java Collections.stream() method to filter the contact list. +
 **Pros:** Easy to implement. +
 **Cons:** It is difficult to debug. +
-**Alternative 2:** Creates a new findMod algorithm. +
+**Alternative 2:** Creates a new findModule algorithm. +
 **Pros:** It is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
-// end::findModule[]
+// end::findmodule[]
 
 // tag::sort[]
 === Sort mechanism
@@ -820,12 +855,12 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: ListModule
+=== Use case: List all Modules
 
 *MSS*
 
-1. User requests to list all module(s) in ContactHub.
-2. ContactHub shows a list of module(s) in ContactHub.
+1. User requests to list all modules in ContactHub.
+2. ContactHub shows a list of modules in ContactHub.
 +
 Use case ends.
 

@@ -8,7 +8,7 @@ ContactHub is a desktop address book application used for teaching Software Engi
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/ahmadalkaff.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/viviantan95.md[Test code]] {give links to collated code files}
 
-=== Enhancement Added: Sort
+=== Enhancement Added: Sorts the person list alphabetically
 
 ==== External behavior
 
@@ -36,7 +36,7 @@ include::../DeveloperGuide.adoc[tag=sort]
 
 ---
 
-=== Enhancement Added: ListModules
+=== Enhancement Added: Listings of all the modules in ContactHub
 
 ==== External behavior
 
@@ -53,6 +53,17 @@ include::../UserGuide.adoc[tag=listmodules]
 
 When using ContactHub, all contacts can be assigned to a module. With the ListModules feature,
 users can now know all the modules in ContactHub.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=listmodules]
+
+#End of Extract#
+
+---
 
 === Enhancement Added: Allow multiple phone numbers and emails
 
