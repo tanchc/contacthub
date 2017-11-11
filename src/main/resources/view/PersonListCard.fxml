@@ -45,7 +45,7 @@
       <!-- @@author viviantan95 -->
     <ImageView fx:id="imageView">
       <image>
-        <Image url="images/defaultPhoto.png"/>
+        <Image url="@../images/defaultPhoto.png"/>
       </image>
     </ImageView>
       <!-- @@author -->

@@ -94,7 +94,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_MODULE} alone will reset the mods of the {@code Person} being edited,
+        // while parsing {@code PREFIX_MODULE} alone will reset the modules of the {@code Person} being edited,
         // parsing it together with a valid module results in error
         assertParseFailure(parser, "1" + MODULE_DESC_CS2101 + MODULE_DESC_GER1000
                 + MODULE_EMPTY, Module.MESSAGE_MODULE_CONSTRAINTS);
@@ -161,7 +161,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // mods
+        // modules
         userInput = targetIndex.getOneBased() + MODULE_DESC_CS2101;
         descriptor = new EditPersonDescriptorBuilder().withMods(VALID_MODULE_CS2101).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

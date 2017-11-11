@@ -8,32 +8,32 @@ ContactHub is a desktop address book application used for teaching Software Engi
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/viviantan95.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/viviantan95.md[Test code]] {give links to collated code files}
 
-=== Enhancement Added: AddPhoto
+=== Enhancement Added: Adding a photo to a contact in Contacthub
 
 ==== External behavior
 
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=addPhoto]
+include::../UserGuide.adoc[tag=addphoto]
 
 #End of Extract#
 
 ---
 
-==== Justification
+=== Justification
 
 Adding a photo to each contact of ContactHub would make the contacts more recognisable to the user, hence easier
 identification of contacts.
 Furthermore ContactHub's target audience is university students, therefore to make the application more interesting
  and youthful, so as to add a fun factor when using ContactHub.
 
-==== Implementation
+=== Implementation
 
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=addPhoto]
+include::../DeveloperGuide.adoc[tag=addphoto]
 
 #End of Extract#
 
@@ -46,7 +46,7 @@ include::../DeveloperGuide.adoc[tag=addPhoto]
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=Keyboardshortcuts]
+include::../UserGuide.adoc[tag=keyboardshortcuts]
 
 #End of Extract#
 
@@ -64,7 +64,7 @@ use ContactHub.
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=Keyboardshortcuts]
+include::../DeveloperGuide.adoc[tag=keyboardshortcuts]
 
 #End of Extract#
 
@@ -76,7 +76,4 @@ include::../DeveloperGuide.adoc[tag=Keyboardshortcuts]
 
 === Other contributions
 
-
-== Project: PowerPointLabs
-
-{Optionally (not graded), you may include other projects in your portfolio.}
+* Addition of `Birthday` property in Person Model.

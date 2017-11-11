@@ -114,7 +114,6 @@ public class AddressBookParserTest {
     }
     // @@author
 
-
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
