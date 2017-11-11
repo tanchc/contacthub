@@ -494,21 +494,106 @@ Upon exiting ContactHub, the contact list will not be sorted in the next subsequ
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::sort[]
 
+// tag::addphoto[]
+=== AddPhoto mechanism
+
+The AddPhoto mechanism is facilitated by a `Photo` class, which is a property class of the
+`Person` class. It allows the user to add a photo to each of the contacts.
+
+The `Photo` class stores a **valid** web URL of an image that will be displayed in the `PersonListCard`.
+Whenever a new contact is added into ContactHub, the new contact's `Photo` property will be set to a default image
+of defaultPhoto. AddPhoto command can then be called to change from the defaultPhoto to a desired photo
+of the user using the a **valid** URL. The photo of the contact can be changed back to default by calling
+the AddPhoto command without any URL.
+
+To add a photo to a contact, the `AddPhotoCommand` takes in the URL gave by the user and a
+new `Photo` object is instantiated. `AddPhotoCommand` inherits from `UndoableCommand` and is therefore undoable using the `undo` function.
+The `Photo` class would first check the validity of the URL,
+if valid, the image will be downloaded and the photo of the contact would be updated accordingly, otherwise an IllegalValueException
+will be thrown.
+
+The `AddPhotoCommand` is implemented this way:
+[source,java]
+----
+
+public class AddPhotoCommand extends UndoableCommand {
+    @Override
+        public CommandResult executeUndoableCommand() throws CommandException {
+       // ... addPhoto logic ...
+
+       }
+}
+----
+
+Suppose the user has jus added a contact into ContactHub. The photo of this contact will be defaultPhoto.
+
+image::addphoto1.PNG[width="300"]
+
+The user executes `AddPhotoCommand` and provides a **valid** web URL.
+
+image::addphoto2.PNG[width="300"]
+
+[NOTE]
+After the execution, the list will return to the main contact list.
+
+==== Design Considerations
+
+**Aspects:** Implementation of `AddPhotoCommand`. +
+**Alternative 1 (current choice):** Have `AddPhotoCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the AddPhotoCommand class and the UndoableCommand interface.
+
+---
+
+**Aspects:** Choice of local or web URL to add photo to contact. +
+**Alternative 1 (current choice):** Using web URL. +
+**Pros:** Allows user to use web database to find the contact's photo. +
+**Cons:** Might present a problem when there is no internet available for the user. +
+**Alternative 2:** Using local URL. +
+**Pros:** The contact may not have a photo stored in the web database. +
+**Cons:** If there is no local photo of the contact, the user must download from the web onto hes computer first then
+use the local URL in the `AddPhotoCommand`.
+// end::addphoto[]
+
+// tag::keyboardshortcuts[]
 === Keyboard shortcuts
 
 The keyboard shortcut function is facilitated mainly by the `commandBox` class which resides in the `UI` component.
- It provides the user several functions when typing in the command box using different key bindings of the keyboard.
+
+It provides the user several functions when typing in the command box using different key bindings of the keyboard.
 
 The `commandBox` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
-The `commandBox` class also instantiates an object of `TextField` class which is a JavaFX FXML, an XML-based language for building a user interface.
-The `TextField` class inherits the `TextInputControl` class which is the base class for text inputs.
 
-Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard. The `commandBox` class
- would then call the method setText() in the `TextInputControl` class, which is a superclass of `TextField` class, which
-then sets the text in the command box to be empty. Calling it multiple times would involve the same result.
+The `commandBox` class then calls the handleKeyPress() method whenever a key binding is pressed by the user. Using a switch statement for the
+key bindings, the methods for each key bind will be carried out accordingly.
 
-In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box
- or keyboard shortcuts that would make a help guide appear.
+`CommandBox` inherits from UiPart and key binding functions are implemented this way:
+
+[source,java]
+----
+
+public class CommandBox extends UiPart<Region> {
+   private void handleKeyPress() {
+       switch (keyEvent.getCode())
+       // ...
+       }
+}
+----
+
+Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard.
+
+The `commandBox` class instantiates an object called `commandTextfield` of `TextField` class which is a JavaFX FXML, an XML-based language for building a user interface. The `TextField` class inherits the `TextInputControl` class which is the base class for text inputs.
+
+[source,java]
+----
+The escape shortcut is implemented this way:
+    case ESCAPE:
+commandTextField.setText("");
+break;
+----
+
+In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box or keyboard shortcuts that would make a help guide appear.
+
 
 ==== Design Considerations
 
@@ -526,6 +611,7 @@ In future, there would be more keyboard shortcuts like displaying all the prefix
 **Alternative 1 (current choice):** Implements in `commandBox` class using methods from `TextField` class. +
 **Pros:** Easy to implement. +
 **Cons:** May be hard for new developers to understand since there is no keyboard shortcuts class.
+// end::keyboardshortcuts[]
 
 === Logging
 
