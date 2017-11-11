@@ -414,5 +414,14 @@ Several keyboard keys have special operations when typing in command box. +
 
 == FAQ
 
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*Q*: How do I transfer my data to another computer? +
+*A*: _Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactHub folder._
+
+*Q*: Why are the keyboard shortcuts not working? +
+*A*: _Make sure the command line is selected before you use the shortcut._
+
+*Q*: I cleared my contacts by accident, how do I get them back? +
+*A*: _If you have not closed the application or done anything else yet, you can use the ‘undo’ command to recover your contacts._
+
+*Q*: ContactHub is not loading when I double-click on the file, what should I do? +
+*A*: _Ensure you have Java version 1.8.0_60 or later installed on your computer. ContactHub will not work with earlier versions. Check the “Getting Started” section for more info._
