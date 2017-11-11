@@ -165,11 +165,14 @@ Selects the 1st person in the results of the `find` command.
 Clears all contact entries from ContactHub. +
 Format: `clear`
 
+// tag::listmodules[]
 === Listing all modules : `listmodules` or `lm` [Since v1.2]
 
 Shows a list of all modules in the address book. +
 Format: `listmodules`
+// end::listmodules[]
 
+// tag::findmodule[]
 === Locating persons by modules: `findmodule` or `fm` [Since v1.2]
 
 Finds persons whose modules contain any of the given keywords. +
@@ -187,6 +190,7 @@ Examples:
 Returns `Alex Yeoh` and `Bernice Yu` with modules containing 'CS2101' inside
 * `findmodule CS2101 CS2103`  +
 Returns any person having modules `CS2101` or `CS2103`
+// end::findmodule[]
 
 === Adding a photo to a Contact: `addPhoto` or `ap` [Since v1.3]
 
@@ -268,12 +272,14 @@ Opens the `COM1-0204` NUSMods page in the browser.
 
 * These commands are used for the tasklist.
 
-
+// tag::addtask[]
 === Adding a task: `addtask` or `at` [Since v1.4]
 
 Adds a task to ContactHub +
 Format: `addtask t/APPOINTMENT d/DATE s/START_TIME`
+// end::addtask[]
 
+// tag::edittask[]
 === Editing a task: `edittask` or `et` [Since v1.4]
 
 Edits an existing task in ContactHub +
@@ -291,7 +297,9 @@ Examples:
 Edits the appointment, date and start time of the 1st task to be `Work`, `31/10/2017` and `12:00` respectively.
 * `edittask 2 d/20/12/2017 s/08:00`
 Edits the date and start time of the 2nd task to be `20/12/2017` and `08:00` respectively.
+// end::edittask[]
 
+// tag::deletetask[]
 === Deleting a task: `deletetask` or `dt` [Since v1.4]
 
 Deletes the specified task from ContactHub. +
@@ -307,6 +315,7 @@ Examples:
 
 * `delete 1` +
 Deletes the 1st task in ContactHub.
+// end::deletetask[]
 
 == System Commands
 
@@ -398,6 +407,7 @@ Several keyboard keys have special operations when typing in command box. +
 * Right-click functionality
 * Note functionality
 * Map navigation functionality with CLI input
+* Send email functionality with CLI input
 
 == FAQ
 

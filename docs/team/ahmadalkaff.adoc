@@ -8,12 +8,6 @@ ContactHub is a desktop address book application used for teaching Software Engi
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/ahmadalkaff.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/viviantan95.md[Test code]] {give links to collated code files}
 
-=== Enhancement Added: Command Alias
-
-==== Justification
-
-With the presence of Command Alias, users can interact with ContactHub faster and easier.
-
 === Enhancement Added: Sort
 
 ==== External behavior
@@ -42,6 +36,24 @@ include::../DeveloperGuide.adoc[tag=sort]
 
 ---
 
+=== Enhancement Added: ListModules
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=listmodules]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+When using ContactHub, all contacts can be assigned to a module. With the ListModules feature,
+users can now know all the modules in ContactHub.
+
 === Enhancement Added: Allow multiple phone numbers and emails
 
 ==== Justification
@@ -49,12 +61,42 @@ include::../DeveloperGuide.adoc[tag=sort]
 When using ContactHub, users are now able to add multiple phone numbers and emails to a single contact. Hence, with the
 presence of this feature enhancement users do not have to add a repetitive person.
 
-=== Enhancement Added: EditTask and DeleteTask
+=== Enhancement Added: EditTask
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=edittask]
+
+#End of Extract#
+
+---
 
 ==== Justification
 
-When using ContactHub, users can add tasks to be done. With the edit and delete task feature, users can now have the
-option to edit incorrect information and delete the task once it is done. This would benefit the user greatly as well
+When using ContactHub, users can add tasks to be done. With the edit task feature, users can now have the
+option to edit incorrect information. This would benefit the user greatly as well
+as attract more users to use ContactHub.
+
+=== Enhancement Added: DeleteTask
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=deletetask]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+When using ContactHub, users can add tasks to be done. With the delete task feature, users can now have the
+option to delete the task once it is done. This would benefit the user greatly as well
 as attract more users to use ContactHub.
 
 === Enhancement Proposed: Add `sendEmail` feature
@@ -67,5 +109,6 @@ communicating with other persons.
 
 === Other contributions
 
+* Initiated command alias for commands (Pull requests https://github.com[#30])
 * Updated the Architecture Diagrams (Pull requests https://github.com[#127], https://github.com[#147])
 * Add UseCase in the DeveloperGuide (Pull requests https://github.com[#48])
