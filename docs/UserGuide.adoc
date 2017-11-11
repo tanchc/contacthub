@@ -244,7 +244,7 @@ Format: `summary`
 === Viewing module information : `getmodule` or `gm` [Since v1.5rc]
 
 Opens the NUSMods module information page for the given module in the browser. +
-Format: `getmodule MODULE_NAME`
+Format: `getmodule MODULE`
 
 Examples:
 
@@ -255,7 +255,7 @@ Opens the `CS2101` NUSMods page in the browser.
 * Entering an invalid module will load the main NUSMods page.
 ****
 
-=== Viewing venue information : `venue` or `gm` [Since v1.5rc]
+=== Viewing venue information : `venue` or `v` [Since v1.5rc]
 
 Opens the NUSMods venue information page for the given venue in the browser. +
 Format: `venue VENUE_NAME`
