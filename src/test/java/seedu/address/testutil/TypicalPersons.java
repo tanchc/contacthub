@@ -106,6 +106,10 @@ public class TypicalPersons {
         return ab;
     }
 
+    // @@author ahmadalkaff
+    /**
+     * Returns an {@code AddressBook} with all the typical persons and typical tasks.
+     */
     public static AddressBook getTypicalAddressBookData() {
         AddressBook ab = new AddressBook();
         for (ReadOnlyPerson person : getTypicalPersons()) {
@@ -117,11 +121,12 @@ public class TypicalPersons {
         }
 
         for (ReadOnlyTask task : getTypicalTasks()) {
-                ab.addTask(task);
+            ab.addTask(task);
         }
 
         return ab;
     }
+    // @@author
 
 
     public static List<ReadOnlyPerson> getTypicalPersons() {

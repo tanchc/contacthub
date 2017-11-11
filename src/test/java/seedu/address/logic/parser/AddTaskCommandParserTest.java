@@ -2,14 +2,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;

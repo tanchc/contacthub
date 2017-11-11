@@ -2,21 +2,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.APPOINTMENT_DESC_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_EVENT;
 import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_MEETING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -120,7 +114,8 @@ public class EditTaskCommandParserTest {
         // appointment
         Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + APPOINTMENT_DESC_MEETING;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withAppointment(VALID_APPOINTMENT_MEETING).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withAppointment(VALID_APPOINTMENT_MEETING).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -142,12 +137,17 @@ public class EditTaskCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_failure() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING;
-        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_MEETING)
+                .withStartTime(VALID_START_TIME_MEETING).build();
+        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING + START_TIME_DESC_MEETING;
-        assertParseFailure(parser, userInput, Date.MESSAGE_DATE_CONSTRAINTS);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
 }
