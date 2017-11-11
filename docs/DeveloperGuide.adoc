@@ -489,7 +489,7 @@ Upon exiting ContactHub, the contact list will not be sorted in the next subsequ
 **Alternative 1 (current choice):** Uses the Java Collections.sort() method to sort the contact list in an alphabetical order. +
 **Pros:** Easy to implement. +
 **Cons:** It is difficult to debug. +
-**Alternative 2:** Creates a new sort algorithm. +
+**Alternative 2:** Create a new sort algorithm. +
 **Pros:** It is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::sort[]
@@ -525,7 +525,7 @@ public class AddPhotoCommand extends UndoableCommand {
 }
 ----
 
-Suppose the user has jus added a contact into ContactHub. The photo of this contact will be defaultPhoto.
+Suppose the user has just added a contact into ContactHub. The photo of this contact will be defaultPhoto.
 
 image::addphoto1.PNG[width="300"]
 
@@ -551,8 +551,8 @@ After the execution, the list will return to the main contact list.
 **Cons:** Might present a problem when there is no internet available for the user. +
 **Alternative 2:** Using local URL. +
 **Pros:** The contact may not have a photo stored in the web database. +
-**Cons:** If there is no local photo of the contact, the user must download from the web onto hes computer first then
-use the local URL in the `AddPhotoCommand`.
+**Cons:** If there is no local photo of the contact, the user must download the contact's photo from the web
+ onto he's computer first then use the local URL in the `AddPhotoCommand`.
 // end::addphoto[]
 
 // tag::keyboardshortcuts[]
@@ -1045,6 +1045,38 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+[discrete]
+=== Use case: Add photo
+*MSS*
+
+1.  User requests to list persons
+2.  ContactHub shows a list of persons
+3.  User requests to add a photo to a person in the list
+4.  ContactHub adds a photo to that person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. ContactHub shows an error message.
++
+Use case resumes at step 2.
+* 3b. The given web URL is invalid.
++
+[none]
+** 3b1. ContactHub shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
 
 [discrete]
 === Use case: Select person
