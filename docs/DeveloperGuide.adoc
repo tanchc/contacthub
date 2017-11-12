@@ -730,7 +730,7 @@ image::EditTask.PNG[width="300"]
 // tag::deletetask[]
 === DeleteTask mechanism
 
-The DeleteTask mechanism is facilitated by the `Logic` class. It allows the user to edit a task in the task list.
+The DeleteTask mechanism is facilitated by the `Logic` class. It allows the user to delete a task in the task list.
 
 Whenever DeleteTask command is inserted, the selected task will be removed from the task list.
 
@@ -771,7 +771,7 @@ image::DeleteTask.PNG[width="300"]
 **Alternative 1 (current choice):** The user gives the index of the task to be deleted and the task is deleted. +
 **Pros:** This method is easy to implement. +
 **Cons:** This method is difficult to debug. +
-**Alternative 2:** Creates a new deletetTask algorithm. +
+**Alternative 2:** Creates a new deleteTask algorithm. +
 **Pros:** This method is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::deletetask[]
