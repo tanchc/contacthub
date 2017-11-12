@@ -76,4 +76,6 @@ include::../DeveloperGuide.adoc[tag=keyboardshortcuts]
 
 === Other contributions
 
-* Addition of `Birthday` property in Person Model.
+* Addition of `Birthday` property in Person Model. (Pull requests https://github.com[#60])
+* Assigned random tag colors to random tags (Pull requests https://github.com[#52])
+* Add user stories into developer guide (Pull requests https://github.com[#49])
