@@ -516,7 +516,7 @@ Certain properties of the application can be controlled (e.g App name, logging l
 === NUSMods Functionality
 
 The NUSMods Functionality is facilitated mainly by the `MainWindow` class which is found
-in the `ui` package.
+in the `ui` package. It provides the user the ability to check information on
 
 // end::nusmods[]
 

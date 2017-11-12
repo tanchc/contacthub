@@ -4,7 +4,10 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Project: ContactHub
-ContactHub is a desktop address book application designed for NUS students. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+ContactHub is a desktop address book application designed for NUS students, created as part of NUS modules CS2101 and CS2103T.
+The project constraints were to create an addressbook application where input was handled by a  CLI, while output was handled by a GUI.
+
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/main/jshoung.md[Functional code]] [https://github.com/CS2103AUG2017-T11-B2/main/blob/master/collated/test/jshoung.md[Test code]]
 
@@ -24,7 +27,11 @@ include::../UserGuide.adoc[tag=nusmods]
 ==== Justification
 
 The enhancement allows students, our target audience, to conveniently check
-useful information within the application.
+useful information within the application using only the CLI. NUSMods was chosen as it is popular among NUS students
+and provides up-to-date information.
+
+Checking module and venue information are the most relevant features a student would use
+on a regular basis, within the constraints of the project.
 
 
 ==== Implementation
@@ -71,15 +78,16 @@ include::../DeveloperGuide.adoc[tag=.]
 
 === Other contributions
 
-* Addition of command summary page on previously blank default page.
+* Addition of HTML command summary page on previously blank default page.
 * Addition of person count to status bar footer.
 * Addition of Bus command to open NUS bus routes in new window.
 * Addition of Map command to open NUS Campus Map in new window.
 * Refactoring of tag functionality into module functionality.
 * Updated GUI color scheme to be consistent when person/task list empty.
 * Changed command input to be case insensitive.
-* Changed browser panel for selected person from Google search to detailed contact page.
-*
+* Changed browser panel for selected person from Google search to detailed HTML contact page
+that pulls information from the contact.
+* f
 //* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
 //* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 

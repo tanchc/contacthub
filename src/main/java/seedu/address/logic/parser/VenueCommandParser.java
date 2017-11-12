@@ -21,7 +21,7 @@ public class VenueCommandParser implements Parser<VenueCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, VenueCommand.MESSAGE_USAGE));
         }
 
-        return new VenueCommand(trimmedArgs);
+        return new VenueCommand(trimmedArgs.toUpperCase());
     }
 
 }
