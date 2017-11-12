@@ -735,6 +735,105 @@ image::AddTask.png[width="300"]
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::addtask[]
 
+// tag::edittask[]
+=== EditTask mechanism
+
+The EditTask mechanism is facilitated by the `Logic` class. It allows the user to edit a task in the task list.
+
+The `Task` class stores the details of the task i.e appointment, date, and start time that will be displayed in the `TaskListPanel`.
+Whenever EditTask command is inserted, the new details will replace the existing details of the selected task.
+
+To edit a task in the task list, the `EditTaskCommand` takes in the index of the task and the details of the desired change.
+`EditTaskCommand` inherits from `UndoableCommand` and is therefore undoable using the `undo` function.
+
+The `EditTaskCommand` is implemented this way.
+[source,java]
+----
+
+public class EditTaskCommand extends UndoableCommand {
+    @Override
+        public CommandResult executeUndoableCommand() throws CommandException {
+       // ... editTask logic ...
+
+       }
+}
+----
+
+Suppose the user has just added a task into ContactHub.
+
+image::AddTask.PNG[width="300"]
+
+The user executes `EditTaskCommand` and provides the task's details.
+
+image::EditTask.PNG[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `EditTaskCommand`. +
+**Alternative 1 (current choice):** Have `EditTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `EditTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How editTask executes +
+**Alternative 1 (current choice):** A new task object is created and replaced the old task with the new task. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new editTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::edittask[]
+
+// tag::deletetask[]
+=== DeleteTask mechanism
+
+The DeleteTask mechanism is facilitated by the `Logic` class. It allows the user to delete a task in the task list.
+
+Whenever DeleteTask command is inserted, the selected task will be removed from the task list.
+
+To delete a task in the task list, the `DeleteTaskCommand` takes in the index of the task and the task is deleted.
+`DeleteTaskCommand` inherits from `UndoableCommand` and is therefore undoable using the `undo` function.
+
+The `DeleteTaskCommand` is implemented this way.
+[source,java]
+----
+
+public class DeleteTaskCommand extends UndoableCommand {
+    @Override
+        public CommandResult executeUndoableCommand() throws CommandException {
+       // ... deleteTask logic ...
+
+       }
+}
+----
+
+Suppose the user has just added a task into ContactHub.
+
+image::AddTask.PNG[width="300"]
+
+The user executes `DeleteTaskCommand` and provides the task's details.
+
+image::DeleteTask.PNG[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `DeleteTaskCommand`. +
+**Alternative 1 (current choice):** Have `DeleteTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `DeleteTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How deleteTask executes +
+**Alternative 1 (current choice):** The user gives the index of the task to be deleted and the task is deleted. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new deleteTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::deletetask[]
+
 == Documentation
 
 We use asciidoc for writing documentation.

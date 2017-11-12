@@ -84,6 +84,17 @@ When using ContactHub, users can add tasks to be done. With the edit task featur
 option to edit incorrect information. This would benefit the user greatly as well
 as attract more users to use ContactHub.
 
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=edittask]
+
+#End of Extract#
+
+---
+
 === Enhancement Added: DeleteTask
 
 ==== External behavior
@@ -102,6 +113,17 @@ include::../UserGuide.adoc[tag=deletetask]
 When using ContactHub, users can add tasks to be done. With the delete task feature, users can now have the
 option to delete the task once it is done. This would benefit the user greatly as well
 as attract more users to use ContactHub.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=deletetask]
+
+#End of Extract#
+
+---
 
 === Enhancement Proposed: Add `sendEmail` feature
 
