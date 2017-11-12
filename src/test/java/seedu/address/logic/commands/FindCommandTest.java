@@ -62,7 +62,6 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         FindCommand command = prepareCommand(" ");
         assertCommandSuccess(command, expectedMessage, Collections.emptyList());
-        //System.out.println(model.getFilteredPersonList().size());
     }
 
     @Test

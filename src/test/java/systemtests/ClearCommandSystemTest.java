@@ -22,7 +22,6 @@ public class ClearCommandSystemTest extends AddressBookSystemTest {
          */
         assertCommandSuccess("   " + ClearCommand.COMMAND_WORD + " ab12   ");
         assertSelectedCardUnchanged();
-        System.out.println(getModel().getFilteredPersonList().size());
 
         /* Case: undo clearing address book -> original address book restored */
         String command = UndoCommand.COMMAND_WORD;
