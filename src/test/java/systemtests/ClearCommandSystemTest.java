@@ -9,6 +9,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
+import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
+
 public class ClearCommandSystemTest extends AddressBookSystemTest {
 
     @Test
@@ -20,6 +22,7 @@ public class ClearCommandSystemTest extends AddressBookSystemTest {
          */
         assertCommandSuccess("   " + ClearCommand.COMMAND_WORD + " ab12   ");
         assertSelectedCardUnchanged();
+        System.out.println(getModel().getFilteredPersonList().size());
 
         /* Case: undo clearing address book -> original address book restored */
         String command = UndoCommand.COMMAND_WORD;
@@ -40,10 +43,10 @@ public class ClearCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardDeselected();
 
         /* Case: filters the person list before clearing -> entire address book cleared */
-        // executeCommand(UndoCommand.COMMAND_WORD); // restores the original address book
-        // showPersonsWithName(KEYWORD_MATCHING_MEIER);
-        // assertCommandSuccess(ClearCommand.COMMAND_WORD);
-        // assertSelectedCardUnchanged();
+         executeCommand(UndoCommand.COMMAND_WORD); // restores the original address book
+         showPersonsWithName(KEYWORD_MATCHING_MEIER);
+         assertCommandSuccess(ClearCommand.COMMAND_WORD);
+         assertSelectedCardUnchanged();
 
         /* Case: clear empty address book -> cleared */
         assertCommandSuccess(ClearCommand.COMMAND_WORD);
