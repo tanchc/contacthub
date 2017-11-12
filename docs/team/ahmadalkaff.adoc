@@ -65,13 +65,6 @@ include::../DeveloperGuide.adoc[tag=listmodules]
 
 ---
 
-=== Enhancement Added: Allow multiple phone numbers and emails
-
-==== Justification
-
-When using ContactHub, users are now able to add multiple phone numbers and emails to a single contact. Hence, with the
-presence of this feature enhancement users do not have to add a repetitive person.
-
 === Enhancement Added: EditTask
 
 ==== External behavior
@@ -121,5 +114,6 @@ communicating with other persons.
 === Other contributions
 
 * Initiated command alias for commands (Pull requests https://github.com[#30])
-* Updated the Architecture Diagrams (Pull requests https://github.com[#127], https://github.com[#147])
 * Add UseCase in the DeveloperGuide (Pull requests https://github.com[#48])
+* Allow users to add multiple phone numbers and emails to a single contact (Pull requests https://github.com[#93], https://github.com[#97])
+* Updated the Architecture Diagrams (Pull requests https://github.com[#127], https://github.com[#147])

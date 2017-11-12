@@ -366,18 +366,18 @@ image::ListModuleCommand.png[width="300"]
 ==== Design Considerations
 
 **Aspect:** Implementation of `ListModuleCommand` +
-**Alternative (current choice):** `ListModuleCommand` inherits from `Command`. +
+**Alternative 1 (current choice):** `ListModuleCommand` inherits from `Command`. +
 **Pros:** After listing, the contact list remains as per normal when command is keyed in. +
 **Cons:** The contact list cannot be sorted by modules after command is keyed in.
 
 ---
 
-**Aspect:** How listModule executes +
+**Aspect:** How listModules executes +
 **Alternative 1 (current choice):** Uses the Java Collections.sort() method to get the list of all modules. +
 **Pros:** Easy to implement. +
-**Cons:** It is difficult to debug. +
+**Cons:** This method is difficult to debug. +
 **Alternative 2:** Creates a new listModules algorithm. +
-**Pros:** It is easier to debug. +
+**Pros:** This method is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::listmodules[]
 
@@ -487,10 +487,10 @@ Upon exiting ContactHub, the contact list will not be sorted in the next subsequ
 
 **Aspect:** How sort executes +
 **Alternative 1 (current choice):** Uses the Java Collections.sort() method to sort the contact list in an alphabetical order. +
-**Pros:** Easy to implement. +
-**Cons:** It is difficult to debug. +
-**Alternative 2:** Create a new sort algorithm. +
-**Pros:** It is easier to debug. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new sort algorithm. +
+**Pros:** This method is easier to debug. +
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::sort[]
 
