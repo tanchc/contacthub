@@ -644,6 +644,8 @@ in the `ui` package.
 
 // end::nusmods[]
 
+// tag::googlemaps[]
+
 === Google Maps Functionality
 
 The Google Maps Functionality is facilitated mainly by the `BrowserPanel` class which resides in the `UI` component.
@@ -654,7 +656,7 @@ The `BrowserPanel` class also instantiates an object of `WebView` class which is
 The `WebView` class provides access to the `WebEngine` which is the base class for loading Web pages, creating their document models, applying styles as necessary,
 and runs JavaScript on pages. It provides access to the document of the current page, amd enables the Java application and JavaScript code of the page to communicate.
 
-The HTML file "LocatedAddress.html" has been created to load whenever a contact has been selected. It also hold the Javascript function
+The HTML file "PersonBrowserPanel.html" has been created to load whenever a contact has been selected. It also hold the Javascript function
 to allow pinpointing of the contact's address.
 
 document.goToLocation = function goToLocation(searchString) {
@@ -668,6 +670,10 @@ document.goToLocation = function goToLocation(searchString) {
             }
 Should the above function fail to load a location for the contact's address, an alert will be sent to indicate that there is an issue
 
+// end::googlemaps[]
+
+// tag::tasklist[]
+
 === Addition of TaskList
 
 The Task List Functionality is facilitated mainly by the `TaskListPanel` class which resides in the `UI` component.
@@ -676,6 +682,8 @@ The Task List Functionality is facilitated mainly by the `TaskListPanel` class w
 The `TaskListPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
 The `TaskListPanel` class also instantiates a list of `TaskCard` class which represents a UI component that displays information of a task.
 The `TaskListCard.fxml` is an FXML file that interacts with the TaskCard class to produce the graphic displaying the details of the task.
+
+// end::tasklist[]
 
 == Documentation
 
