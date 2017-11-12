@@ -25,9 +25,6 @@ public class AddPhotoCommandParserTest {
         //negative index
         assertParseFailure(parser, "-1" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
 
-        //index out of bound
-        assertParseFailure(parser, "9999" + URL_DESC_LOCAL, AddPhotoCommand.MESSAGE_ADDPHOTO_UNSUCCESS);
-
         //index containing chars
         assertParseFailure(parser, "test" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
 

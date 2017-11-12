@@ -1,8 +1,4 @@
 # jshoung
-###### \java\guitests\guihandles\BusWindowHandle.java
-``` java
-
-```
 ###### \java\seedu\address\logic\commands\AddCommandTest.java
 ``` java
         @Override
@@ -46,7 +42,7 @@
 
 }
 ```
-###### /java/seedu/address/logic/commands/BusCommandTest.java
+###### \java\seedu\address\logic\commands\BusCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -73,7 +69,7 @@ public class BusCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/MapCommandTest.java
+###### \java\seedu\address\logic\commands\MapCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 

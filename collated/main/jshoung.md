@@ -196,7 +196,7 @@ public class ClearPersonSelectionEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\GetModuleRequestEvent.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -219,7 +219,7 @@ public class GetModuleRequestEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ShowBusRequestEvent.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -389,7 +389,7 @@ public class GetModuleCommand extends Command {
         return browserValue;
     }
 ```
-###### \java\seedu\address\model\person\Name.java
+###### /java/seedu/address/model/person/Name.java
 ``` java
     public String getBrowserName() {
         return browserName;
@@ -414,7 +414,7 @@ public class GetModuleCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
@@ -437,7 +437,7 @@ public class GetModuleCommand extends Command {
     }
 
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
@@ -464,7 +464,7 @@ public class GetModuleCommand extends Command {
     }
 
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
@@ -517,7 +517,7 @@ public class GetModuleCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Photo.java
+###### /java/seedu/address/model/person/Photo.java
 ``` java
     public String getBrowserPhoto() {
         return value;
@@ -829,7 +829,7 @@ public class MapWindow extends UiPart<Region> {
         scrollToAndClear();
     }
 ```
-###### \java\seedu\address\ui\ResultDisplay.java
+###### /java/seedu/address/ui/ResultDisplay.java
 ``` java
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
@@ -1264,7 +1264,6 @@ li {
     -fx-font-size: 11;
 }
 ```
-
 ###### /resources/view/MapWindow.fxml
 ``` fxml
 
