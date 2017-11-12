@@ -145,7 +145,7 @@ public abstract class AddressBookSystemTest {
      * and the person list panel displays the persons in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
-            Model expectedModel) {
+                                                     Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(expectedModel, getModel());
@@ -210,8 +210,6 @@ public abstract class AddressBookSystemTest {
      * Asserts that the command box's shows the default style.
      */
     protected void assertCommandBoxShowsDefaultStyle() {
-        System.out.println(COMMAND_BOX_DEFAULT_STYLE);
-        System.out.println(getCommandBox().getStyleClass());
         assertEquals(COMMAND_BOX_DEFAULT_STYLE, getCommandBox().getStyleClass());
     }
 
