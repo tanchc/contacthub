@@ -72,7 +72,8 @@ include::../DeveloperGuide.adoc[tag=keyboardshortcuts]
 
 === Enhancement Proposed:
 
-{Explain similar to the Undo/Redo feature above.}
+* Using NUSMods as an additional feature.
+* Using IVLE as an additional feature.
 
 === Other contributions
 
