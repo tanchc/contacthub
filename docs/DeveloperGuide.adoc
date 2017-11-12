@@ -685,6 +685,56 @@ The `TaskListCard.fxml` is an FXML file that interacts with the TaskCard class t
 
 // end::tasklist[]
 
+// tag::addtask[]
+=== AddTask mechanism
+
+The AddTask mechanism is implemented using the `AddTaskCommand`, which resides inside `Logic`. It supports addition of tasks into ContactHub's task list.
+
+The `Task` class stores a details of the task i.e Appointment, Date, and StartTime that will be displayed in the `TaskListPanel`.
+
+When the user adds a new task to the `TaskList`, the a new task represented as a `TaskCard` will be created and shown.
+
+To add a task in the task list, the `AddTaskCommand` takes in the Appointment, Date and StartTime as parameters for the task.
+
+`AddTaskCommand` inherits from UndoableCommand and is therefore undoable using the `undo` function.
+
+The `AddTaskCommand` is implemented this way.
+[source,java]
+----
+public class AddTaskCommand extends UndoableCommand {
+    @Override
+    public CommandResult UndoableCommand() throws CommandException {
+        // ... addTask logic ...
+        }
+}
+----
+
+Suppose that the user has just launched ContactHub.
+
+image::BeforeAddTask.png[width="300"]
+
+The user executes `AddTaskCommand` and provides the task's details.
+
+image::AddTask.png[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `AddTaskCommand`. +
+**Alternative 1 (current choice):** Have `AddTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `AddTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How addTask executes +
+**Alternative 1 (current choice):** A new task object is created using the the Appointment, Date and StartTime given as parameters. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new addTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::addtask[]
+
 == Documentation
 
 We use asciidoc for writing documentation.

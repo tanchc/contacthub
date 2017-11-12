@@ -97,13 +97,28 @@ Of course, with a TaskList User Interface, the user should be given the capabili
 adding a person's contact to the PersonList requires an add command, the same can also be said for adding a task to the
 TaskList where an addtask command is requried.
 
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=addtask]
+
+#End of Extract#
+
 ---
 
 === Enhancement Proposed: Add syncContacts feature
 
+---
+
+==== Justification
+
 When using ContactHub, users may have a lot of contacts which may be very tedious for the users to add one by one,
 especially for a command line interface. Hence this would greatly encourage users to use ContactHub as all of their
 contacts can be added more efficiently into ContactHub, thereby saving the user's time and effort.
+
+---
 
 === Other contributions
 
@@ -111,7 +126,3 @@ contacts can be added more efficiently into ContactHub, thereby saving the user'
 * Add UseCase in the DeveloperGuide (Pull requests https://github.com[#69])
 * Helped to rearrange the User Interface for ContactHub to accomodate another TaskList
 (Pull requests https://github.com[#112])
-
-== Project: PowerPointLabs
-
-{Optionally (not graded), you may include other projects in your portfolio.}
