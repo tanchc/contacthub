@@ -108,21 +108,21 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
         /* Case: filtered person list, edit index within bounds of address book and person list -> edited */
-         showPersonsWithName(KEYWORD_MATCHING_MEIER);
-         index = INDEX_FIRST_PERSON;
-         assertTrue(index.getZeroBased() < getModel().getFilteredPersonList().size());
-         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
-         personToEdit = getModel().getFilteredPersonList().get(index.getZeroBased());
-         editedPerson = new PersonBuilder(personToEdit).withName(VALID_NAME_BOB).build();
-         assertCommandSuccess(command, index, editedPerson);
+        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        index = INDEX_FIRST_PERSON;
+        assertTrue(index.getZeroBased() < getModel().getFilteredPersonList().size());
+        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
+        personToEdit = getModel().getFilteredPersonList().get(index.getZeroBased());
+        editedPerson = new PersonBuilder(personToEdit).withName(VALID_NAME_BOB).build();
+        assertCommandSuccess(command, index, editedPerson);
 
         /* Case: filtered person list, edit index within bounds of address book but out of bounds of person list
          * -> rejected
          */
-         showPersonsWithName(KEYWORD_MATCHING_MEIER);
-         int invalidIndex = getModel().getAddressBook().getPersonList().size();
-         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
-         Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        int invalidIndex = getModel().getAddressBook().getPersonList().size();
+        assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
+        Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         /* --------------------- Performing edit operation while a person card is selected -------------------------- */
 
