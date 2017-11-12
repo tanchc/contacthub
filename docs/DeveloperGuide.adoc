@@ -512,7 +512,7 @@ The `Photo` class would first check the validity of the URL,
 if valid, the image will be downloaded and the photo of the contact would be updated accordingly, otherwise an IllegalValueException
 will be thrown.
 
-The `AddPhotoCommand` is implemented this way:
+The `AddPhotoCommand` is implemented this way.
 [source,java]
 ----
 
@@ -567,7 +567,7 @@ The `commandBox` class inherits the abstract class of `UIPart` which represents 
 The `commandBox` class then calls the handleKeyPress() method whenever a key binding is pressed by the user. Using a switch statement for the
 key bindings, the methods for each key bind will be carried out accordingly.
 
-`CommandBox` inherits from UiPart and key binding functions are implemented this way:
+`CommandBox` inherits from UiPart and key binding functions are implemented this way.
 
 [source,java]
 ----
@@ -580,8 +580,6 @@ public class CommandBox extends UiPart<Region> {
 }
 ----
 
-Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard.
-
 The `commandBox` class instantiates an object called `commandTextfield` of `TextField` class which is a JavaFX FXML, an XML-based language for building a user interface. The `TextField` class inherits the `TextInputControl` class which is the base class for text inputs.
 
 [source,java]
@@ -592,8 +590,13 @@ commandTextField.setText("");
 break;
 ----
 
-In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box or keyboard shortcuts that would make a help guide appear.
+Suppose the user wants to delete everything in the command box. The user then executes the escape key on the user's keyboard.
 
+image::keyboardsc1.PNG[width="300"]
+
+image::keyboardsc2.PNG[width="300"]
+
+In future, there would be more keyboard shortcuts like displaying all the prefixes of the AddCommand in the command box or keyboard shortcuts that would make a help guide appear.
 
 ==== Design Considerations
 
