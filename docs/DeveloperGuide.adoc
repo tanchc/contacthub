@@ -363,6 +363,10 @@ The user executes `ListModuleCommand`, the result display will list out all the 
 
 image::ListModuleCommand.png[width="300"]
 
+The following sequence diagram shows how the list module operation works:
+
+image::ListModulesSequenceDiagram.png[width="800"]
+
 ==== Design Considerations
 
 **Aspect:** Implementation of `ListModuleCommand` +
@@ -470,6 +474,10 @@ image::SortCommand.png[width="300"]
 
 As the user continues to use the program, the contact list remains sorted in an alphabetical order.
 
+The following sequence diagram shows how the sort operation works:
+
+image::SortSequenceDiagram.png[width="800"]
+
 [NOTE]
 Upon exiting ContactHub, the contact list will not be sorted in the next subsequent launches.
 
@@ -535,6 +543,10 @@ image::addphoto2.PNG[width="300"]
 
 [NOTE]
 After the execution, the list will return to the main contact list.
+
+The following sequence diagram shows how the add photo operation works:
+
+image::AddPhotoSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
@@ -767,6 +779,10 @@ The user executes `EditTaskCommand` and provides the task's details.
 
 image::EditTask.PNG[width="300"]
 
+The following sequence diagram shows how the delete task operation works:
+
+image::EditTaskSequenceDiagram.png[width="800"]
+
 ==== Design Considerations
 
 **Aspects:** Implementation of `EditTaskCommand`. +
@@ -815,6 +831,10 @@ image::AddTask.PNG[width="300"]
 The user executes `DeleteTaskCommand` and provides the task's details.
 
 image::DeleteTask.PNG[width="300"]
+
+The following sequence diagram shows how the delete task operation works:
+
+image::DeleteTaskSequenceDiagram.png[width="800"]
 
 ==== Design Considerations
 
