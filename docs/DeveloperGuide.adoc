@@ -656,6 +656,8 @@ in the `ui` package.
 The Google Maps Functionality is facilitated mainly by the `BrowserPanel` class which resides in the `UI` component.
  It provides the user the Google Maps location of a contact's address just by selecting them.
 
+image::GoogleMapsUIDiagram.png[width="350"]
+
 The `BrowserPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
 The `BrowserPanel` class also instantiates an object of `WebView` class which is a JavaFX FXML, an XML-based language for building a user interface.
 The `WebView` class provides access to the `WebEngine` which is the base class for loading Web pages, creating their document models, applying styles as necessary,

@@ -61,21 +61,6 @@ public class BrowserPanel extends UiPart<Region> {
      * Loads the located address page of the user's address.
      */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
-        /*ClassLoader classLoader = getClass().getClassLoader();
-        File locatedAddressFile = new File(classLoader.getResource("view/PersonBrowserPanel.html").getFile());
-        File htmlTemplateFile = new File(classLoader.getResource("view/Template.html").getFile());
-        resetPage(htmlTemplateFile, locatedAddressFile);
-        String htmlString = FileUtils.readFileToString(locatedAddressFile);
-        System.out.println(htmlString);
-        String title = "New Page";
-        int stopIndex = person.getAddress().getGMapsAddress().indexOf(',');
-        String address = person.getAddress().getGMapsAddress().substring(0, stopIndex);
-        System.out.println(address);
-        System.out.println(htmlString);
-        htmlString = htmlString.replace("$body", address.replace(" ", "+"));
-        System.out.println(htmlString);
-        FileUtils.writeStringToFile(locatedAddressFile, htmlString);*/
-
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
         loadPage(addressPage.toExternalForm());
     }
