@@ -1,5 +1,9 @@
 # jshoung
-###### \java\seedu\address\logic\commands\AddCommandTest.java
+###### /java/guitests/guihandles/BusWindowHandle.java
+``` java
+
+```
+###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
         public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
@@ -42,7 +46,7 @@
 
 }
 ```
-###### \java\seedu\address\logic\commands\BusCommandTest.java
+###### /java/seedu/address/logic/commands/BusCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -69,7 +73,7 @@ public class BusCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\MapCommandTest.java
+###### /java/seedu/address/logic/commands/MapCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -95,4 +99,42 @@ public class MapCommandTest {
         assertTrue(eventsCollectorRule.eventsCollector.getSize() == 1);
     }
 }
+```
+###### /java/seedu/address/logic/commands/SummaryCommandTest.java
+``` java
+package seedu.address.logic.commands;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.SummaryCommand.SHOWING_SUMMARY_MESSAGE;
+
+import org.junit.Rule;
+import org.junit.Test;
+
+import seedu.address.commons.events.ui.ShowSummaryRequestEvent;
+import seedu.address.ui.testutil.EventsCollectorRule;
+
+public class SummaryCommandTest {
+    @Rule
+    public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
+
+    @Test
+    public void execute_summary_success() {
+        CommandResult result = new SummaryCommand().execute();
+        assertEquals(SHOWING_SUMMARY_MESSAGE, result.feedbackToUser);
+        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof ShowSummaryRequestEvent);
+        assertTrue(eventsCollectorRule.eventsCollector.getSize() == 2);
+    }
+}
+```
+###### /java/seedu/address/ui/BrowserPanelTest.java
+``` java
+        // associated web page of a person
+        postNow(selectionChangedEventStub);
+        URL expectedPersonUrl = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
+        assertEquals(expectedPersonUrl, browserPanelHandle.getLoadedUrl());
+```
+###### /java/seedu/address/ui/BusWindowTest.java
+``` java
+
 ```

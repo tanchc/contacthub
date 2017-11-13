@@ -644,6 +644,8 @@ in the `ui` package.
 
 // end::nusmods[]
 
+// tag::googlemaps[]
+
 === Google Maps Functionality
 
 The Google Maps Functionality is facilitated mainly by the `BrowserPanel` class which resides in the `UI` component.
@@ -654,7 +656,7 @@ The `BrowserPanel` class also instantiates an object of `WebView` class which is
 The `WebView` class provides access to the `WebEngine` which is the base class for loading Web pages, creating their document models, applying styles as necessary,
 and runs JavaScript on pages. It provides access to the document of the current page, amd enables the Java application and JavaScript code of the page to communicate.
 
-The HTML file "LocatedAddress.html" has been created to load whenever a contact has been selected. It also hold the Javascript function
+The HTML file "PersonBrowserPanel.html" has been created to load whenever a contact has been selected. It also hold the Javascript function
 to allow pinpointing of the contact's address.
 
 document.goToLocation = function goToLocation(searchString) {
@@ -668,6 +670,10 @@ document.goToLocation = function goToLocation(searchString) {
             }
 Should the above function fail to load a location for the contact's address, an alert will be sent to indicate that there is an issue
 
+// end::googlemaps[]
+
+// tag::tasklist[]
+
 === Addition of TaskList
 
 The Task List Functionality is facilitated mainly by the `TaskListPanel` class which resides in the `UI` component.
@@ -676,6 +682,157 @@ The Task List Functionality is facilitated mainly by the `TaskListPanel` class w
 The `TaskListPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
 The `TaskListPanel` class also instantiates a list of `TaskCard` class which represents a UI component that displays information of a task.
 The `TaskListCard.fxml` is an FXML file that interacts with the TaskCard class to produce the graphic displaying the details of the task.
+
+// end::tasklist[]
+
+// tag::addtask[]
+=== AddTask mechanism
+
+The AddTask mechanism is implemented using the `AddTaskCommand`, which resides inside `Logic`. It supports addition of tasks into ContactHub's task list.
+
+The `Task` class stores a details of the task i.e Appointment, Date, and StartTime that will be displayed in the `TaskListPanel`.
+
+When the user adds a new task to the `TaskList`, the a new task represented as a `TaskCard` will be created and shown.
+
+To add a task in the task list, the `AddTaskCommand` takes in the Appointment, Date and StartTime as parameters for the task.
+
+`AddTaskCommand` inherits from UndoableCommand and is therefore undoable using the `undo` function.
+
+The `AddTaskCommand` is implemented this way.
+[source,java]
+----
+public class AddTaskCommand extends UndoableCommand {
+    @Override
+    public CommandResult UndoableCommand() throws CommandException {
+        // ... addTask logic ...
+        }
+}
+----
+
+Suppose that the user has just launched ContactHub.
+
+image::BeforeAddTask.png[width="300"]
+
+The user executes `AddTaskCommand` and provides the task's details.
+
+image::AddTask.png[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `AddTaskCommand`. +
+**Alternative 1 (current choice):** Have `AddTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `AddTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How addTask executes +
+**Alternative 1 (current choice):** A new task object is created using the the Appointment, Date and StartTime given as parameters. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new addTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::addtask[]
+
+// tag::edittask[]
+=== EditTask mechanism
+
+The EditTask mechanism is facilitated by the `Logic` class. It allows the user to edit a task in the task list.
+
+The `Task` class stores the details of the task i.e appointment, date, and start time that will be displayed in the `TaskListPanel`.
+Whenever EditTask command is inserted, the new details will replace the existing details of the selected task.
+
+To edit a task in the task list, the `EditTaskCommand` takes in the index of the task and the details of the desired change.
+`EditTaskCommand` inherits from `UndoableCommand` and is therefore undoable using the `undo` function.
+
+The `EditTaskCommand` is implemented this way.
+[source,java]
+----
+
+public class EditTaskCommand extends UndoableCommand {
+    @Override
+        public CommandResult executeUndoableCommand() throws CommandException {
+       // ... editTask logic ...
+
+       }
+}
+----
+
+Suppose the user has just added a task into ContactHub.
+
+image::AddTask.PNG[width="300"]
+
+The user executes `EditTaskCommand` and provides the task's details.
+
+image::EditTask.PNG[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `EditTaskCommand`. +
+**Alternative 1 (current choice):** Have `EditTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `EditTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How editTask executes +
+**Alternative 1 (current choice):** A new task object is created and replaced the old task with the new task. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new editTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::edittask[]
+
+// tag::deletetask[]
+=== DeleteTask mechanism
+
+The DeleteTask mechanism is facilitated by the `Logic` class. It allows the user to delete a task in the task list.
+
+Whenever DeleteTask command is inserted, the selected task will be removed from the task list.
+
+To delete a task in the task list, the `DeleteTaskCommand` takes in the index of the task and the task is deleted.
+`DeleteTaskCommand` inherits from `UndoableCommand` and is therefore undoable using the `undo` function.
+
+The `DeleteTaskCommand` is implemented this way.
+[source,java]
+----
+
+public class DeleteTaskCommand extends UndoableCommand {
+    @Override
+        public CommandResult executeUndoableCommand() throws CommandException {
+       // ... deleteTask logic ...
+
+       }
+}
+----
+
+Suppose the user has just added a task into ContactHub.
+
+image::AddTask.PNG[width="300"]
+
+The user executes `DeleteTaskCommand` and provides the task's details.
+
+image::DeleteTask.PNG[width="300"]
+
+==== Design Considerations
+
+**Aspects:** Implementation of `DeleteTaskCommand`. +
+**Alternative 1 (current choice):** Have `DeleteTaskCommand` implement `UndoableCommand`. +
+**Pros:** Retains the logic flow of how commands are executed. +
+**Cons:** Increases coupling between the `DeleteTaskCommand` class and the `UndoableCommand` interface.
+
+---
+
+**Aspects:** How deleteTask executes +
+**Alternative 1 (current choice):** The user gives the index of the task to be deleted and the task is deleted. +
+**Pros:** This method is easy to implement. +
+**Cons:** This method is difficult to debug. +
+**Alternative 2:** Creates a new deleteTask algorithm. +
+**Pros:** This method is easier to debug. +
+**Cons:** We must ensure that the algorithm's logic is right and efficient.
+// end::deletetask[]
 
 == Documentation
 

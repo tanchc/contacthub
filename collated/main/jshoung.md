@@ -1,4 +1,22 @@
 # jshoung
+###### /java/seedu/address/commons/events/ui/ClearPersonSelectionEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to clear the person selection.
+ */
+public class ClearPersonSelectionEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
 ###### /java/seedu/address/commons/events/ui/GetModuleRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
@@ -59,6 +77,47 @@ public class ShowMapRequestEvent extends BaseEvent {
 
 }
 ```
+###### /java/seedu/address/commons/events/ui/ShowSummaryRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the command summary.
+ */
+public class ShowSummaryRequestEvent extends BaseEvent {
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
+###### /java/seedu/address/commons/events/ui/VenueRequestEvent.java
+``` java
+package seedu.address.commons.events.ui;
+
+import seedu.address.commons.events.BaseEvent;
+
+/**
+ * An event requesting to view the venue page.
+ */
+public class VenueRequestEvent extends BaseEvent {
+    public final String venue;
+
+    public VenueRequestEvent(String venue) {
+        this.venue = venue;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
+}
+```
 ###### /java/seedu/address/logic/commands/BusCommand.java
 ``` java
 package seedu.address.logic.commands;
@@ -91,6 +150,7 @@ public class BusCommand extends Command {
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ClearPersonSelectionEvent;
 import seedu.address.commons.events.ui.GetModuleRequestEvent;
 
 /**
@@ -118,6 +178,7 @@ public class GetModuleCommand extends Command {
     @Override
     public CommandResult execute() {
         EventsCenter.getInstance().post(new GetModuleRequestEvent(module));
+        EventsCenter.getInstance().post(new ClearPersonSelectionEvent());
         return new CommandResult(SHOWING_MODULE_MESSAGE + module);
     }
 
@@ -156,210 +217,119 @@ public class MapCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
-``` java
-        case HelpCommand.COMMAND_ALIAS:
-```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
-``` java
-        case BusCommand.COMMAND_WORD:
-        case BusCommand.COMMAND_ALIAS:
-            return new BusCommand();
-```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
-``` java
-        case MapCommand.COMMAND_WORD:
-        case MapCommand.COMMAND_ALIAS:
-            return new MapCommand();
-```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
-``` java
-        case GetModuleCommand.COMMAND_WORD:
-        case GetModuleCommand.COMMAND_ALIAS:
-            return new GetModuleCommandParser().parse(arguments);
-```
-###### /java/seedu/address/model/ModelManager.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * An event requesting to clear the person selection.
- */
-public class ClearPersonSelectionEvent extends BaseEvent {
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-}
-```
-###### /java/seedu/address/model/person/Address.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * An event requesting to view the module page.
- */
-public class GetModuleRequestEvent extends BaseEvent {
-    public final String module;
-
-    public GetModuleRequestEvent(String module) {
-        this.module = module;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-}
-```
-###### /java/seedu/address/model/person/Birthday.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * An event requesting to view the bus page.
- */
-public class ShowBusRequestEvent extends BaseEvent {
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-}
-```
-###### \java\seedu\address\commons\events\ui\ShowMapRequestEvent.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * An event requesting to view the map page.
-
- */
-public class ShowMapRequestEvent extends BaseEvent {
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-}
-```
-###### \java\seedu\address\commons\events\ui\ShowSummaryRequestEvent.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * An event requesting to view the command summary.
- */
-public class ShowSummaryRequestEvent extends BaseEvent {
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-}
-```
-###### \java\seedu\address\logic\commands\BusCommand.java
-``` java
-package seedu.address.logic.commands;
-
-import seedu.address.commons.core.EventsCenter;
-import seedu.address.commons.events.ui.ShowBusRequestEvent;
-
-/**
- * Opens bus route map for NUS
- */
-public class BusCommand extends Command {
-
-    public static final String COMMAND_WORD = "bus";
-    public static final String COMMAND_ALIAS = "b";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows bus routes for NUS.\n"
-            + "Example: " + COMMAND_WORD;
-
-    static final String SHOWING_BUS_MESSAGE = "Opened bus window.";
-
-    @Override
-    public CommandResult execute() {
-        EventsCenter.getInstance().post(new ShowBusRequestEvent());
-        return new CommandResult(SHOWING_BUS_MESSAGE);
-    }
-}
-```
-###### \java\seedu\address\logic\commands\GetModuleCommand.java
+###### /java/seedu/address/logic/commands/SummaryCommand.java
 ``` java
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.ui.ClearPersonSelectionEvent;
-import seedu.address.commons.events.ui.GetModuleRequestEvent;
+import seedu.address.commons.events.ui.ShowSummaryRequestEvent;
+
+/**
+ * Opens ContactHub command summary
+ */
+public class SummaryCommand extends Command {
+
+    public static final String COMMAND_WORD = "summary";
+    public static final String COMMAND_ALIAS = "sm";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows ContactHub command summary.\n"
+            + "Example: " + COMMAND_WORD;
+
+    static final String SHOWING_SUMMARY_MESSAGE = "Opened command summary.";
+
+    @Override
+    public CommandResult execute() {
+        EventsCenter.getInstance().post(new ClearPersonSelectionEvent());
+        EventsCenter.getInstance().post(new ShowSummaryRequestEvent());
+        return new CommandResult(SHOWING_SUMMARY_MESSAGE);
+    }
+}
+```
+###### /java/seedu/address/logic/commands/VenueCommand.java
+``` java
+package seedu.address.logic.commands;
+
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.ClearPersonSelectionEvent;
+import seedu.address.commons.events.ui.VenueRequestEvent;
 
 /**
  *
- * Opens NUSMods webpage to get module information.
+ * Opens NUSMods webpage to get venue information.
  *
  */
-public class GetModuleCommand extends Command {
-    public static final String COMMAND_WORD = "getmodule";
-    public static final String COMMAND_ALIAS = "gm";
+public class VenueCommand extends Command {
+    public static final String COMMAND_WORD = "venue";
+    public static final String COMMAND_ALIAS = "v";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows module information.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows venue occupancy information.\n"
             + "Parameters: KEYWORD\n"
-            + "Example: " + COMMAND_WORD + " CS2101" + "\n"
-            + "Example: " + COMMAND_ALIAS + " CS2103T";
+            + "Example: " + COMMAND_WORD + " COM1-0114" + "\n"
+            + "Example: " + COMMAND_ALIAS + " COM1-0114";
 
-    public static final String SHOWING_MODULE_MESSAGE = "Loaded module information for: ";
+    public static final String SHOWING_VENUE_MESSAGE = "Loaded venue information for: ";
 
-    private final String module;
+    private final String venue;
 
-    public GetModuleCommand(String module) {
-        this.module = module;
+    public VenueCommand(String venue) {
+        this.venue = venue;
     }
+
+    @Override
+    public CommandResult execute() {
+        EventsCenter.getInstance().post(new VenueRequestEvent(venue));
+        EventsCenter.getInstance().post(new ClearPersonSelectionEvent());
+        return new CommandResult(SHOWING_VENUE_MESSAGE + venue);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof VenueCommand // instanceof handles nulls
+                && this.venue.equals(((VenueCommand) other).venue)); // state check
+    }
+}
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        switch (commandWord.toLowerCase()) {
+```
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case HelpCommand.COMMAND_ALIAS:
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case BusCommand.COMMAND_WORD:
         case BusCommand.COMMAND_ALIAS:
             return new BusCommand();
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case MapCommand.COMMAND_WORD:
         case MapCommand.COMMAND_ALIAS:
             return new MapCommand();
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case GetModuleCommand.COMMAND_WORD:
         case GetModuleCommand.COMMAND_ALIAS:
             return new GetModuleCommandParser().parse(arguments);
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case SummaryCommand.COMMAND_WORD:
         case SummaryCommand.COMMAND_ALIAS:
             return new SummaryCommand();
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        case VenueCommand.COMMAND_WORD:
+        case VenueCommand.COMMAND_ALIAS:
+            return new VenueCommandParser().parse(arguments);
+```
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
@@ -375,7 +345,7 @@ public class GetModuleCommand extends Command {
         }
     }
 ```
-###### \java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
     public String getBrowserAddress() {
         return value;
@@ -383,7 +353,7 @@ public class GetModuleCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\model\person\Birthday.java
+###### /java/seedu/address/model/person/Birthday.java
 ``` java
     public String getBrowserValue() {
         return browserValue;
@@ -523,14 +493,14 @@ public class GetModuleCommand extends Command {
         return value;
     }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
     @Subscribe
     private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
         loadDefaultPage();
     }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
@@ -540,7 +510,7 @@ public class GetModuleCommand extends Command {
         String phones = p.getBrowserPhones();
         String modules = p.getBrowserModules();
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
                 panel.executeScript("document.setBirthday(\"" + birthday + "\")");
                 panel.executeScript("document.setName(\"" + name + "\")");
@@ -551,100 +521,6 @@ public class GetModuleCommand extends Command {
                 panel.executeScript("document.setModule(\"" + modules + "\")");
             }
         });
-```
-###### \java\seedu\address\ui\BusWindow.java
-``` java
-package seedu.address.ui;
-
-import java.util.logging.Logger;
-
-import javafx.scene.Scene;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.FxViewUtil;
-
-/**
- * Controller for bus page
- */
-public class BusWindow extends UiPart<Region> {
-
-
-    private static final Logger logger = LogsCenter.getLogger(BusWindow.class);
-    private static final String ICON = "/images/bus_icon.png";
-    private static final String FXML = "BusWindow.fxml";
-    private static final String TITLE = "Bus Routes";
-
-    private final Stage dialogStage;
-
-    public BusWindow() {
-        super(FXML);
-        Scene scene = new Scene(getRoot());
-        //Null passed as the parent stage to make it non-modal.
-        dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setMaximized(false);
-        FxViewUtil.setStageIcon(dialogStage, ICON);
-    }
-
-    /**
-     * Shows the bus window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
-     */
-    public void show() {
-        logger.fine("Showing bus routes for NUS.");
-        dialogStage.showAndWait();
-    }
-}
-```
-###### \java\seedu\address\ui\MainWindow.java
-``` java
-    /**
-     * Opens the bus window.
-     */
-    @FXML
-    public void handleBus() {
-        BusWindow busWindow = new BusWindow();
-        busWindow.show();
-    }
-
-    /**
-     * Opens the map window.
-     */
-    @FXML
-    public void handleMap() {
-        MapWindow mapWindow = new MapWindow();
-        mapWindow.show();
-    }
-
-    /**
-     * Opens the module in browser.
-     */
-    @FXML
-    public void handleModule(String module) {
-        browserPanel.loadPage("https://nusmods.com/modules/" + module);
-    }
-```
-###### \java\seedu\address\ui\MainWindow.java
-``` java
-    @Subscribe
-    private void handleShowBusEvent(ShowBusRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleBus();
-    }
 ```
 ###### /java/seedu/address/ui/BusWindow.java
 ``` java
@@ -725,11 +601,19 @@ public class BusWindow extends UiPart<Region> {
     }
 
     /**
-     * Opens the module in browser.
+     * Opens the module info in browser.
      */
     @FXML
     public void handleModule(String module) {
         browserPanel.loadPage("https://nusmods.com/modules/" + module);
+    }
+
+    /**
+     * Opens the venue info in browser.
+     */
+    @FXML
+    public void handleVenue(String venue) {
+        browserPanel.loadPage("https://nusmods.com/venues/" + venue);
     }
 ```
 ###### /java/seedu/address/ui/MainWindow.java
@@ -750,6 +634,12 @@ public class BusWindow extends UiPart<Region> {
     private void handleShowModuleEvent(GetModuleRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleModule(event.module);
+    }
+
+    @Subscribe
+    private void handleShowVenueEvent(VenueRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleVenue(event.venue);
     }
 
 ```
@@ -811,7 +701,7 @@ public class MapWindow extends UiPart<Region> {
     }
 }
 ```
-###### \java\seedu\address\ui\PersonListPanel.java
+###### /java/seedu/address/ui/PersonListPanel.java
 ``` java
     /**
      * Scrolls to the top and clears person selection.
@@ -865,6 +755,12 @@ public class MapWindow extends UiPart<Region> {
 
 }
 ```
+###### /java/seedu/address/ui/StatusBarFooter.java
+``` java
+    private void setTotalPersons(int totalPersons) {
+        this.totalPersons.setText(totalPersons + " person(s) total");
+    }
+```
 ###### /resources/view/BusWindow.fxml
 ``` fxml
 
@@ -881,7 +777,6 @@ public class MapWindow extends UiPart<Region> {
    </content>
 </ScrollPane>
 ```
-
 ###### /resources/view/DarkThemeCommands.css
 ``` css
 .background {
@@ -1279,24 +1174,12 @@ li {
    </ImageView>
 </ScrollPane>
 ```
-
 ###### /resources/view/PersonListPanel.fxml
-``` fxml
-
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
-   <ImageView fitHeight="2600.0" fitWidth="2600.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../docs/images/map.jpg"/>
-      </image>
-   </ImageView>
-</ScrollPane>
-```
-###### \resources\view\PersonListPanel.fxml
 ``` fxml
   <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
+```
+###### /resources/view/StatusBarFooter.fxml
+``` fxml
+  <StatusBar styleClass="anchor-pane" fx:id="totalPersons" GridPane.columnIndex="1" />
 ```
