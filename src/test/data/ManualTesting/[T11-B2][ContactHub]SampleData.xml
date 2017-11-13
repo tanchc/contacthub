@@ -152,6 +152,45 @@
         <modules>CS2103T</modules>
         <modules>CS2101</modules>
     </persons>
+    <persons>
+        <name>Alide Pauline</name>
+        <phones>85355255</phones>
+        <birthday>25/09/1990</birthday>
+        <emails>alice@example.com</emails>
+        <address>123, Jurong West Ave 6, #08-111</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1231</modules>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Bensoner Meier</name>
+        <phones>98765432</phones>
+        <birthday>12/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>311, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Carly Kurz</name>
+        <phones>95352563</phones>
+        <birthday>03/12/1973</birthday>
+        <emails>heinz@example.com</emails>
+        <address>wall street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS1231</modules>
+    </persons>
+    <persons>
+        <name>Danny Meier</name>
+        <phones>87652533</phones>
+        <birthday>21/09/1988</birthday>
+        <emails>cornelia@example.com</emails>
+        <address>10th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+    </persons>
     <tasks>
         <name>Meeting</name>
         <date>30/10/2017</date>
