@@ -1,5 +1,5 @@
 # jshoung
-###### /java/seedu/address/commons/events/ui/ClearPersonSelectionEvent.java
+###### \java\seedu\address\commons\events\ui\ClearPersonSelectionEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -17,7 +17,7 @@ public class ClearPersonSelectionEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/commons/events/ui/GetModuleRequestEvent.java
+###### \java\seedu\address\commons\events\ui\GetModuleRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -40,7 +40,7 @@ public class GetModuleRequestEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/commons/events/ui/ShowBusRequestEvent.java
+###### \java\seedu\address\commons\events\ui\ShowBusRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -58,7 +58,7 @@ public class ShowBusRequestEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/commons/events/ui/ShowMapRequestEvent.java
+###### \java\seedu\address\commons\events\ui\ShowMapRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -77,7 +77,7 @@ public class ShowMapRequestEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/commons/events/ui/ShowSummaryRequestEvent.java
+###### \java\seedu\address\commons\events\ui\ShowSummaryRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -95,7 +95,7 @@ public class ShowSummaryRequestEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/commons/events/ui/VenueRequestEvent.java
+###### \java\seedu\address\commons\events\ui\VenueRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -118,7 +118,7 @@ public class VenueRequestEvent extends BaseEvent {
 
 }
 ```
-###### /java/seedu/address/logic/commands/BusCommand.java
+###### \java\seedu\address\logic\commands\BusCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -145,7 +145,7 @@ public class BusCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/GetModuleCommand.java
+###### \java\seedu\address\logic\commands\GetModuleCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -190,7 +190,7 @@ public class GetModuleCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/MapCommand.java
+###### \java\seedu\address\logic\commands\MapCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -217,7 +217,7 @@ public class MapCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/SummaryCommand.java
+###### \java\seedu\address\logic\commands\SummaryCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -246,7 +246,7 @@ public class SummaryCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/VenueCommand.java
+###### \java\seedu\address\logic\commands\VenueCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -291,45 +291,45 @@ public class VenueCommand extends Command {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         switch (commandWord.toLowerCase()) {
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case HelpCommand.COMMAND_ALIAS:
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case BusCommand.COMMAND_WORD:
         case BusCommand.COMMAND_ALIAS:
             return new BusCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case MapCommand.COMMAND_WORD:
         case MapCommand.COMMAND_ALIAS:
             return new MapCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case GetModuleCommand.COMMAND_WORD:
         case GetModuleCommand.COMMAND_ALIAS:
             return new GetModuleCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case SummaryCommand.COMMAND_WORD:
         case SummaryCommand.COMMAND_ALIAS:
             return new SummaryCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case VenueCommand.COMMAND_WORD:
         case VenueCommand.COMMAND_ALIAS:
             return new VenueCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/model/ModelManager.java
+###### \java\seedu\address\model\ModelManager.java
 ``` java
     @Override
     public void deleteModule(Module module) throws DuplicatePersonException, PersonNotFoundException {
@@ -345,7 +345,7 @@ public class VenueCommand extends Command {
         }
     }
 ```
-###### /java/seedu/address/model/person/Address.java
+###### \java\seedu\address\model\person\Address.java
 ``` java
     public String getBrowserAddress() {
         return value;
@@ -353,13 +353,13 @@ public class VenueCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Birthday.java
+###### \java\seedu\address\model\person\Birthday.java
 ``` java
     public String getBrowserValue() {
         return browserValue;
     }
 ```
-###### /java/seedu/address/model/person/Name.java
+###### \java\seedu\address\model\person\Name.java
 ``` java
     public String getBrowserName() {
         return browserName;
@@ -384,7 +384,7 @@ public class VenueCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's phone numbers separated by commas, for display in the browser.
@@ -407,7 +407,7 @@ public class VenueCommand extends Command {
     }
 
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's emails separated by commas, for display in the browser.
@@ -434,7 +434,7 @@ public class VenueCommand extends Command {
     }
 
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Returns a String consisting of all the person's modules separated by commas, for display in the browser.
@@ -487,20 +487,20 @@ public class VenueCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/model/person/Photo.java
+###### \java\seedu\address\model\person\Photo.java
 ``` java
     public String getBrowserPhoto() {
         return value;
     }
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
     @Subscribe
     private void handleShowSummaryRequestEvent (ShowSummaryRequestEvent event) {
         loadDefaultPage();
     }
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
         String address = p.getAddress().getBrowserAddress();
         String birthday = p.getBirthday().getBrowserValue();
@@ -510,7 +510,7 @@ public class VenueCommand extends Command {
         String phones = p.getBrowserPhones();
         String modules = p.getBrowserModules();
 ```
-###### /java/seedu/address/ui/BrowserPanel.java
+###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
                 panel.executeScript("document.setBirthday(\"" + birthday + "\")");
                 panel.executeScript("document.setName(\"" + name + "\")");
@@ -522,7 +522,7 @@ public class VenueCommand extends Command {
             }
         });
 ```
-###### /java/seedu/address/ui/BusWindow.java
+###### \java\seedu\address\ui\BusWindow.java
 ``` java
 package seedu.address.ui;
 
@@ -580,7 +580,7 @@ public class BusWindow extends UiPart<Region> {
     }
 }
 ```
-###### /java/seedu/address/ui/MainWindow.java
+###### \java\seedu\address\ui\MainWindow.java
 ``` java
     /**
      * Opens the bus window.
@@ -616,7 +616,7 @@ public class BusWindow extends UiPart<Region> {
         browserPanel.loadPage("https://nusmods.com/venues/" + venue);
     }
 ```
-###### /java/seedu/address/ui/MainWindow.java
+###### \java\seedu\address\ui\MainWindow.java
 ``` java
     @Subscribe
     private void handleShowBusEvent(ShowBusRequestEvent event) {
@@ -643,7 +643,7 @@ public class BusWindow extends UiPart<Region> {
     }
 
 ```
-###### /java/seedu/address/ui/MapWindow.java
+###### \java\seedu\address\ui\MapWindow.java
 ``` java
 package seedu.address.ui;
 
@@ -701,7 +701,7 @@ public class MapWindow extends UiPart<Region> {
     }
 }
 ```
-###### /java/seedu/address/ui/PersonListPanel.java
+###### \java\seedu\address\ui\PersonListPanel.java
 ``` java
     /**
      * Scrolls to the top and clears person selection.
@@ -719,7 +719,7 @@ public class MapWindow extends UiPart<Region> {
         scrollToAndClear();
     }
 ```
-###### /java/seedu/address/ui/ResultDisplay.java
+###### \java\seedu\address\ui\ResultDisplay.java
 ``` java
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
@@ -755,13 +755,13 @@ public class MapWindow extends UiPart<Region> {
 
 }
 ```
-###### /java/seedu/address/ui/StatusBarFooter.java
+###### \java\seedu\address\ui\StatusBarFooter.java
 ``` java
     private void setTotalPersons(int totalPersons) {
         this.totalPersons.setText(totalPersons + " person(s) total");
     }
 ```
-###### /resources/view/BusWindow.fxml
+###### \resources\view\BusWindow.fxml
 ``` fxml
 
 <?import javafx.scene.control.ScrollPane?>
@@ -777,7 +777,7 @@ public class MapWindow extends UiPart<Region> {
    </content>
 </ScrollPane>
 ```
-###### /resources/view/DarkThemeCommands.css
+###### \resources\view\DarkThemeCommands.css
 ``` css
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
@@ -1159,7 +1159,7 @@ li {
     -fx-font-size: 11;
 }
 ```
-###### /resources/view/MapWindow.fxml
+###### \resources\view\MapWindow.fxml
 ``` fxml
 
 <?import javafx.scene.control.ScrollPane?>
@@ -1174,12 +1174,12 @@ li {
    </ImageView>
 </ScrollPane>
 ```
-###### /resources/view/PersonListPanel.fxml
+###### \resources\view\PersonListPanel.fxml
 ``` fxml
   <ListView fx:id="personListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
 ```
-###### /resources/view/StatusBarFooter.fxml
+###### \resources\view\StatusBarFooter.fxml
 ``` fxml
   <StatusBar styleClass="anchor-pane" fx:id="totalPersons" GridPane.columnIndex="1" />
 ```
