@@ -683,6 +683,13 @@ Should the above function fail to load a location for the contact's address, an 
 
 === Addition of TaskList
 
+image::TaskComponentClassDiagram.png[width="800"]
+
+The addition of the TaskList introduces new components into the Model. A `UniqueTaskList` class is created to hold many
+`Task` objects. And each `Task` object will contain an instance of the `Appointment`, `Date`, and `StartTime` class.
+
+image::TaskListPanelUIDiagram.png[width="350"]
+
 The Task List Functionality is facilitated mainly by the `TaskListPanel` class which resides in the `UI` component.
  It provides the user a list of their tasks to help remind them of what needs to be done.
 
