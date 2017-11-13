@@ -717,6 +717,11 @@ The user executes `AddTaskCommand` and provides the task's details.
 
 image::AddTask.png[width="300"]
 
+[NOTE]
+The following sequence diagram shows how the addtask operation works:
+
+image::AddTaskSequenceDiagram.PNG[width="800"]
+
 ==== Design Considerations
 
 **Aspects:** Implementation of `AddTaskCommand`. +
