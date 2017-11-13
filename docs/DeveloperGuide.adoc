@@ -405,11 +405,11 @@ public class FindModuleCommand extends Command {
 
 Suppose that the user has just launched ContactHub. The contact list will be arranged based on the add order at the beginning.
 
-image::ListCommand.png[width="300"]
+image::ListCommand.PNG[width="300"]
 
 The user executes `FindModuleCommand`, the list will now show the contacts associated to the module(s) keyed in.
 
-image::FindModuleCommand.png[width="300"]
+image::FindModuleCommand.PNG[width="300"]
 
 The user can continue to add more module(s) for the FindModuleCommand, and if any contacts contains any of the module(s) keyed in, they will show up
 
@@ -668,7 +668,7 @@ in the `ui` package.
 The Google Maps Functionality is facilitated mainly by the `BrowserPanel` class which resides in the `UI` component.
  It provides the user the Google Maps location of a contact's address just by selecting them.
 
-image::GoogleMapsUIDiagram.png[width="350"]
+image::GoogleMapsUIDiagram.PNG[width="350"]
 
 The `BrowserPanel` class inherits the abstract class of `UIPart` which represents a distinct part of the `UI` like panels, windows and dialogs.
 The `BrowserPanel` class also instantiates an object of `WebView` class which is a JavaFX FXML, an XML-based language for building a user interface.
@@ -695,12 +695,12 @@ Should the above function fail to load a location for the contact's address, an 
 
 === Addition of TaskList
 
-image::TaskComponentClassDiagram.png[width="800"]
+image::TaskComponentClassDiagram.PNG[width="800"]
 
 The addition of the TaskList introduces new components into the Model. A `UniqueTaskList` class is created to hold many
 `Task` objects. And each `Task` object will contain an instance of the `Appointment`, `Date`, and `StartTime` class.
 
-image::TaskListPanelUIDiagram.png[width="350"]
+image::TaskListPanelUIDiagram.PNG[width="350"]
 
 The Task List Functionality is facilitated mainly by the `TaskListPanel` class which resides in the `UI` component.
  It provides the user a list of their tasks to help remind them of what needs to be done.
@@ -737,11 +737,11 @@ public class AddTaskCommand extends UndoableCommand {
 
 Suppose that the user has just launched ContactHub.
 
-image::BeforeAddTask.png[width="300"]
+image::BeforeAddTask.PNG[width="300"]
 
 The user executes `AddTaskCommand` and provides the task's details.
 
-image::AddTask.png[width="300"]
+image::AddTask.PNG[width="300"]
 
 [NOTE]
 The following sequence diagram shows how the addtask operation works:
