@@ -113,7 +113,7 @@
         <emails>cornelia@example.com</emails>
         <address>10th street</address>
         <photo>images/defaultPhoto.png</photo>
-        <modules>CS1010</modules>
+        <modules>CS1231</modules>
     </persons>
     <persons>
         <name>Francis Meyer</name>
@@ -140,7 +140,7 @@
         <emails>anna@example.com</emails>
         <address>4th street</address>
         <photo>images/defaultPhoto.png</photo>
-        <modules>CS1020</modules>
+        <modules>CS2101</modules>
     </persons>
     <persons>
         <name>Johnson Doe</name>
@@ -160,7 +160,7 @@
         <address>123, Jurong West Ave 6, #08-111</address>
         <photo>images/defaultPhoto.png</photo>
         <modules>CS1231</modules>
-        <modules>CS1010</modules>
+        <modules>CS1020</modules>
     </persons>
     <persons>
         <name>Bensoner Meier</name>
@@ -179,7 +179,7 @@
         <emails>heinz@example.com</emails>
         <address>wall street</address>
         <photo>images/defaultPhoto.png</photo>
-        <modules>CS1020</modules>
+        <modules>CS1010</modules>
         <modules>CS1231</modules>
     </persons>
     <persons>
@@ -189,7 +189,7 @@
         <emails>cornelia@example.com</emails>
         <address>10th street</address>
         <photo>images/defaultPhoto.png</photo>
-        <modules>CS1010</modules>
+        <modules>CS1020</modules>
     </persons>
     <tasks>
         <name>Meeting</name>

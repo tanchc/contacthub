@@ -10,7 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private String addressBookFilePath = "data/addressbook.xml";
+    private String addressBookFilePath = "[T11-B2][ContactHub]SampleData.xml";
     private String addressBookName = "MyAddressBook";
 
     public UserPrefs() {

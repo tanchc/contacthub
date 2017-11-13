@@ -1,8 +1,7 @@
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Test step no. |Test step description / action |Expected results|
-|1 |Load the sample data by starting the jar file then closing it. Open the preferences.json file and set
- "addressBookFilePath" : "SampleData.xml". Save and restart the jar file. |Contact list should contain 20 contacts with their information updated. |
+|1 |Ensure all files have been unchanged and are in the same folder. Sample data will load automatically. |Contact list should contain 20 contacts with their information updated. |
 
 |2 |Adding a contact by using the format:
     add n/test person p/98765432 b/01/01/1995 e/test@u.nus.edu a/NUS m/CS2103T
