@@ -659,7 +659,20 @@ Certain properties of the application can be controlled (e.g App name, logging l
 === NUSMods Functionality
 
 The NUSMods Functionality is facilitated mainly by the `MainWindow` class which is found
-in the `ui` package.
+in the `ui` package. It provides the user the ability to check information on a given module or venue using only the CLI.
+This is broken up into two different commands, the `getmodule` command and the `venue` command.
+Both commands are relatively similar in implementation, with the major difference being the
+page loaded in the browser panel.
+
+The `MainWindow` inherits the abstract class `UIPart` which represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
+
+Both commands are handled by their by their respective event handlers (in `MainWindow`) when their commands are entered,
+which then call the `BrowserPanel.loadPage(arg)` method. The `arg` being the module/venue
+inputted by the user, which determines the module/venue information pulled.
+
+For future versions, a URL redirection check is planned as currently entering a wrong module/venue name
+simply redirects to the NUSMods homepage. Ideally, this would return an "invalid command format" to the user
+and not load any webpage instead.
 
 // end::nusmods[]
 
@@ -692,6 +705,20 @@ document.goToLocation = function goToLocation(searchString) {
 Should the above function fail to load a location for the contact's address, an alert will be sent to indicate that there is an issue
 
 // end::googlemaps[]
+
+// tag::busmap[]
+
+=== Bus and Map display
+
+The bus and map display features are implemented through the use of two separate commands - `bus` and `map` commands.
+These commands open NUS bus routes and the NUS map in a new window.
+
+They are facilitated through the `MainWindow` class through their respective event handlers
+that call the `show()` method for the given class (`BusWindow` or `MapWindow`). The respective FXML is then loaded
+(`BusWindow.fxml` or `MapWindow.fxml`). The ScrollPane is particularly important for the map display,
+as the NUS map image is relatively large.
+
+// end::busmap[]
 
 // tag::tasklist[]
 
@@ -875,6 +902,7 @@ image::DeleteTaskSequenceDiagram.png[width="800"]
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::deletetask[]
 
+
 == Documentation
 
 We use asciidoc for writing documentation.
@@ -1003,9 +1031,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |add multiple phone numbers or addresses to a person|
 
-|`* * *` |user |add multiple mods to a person |my contacts are more recognizable
+|`* * *` |user |add multiple mods to a person |know which contacts are taking which modules
 
-|`* * *` |user |have different coloured mods |differentiate my contacts easier
+|`* * *` |user |have different coloured modules |make them easier to differentiate
 
 |`* * *` |user |edit the contact once added |change my errors
 
@@ -1066,13 +1094,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
 
-{More to be added}
-
 [appendix]
 == Use Cases
 
 (For all use cases below, the *System* is `ContactHub` and the *Actor* is the `user`, unless specified otherwise)
-
 
 [discrete]
 === Use case: Help
@@ -1081,6 +1106,46 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 1.  User requests for help.
 2.  ContactHub shows the UserGuide to the user.
++
+Use case ends.
+
+[discrete]
+=== Use case: Bus
+
+*MSS*
+
+1.  User requests for bus routes.
+2.  ContactHub shows the bus routes to the user.
++
+Use case ends.
+
+[discrete]
+=== Use case: Map
+
+*MSS*
+
+1.  User requests for NUS Map.
+2.  ContactHub shows the NUS Map to the user.
++
+Use case ends.
+
+[discrete]
+=== Use case: Get module
+
+*MSS*
+
+1.  User requests for NUSMods module information for a given module.
+2.  ContactHub shows the NUSmods module page for the given module to the user in the browser.
++
+Use case ends.
+
+[discrete]
+=== Use case: Get venue
+
+*MSS*
+
+1.  User requests for NUSMods venue information for a given venue.
+2.  ContactHub shows the NUSmods venue page for the given venue to the user in the browser.
 +
 Use case ends.
 
@@ -1458,23 +1523,19 @@ Use case ends.
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  ContactHub should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
+.  ContactHub should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  ContactHub should allow user with above average typing speed for regular English text (i.e. not code, not system admin commands) to accomplish most of the tasks faster using commands than using the mouse.
+.  ContactHub source code should be open source, and conforms to coding standards.
+.  ContactHub mean time to recovery must be 10 seconds maximum.
+.  ContactHub must be user friendly even for non IT-savvy, conforms to user standards.
 .  User has access to alphanumeric inputs to use command line interface.
-.  User has access to Internet to use Google search engine services.
+.  User has access to Internet to access features.
 .  User is able to access instructions on how to use the app.
 .  User has access to a monitor in order to view the app.
 .  User has access to a working power source in order to power up the device running the application.
-.  Response time for any command should be within 5 seconds.
-.  The source code should be open source.
-.  Mean time to recovery must be 10 seconds maximum.
-.  Must be user friendly even for non IT-savvy, conforms to user standards.
-.  Conforms to coding standards.
-.  All data must be protectively marked and stored
+.  User should get system response after entering a command within 5 seconds.
 .  User must have basic English literacy.
-
-{More to be added}
 
 [appendix]
 == Glossary

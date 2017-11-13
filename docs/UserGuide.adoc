@@ -224,7 +224,9 @@ either a new window or in the browser panel.
 Opens the User Guide in a new window. +
 Format: `help`
 
-=== Viewing bus routes : `bus` or `b` [Since v1.5rc]
+// tag::busmap[]
+
+=== Viewing NUS bus routes : `bus` or `b` [Since v1.5rc]
 
 Opens the official reference for NUS bus routes in a new window. +
 Format: `bus`
@@ -233,6 +235,8 @@ Format: `bus`
 
 Opens the official map for NUS in a new window. +
 Format: `map`
+
+// end::busmap[]
 
 === Viewing command summary : `summary` or `sm` [Since v1.5rc]
 
@@ -246,7 +250,7 @@ Format: `summary`
 Opens the NUSMods module information page for the given module in the browser. +
 Format: `getmodule MODULE`
 
-Examples:
+Example:
 
 * `getmodule CS2101` +
 Opens the `CS2101` NUSMods page in the browser.
@@ -260,7 +264,7 @@ Opens the `CS2101` NUSMods page in the browser.
 Opens the NUSMods venue information page for the given venue in the browser. +
 Format: `venue VENUE_NAME`
 
-Examples:
+Example:
 
 * `venue COM1-0204` +
 Opens the `COM1-0204` NUSMods page in the browser.
