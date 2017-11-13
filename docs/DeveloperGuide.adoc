@@ -579,7 +579,7 @@ The `commandBox` class inherits the abstract class of `UIPart` which represents 
 The `commandBox` class then calls the handleKeyPress() method whenever a key binding is pressed by the user. Using a switch statement for the
 key bindings, the methods for each key bind will be carried out accordingly.
 
-image::keyboardDiagram.png[width="350"]
+image::keyboardDiagram.PNG[width="350"]
 
 `CommandBox` inherits from UiPart and key binding functions are implemented this way.
 
