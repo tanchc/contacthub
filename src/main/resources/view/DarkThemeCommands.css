@@ -6,18 +6,6 @@
     color: white;
 }
 
-img {
-    user-drag: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;ser-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
 .command {
     font-weight: bold;
 }
@@ -32,6 +20,8 @@ h1 {
 li {
     margin: 10px;
 }
+
+/*@@author*/
 
 .label {
     -fx-font-size: 11pt;

@@ -30,8 +30,8 @@ The enhancement allows students, our target audience, to conveniently check
 useful information within the application using only the CLI. NUSMods was chosen as it is popular among NUS students
 and provides up-to-date information.
 
-Checking module and venue information are the most relevant features a student would use
-on a regular basis, within the constraints of the project.
+Checking module and venue information were decided to be the most relevant features implementable, while still keeping within
+the given constraints of the project. It provides a quick, easy way to access this information without having to leave the application.
 
 
 ==== Implementation
@@ -45,14 +45,14 @@ include::../DeveloperGuide.adoc[tag=nusmods]
 
 ---
 
-=== Enhancement Added:
+=== Enhancement Added: Bus and Map references
 
 ==== External behavior
 
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=.]
+include::../UserGuide.adoc[tag=busmap]
 
 #End of Extract#
 
@@ -60,35 +60,35 @@ include::../UserGuide.adoc[tag=.]
 
 ==== Justification
 
-{Justify the need for, and the current design (i.e. external behavior) of, the feature}
+Having multiple classes in different locations is common for NUS students, getting around the campus
+can be daunting especially for new students. These quick references have been added for students'
+convenience.
 
 ==== Implementation
 
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=.]
+include::../DeveloperGuide.adoc[tag=busmap]
+
 #End of Extract#
 
 ---
 
-//=== Enhancement Proposed: Add command `remark`
-//
-//{Explain similar to the Undo/Redo feature above.}
+=== Enhancement Proposed: IVLE Integration
+
+Add the ability to login to IVLE and retrieve announcements, downloads, etc. from within ContactHub.
 
 === Other contributions
 
-* Addition of HTML command summary page on previously blank default page.
-* Addition of person count to status bar footer.
-* Addition of Bus command to open NUS bus routes in new window.
-* Addition of Map command to open NUS Campus Map in new window.
-* Refactoring of tag functionality into module functionality.
-* Updated GUI color scheme to be consistent when person/task list empty.
-* Changed command input to be case insensitive.
-* Changed browser panel for selected person from Google search to detailed HTML contact page
-that pulls information from the contact.
-* f
-//* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-//* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+* Addition of HTML command summary page on previously blank default page. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/73[#73])
+* Addition of person count to status bar footer. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/161[#161])
+* Addition of NFR. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/55[#55])
+* Changed default window sizing for main application and other windows. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/94[#94])
+* Refactoring of tag functionality into module functionality. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/110[#110])
+* Updated GUI color scheme to be consistent when person/task list empty. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/123[#123])
+* Changed command input to be case insensitive. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/104[#104])
+* Changed browser panel for selected person from Google search to detailed HTML contact page that pulls information from the contact. (Pull request https://github.com/CS2103AUG2017-T11-B2/main/pull/126[#126])
+* Overseeing overall documentation structure and organization.
 
 

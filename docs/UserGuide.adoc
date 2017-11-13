@@ -224,6 +224,8 @@ either a new window or in the browser panel.
 Opens the User Guide in a new window. +
 Format: `help`
 
+// tag::busmap[]
+
 === Viewing NUS bus routes : `bus` or `b` [Since v1.5rc]
 
 Opens the official reference for NUS bus routes in a new window. +
@@ -233,6 +235,8 @@ Format: `bus`
 
 Opens the official map for NUS in a new window. +
 Format: `map`
+
+// end::busmap[]
 
 === Viewing command summary : `summary` or `sm` [Since v1.5rc]
 
