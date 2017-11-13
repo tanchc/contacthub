@@ -1,13 +1,13 @@
 # viviantan95
-###### /java/seedu/address/logic/commands/AddCommand.java
+###### \java\seedu\address\logic\commands\AddCommand.java
 ``` java
             + PREFIX_BIRTHDAY + "BIRTHDAY"
 ```
-###### /java/seedu/address/logic/commands/AddCommand.java
+###### \java\seedu\address\logic\commands\AddCommand.java
 ``` java
             + PREFIX_BIRTHDAY + "12/02/1985 "
 ```
-###### /java/seedu/address/logic/commands/AddPhotoCommand.java
+###### \java\seedu\address\logic\commands\AddPhotoCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -85,19 +85,19 @@ public class AddPhotoCommand extends UndoableCommand {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
             this.birthday = toCopy.birthday;
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
         public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
@@ -107,19 +107,19 @@ public class AddPhotoCommand extends UndoableCommand {
             return Optional.ofNullable(birthday);
         }
 ```
-###### /java/seedu/address/logic/commands/EditCommand.java
+###### \java\seedu\address\logic\commands\EditCommand.java
 ``` java
                     && getBirthday().equals(e.getBirthday())
 ```
-###### /java/seedu/address/logic/parser/AddCommandParser.java
+###### \java\seedu\address\logic\parser\AddCommandParser.java
 ``` java
             Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)).get();
 ```
-###### /java/seedu/address/logic/parser/AddCommandParser.java
+###### \java\seedu\address\logic\parser\AddCommandParser.java
 ``` java
             Photo photo = new Photo();
 ```
-###### /java/seedu/address/logic/parser/AddPhotoCommandParser.java
+###### \java\seedu\address\logic\parser\AddPhotoCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -174,26 +174,26 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case AddPhotoCommand.COMMAND_WORD:
         case AddPhotoCommand.COMMAND_ALIAS:
             return new AddPhotoCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/logic/parser/CliSyntax.java
+###### \java\seedu\address\logic\parser\CliSyntax.java
 ``` java
     public static final Prefix PREFIX_BIRTHDAY = new Prefix("b/");
 ```
-###### /java/seedu/address/logic/parser/CliSyntax.java
+###### \java\seedu\address\logic\parser\CliSyntax.java
 ``` java
     public static final Prefix PREFIX_PHOTO = new Prefix("u/");
 ```
-###### /java/seedu/address/logic/parser/EditCommandParser.java
+###### \java\seedu\address\logic\parser\EditCommandParser.java
 ``` java
             ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY))
                     .ifPresent(editPersonDescriptor::setBirthday);
 ```
-###### /java/seedu/address/logic/parser/ParserUtil.java
+###### \java\seedu\address\logic\parser\ParserUtil.java
 ``` java
     /**
      * Parses a {@code Optional<String> birthday} into an {@code Optional<Birthday>} if {@code birthday} is present.
@@ -204,7 +204,7 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
         return birthday.isPresent() ? Optional.of(new Birthday(birthday.get())) : Optional.empty();
     }
 ```
-###### /java/seedu/address/logic/parser/ParserUtil.java
+###### \java\seedu\address\logic\parser\ParserUtil.java
 ``` java
     /**
      * Parses {@code Optional<String> photo} into a {@code Optional<Photo>}.
@@ -215,7 +215,7 @@ public class AddPhotoCommandParser implements Parser<AddPhotoCommand> {
         return photo.isPresent() ? Optional.of(new Photo(photo.get())) : Optional.empty();
     }
 ```
-###### /java/seedu/address/model/person/Birthday.java
+###### \java\seedu\address\model\person\Birthday.java
 ``` java
 package seedu.address.model.person;
 
@@ -224,7 +224,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 ```
-###### /java/seedu/address/model/person/Birthday.java
+###### \java\seedu\address\model\person\Birthday.java
 ``` java
 /**
  * Represents a Person's Birthday in the address book.
@@ -261,7 +261,7 @@ public class Birthday {
     }
 
 ```
-###### /java/seedu/address/model/person/Birthday.java
+###### \java\seedu\address\model\person\Birthday.java
 ``` java
 
     @Override
@@ -283,7 +283,7 @@ public class Birthday {
 
 }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     /**
      * Person with default photo of images/defaultPhoto/png
@@ -293,15 +293,15 @@ public class Birthday {
         this(name, phones, birthday, emails, address, new Photo(), modules);
     }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
         this.birthday = new SimpleObjectProperty<>(birthday);
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
         this.photo = new SimpleObjectProperty<>(photo);
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     public void setBirthday(Birthday birthday) {
         this.birthday.set(requireNonNull(birthday));
@@ -317,7 +317,7 @@ public class Birthday {
         return birthday.get();
     }
 ```
-###### /java/seedu/address/model/person/Person.java
+###### \java\seedu\address\model\person\Person.java
 ``` java
     public void setPhoto(Photo photo) {
         this.photo.set(requireNonNull(photo));
@@ -333,7 +333,7 @@ public class Birthday {
         return photo.get();
     }
 ```
-###### /java/seedu/address/model/person/Photo.java
+###### \java\seedu\address\model\person\Photo.java
 ``` java
 package seedu.address.model.person;
 
@@ -342,7 +342,6 @@ import static java.util.Objects.requireNonNull;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
@@ -358,8 +357,7 @@ public class Photo {
 
     public static final String PHOTO_VALIDATION_REGEX = "[^\\s].*";
 
-    private static final String DEFAULT_PHOTO = "file://" + Paths.get("src/main/resources/images/defaultPhoto.png")
-            .toAbsolutePath().toUri().getPath();
+    private static final String DEFAULT_PHOTO = "images/defaultPhoto.png";
 
     public final String value;
     private Image image;
@@ -382,7 +380,7 @@ public class Photo {
     }
 
 ```
-###### /java/seedu/address/model/person/Photo.java
+###### \java\seedu\address\model\person\Photo.java
 ``` java
     /**
      * Returns true if a given string is a valid url.
@@ -425,61 +423,61 @@ public class Photo {
     }
 }
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
     ObjectProperty<Photo> photoProperty();
     Photo getPhoto();
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
                 && other.getBirthday().equals(this.getBirthday())
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
                 && other.getPhoto().equals(this.getPhoto());
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
                 .append(" Birthday: ")
                 .append(getBirthday())
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
                 .append(" Photo URL: ")
                 .append(getPhoto())
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
     @XmlElement(required = true)
     private String birthday;
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
     @XmlElement(required = true)
     private String photo;
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         birthday = source.getBirthday().value;
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         photo = source.getPhoto().value;
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         final Birthday birthday = new Birthday(this.birthday);
 ```
-###### /java/seedu/address/storage/XmlAdaptedPerson.java
+###### \java\seedu\address\storage\XmlAdaptedPerson.java
 ``` java
         final Photo photo = new Photo(this.photo);
 ```
-###### /java/seedu/address/ui/CommandBox.java
+###### \java\seedu\address\ui\CommandBox.java
 ``` java
         case ESCAPE:
             commandTextField.setText("");
@@ -498,7 +496,7 @@ public class Photo {
             commandTextField.positionCaret(6);
             break;
 ```
-###### /java/seedu/address/ui/CommandBox.java
+###### \java\seedu\address\ui\CommandBox.java
 ``` java
     /**
      * Updates the text field by the position of the caret
@@ -596,7 +594,7 @@ public class Photo {
         return (toString.equals(" "));
     }
 ```
-###### /java/seedu/address/ui/CommandBox.java
+###### \java\seedu\address\ui\CommandBox.java
 ``` java
     /**
      * Gets text field for test
@@ -605,27 +603,27 @@ public class Photo {
         return commandTextField;
     }
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
     @FXML
     private Label birthday;
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
         initPhoto(person);
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
         person.photoProperty().addListener((observable, oldValue, newValue) -> {
             imageView.setImage(new Image(person.getPhoto().toString(), 120, 120,
                     true, false));
         });
 ```
-###### /java/seedu/address/ui/PersonCard.java
+###### \java\seedu\address\ui\PersonCard.java
 ``` java
     /**
      *
@@ -636,19 +634,19 @@ public class Photo {
                 false));
     }
 ```
-###### /resources/view/PersonListCard.fxml
+###### \resources\view\PersonListCard.fxml
 ``` fxml
     <HBox spacing="5" alignment="CENTER_RIGHT">
 ```
-###### /resources/view/PersonListCard.fxml
+###### \resources\view\PersonListCard.fxml
 ``` fxml
       <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
 ```
-###### /resources/view/PersonListCard.fxml
+###### \resources\view\PersonListCard.fxml
 ``` fxml
     <ImageView fx:id="imageView">
       <image>
-        <Image url="images/defaultPhoto.png"/>
+        <Image url="@../images/defaultPhoto.png"/>
       </image>
     </ImageView>
 ```

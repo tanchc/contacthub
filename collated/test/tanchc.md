@@ -318,7 +318,7 @@ public class TaskBuilder {
         try {
             this.task.setAppointment(new Appointment(appointment));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("appointment is expected to be alphanumeric");
+            throw new IllegalArgumentException("appointment is expected to be alphanumeric.");
         }
         return this;
     }
@@ -643,6 +643,15 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
     }
 }
 ```
+###### \java\systemtests\EditTaskCommandSystemTest.java
+``` java
+        /* Case: edit some fields -> edited */
+        index = INDEX_FIRST_TASK;
+        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + DATE_DESC_MEETING;
+        ReadOnlyTask taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
+        editedTask = new TaskBuilder(taskToEdit).withDate(VALID_DATE_MEETING).build();
+        assertCommandSuccess(command, index, editedTask);
+```
 ###### \java\systemtests\FindModuleCommandSystemTest.java
 ``` java
 package systemtests;
@@ -678,7 +687,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
          */
         String command = "   " + FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020 + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, CARL); // module of Benson is "CS1020"
+        ModelHelper.setFilteredPersonList(expectedModel, BENSON, CARL); // module of Benson is "CS1020"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -691,13 +700,13 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find module where person list is not displaying the person we are finding -> 2 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple modules in address book, 2 keywords -> 3 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1020 CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, BENSON, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, BENSON, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -718,12 +727,12 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: undo previous find command -> rejected */
+        /* Case: undo previous find module command -> rejected */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: redo previous find module command -> rejected */
+        /* Case: redo previous find command -> rejected */
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
@@ -733,7 +742,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assert !getModel().getAddressBook().getPersonList().contains(BENSON);
         command = FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -744,13 +753,13 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find module in address book, keyword is substring of name -> 0 persons found */
         command = FindModuleCommand.COMMAND_WORD + " cs";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setFilteredPersonList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find module in address book, name is substring of keyword -> 0 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1010s";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setFilteredPersonList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -787,7 +796,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         selectPerson(Index.fromOneBased(1));
         assert !getPersonListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName);
         command = FindModuleCommand.COMMAND_WORD + " CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
@@ -796,7 +805,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assert getModel().getAddressBook().getPersonList().size() == 0;
         command = FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
     }
@@ -840,12 +849,4 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assertStatusBarUnchanged();
     }
 }
-###### \java\systemtests\EditTaskCommandSystemTest.java
-``` java
-        /* Case: edit some fields -> edited */
-        index = INDEX_FIRST_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + DATE_DESC_MEETING;
-        ReadOnlyTask taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
-        editedTask = new TaskBuilder(taskToEdit).withDate(VALID_DATE_MEETING).build();
-        assertCommandSuccess(command, index, editedTask);
 ```

@@ -6,6 +6,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCAL_PHOTO_URL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEB_PHOTO_URL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
@@ -24,6 +25,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Photo;
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -39,9 +41,40 @@ public class AddPhotoCommandTest {
     }
 
     @Test
-    public void execute_photoUrlNotFilteredList_success() throws Exception {
+    public void execute_localPhotoUrlFilteredList_success() throws Exception {
         ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedPhotoPerson = new Person(updatedPhotoPerson);
         Photo photo = new Photo(VALID_LOCAL_PHOTO_URL);
+        addedPhotoPerson.setPhoto(photo);
+        AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
+
+        expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, addedPhotoPerson);
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updatePerson(model.getFilteredPersonList().get(0), updatedPhotoPerson);
+
+        assertCommandSuccess(addPhotoCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_webPhotoUrlFilteredList_success() throws Exception {
+        ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedPhotoPerson = new Person(updatedPhotoPerson);
+        Photo photo = new Photo(VALID_WEB_PHOTO_URL);
+        addedPhotoPerson.setPhoto(photo);
+        AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
+
+        expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updatePerson(model.getFilteredPersonList().get(0), addedPhotoPerson);
+
+        assertCommandSuccess(addPhotoCommand, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
+    public void execute_defaultPhotoFilteredList_success() throws Exception {
+        ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Photo photo = new Photo();
         AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
 
         expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
@@ -52,10 +85,10 @@ public class AddPhotoCommandTest {
     }
 
     @Test
-    public void execute_photoUrlIsFilteredList_success() throws Exception {
+    public void execute_defaultPhotoUrlUnfilteredList_success() throws Exception {
         showFirstPersonOnly(model);
         ReadOnlyPerson updatedPhotoPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Photo photo = new Photo(VALID_LOCAL_PHOTO_URL);
+        Photo photo = new Photo();
         AddPhotoCommand addPhotoCommand = prepareCommand(INDEX_FIRST_PERSON, photo);
 
         expectedMessage = String.format(AddPhotoCommand.MESSAGE_ADDPHOTO_SUCCESS, updatedPhotoPerson);
@@ -123,8 +156,7 @@ public class AddPhotoCommandTest {
 ``` java
     public static final String VALID_WEB_PHOTO_URL = "https://cdn.images.express.co.uk/img/dynamic/36/590x"
             + "/secondary/CHRIS-EVANS-865133.jpg";
-    public static final String VALID_LOCAL_PHOTO_URL = "file://"
-            + Paths.get("src/main/resources/images/defaultPhoto.png").toAbsolutePath().toUri().getPath();
+    public static final String VALID_LOCAL_PHOTO_URL = "images/defaultPhoto.png";
 ```
 ###### \java\seedu\address\logic\commands\CommandTestUtil.java
 ``` java
@@ -133,7 +165,7 @@ public class AddPhotoCommandTest {
 ```
 ###### \java\seedu\address\logic\commands\CommandTestUtil.java
 ``` java
-    public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto.png"; //Not a valid URL
+    public static final String INVALID_URL_DESC = " " + PREFIX_PHOTO + "images/defaultPhoto1.png"; //Not a valid URL
 ```
 ###### \java\seedu\address\logic\parser\AddCommandParserTest.java
 ``` java
@@ -155,7 +187,7 @@ public class AddPhotoCommandTest {
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTHDAY_DESC + MODULE_DESC_GER1000
                         + MODULE_DESC_CS2101, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 ```
-###### /java/seedu/address/logic/parser/AddPhotoCommandParserTest.java
+###### \java\seedu\address\logic\parser\AddPhotoCommandParserTest.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -183,9 +215,6 @@ public class AddPhotoCommandParserTest {
         //negative index
         assertParseFailure(parser, "-1" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
 
-        //index out of bound
-        assertParseFailure(parser, "9999" + URL_DESC_LOCAL, AddPhotoCommand.MESSAGE_ADDPHOTO_UNSUCCESS);
-
         //index containing chars
         assertParseFailure(parser, "test" + URL_DESC_LOCAL, MESSAGE_INVALID_FORMAT);
 
@@ -207,7 +236,7 @@ public class AddPhotoCommandParserTest {
 
 }
 ```
-###### /java/seedu/address/model/person/PhotoTest.java
+###### \java\seedu\address\model\person\PhotoTest.java
 ``` java
 package seedu.address.model.person;
 
@@ -445,22 +474,22 @@ public class PhotoTest {
         assertTrue("  ".equals(commandBoxHandle.getInput()));
     }
 
-//    @Test
-//    public void handleKeyPress_insert() {
-//        TextField textField = commandBoxForTest.getCommandTextField();
-//        String correctTextField = "add " + PREFIX_NAME + " " + PREFIX_PHONE + " " + PREFIX_BIRTHDAY + " "
-//                + PREFIX_EMAIL + " " + PREFIX_ADDRESS + " " + PREFIX_MODULE;
-//
-//        //empty command box
-//        guiRobot.push(KeyCode.INSERT);
-//        assertTrue(correctTextField.equals(textField.getText()));
-//
-//        //with text in command box
-//        guiRobot.write("Test");
-//        //push INSERT and checks if command box is replaced with the correct text field of AddCommand shortcut
-//        guiRobot.push(KeyCode.INSERT);
-//        assertTrue(correctTextField.equals(textField.getText()));
-//    }
+    @Test
+    public void handleKeyPress_insert() {
+        TextField textField = commandBoxForTest.getCommandTextField();
+        String correctTextField = "add " + PREFIX_NAME + " " + PREFIX_PHONE + " " + PREFIX_BIRTHDAY + " "
+                + PREFIX_EMAIL + " " + PREFIX_ADDRESS + " " + PREFIX_MODULE;
+
+        //empty command box
+        guiRobot.push(KeyCode.INSERT);
+        assertTrue(correctTextField.equals(textField.getText()));
+
+        //with text in command box
+        guiRobot.write("Test");
+        //push INSERT and checks if command box is replaced with the correct text field of AddCommand shortcut
+        guiRobot.push(KeyCode.INSERT);
+        assertTrue(correctTextField.equals(textField.getText()));
+    }
 ```
 ###### \java\systemtests\AddCommandSystemTest.java
 ``` java
@@ -489,6 +518,5 @@ public class PhotoTest {
 ``` java
         /* Case: invalid birthday -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                        + INVALID_BIRTHDAY_DESC,
-                Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
+                    + INVALID_BIRTHDAY_DESC, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
 ```

@@ -417,8 +417,8 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
     @Override
     public String toString() {
-        return persons.asObservableList().size() + " persons, " + modules.asObservableList().size() +  " modules";
-        // TODO: refine later
+        return persons.asObservableList().size() + " persons, " + modules.asObservableList().size() +  " modules"
+                + tasks.asObservableList().size();
     }
 
     @Override
@@ -606,8 +606,8 @@ public class Appointment {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || appointment.equals(((Appointment) other).appointment)
-                && this.appointment.equals(((Appointment) other).appointment);
+                || (other instanceof Appointment // instanceof handles nulls
+                && this.appointment.equals(((Appointment) other).appointment)); // state check
     }
 
     @Override
@@ -998,8 +998,13 @@ public class UniqueTaskList implements Iterable<Task> {
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                new Task(new Appointment("Meeting"), new Date("27/10/2017"), new StartTime("12:00")),
-                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("12:00"))
+                new Task(new Appointment("Meeting"), new Date("30/10/2017"), new StartTime("18:00")),
+                new Task(new Appointment("Soccer"), new Date("15/12/2017"), new StartTime("09:00")),
+                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("19:30")),
+                new Task(new Appointment("Work"), new Date("01/01/2018"), new StartTime("08:00")),
+                new Task(new Appointment("Homework"), new Date("12/01/2018"), new StartTime("23:59")),
+                new Task(new Appointment("Exam"), new Date("05/12/2017"), new StartTime("17:00")),
+                new Task(new Appointment("Competition"), new Date("25/11/2017"), new StartTime("12:00"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
@@ -1104,21 +1109,6 @@ public class XmlAdaptedTask {
      * Loads the located address page of the user's address.
      */
     private void loadAddressPage(ReadOnlyPerson person) throws IOException {
-        /*ClassLoader classLoader = getClass().getClassLoader();
-        File locatedAddressFile = new File(classLoader.getResource("view/PersonBrowserPanel.html").getFile());
-        File htmlTemplateFile = new File(classLoader.getResource("view/Template.html").getFile());
-        resetPage(htmlTemplateFile, locatedAddressFile);
-        String htmlString = FileUtils.readFileToString(locatedAddressFile);
-        System.out.println(htmlString);
-        String title = "New Page";
-        int stopIndex = person.getAddress().getGMapsAddress().indexOf(',');
-        String address = person.getAddress().getGMapsAddress().substring(0, stopIndex);
-        System.out.println(address);
-        System.out.println(htmlString);
-        htmlString = htmlString.replace("$body", address.replace(" ", "+"));
-        System.out.println(htmlString);
-        FileUtils.writeStringToFile(locatedAddressFile, htmlString);*/
-
         URL addressPage = MainApp.class.getResource(FXML_FILE_FOLDER + ADDRESS_PAGE);
         loadPage(addressPage.toExternalForm());
     }
@@ -1146,17 +1136,6 @@ public class XmlAdaptedTask {
         loadAddressPage(event.getNewSelection().person);
     }
 }
-```
-###### \java\seedu\address\ui\CommandBox.java
-``` java
-    @FXML
-    private TextField commandTextField;
-
-    private String[] suggestions = {"add", "sort", "delete", "list", "find", "findmodule"};
-```
-###### \java\seedu\address\ui\CommandBox.java
-``` java
-        TextFields.bindAutoCompletion(commandTextField, suggestions);
 ```
 ###### \java\seedu\address\ui\MainWindow.java
 ``` java
@@ -1271,7 +1250,7 @@ public class TaskCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForMod(String modValue, int randNum) {
+    private static String getColorForModule(String modValue, int randNum) {
         if (!moduleColors.containsKey(modValue)) {
             moduleColors.put(modValue, colors[randNum]);
         }
@@ -1365,7 +1344,7 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Scrolls to the {@code PersonCard} at the {@code index} and selects it.
+     * Scrolls to the {@code TaskCard} at the {@code index} and selects it.
      */
     private void scrollTo(int index) {
         Platform.runLater(() -> {
@@ -1456,6 +1435,139 @@ public class TaskListPanel extends UiPart<Region> {
 
     <StackPane fx:id="browserPlaceholder" prefWidth="200.0">
 ```
+###### \resources\view\new.html
+``` html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+```
+###### \resources\view\PersonBrowserPanel.html
+``` html
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<link rel="stylesheet" href="DarkTheme.css">-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Title</title>-->
+<!--</head>-->
+<!--<body class = "background">-->
+<!--<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src= "https://maps.google.com/maps?q= $body &t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>google maps einbinden <a href="http://www.pureblack.de/google-maps/">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>-->
+<!--</body>-->
+<!--</html>-->
+
+<html>
+<title>Contact Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body class="w3-content" style="max-width:1300px" onload="initialize()">
+
+<style type="text/css">
+    html {
+        height: 100%
+    }
+
+    body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+    }
+
+    img {
+        user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    strong {
+        font-size: 18px;
+    }
+
+    #map_canvas {
+        height: 100%;
+        background-color: #666970;
+    }
+</style>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+    function initialize() {
+        var latlng = new google.maps.LatLng(1.3521, 103.8198);
+        var myOptions = {
+            zoom: 16,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false,
+            navigationControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            backgroundColor: "#666970",
+            gestureHandling: 'greedy',
+        };
+
+        document.geocoder = new google.maps.Geocoder();
+        document.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: document.map,
+            visible: false
+        });
+
+
+        document.zoomIn = function zoomIn() {
+            var zoomLevel = document.map.getZoom();
+            if (zoomLevel <= 20) document.map.setZoom(zoomLevel + 1);
+        }
+
+        document.zoomOut = function zoomOut() {
+            var zoomLevel = document.map.getZoom();
+            if (zoomLevel > 0) document.map.setZoom(zoomLevel - 1);
+        }
+
+        document.setMapTypeRoad = function setMapTypeRoad() {
+            document.map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        }
+        document.setMapTypeSatellite = function setMapTypeSatellite() {
+            document.map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+        }
+        document.setMapTypeHybrid = function setMapTypeHybrid() {
+            document.map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+        }
+        document.setMapTypeTerrain = function setMapTypeTerrain() {
+            document.map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+        }
+
+        /*The method that I call from JavaFX*/
+        document.updateMarker = function updateMarker(location) {
+            marker.setPosition(location);
+            marker.setVisible(true);
+        }
+
+        document.goToLocation = function goToLocation(searchString) {
+            document.geocoder.geocode({'address': searchString}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    document.updateMarker(results[0].geometry.location);
+                    document.map.setCenter(results[0].geometry.location);
+                    document.map.setClickableIcons(false);
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        }
+
+```
 ###### \resources\view\TaskListCard.fxml
 ``` fxml
 <?import javafx.geometry.Insets?>
@@ -1505,12 +1617,19 @@ public class TaskListPanel extends UiPart<Region> {
 <VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="taskListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
-###### /java/seedu/address/ui/BrowserPanel.java
-``` java
-    @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        ReadOnlyPerson p = event.getNewSelection().person;
-        int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
-        String mapAddress;
+```
+###### \resources\view\Template.html
+``` html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="DarkTheme.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class = "background">
+<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src= "https://www.google.com/maps/embed/v1/place?key=AIzaSyCFdlW-MlMUkV7NXzOC2TZlCzXcWxD68mo
+    &q= $body " frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>google maps einbinden <a href="http://www.pureblack.de/google-maps/">pureblack.de</a></div><style>.mapouter{overflow:hidden;height:500px;width:600px;}.gmap_canvas {background:none!important;height:500px;width:600px;}</style></div>
+</body>
+</html>
 ```

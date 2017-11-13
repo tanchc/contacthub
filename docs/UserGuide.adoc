@@ -283,6 +283,14 @@ Opens the `COM1-0204` NUSMods page in the browser.
 
 Adds a task to ContactHub +
 Format: `addtask t/APPOINTMENT d/DATE s/START_TIME`
+
+[TIP]
+A person can have multiple tasks with the same appointment name, date and start time
+
+Examples:
+
+* `addtask t/Meeting d/25/11/2017 s/12:00 `
+* `addtask t/Soccer Match d/11/02/2018 s/12:00 `
 // end::addtask[]
 
 // tag::edittask[]
