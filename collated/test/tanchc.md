@@ -1,12 +1,12 @@
 # tanchc
-###### \java\seedu\address\logic\commands\AddCommandTest.java
+###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
         public void addTask(ReadOnlyTask task) {
             fail("This method should not be called.");
         }
 ```
-###### \java\seedu\address\logic\commands\AddCommandTest.java
+###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
         public ObservableList<ReadOnlyTask> getFilteredTaskList() {
@@ -14,14 +14,14 @@
             return null;
         }
 ```
-###### \java\seedu\address\logic\commands\AddCommandTest.java
+###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
         public void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate) {
             fail("This method should not be called.");
         }
 ```
-###### \java\seedu\address\logic\commands\AddTaskCommandTest.java
+###### /java/seedu/address/logic/commands/AddTaskCommandTest.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -210,7 +210,7 @@ public class AddTaskCommandTest {
 }
 
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String VALID_APPOINTMENT_MOVIE = "Movie";
     public static final String VALID_APPOINTMENT_EVENT = "Event";
@@ -229,7 +229,7 @@ public class AddTaskCommandTest {
     public static final String VALID_START_TIME_MEETING = "12:00";
     public static final String VALID_START_TIME_INTERVIEW = "10:00";
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String APPOINTMENT_DESC_MEETING = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MEETING;
     public static final String APPOINTMENT_DESC_INTERVIEW = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_INTERVIEW;
@@ -238,7 +238,7 @@ public class AddTaskCommandTest {
     public static final String START_TIME_DESC_MEETING = " " + PREFIX_STARTTIME + VALID_START_TIME_MEETING;
     public static final String START_TIME_DESC_INTERVIEW = " " + PREFIX_STARTTIME + VALID_START_TIME_INTERVIEW;
 ```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
+###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
     public static final String APPOINTMENT_DESC_MOVIE = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_MOVIE;
     public static final String APPOINTMENT_DESC_EVENT = " " + PREFIX_APPOINTMENT + VALID_APPOINTMENT_EVENT;
@@ -254,23 +254,23 @@ public class AddTaskCommandTest {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01.01.2020"; // '.' not allowed
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_STARTTIME + "1300"; // missing ':' symbol
 ```
-###### \java\seedu\address\logic\commands\SelectCommandTest.java
+###### /java/seedu/address/logic/commands/SelectCommandTest.java
 ``` java
         JumpToPersonListRequestEvent lastEvent = (JumpToPersonListRequestEvent) eventsCollectorRule
                 .eventsCollector.getMostRecent();
 ```
-###### \java\seedu\address\model\AddressBookTest.java
+###### /java/seedu/address/model/AddressBookTest.java
 ``` java
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
 ```
-###### \java\seedu\address\model\AddressBookTest.java
+###### /java/seedu/address/model/AddressBookTest.java
 ``` java
         @Override
         public ObservableList<ReadOnlyTask> getTaskList() {
             return tasks;
         }
 ```
-###### \java\seedu\address\testutil\TaskBuilder.java
+###### /java/seedu/address/testutil/TaskBuilder.java
 ``` java
 package seedu.address.testutil;
 
@@ -318,7 +318,7 @@ public class TaskBuilder {
         try {
             this.task.setAppointment(new Appointment(appointment));
         } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("appointment is expected to be alphanumeric");
+            throw new IllegalArgumentException("appointment is expected to be alphanumeric.");
         }
         return this;
     }
@@ -352,7 +352,7 @@ public class TaskBuilder {
     }
 }
 ```
-###### \java\seedu\address\testutil\TaskUtil.java
+###### /java/seedu/address/testutil/TaskUtil.java
 ``` java
 package seedu.address.testutil;
 
@@ -387,7 +387,7 @@ public class TaskUtil {
     }
 }
 ```
-###### \java\seedu\address\testutil\TypicalTasks.java
+###### /java/seedu/address/testutil/TypicalTasks.java
 ``` java
 package seedu.address.testutil;
 
@@ -474,12 +474,12 @@ public class TypicalTasks {
     }
 }
 ```
-###### \java\seedu\address\ui\PersonListPanelTest.java
+###### /java/seedu/address/ui/PersonListPanelTest.java
 ``` java
     private static final JumpToPersonListRequestEvent JUMP_TO_SECOND_EVENT =
             new JumpToPersonListRequestEvent(INDEX_SECOND_PERSON);
 ```
-###### \java\systemtests\AddTaskCommandSystemTest.java
+###### /java/systemtests/AddTaskCommandSystemTest.java
 ``` java
 package systemtests;
 
@@ -643,7 +643,16 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
     }
 }
 ```
-###### \java\systemtests\FindModuleCommandSystemTest.java
+###### /java/systemtests/EditTaskCommandSystemTest.java
+``` java
+        /* Case: edit some fields -> edited */
+        index = INDEX_FIRST_TASK;
+        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + DATE_DESC_MEETING;
+        ReadOnlyTask taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
+        editedTask = new TaskBuilder(taskToEdit).withDate(VALID_DATE_MEETING).build();
+        assertCommandSuccess(command, index, editedTask);
+```
+###### /java/systemtests/FindModuleCommandSystemTest.java
 ``` java
 package systemtests;
 
@@ -678,7 +687,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
          */
         String command = "   " + FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020 + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, CARL); // module of Benson is "CS1020"
+        ModelHelper.setFilteredPersonList(expectedModel, BENSON, CARL); // module of Benson is "CS1020"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -691,13 +700,13 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find module where person list is not displaying the person we are finding -> 2 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple modules in address book, 2 keywords -> 3 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1020 CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, BENSON, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, BENSON, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -718,12 +727,12 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: undo previous find command -> rejected */
+        /* Case: undo previous find module command -> rejected */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: redo previous find module command -> rejected */
+        /* Case: redo previous find command -> rejected */
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
@@ -733,7 +742,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assert !getModel().getAddressBook().getPersonList().contains(BENSON);
         command = FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -744,13 +753,13 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find module in address book, keyword is substring of name -> 0 persons found */
         command = FindModuleCommand.COMMAND_WORD + " cs";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setFilteredPersonList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find module in address book, name is substring of keyword -> 0 persons found */
         command = FindModuleCommand.COMMAND_WORD + " CS1010s";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setFilteredPersonList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -787,7 +796,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         selectPerson(Index.fromOneBased(1));
         assert !getPersonListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName);
         command = FindModuleCommand.COMMAND_WORD + " CS1231";
-        ModelHelper.setFilteredList(expectedModel, ALICE, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, ALICE, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
@@ -796,7 +805,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         assert getModel().getAddressBook().getPersonList().size() == 0;
         command = FindModuleCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_CS1020;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setFilteredPersonList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
     }
@@ -816,7 +825,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
                 MESSAGE_PERSONS_LISTED_OVERVIEW, expectedModel.getFilteredPersonList().size());
 
         executeCommand(command);
-        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        // assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
         assertCommandBoxShowsDefaultStyle();
         assertStatusBarUnchanged();
     }
@@ -834,18 +843,10 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         Model expectedModel = getModel();
 
         executeCommand(command);
-        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        // assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
     }
 }
-###### \java\systemtests\EditTaskCommandSystemTest.java
-``` java
-        /* Case: edit some fields -> edited */
-        index = INDEX_FIRST_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + DATE_DESC_MEETING;
-        ReadOnlyTask taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
-        editedTask = new TaskBuilder(taskToEdit).withDate(VALID_DATE_MEETING).build();
-        assertCommandSuccess(command, index, editedTask);
 ```

@@ -1,5 +1,5 @@
 # tanchc
-###### \java\seedu\address\commons\events\ui\JumpToPersonListRequestEvent.java
+###### /java/seedu/address/commons/events/ui/JumpToPersonListRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -23,7 +23,7 @@ public class JumpToPersonListRequestEvent extends BaseEvent {
     }
 }
 ```
-###### \java\seedu\address\commons\events\ui\JumpToTaskListRequestEvent.java
+###### /java/seedu/address/commons/events/ui/JumpToTaskListRequestEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -47,7 +47,7 @@ public class JumpToTaskListRequestEvent extends BaseEvent {
     }
 }
 ```
-###### \java\seedu\address\commons\events\ui\TaskPanelSelectionChangedEvent.java
+###### /java/seedu/address/commons/events/ui/TaskPanelSelectionChangedEvent.java
 ``` java
 package seedu.address.commons.events.ui;
 
@@ -75,7 +75,7 @@ public class TaskPanelSelectionChangedEvent extends BaseEvent {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\AddTaskCommand.java
+###### /java/seedu/address/logic/commands/AddTaskCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -138,7 +138,7 @@ public class AddTaskCommand extends UndoableCommand {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\FindModuleCommand.java
+###### /java/seedu/address/logic/commands/FindModuleCommand.java
 ``` java
 package seedu.address.logic.commands;
 
@@ -179,29 +179,29 @@ public class FindModuleCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\SelectCommand.java
+###### /java/seedu/address/logic/commands/SelectCommand.java
 ``` java
         EventsCenter.getInstance().post(new JumpToPersonListRequestEvent(targetIndex));
 ```
-###### \java\seedu\address\logic\Logic.java
+###### /java/seedu/address/logic/Logic.java
 ``` java
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
 ```
-###### \java\seedu\address\logic\LogicManager.java
+###### /java/seedu/address/logic/LogicManager.java
 ``` java
     @Override
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
         return model.getFilteredTaskList();
     }
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case FindModuleCommand.COMMAND_WORD:
         case FindModuleCommand.COMMAND_ALIAS:
             return new FindModuleCommandParser().parse(arguments);
 ```
-###### \java\seedu\address\logic\parser\AddTaskCommandParser.java
+###### /java/seedu/address/logic/parser/AddTaskCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -262,14 +262,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
 }
 ```
-###### \java\seedu\address\logic\parser\CliSyntax.java
+###### /java/seedu/address/logic/parser/CliSyntax.java
 ``` java
     public static final Prefix PREFIX_APPOINTMENT = new Prefix("t/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_STARTTIME = new Prefix("s/");
 }
 ```
-###### \java\seedu\address\logic\parser\FindModuleCommandParser.java
+###### /java/seedu/address/logic/parser/FindModuleCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
@@ -305,7 +305,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
 }
 ```
-###### \java\seedu\address\logic\parser\ParserUtil.java
+###### /java/seedu/address/logic/parser/ParserUtil.java
 ``` java
 
     /**
@@ -337,25 +337,25 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
     }
 }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     private final UniqueTaskList tasks;
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
         tasks = new UniqueTaskList();
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     public void setTasks(List<? extends ReadOnlyTask> tasks) {
         this.tasks.setTasks(tasks);
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
             setTasks(newData.getTaskList());
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Adds a task to ContactHub.
@@ -368,7 +368,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
         tasks.add(newTask);
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Replaces the given task {@code target} in the list with {@code editedReadOnlyTask}.
@@ -383,7 +383,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
         tasks.setTask(target, editedTask);
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -398,7 +398,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
     }
 
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Sorts the taskList alphabetically
@@ -417,8 +417,8 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
     @Override
     public String toString() {
-        return persons.asObservableList().size() + " persons, " + modules.asObservableList().size() +  " modules";
-        // TODO: refine later
+        return persons.asObservableList().size() + " persons, " + modules.asObservableList().size() +  " modules"
+                + tasks.asObservableList().size();
     }
 
     @Override
@@ -426,34 +426,34 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
         return persons.asObservableList();
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
         return tasks.asObservableList();
     }
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyTask> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Adds the given task */
     void addTask(ReadOnlyTask task);
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -462,15 +462,15 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
     void updateFilteredTaskList(Predicate<ReadOnlyTask> predicate);
 
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     private final FilteredList<ReadOnlyTask> filteredTasks;
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void addTask(ReadOnlyTask task) {
@@ -480,7 +480,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
     }
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
@@ -493,22 +493,22 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
         filteredTasks.setPredicate(predicate);
     }
 ```
-###### \java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
     private String gMapsAddress;
 ```
-###### \java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
         this.gMapsAddress = address.replace("Blk ", "");
 ```
-###### \java\seedu\address\model\person\Address.java
+###### /java/seedu/address/model/person/Address.java
 ``` java
     public String getGMapsAddress() {
         return gMapsAddress;
     }
 
 ```
-###### \java\seedu\address\model\person\ModuleContainsKeywordPredicate.java
+###### /java/seedu/address/model/person/ModuleContainsKeywordPredicate.java
 ``` java
 package seedu.address.model.person;
 
@@ -550,7 +550,7 @@ public class ModuleContainsKeywordPredicate implements Predicate<ReadOnlyPerson>
     }
 }
 ```
-###### \java\seedu\address\model\ReadOnlyAddressBook.java
+###### /java/seedu/address/model/ReadOnlyAddressBook.java
 ``` java
     /**
      * Returns an unmodifiable view of the tasks list.
@@ -558,7 +558,7 @@ public class ModuleContainsKeywordPredicate implements Predicate<ReadOnlyPerson>
      */
     ObservableList<ReadOnlyTask> getTaskList();
 ```
-###### \java\seedu\address\model\task\Appointment.java
+###### /java/seedu/address/model/task/Appointment.java
 ``` java
 package seedu.address.model.task;
 
@@ -606,8 +606,8 @@ public class Appointment {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || appointment.equals(((Appointment) other).appointment)
-                && this.appointment.equals(((Appointment) other).appointment);
+                || (other instanceof Appointment // instanceof handles nulls
+                && this.appointment.equals(((Appointment) other).appointment)); // state check
     }
 
     @Override
@@ -617,7 +617,7 @@ public class Appointment {
 
 }
 ```
-###### \java\seedu\address\model\task\Date.java
+###### /java/seedu/address/model/task/Date.java
 ``` java
 package seedu.address.model.task;
 
@@ -672,7 +672,7 @@ public class Date {
     }
 }
 ```
-###### \java\seedu\address\model\task\exceptions\TaskNotFoundException.java
+###### /java/seedu/address/model/task/exceptions/TaskNotFoundException.java
 ``` java
 package seedu.address.model.task.exceptions;
 
@@ -682,7 +682,7 @@ package seedu.address.model.task.exceptions;
 public class TaskNotFoundException extends Exception {
 }
 ```
-###### \java\seedu\address\model\task\ReadOnlyTask.java
+###### /java/seedu/address/model/task/ReadOnlyTask.java
 ``` java
 package seedu.address.model.task;
 
@@ -726,7 +726,7 @@ public interface ReadOnlyTask {
     }
 }
 ```
-###### \java\seedu\address\model\task\StartTime.java
+###### /java/seedu/address/model/task/StartTime.java
 ``` java
 package seedu.address.model.task;
 
@@ -781,7 +781,7 @@ public class StartTime {
     }
 }
 ```
-###### \java\seedu\address\model\task\Task.java
+###### /java/seedu/address/model/task/Task.java
 ``` java
 package seedu.address.model.task;
 
@@ -873,7 +873,7 @@ public class Task implements ReadOnlyTask {
     }
 }
 ```
-###### \java\seedu\address\model\task\UniqueTaskList.java
+###### /java/seedu/address/model/task/UniqueTaskList.java
 ``` java
 package seedu.address.model.task;
 
@@ -993,26 +993,31 @@ public class UniqueTaskList implements Iterable<Task> {
 
 }
 ```
-###### \java\seedu\address\model\util\SampleDataUtil.java
+###### /java/seedu/address/model/util/SampleDataUtil.java
 ``` java
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                new Task(new Appointment("Meeting"), new Date("27/10/2017"), new StartTime("12:00")),
-                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("12:00"))
+                new Task(new Appointment("Meeting"), new Date("30/10/2017"), new StartTime("18:00")),
+                new Task(new Appointment("Soccer"), new Date("15/12/2017"), new StartTime("09:00")),
+                new Task(new Appointment("Birthday"), new Date("30/11/2017"), new StartTime("19:30")),
+                new Task(new Appointment("Work"), new Date("01/01/2018"), new StartTime("08:00")),
+                new Task(new Appointment("Homework"), new Date("12/01/2018"), new StartTime("23:59")),
+                new Task(new Appointment("Exam"), new Date("05/12/2017"), new StartTime("17:00")),
+                new Task(new Appointment("Competition"), new Date("25/11/2017"), new StartTime("12:00"))
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         }
     }
 ```
-###### \java\seedu\address\model\util\SampleDataUtil.java
+###### /java/seedu/address/model/util/SampleDataUtil.java
 ``` java
             for (Task sampleTask : getSampleTasks()) {
                 sampleAb.addTask(sampleTask);
             }
 ```
-###### \java\seedu\address\storage\XmlAdaptedTask.java
+###### /java/seedu/address/storage/XmlAdaptedTask.java
 ``` java
 package seedu.address.storage;
 
@@ -1069,16 +1074,16 @@ public class XmlAdaptedTask {
     }
 }
 ```
-###### \java\seedu\address\storage\XmlSerializableAddressBook.java
+###### /java/seedu/address/storage/XmlSerializableAddressBook.java
 ``` java
     @XmlElement
     private List<XmlAdaptedTask> tasks;
 ```
-###### \java\seedu\address\storage\XmlSerializableAddressBook.java
+###### /java/seedu/address/storage/XmlSerializableAddressBook.java
 ``` java
         tasks = new ArrayList<>();
 ```
-###### \java\seedu\address\storage\XmlSerializableAddressBook.java
+###### /java/seedu/address/storage/XmlSerializableAddressBook.java
 ``` java
     @Override
     public ObservableList<ReadOnlyTask> getTaskList() {
@@ -1094,11 +1099,11 @@ public class XmlAdaptedTask {
         return FXCollections.unmodifiableObservableList(tasks);
     }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
     public static final String ADDRESS_PAGE = "PersonBrowserPanel.html";
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
     /**
      * Loads the located address page of the user's address.
@@ -1123,7 +1128,7 @@ public class XmlAdaptedTask {
         loadPage(addressPage.toExternalForm());
     }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
         int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
         String mapAddress;
@@ -1134,52 +1139,52 @@ public class XmlAdaptedTask {
             mapAddress = p.getAddress().getGMapsAddress().substring(0, stopIndex);
         }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
         browser.getEngine().getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.SUCCEEDED) {
                 WebEngine panel = browser.getEngine();
                 panel.executeScript("document.goToLocation(\"" + mapAddress + "\")");
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
         loadAddressPage(event.getNewSelection().person);
     }
 }
 ```
-###### \java\seedu\address\ui\CommandBox.java
+###### /java/seedu/address/ui/CommandBox.java
 ``` java
     @FXML
     private TextField commandTextField;
 
     private String[] suggestions = {"add", "sort", "delete", "list", "find", "findmodule"};
 ```
-###### \java\seedu\address\ui\CommandBox.java
+###### /java/seedu/address/ui/CommandBox.java
 ``` java
         TextFields.bindAutoCompletion(commandTextField, suggestions);
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
     private TaskListPanel taskListPanel;
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
     @FXML
     private StackPane taskListPanelPlaceholder;
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
     private static String[] colors = { "red", "blue", "orange", "brown", "green" };
 
     private static HashMap<String, String> moduleColors = new HashMap<String, String>();
     private static Random random = new Random();
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
     private static int getRandom() {
         int randNum = random.nextInt(colors.length);
@@ -1194,7 +1199,7 @@ public class XmlAdaptedTask {
         return moduleColors.get(moduleValue);
     }
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
             int randNum = getRandom();
             moduleLabel.setStyle("-fx-background-color: " + getColorForModule(module.moduleName, randNum));
@@ -1202,7 +1207,7 @@ public class XmlAdaptedTask {
             //                moduleLabel.setStyle("-fx-text-fill: black");
             //            }
 ```
-###### \java\seedu\address\ui\PersonListPanel.java
+###### /java/seedu/address/ui/PersonListPanel.java
 ``` java
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToPersonListRequestEvent event) {
@@ -1210,7 +1215,7 @@ public class XmlAdaptedTask {
         scrollTo(event.targetIndex);
     }
 ```
-###### \java\seedu\address\ui\TaskCard.java
+###### /java/seedu/address/ui/TaskCard.java
 ``` java
 package seedu.address.ui;
 
@@ -1271,7 +1276,7 @@ public class TaskCard extends UiPart<Region> {
         return randNum;
     }
 
-    private static String getColorForMod(String modValue, int randNum) {
+    private static String getColorForModule(String modValue, int randNum) {
         if (!moduleColors.containsKey(modValue)) {
             moduleColors.put(modValue, colors[randNum]);
         }
@@ -1309,7 +1314,7 @@ public class TaskCard extends UiPart<Region> {
     }
 }
 ```
-###### \java\seedu\address\ui\TaskListPanel.java
+###### /java/seedu/address/ui/TaskListPanel.java
 ``` java
 package seedu.address.ui;
 
@@ -1399,17 +1404,17 @@ public class TaskListPanel extends UiPart<Region> {
     }
 }
 ```
-###### \resources\view\BrowserPanel.fxml
+###### /resources/view/BrowserPanel.fxml
 ``` fxml
 <StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
   <WebView fx:id="browser" prefWidth="200.0" />
 </StackPane>
 ```
-###### \resources\view\MainWindow.fxml
+###### /resources/view/MainWindow.fxml
 ``` fxml
 <VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
 ```
-###### \resources\view\MainWindow.fxml
+###### /resources/view/MainWindow.fxml
 ``` fxml
   <stylesheets>
     <URL value="@DarkTheme.css" />
@@ -1445,7 +1450,7 @@ public class TaskListPanel extends UiPart<Region> {
       <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
     </VBox>
 ```
-###### \resources\view\MainWindow.fxml
+###### /resources/view/MainWindow.fxml
 ``` fxml
       <VBox fx:id="taskList" minWidth="340.0" prefWidth="340.0" SplitPane.resizableWithParent="false">
         <padding>
@@ -1456,7 +1461,7 @@ public class TaskListPanel extends UiPart<Region> {
 
     <StackPane fx:id="browserPlaceholder" prefWidth="200.0">
 ```
-###### \resources\view\TaskListCard.fxml
+###### /resources/view/TaskListCard.fxml
 ``` fxml
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -1498,19 +1503,11 @@ public class TaskListPanel extends UiPart<Region> {
   </GridPane>
 </HBox>
 ```
-###### \resources\view\TaskListPanel.fxml
+###### /resources/view/TaskListPanel.fxml
 ``` fxml
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="taskListView" style="-fx-background-color: #383838;" VBox.vgrow="ALWAYS" />
 </VBox>
-###### /java/seedu/address/ui/BrowserPanel.java
-``` java
-    @Subscribe
-    private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) throws IOException {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        ReadOnlyPerson p = event.getNewSelection().person;
-        int stopIndex = p.getAddress().getGMapsAddress().indexOf(',');
-        String mapAddress;
 ```

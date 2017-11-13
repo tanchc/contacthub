@@ -170,7 +170,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
                 MESSAGE_PERSONS_LISTED_OVERVIEW, expectedModel.getFilteredPersonList().size());
 
         executeCommand(command);
-        // assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
         assertCommandBoxShowsDefaultStyle();
         assertStatusBarUnchanged();
     }
@@ -188,7 +188,7 @@ public class FindModuleCommandSystemTest extends AddressBookSystemTest {
         Model expectedModel = getModel();
 
         executeCommand(command);
-        // assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
