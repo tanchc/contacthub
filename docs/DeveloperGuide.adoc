@@ -666,8 +666,12 @@ page loaded in the browser panel.
 
 The `MainWindow` inherits the abstract class `UIPart` which represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
 
+image::NUSModsUIDiagram.png[width="500"]
+
+The image shows the `getmodule` implementation, which is similar to the `venue` implementation.
+
 Both commands are handled by their by their respective event handlers (in `MainWindow`) when their commands are entered,
-which then call the `BrowserPanel.loadPage(arg)` method. The `arg` being the module/venue
+which then call the `BrowserPanel.loadPage(arg)` method. `arg` being the module/venue
 inputted by the user, which determines the module/venue information pulled.
 
 For future versions, a URL redirection check is planned as currently entering a wrong module/venue name
@@ -713,6 +717,10 @@ Should the above function fail to load a location for the contact's address, an 
 The bus and map display features are implemented through the use of two separate commands - `bus` and `map` commands.
 These commands open NUS bus routes and the NUS map in a new window.
 
+image::BusUIDiagram.png[width="500"]
+
+The image shows the implementation of the `bus` command.
+
 They are facilitated through the `MainWindow` class through their respective event handlers
 that call the `show()` method for the given class (`BusWindow` or `MapWindow`). The respective FXML is then loaded
 (`BusWindow.fxml` or `MapWindow.fxml`). The ScrollPane is particularly important for the map display,
@@ -738,7 +746,6 @@ The `TaskListPanel` class inherits the abstract class of `UIPart` which represen
 The `TaskListPanel` class also instantiates a list of `TaskCard` class which represents a UI component that displays information of a task.
 The `TaskListCard.fxml` is an FXML file that interacts with the TaskCard class to produce the graphic displaying the details of the task.
 
-<<<<<<< HEAD
 // tag::busmap[]
 
 === Bus and Map display
@@ -752,7 +759,7 @@ that call the `show()` method for the given class (`BusWindow` or `MapWindow`). 
 as the NUS map image is relatively large.
 
 // end::busmap[]
-=======
+
 // end::tasklist[]
 
 // tag::addtask[]
@@ -917,7 +924,6 @@ image::DeleteTaskSequenceDiagram.png[width="800"]
 **Cons:** We must ensure that the algorithm's logic is right and efficient.
 // end::deletetask[]
 
->>>>>>> f8fbb725ea16aa0d9622f928d9d780289bddb669
 
 == Documentation
 
