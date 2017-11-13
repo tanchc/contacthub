@@ -42,6 +42,8 @@ the addition of other enhancements like sorting the list by birthday or notifica
 The birthday property is facilitated by a `Birthday` class, which is a property class of the `person` class. It allows
 the user to add a birthday field to each of the contacts.
 
+image::birthdayDiagram.png[width="300"]
+
 The `Birthday` class stores the birthday information of the contact and will be displayed in the contact's information.
 The birthday information can be edited using the `edit` command.
 
