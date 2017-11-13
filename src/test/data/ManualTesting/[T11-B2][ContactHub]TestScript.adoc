@@ -1,0 +1,156 @@
+[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+|Test step no. |Test step description / action |Expected results|
+|1 |Load the sample data. |Contact list should contain 20 contacts with their information updated. |
+
+|2 |Adding a contact by using the format:
+    add n/test person p/98765432 b/01/01/1995 e/test@u.nus.edu a/NUS m/CS2103T
+|The added contact should appear at the bottom of the contact list with the information updated accordingly and a default photo on the right of the information.|
+
+|3|Adding a contact with multiple phones, emails, and modules using the format:
+   add n/test person2 p/98765432 p/87654321 b/02/02/1995 e/test2@u.nus.edu e/test2@gmail.com a/NUS m/CS2103T m/CS2101
+ |The added contact should appear at the bottom of the contact list with the information updated accordingly and a default photo on the right of the information.|
+
+|4 |Editing a contact’s name:
+    edit 1 n/test
+|Name of the contact at index 1 in the list should change to “test”.|
+
+|5 |Editing a contact’s phone number:
+    edit 1 p/999
+ |Phone number of the contact at index 1 in the list should change to “999”.|
+
+|6 |Editing a contact’s birthday:
+    edit 2 b/01/01/1995
+ |Birthday of the contact at index 2 in the list should change to “01/01/1995”.|
+
+|7 |Editing a contact’s email:
+    edit 2 e/test@u.nus.edu
+ |Email of the contact at index 2 in the list should change to “test@u.nus.edu”.|
+
+|8 |Editing a contact’s address:
+    edit 3 a/NUS
+ |Address of the contract at index 3 in the list should change to “NUS”.|
+
+|9 |Editing a contact’s module:
+    edit 3 m/CS2103T
+ |Module of the contact at index 3 in the list should change to “CS2103T” only.|
+
+|10 |Editing a contact with multiple phones:
+     edit 4 p/999 p/998
+ |Contact at index 4 in the list should have 2 phones of “999” and “998”.|
+
+|11 |Editing a contact with multiple emails:
+     edit 4 e/test1@nus e/test2@nus
+ |Contact at index 4 in the list should have 2 emails of “test1@nus” and “test2@nus”.|
+
+|12 |Editing a contact with multiple modules:
+     edit 5 m/CS2103T m/CS2101
+ |Contact at index 5 in the list should have 2 modules of “CS2103T” and “CS2101”. |
+
+|13 |Finding a contact that does not exist:
+     find blablabla
+ |There should be 0 contacts listed as there are no contact with named “blablabla”.|
+
+|14 |Finding a contact that exist via the contact’s first name:
+     find test
+ |There should be 2 contacts in the list which are the 2 new contacts that were just added. |
+
+|15 |Finding a contact that exist via the contact’s last name:
+     find person
+|There should be 1 contact in the list which is the 1 new contact that was added.|
+
+|16 |List contacts with a module that does not exist:
+     findmodule CS1000
+ |List should not show any contacts in the list.|
+
+|17 |List contacts with a module:
+     findmodule CS2103T
+ |List should show contacts with module “CS2103T”.|
+
+|18 |Show NUSMods module information:
+     getmodule CS2103T
+ |A NUSMods page should appear showing information regarding CS2103T.|
+
+|19 |Show list of modules in every contact:
+     listmodules
+ |The list of modules of every contact should show in the information box under the Command line. |
+
+|20 |Deleting a contact:
+        delete 1
+ |Deletes the contact at index 1. The list then updates the other indexes accordingly.|
+
+|21 |Add photo to a contact:
+        addphoto 1 u/https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/c0.1.114.114/1926865_10152706020393636_615190997_n.jpg?oh=bb7d62ea04de351c9f4e84c81d50908e&oe=5AA02620
+ |The photo of contact at index 1 should be updated.|
+
+|22 |Selecting a contact:
+        select 1
+ |The information of the contact at index 1 should be displayed, including the location of the contact’s address in the Google Map below the information. |
+
+|23 |Adding a task in task list:
+        addtask t/testathon d/17/11/2017 s/14:00
+ |The new task should show in the task panel.|
+
+|24 |Editing a task:
+        edittask 1 t/Finals d/04/12/2017 s/17:00
+ |The task of index 1 should be updated accordingly. |
+
+|25 |Deleting a task:
+        deletetask 1
+ |The task of index 1 should be deleted and the task list should be updated. |
+
+|26 |Show command summary page:
+        summary
+ |The command summary page should appear.|
+
+|27 |Sort the list of contacts:
+   sort
+ |The contact list should be sorted alphabetically. |
+|28 |Shows a venue information:
+   Venue lt5
+ |A NUSMods page would appear showing the venue information of LT5. |
+|29 |Show NUS bus routes:
+   bus
+ |A popup page would appear, showing information of NUS internal bus services. |
+|30 |Open NUS map:
+   map
+ |A popup page would appear, showing the whole NUS map with buildings information. |
+|31 |Open help page:
+     help
+ |A popup page would appear, showing ContactHub’s user guide. |
+|32 |Show history of commands:
+     history
+ |Commands that were previously entered would show in the information box under the command line.  |
+|33 |Show list of all contacts:
+     list
+ |The list would show every contact that was added into contactHub. |
+|34 |Clear contacts:
+     clear
+ |All contacts would be cleared and the list would be empty. |
+|35 |Undo last command:
+     undo
+ |The previous command would be undone, which in this case the contacts would restore to previous state. |
+|36 |Redo last command:
+     redo
+ |This will reverse the most recent undo command. |
+|37 |Undo last command:
+     undo
+ |The previous command would be undone, which in this case the contacts would restore to previous state.|
+|38 |Using of keyboard shortcut ‘Insert’
+     (not compatible for mac users):
+     *Press insert key on keyboard*
+ |The addCommand parameters should appear in the command box. |
+|39 |Using of keyboard shortcut ‘Alt’:
+     *Press alt key on keyboard*
+ |The text cursor should move to the extreme right after pressing alt. |
+|40 |Using of keyboard shortcut ‘Delete’:
+     *Press Delete key on keyboard several times*
+ |After the 1st press, the “m/” would be deleted, after 2nd press, the single space would be deleted,
+  After 3rd press, the “a/” would be delete.
+ |
+|41 |Using of keyboard shortcut ‘Escape’:
+     *Press escape key on keyboard*
+ |The command box should be empty. |
+|42 |Exit ContactHub:
+     exit
+ |Exits the program. |
