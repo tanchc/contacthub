@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook>
+    <persons>
+        <name>Alice Pauline</name>
+        <phones>85355255</phones>
+        <birthday>25/09/1990</birthday>
+        <emails>alice@example.com</emails>
+        <address>123, Jurong West Ave 6, #08-111</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1231</modules>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Benson Meier</name>
+        <phones>98765432</phones>
+        <birthday>12/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>311, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Carl Kurz</name>
+        <phones>95352563</phones>
+        <birthday>03/12/1973</birthday>
+        <emails>heinz@example.com</emails>
+        <address>wall street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS1231</modules>
+    </persons>
+    <persons>
+        <name>Daniel Meier</name>
+        <phones>87652533</phones>
+        <birthday>21/09/1988</birthday>
+        <emails>cornelia@example.com</emails>
+        <address>10th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Elle Meyer</name>
+        <phones>9482224</phones>
+        <birthday>04/08/1991</birthday>
+        <emails>werner@example.com</emails>
+        <address>michigan ave</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Fiona Kunz</name>
+        <phones>9482427</phones>
+        <birthday>01/10/1989</birthday>
+        <emails>lydia@example.com</emails>
+        <address>little tokyo</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>George Best</name>
+        <phones>9482442</phones>
+        <birthday>15/05/1993</birthday>
+        <emails>anna@example.com</emails>
+        <address>4th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>John Doe</name>
+        <phones>98765432</phones>
+        <birthday>12/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>311, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS2103T</modules>
+        <modules>CS2101</modules>
+    </persons>
+    <persons>
+        <name>Gladlice Pauline</name>
+        <phones>85355244</phones>
+        <birthday>15/09/1990</birthday>
+        <emails>glalice@example.com</emails>
+        <address>456, Jurong West Ave 6, #08-111</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1231</modules>
+        <modules>CS2103T</modules>
+    </persons>
+    <persons>
+        <name>Branson Meier</name>
+        <phones>98765134</phones>
+        <birthday>42/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>345, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS2101</modules>
+    </persons>
+    <persons>
+        <name>Carlson Kurz</name>
+        <phones>95422563</phones>
+        <birthday>13/12/1973</birthday>
+        <emails>heinzs@example.com</emails>
+        <address>wall street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS2103T</modules>
+        <modules>CS1231</modules>
+    </persons>
+    <persons>
+        <name>Damith Meier</name>
+        <phones>87652533</phones>
+        <birthday>21/09/1988</birthday>
+        <emails>cornelia@example.com</emails>
+        <address>10th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1231</modules>
+    </persons>
+    <persons>
+        <name>Francis Meyer</name>
+        <phones>9482224</phones>
+        <birthday>04/08/1991</birthday>
+        <emails>werner@example.com</emails>
+        <address>michigan ave</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS2101</modules>
+    </persons>
+    <persons>
+        <name>Shrek Kunz</name>
+        <phones>9482427</phones>
+        <birthday>01/10/1989</birthday>
+        <emails>lydia@example.com</emails>
+        <address>little tokyo</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+    </persons>
+    <persons>
+        <name>Georgie Best</name>
+        <phones>9482442</phones>
+        <birthday>15/05/1993</birthday>
+        <emails>anna@example.com</emails>
+        <address>4th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS2101</modules>
+    </persons>
+    <persons>
+        <name>Johnson Doe</name>
+        <phones>98765432</phones>
+        <birthday>12/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>311, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS2103T</modules>
+        <modules>CS2101</modules>
+    </persons>
+    <persons>
+        <name>Alide Pauline</name>
+        <phones>85355255</phones>
+        <birthday>25/09/1990</birthday>
+        <emails>alice@example.com</emails>
+        <address>123, Jurong West Ave 6, #08-111</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1231</modules>
+        <modules>CS1020</modules>
+    </persons>
+    <persons>
+        <name>Bensoner Meier</name>
+        <phones>98765432</phones>
+        <birthday>12/02/1985</birthday>
+        <emails>johnd@example.com</emails>
+        <address>311, Clementi Ave 2, #02-25</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+        <modules>CS1010</modules>
+    </persons>
+    <persons>
+        <name>Carly Kurz</name>
+        <phones>95352563</phones>
+        <birthday>03/12/1973</birthday>
+        <emails>heinz@example.com</emails>
+        <address>wall street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1010</modules>
+        <modules>CS1231</modules>
+    </persons>
+    <persons>
+        <name>Danny Meier</name>
+        <phones>87652533</phones>
+        <birthday>21/09/1988</birthday>
+        <emails>cornelia@example.com</emails>
+        <address>10th street</address>
+        <photo>images/defaultPhoto.png</photo>
+        <modules>CS1020</modules>
+    </persons>
+    <tasks>
+        <name>Meeting</name>
+        <date>30/10/2017</date>
+        <startTime>18:00</startTime>
+    </tasks>
+    <tasks>
+        <name>Soccer</name>
+        <date>15/12/2017</date>
+        <startTime>09:00</startTime>
+    </tasks>
+    <tasks>
+        <name>Birthday</name>
+        <date>30/11/2017</date>
+        <startTime>19:30</startTime>
+    </tasks>
+    <tasks>
+        <name>Work</name>
+        <date>01/01/2018</date>
+        <startTime>08:00</startTime>
+    </tasks>
+    <tasks>
+        <name>Homework</name>
+        <date>12/01/2018</date>
+        <startTime>23:59</startTime>
+    </tasks>
+    <tasks>
+        <name>Exam</name>
+        <date>05/12/2017</date>
+        <startTime>17:00</startTime>
+    </tasks>
+    <tasks>
+        <name>Competition</name>
+        <date>25/11/2017</date>
+        <startTime>12:00</startTime>
+    </tasks>
+    <modules>CS1020</modules>
+    <modules>CS1231</modules>
+    <modules>CS1010</modules>
+    <modules>CS2103T</modules>
+    <modules>CS2101</modules>
+</addressbook>

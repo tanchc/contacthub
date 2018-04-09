@@ -14,7 +14,7 @@ Our https://github.com/CS2103AUG2017-T11-B2[CS2103T Project Team] formed as part
 
 === Julian Shoung
 image::jshoung.png[width="150", align="left"]
-{empty}[https://github.com/jshoung[github]]
+{empty}[https://github.com/jshoung[github]][https://github.com/CS2103AUG2017-T11-B2/main/blob/master/docs/team/julianshoung.adoc[portfolio]]
 
 Role: Team Lead +
 Responsibilities: Overall project coordination
@@ -23,7 +23,7 @@ Responsibilities: Overall project coordination
 
 === Ahmad Alkaff
 image::ahmadalkaff.png[width="150", align="left"]
-{empty}[http://github.com/AhmadAlkaff[github]]
+{empty}[http://github.com/AhmadAlkaff[github]][https://github.com/CS2103AUG2017-T11-B2/main/blob/master/docs/team/ahmadalkaff.adoc[portfolio]]
 
 Role: Developer +
 Responsibilities: Code Quality
@@ -32,7 +32,7 @@ Responsibilities: Code Quality
 
 === Vivian Tan
 image::viviantan95.png[width="150", align="left"]
-{empty}[https://github.com/viviantan95[github]]
+{empty}[https://github.com/viviantan95[github]][https://github.com/CS2103AUG2017-T11-B2/main/blob/master/docs/team/viviantan.adoc[portfolio]]
 
 Role: Developer +
 Responsibilities: Documentation
@@ -41,7 +41,7 @@ Responsibilities: Documentation
 
 === Clement Tan
 image::tanchc.png[width="150", align="left"]
-{empty}[https://github.com/tanchc[github]]
+{empty}[https://github.com/tanchc[github]][https://github.com/CS2103AUG2017-T11-B2/main/blob/master/docs/team/tanchc.adoc[portfolio]]
 
 Role: Developer +
 Responsibilities: UI
